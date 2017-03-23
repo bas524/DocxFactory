@@ -18,7 +18,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -27,7 +27,7 @@ using namespace std;
 
 DocxCompilerChartField::ChartType DocxCompilerChartField::getChartType( OpcPart* p_part )
 {
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>		l_treeDriller;
 	xercesc::DOMNode*					l_node;
 	set<string>							l_types;
 
@@ -189,7 +189,7 @@ DocxCompilerChartField::DocxCompilerChartField(
 					l_chartRelationship ->getType(),
 					l_chartRelationship ->getTargetPart() );
 
-			m_chartRelationships.push_back( boost::make_tuple(
+			m_chartRelationships.push_back( std::make_tuple(
 				l_chartRelationship ->getId(),
 				l_chartRelationship ->getType(),
 				l_chartRelationship ->getTargetMode() == OpcRelationship::INTERNAL_MODE ? l_chartRelationship ->getTargetPart() ->getFullPath() : l_chartRelationship ->getExternalPath(),
@@ -208,7 +208,7 @@ DocxCompilerChartField::~DocxCompilerChartField()
 void DocxCompilerChartField::serialize( ZipFile* p_zipFile )
 {
 	list<pair<string, char>>::iterator							l_stringIterator;
-	list<boost::tuple<string, string, string, bool>>::iterator	l_relationshipIterator;
+	list<std::tuple<string, string, string, bool>>::iterator	l_relationshipIterator;
 
 	DocxCompilerField::serialize( p_zipFile );
 
@@ -255,7 +255,7 @@ const list<pair<string, char>>*	DocxCompilerChartField::getDrawingStrings() cons
 	return &m_drawingStrings;
 } // getDrawingStrings
 
-const list<boost::tuple<string, string, string, bool>>*	DocxCompilerChartField::getChartRelationships() const
+const list<std::tuple<string, string, string, bool>>*	DocxCompilerChartField::getChartRelationships() const
 {
 	return &m_chartRelationships;
 } // getChartRelationships

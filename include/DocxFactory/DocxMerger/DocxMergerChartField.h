@@ -4,7 +4,7 @@
 
 #include "DocxFactory/DocxMerger/DocxMergerField.h"
 
-#include "boost/tuple/tuple.hpp"
+#include <tuple>
 
 
 
@@ -41,7 +41,7 @@ namespace DocxFactory
 		string													getChartMlPrefix() const;
 		string													getRelMlPrefix() const;
 		const list<pair<string, char>>*							getDrawingStrings() const;
-		const list<boost::tuple<string, string, string, bool>>*	getChartRelationships() const;
+		const list<std::tuple<string, string, string, bool>>*	getChartRelationships() const;
 
 	protected:
 		void saveChart( ZipFile* p_zipFile, const string* p_value );
@@ -53,7 +53,7 @@ namespace DocxFactory
 		string												m_chartMlPrefix;
 		string												m_relMlPrefix;
 		list<pair<string, char>>							m_drawingStrings;
-		list<boost::tuple<string, string, string, bool>>	m_chartRelationships; // id, type, part/external path, external
+		list<std::tuple<string, string, string, bool>>		m_chartRelationships; // id, type, part/external path, external
 
 	private:
 		DocxMergerChartField( const DocxMergerChartField& p_other );

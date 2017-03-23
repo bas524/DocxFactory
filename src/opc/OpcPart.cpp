@@ -21,7 +21,7 @@
 #include "xercesc/dom/DOM.hpp"
 #include "xercesc/framework/MemBufInputSource.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <vector>
 
 using namespace DocxFactory;
 using namespace std;
@@ -53,17 +53,17 @@ void OpcPart::loadDoc()
 		return;
 
 	size_t					l_bufSize;
-	boost::scoped_ptr<byte> l_buf( m_package ->getUnzipFile() ->extractEntryToBuf( OpcFunc::opcToZipPath( m_fullPath ), l_bufSize ) );
+	std::vector<byte> l_buf = m_package ->getUnzipFile() ->extractEntryToBuf( OpcFunc::opcToZipPath( m_fullPath ), l_bufSize ) ;
 
 	// load/parse the doc using the package dom parser to keep it in scope for the life of the package
-	m_doc = XmlFunc::parseBufToDoc( m_package ->getDomParser(), l_buf.get(), l_bufSize );
+	m_doc = XmlFunc::parseBufToDoc( m_package ->getDomParser(), l_buf.data(), l_bufSize );
 	XmlFunc::unindentDoc( m_doc );
 } // loadDoc
 
 void OpcPart::save()
 {
 	size_t					l_bufSize;
-	boost::scoped_ptr<byte> l_buf;
+	std::vector<byte> 		l_buf;
 
 	int			l_method;
 	int			l_level;
@@ -73,16 +73,16 @@ void OpcPart::save()
 	{
 		case PART_NOT_CHANGED:
 
-			l_buf.reset( m_package ->getUnzipFile() ->extractEntryToRaw(
+			l_buf = m_package ->getUnzipFile() ->extractEntryToRaw(
 				OpcFunc::opcToZipPath( m_fullPath ),
 				l_method,
 				l_level,
 				l_fileInfo,
-				l_bufSize ) );
+				l_bufSize ) ;
 
 			m_package ->getZipFile() ->addEntryFromRaw(
 				OpcFunc::opcToZipPath( m_fullPath ),
-				l_buf.get(),
+				l_buf.data(),
 				l_bufSize,
 				l_method,
 				l_level,
@@ -92,11 +92,11 @@ void OpcPart::save()
 
 		case PART_CHANGED_IN_DOM:
 
-			l_buf.reset( XmlFunc::saveDocToBuf( m_doc, l_bufSize ) );
+			l_buf = XmlFunc::saveDocToBuf( m_doc, l_bufSize );
 
 			m_package ->getZipFile() ->addEntryFromBuf(
 				OpcFunc::opcToZipPath( m_fullPath ),
-				l_buf.get(),
+				l_buf.data(),
 				l_bufSize );
 
 			break;

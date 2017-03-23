@@ -12,7 +12,7 @@
 #include "DocxFactory/locale/LocaleFunc.h"
 #include "DocxFactory/str/StrFunc.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
 
 using namespace DocxFactory;
 using namespace std;
@@ -92,7 +92,7 @@ string DocxMergerTextField::encodeT(
 	bool			l_tab		= false;
 	unsigned char	l_ch;
 
-	boost::scoped_array<char>	l_dstStr( new char[ l_srcLen * 6 + 1 ] );
+	std::vector<char> l_dstStr(l_srcLen * 6 + 1);
 
 	while ( l_srcPos < l_srcLen )
 	{
@@ -133,11 +133,11 @@ string DocxMergerTextField::encodeT(
 			l_tab = true;
 		}
 
-		else if ( l_ch == '&' ) { strncpy( l_dstStr.get() + l_dstPos, "&amp;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '"' ) { strncpy( l_dstStr.get() + l_dstPos, "&quot;", 6 );	l_dstPos += 6; }
-		else if ( l_ch == '~' ) { strncpy( l_dstStr.get() + l_dstPos, "&apos;", 6 );	l_dstPos += 6; }
-		else if ( l_ch == '<' )	{ strncpy( l_dstStr.get() + l_dstPos, "&lt;", 4 );		l_dstPos += 4; }
-		else if ( l_ch == '>' )	{ strncpy( l_dstStr.get() + l_dstPos, "&gt;", 4 );		l_dstPos += 4; }
+		else if ( l_ch == '&' ) { strncpy( l_dstStr.data() + l_dstPos, "&amp;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '"' ) { strncpy( l_dstStr.data() + l_dstPos, "&quot;", 6 );	l_dstPos += 6; }
+		else if ( l_ch == '~' ) { strncpy( l_dstStr.data() + l_dstPos, "&apos;", 6 );	l_dstPos += 6; }
+		else if ( l_ch == '<' )	{ strncpy( l_dstStr.data() + l_dstPos, "&lt;", 4 );		l_dstPos += 4; }
+		else if ( l_ch == '>' )	{ strncpy( l_dstStr.data() + l_dstPos, "&gt;", 4 );		l_dstPos += 4; }
 
 		else if ( l_ch <= 31 || l_ch == 127 )
 		{
@@ -159,7 +159,7 @@ string DocxMergerTextField::encodeT(
 
 
 	if ( l_newline || l_tab )
-		return StrFunc::replace( StrFunc::replace( l_dstStr.get(),
+		return StrFunc::replace( StrFunc::replace( &l_dstStr[0],
 		
 			  "\n",
 			  "</" + p_wordMlPrefix + ":t>"
@@ -172,5 +172,5 @@ string DocxMergerTextField::encodeT(
 			+ "<"  + p_wordMlPrefix + ":t xml:space= \"preserve\">" );
 
 	else
-		return l_dstStr.get();
+		return std::string(l_dstStr.data(), l_dstPos);
 } // encodeT

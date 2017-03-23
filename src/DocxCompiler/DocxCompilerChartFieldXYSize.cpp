@@ -17,7 +17,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -39,7 +39,7 @@ DocxCompilerChartFieldXYSize::DocxCompilerChartFieldXYSize(
 		p_drawingNode,
 		p_chartPart )
 {
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>	l_treeDriller;
 
 	xercesc::DOMDocument*	l_doc			= p_chartPart ->getDoc();
 	xercesc::DOMElement*	l_rootNode		= l_doc ->getDocumentElement();

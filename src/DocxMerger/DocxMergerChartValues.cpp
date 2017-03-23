@@ -41,5 +41,5 @@ void DocxMergerChartValues::setValue( DocxMergerPasteChartValues* p_pasteValues,
 
 string DocxMergerChartValues::getValue( DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category ) const
 {
-	return StrFunc::intToStr( ( *p_pasteValues ->getValues() )[ p_series ][ p_category ] );
+	return StrFunc::intToStr( ( *p_pasteValues ->getValues() )[ p_series ][ p_category ] , 3 );
 } // getValue

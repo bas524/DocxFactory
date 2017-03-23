@@ -22,8 +22,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
-
+#include <memory>
 #include <set>
 
 using namespace DocxFactory;

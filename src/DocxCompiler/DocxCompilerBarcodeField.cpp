@@ -18,7 +18,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -358,7 +358,7 @@ DocxCompilerBarcodeField::DocxCompilerBarcodeField(
 	l_fgcolor	= "";
 	l_bgcolor	= "";
 
-	boost::scoped_ptr<XmlTreeDriller> l_treeDriller( new XmlTreeDriller(
+	std::unique_ptr<XmlTreeDriller> l_treeDriller( new XmlTreeDriller(
 		l_rPrNode,
 		"http://schemas.openxmlformats.org/wordprocessingml/2006/main", "rPr",
 		"http://schemas.openxmlformats.org/wordprocessingml/2006/main",	"sz,szCs,color,highlight",

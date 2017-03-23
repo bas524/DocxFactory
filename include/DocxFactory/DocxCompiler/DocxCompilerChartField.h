@@ -4,7 +4,7 @@
 
 #include "DocxFactory/DocxCompiler/DocxCompilerField.h"
 
-#include "boost/tuple/tuple.hpp"
+#include <tuple>
 
 
 
@@ -46,14 +46,14 @@ namespace DocxFactory
 		string													getChartMlPrefix() const;
 		string													getRelMlPrefix() const;
 		const list<pair<string, char>>*							getDrawingStrings() const;
-		const list<boost::tuple<string, string, string, bool>>*	getChartRelationships() const;
+		const list<tuple<string, string, string, bool>>*	getChartRelationships() const;
 
 	protected:
 		ChartType											m_chartType;
 		string												m_chartMlPrefix;
 		string												m_relMlPrefix;
 		list<pair<string, char>>							m_drawingStrings;
-		list<boost::tuple<string, string, string, bool>>	m_chartRelationships; // id, type, part/external path, external
+		list<tuple<string, string, string, bool>>		m_chartRelationships; // id, type, part/external path, external
 
 	private:
 		DocxCompilerChartField( const DocxCompilerChartField& p_other );

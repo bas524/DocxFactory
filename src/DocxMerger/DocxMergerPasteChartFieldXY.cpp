@@ -59,7 +59,7 @@ string* DocxMergerPasteChartFieldXY::getValue()
 				m_value +=
 					  "<"	+ l_chartMlPrefix + ":pt idx=\"" + StrFunc::intToStr( l_idx ) + "\">"
 					+ "<"	+ l_chartMlPrefix + ":v>"
-					+ StrFunc::intToStr( l_pasteAxis ->at( l_idx ) )
+					+ StrFunc::intToStr( l_pasteAxis ->at( l_idx ), 3 )
 					+ "</"	+ l_chartMlPrefix + ":v>"
 					+ "</"	+ l_chartMlPrefix + ":pt>";
 			}

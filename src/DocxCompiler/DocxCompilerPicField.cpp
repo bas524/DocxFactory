@@ -370,7 +370,8 @@ void DocxCompilerPicField::serialize( ZipFile* p_zipFile )
 	FOR_EACH( l_picStringIterator, &m_picStrings )
 	{
 		p_zipFile ->writeStr		( ( *l_picStringIterator ).first );
-		p_zipFile ->writeNum<uint8>	( ( *l_picStringIterator ).second );
+                auto num = static_cast<uint8> ( ( *l_picStringIterator ).second );
+		p_zipFile ->writeNum<uint8>	( num );
 	}
 } // serialize
 

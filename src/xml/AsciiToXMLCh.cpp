@@ -18,7 +18,7 @@ AsciiToXMLCh::AsciiToXMLCh( const string& p_str )
 	for ( ; l_pos < l_len; l_pos++)
 		m_xmlCh[ l_pos ] = ( XMLCh ) p_str[ l_pos ];
 
-	m_xmlCh[ l_pos ] = NULL;
+	m_xmlCh[ l_pos ] = 0;
 } // c'tor
 
 AsciiToXMLCh::operator XMLCh*()

@@ -29,7 +29,7 @@
 #include "DocxFactory/str/StrFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -275,7 +275,8 @@ void DocxCompilerFile::serialize( ZipFile* p_zipFile )
 	p_zipFile ->writePtr		( this );
 	p_zipFile ->writeStr		( m_altChunkDir );
 	p_zipFile ->writeStr		( m_chartDir );
-	p_zipFile ->writeNum<uint8> ( m_hasToc );
+        auto p_zipTocNum = static_cast<uint8>(m_hasToc);
+	p_zipFile ->writeNum<uint8> ( p_zipTocNum );
 	
 	p_zipFile ->writeNum<uint32>( ( uint32 ) m_itemFiles.size() );
 	FOR_EACH( l_itemFileIterator, &m_itemFiles )
@@ -405,7 +406,8 @@ void DocxCompilerFile::serializeFields( ZipFile* p_zipFile )
 	p_zipFile ->writeNum<uint32>( ( uint32 ) m_fieldsByName.size() );
 	FOR_EACH( l_fieldIterator, &m_fieldsByName )
 	{
-		p_zipFile ->writeNum<int16>( l_fieldIterator ->second ->getType() );
+                auto fieldTypeNum = static_cast<int16>( l_fieldIterator ->second ->getType() ) ;
+		p_zipFile ->writeNum<int16>( fieldTypeNum );
 
 		if ( l_fieldIterator ->second ->getType() == DocxCompilerField::TYPE_CHART )
 

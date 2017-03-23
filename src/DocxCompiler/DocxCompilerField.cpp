@@ -925,7 +925,7 @@ void DocxCompilerField::getTypeAndFormat(
 			p_valueByParam ->insert( make_pair( PARAM_GS1, "" ) );
 
 		if ( l_scale != 0.0f )
-			p_valueByParam ->insert( make_pair( PARAM_SCALE, StrFunc::intToStr( l_scale ) ) );
+			p_valueByParam ->insert( make_pair( PARAM_SCALE, StrFunc::intToStr( l_scale, 3 ) ) );
 
 		if ( l_height != 0 )
 			p_valueByParam ->insert( make_pair( PARAM_HEIGHT, StrFunc::intToStr( l_height ) ) );

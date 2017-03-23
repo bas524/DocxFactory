@@ -284,12 +284,12 @@ string OsFunc::normalizeFileUrl( const string& p_url )
 
 
 
-byte* OsFunc::readFile(
+std::vector<byte> OsFunc::readFile(
 	const string&	p_fileName,
 	size_t&			p_bufSize )
 {
 	ifstream	l_fileStream;
-	byte*		l_buf	= NULL;
+	std::vector<byte>		l_buf;
 
 	try
 	{
@@ -299,18 +299,15 @@ byte* OsFunc::readFile(
 			throw FileNotFoundException( p_fileName, __FILE__, __LINE__ );
 
 		p_bufSize	= ( size_t ) l_fileStream.tellg();
-		l_buf		= new byte[ p_bufSize ];
+		l_buf.resize( p_bufSize );
 
 		l_fileStream.seekg( 0, ios::beg );
-		l_fileStream.read( ( char* ) l_buf, p_bufSize );
+		l_fileStream.read( ( char* ) &l_buf[0], p_bufSize );
 		l_fileStream.close();
 	}
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
-
 		if ( l_fileStream.is_open() )
 			l_fileStream.close();
 

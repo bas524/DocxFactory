@@ -190,7 +190,7 @@ void DocxMergerAltChunkField::createPasteField( const string& p_value, AltChunkT
 
 void DocxMergerAltChunkField::getMultiPart( const string& p_str, string& p_multiPart )
 {
-	byte*	l_buf;
+	std::vector<byte>	l_buf;
 	size_t	l_bufSize;
 
 	string	l_file;
@@ -323,11 +323,11 @@ void DocxMergerAltChunkField::getMultiPart( const string& p_str, string& p_multi
 								  "Content-Transfer-Encoding: base64\r\n"
 								  "Content-Location: " + l_value + "\r\n"
 								  "\r\n"
-								+ StrFunc::encodeBase64( ( char* ) l_buf, l_bufSize )
+								+ StrFunc::encodeBase64( ( char* ) l_buf.data(), l_bufSize )
 								+ "\r\n"
 								  "\r\n";
 
-							delete[] l_buf;
+							l_buf.clear();
 						}
 
 						catch ( ... )

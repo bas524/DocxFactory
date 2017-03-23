@@ -5,12 +5,15 @@
 #include "DocxFactory/zip/ZipFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
+#if defined (WIN32) | defined (_WIN32)
 #include "zlib/zip.h"
 #include "zlib/unzip.h"
+#else
+#include <minizip/zip.h>
+#include <minizip/unzip.h>
+#endif
 
-#include "boost/type_traits.hpp"
-#include "boost/utility/enable_if.hpp"
-
+#include <type_traits>
 #include <map>
 #include <string>
 
@@ -86,10 +89,10 @@ namespace DocxFactory
 		// so the values can be retrieved from the file in the same way independently of where they were saved.
 
 		template <class T>
-		typename boost::enable_if<boost::is_integral<T>, void>::type		writeNum( T p_val );
+		typename std::enable_if<std::is_integral<T>::value, void>::type		writeNum( T p_val );
 
 		template <class T>
-		typename boost::enable_if<boost::is_floating_point<T>, void>::type	writeNum( T p_val );
+		typename std::enable_if<std::is_floating_point<T>::value, void>::type	writeNum( T p_val );
 
 		void writePtr	( void*			p_ptr );
 		void writeStr	( const string&	p_str );
@@ -127,7 +130,7 @@ namespace DocxFactory
 	};
 
 	template <class T>
-	typename boost::enable_if<boost::is_integral<T>, void>::type ZipFile::writeNum( T p_val )
+	typename std::enable_if<std::is_integral<T>::value, void>::type ZipFile::writeNum( T p_val )
 	{
 		ZipFunc::toLittleEndian( p_val );
 
@@ -135,7 +138,7 @@ namespace DocxFactory
 	} // writeNum<integral>
 
 	template <class T>
-	typename boost::enable_if<boost::is_floating_point<T>, void>::type ZipFile::writeNum( T p_val )
+	typename std::enable_if<std::is_floating_point<T>::value, void>::type ZipFile::writeNum( T p_val )
 	{
 		DoublePack l_pack = ZipFunc::pack( ( double ) p_val );
 

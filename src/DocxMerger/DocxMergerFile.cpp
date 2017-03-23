@@ -46,7 +46,7 @@
 #include "xercesc/util/XercesDefs.hpp"
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -401,8 +401,8 @@ void DocxMergerFile::mergeItemByJson( rapidjson::Value* p_value, DocxMergerItem*
 	list<pair<rapidjson::Value*, DocxMergerItem*>>				l_valueList;
 	list<pair<rapidjson::Value*, DocxMergerItem*>>::iterator	l_valueIterator;
 
-	rapidjson::Value::Member*									l_childMember;
-	rapidjson::Value*											l_childValue;
+//	rapidjson::Value::Member*									l_childMember;
+        rapidjson::Value*											l_childValue;
 	string														l_childName;
 
 	if ( p_item )
@@ -420,10 +420,10 @@ void DocxMergerFile::mergeItemByJson( rapidjson::Value* p_value, DocxMergerItem*
 
 			l_valueList.clear();
 
-			for ( l_childMember = p_value ->MemberBegin(); l_childMember != p_value ->MemberEnd(); ++l_childMember )
+			for ( auto l_childMemberIt = p_value ->MemberBegin(); l_childMemberIt != p_value ->MemberEnd(); ++l_childMemberIt )
 			{
-				l_childName		= StrFunc::lc( l_childMember ->name.GetString() );
-				l_childValue	= &l_childMember ->value;
+				l_childName		= StrFunc::lc( l_childMemberIt ->name.GetString() );
+				l_childValue	= &l_childMemberIt ->value;
 
 				l_fieldRange = l_fields ->equal_range( l_childName );
 				if ( l_fieldRange.first != l_fieldRange.second )
@@ -509,10 +509,10 @@ void DocxMergerFile::mergeItemByJson( rapidjson::Value* p_value, DocxMergerItem*
 	{
 		if ( p_value ->IsObject() )
 		{
-			for ( l_childMember = p_value ->MemberBegin(); l_childMember != p_value ->MemberEnd(); ++l_childMember )
+			for ( auto l_childMemberIt = p_value ->MemberBegin(); l_childMemberIt != p_value ->MemberEnd(); ++l_childMemberIt )
 			{
-				l_childName		= StrFunc::lc( l_childMember ->name.GetString() );
-				l_childValue	= &l_childMember ->value;
+				l_childName		= StrFunc::lc( l_childMemberIt ->name.GetString() );
+				l_childValue	= &l_childMemberIt ->value;
 
 				if ( l_childValue ->IsObject() || l_childValue ->IsArray() )
 				{
@@ -586,7 +586,7 @@ void DocxMergerFile::mergeFieldByJson( rapidjson::Value* p_value, DocxMergerFiel
 void DocxMergerFile::mergeChartFieldByJson( rapidjson::Value* p_value, DocxMergerChartField* p_chartField )
 {
 	rapidjson::Value*			l_seriesValue;
-	rapidjson::Value::Member*	l_childMember;
+//	rapidjson::Value::Member*	l_childMember;
 	rapidjson::Value*			l_childValue;
 	string						l_childName;
 
@@ -604,10 +604,10 @@ void DocxMergerFile::mergeChartFieldByJson( rapidjson::Value* p_value, DocxMerge
 				l_category	= "";
 				l_value		= 0.0f;
 
-				for ( l_childMember = l_seriesValue ->MemberBegin(); l_childMember != l_seriesValue ->MemberEnd(); ++l_childMember )
+				for ( auto l_childMemberIt = l_seriesValue ->MemberBegin(); l_childMemberIt != l_seriesValue ->MemberEnd(); ++l_childMemberIt )
 				{
-					l_childName		= StrFunc::lc( l_childMember ->name.GetString() );
-					l_childValue	= &l_childMember ->value;
+					l_childName		= StrFunc::lc( l_childMemberIt ->name.GetString() );
+					l_childValue	= &l_childMemberIt ->value;
 
 						 if ( l_childName == "series" )		l_series	= JsonFunc::getStr( l_childValue );
 					else if ( l_childName == "category" )	l_category	= JsonFunc::getStr( l_childValue );

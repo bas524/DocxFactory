@@ -20,7 +20,7 @@
 #include "xercesc/util/XercesDefs.hpp"
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -237,7 +237,7 @@ void DocxCompilerItem::loadXmlStrings()
 	xercesc::DOMAttr*						l_attrNode;
 	xercesc::DOMNode*						l_node;
 	
-	boost::scoped_ptr<StrEntries>			l_strEntries;
+	std::unique_ptr<StrEntries>				l_strEntries;
 	string									l_str;
 	void*									l_ptr;
 	size_t									l_len;

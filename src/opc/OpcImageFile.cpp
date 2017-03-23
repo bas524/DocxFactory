@@ -11,7 +11,11 @@
 #include "DocxFactory/str/StrFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
+#if defined (WIN32) | defined (_WIN32)
 #include "zlib/zip.h"
+#else
+#include <minizip/zip.h>
+#endif
 
 #include "Magick++.h"
 #include "magick/image.h"

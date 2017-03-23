@@ -21,7 +21,7 @@
 #include "xercesc/util/PlatformUtils.hpp"
 #include "xercesc/framework/MemBufInputSource.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <vector>
 
 using namespace DocxFactory;
 using namespace std;
@@ -89,10 +89,10 @@ void OpcRelationships::load()
 	unsigned int	l_idSeq;
 
 	size_t l_bufSize;
-	boost::scoped_ptr<byte> l_buf( m_package ->getUnzipFile() ->extractEntryToBuf(
-		OpcFunc::opcToZipPath( m_fullPath ), l_bufSize ) );
+	std::vector<byte> l_buf = m_package ->getUnzipFile() ->extractEntryToBuf(
+		OpcFunc::opcToZipPath( m_fullPath ), l_bufSize ) ;
 
-	l_doc = XmlFunc::parseBufToDoc( m_package ->getDomParser(), l_buf.get(), l_bufSize );
+	l_doc = XmlFunc::parseBufToDoc( m_package ->getDomParser(), l_buf.data(), l_bufSize );
 	XmlFunc::unindentDoc( l_doc );
 
 	l_relationshipsNode		= l_doc ->getDocumentElement();
@@ -198,16 +198,16 @@ void OpcRelationships::save()
 
 	else
 	{
-		boost::scoped_ptr<byte>	l_buf( m_package ->getUnzipFile() ->extractEntryToRaw(
+		std::vector<byte>	l_buf = m_package ->getUnzipFile() ->extractEntryToRaw(
 			OpcFunc::opcToZipPath( m_fullPath ),
 			l_method,
 			l_level,
 			l_fileInfo,
-			l_bufSize ) );
+			l_bufSize ) ;
 
 		m_package ->getZipFile() ->addEntryFromRaw(
 			OpcFunc::opcToZipPath( m_fullPath ),
-			l_buf.get(),
+			l_buf.data(),
 			l_bufSize,
 			l_method,
 			l_level,

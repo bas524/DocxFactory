@@ -10,7 +10,8 @@
 #include "DocxFactory/os/FileNotFoundException.h"
 #include "DocxFactory/os/FileExistsException.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
+#include <cstring>
 
 using namespace DocxFactory;
 using namespace std;
@@ -72,13 +73,13 @@ void UnzipFile::close()
 
 
 
-byte* UnzipFile::extractEntryToBuf(
+std::vector<byte> UnzipFile::extractEntryToBuf(
 	const string&	p_path,
 	size_t&			p_bufSize ) const
 {
-	FileInfo*	l_fileInfo;
-	byte*		l_buf = NULL;
-	int			l_err;
+	FileInfo*				l_fileInfo;
+	std::vector<byte>		l_buf;
+	int						l_err;
 
 	if ( !m_fileOpen )
 		throw ZipFileNotOpenException( __FILE__, __LINE__ );
@@ -101,9 +102,9 @@ byte* UnzipFile::extractEntryToBuf(
 			throw MinizipException( "unzOpenCurrentFile", l_err, __FILE__, __LINE__ );
 
 		p_bufSize	= ( size_t ) ( ( l_fileInfo ->getUnzFileInfo() ) ->uncompressed_size );
-		l_buf		= new byte[ p_bufSize ]; // will throw bad_alloc if allocation fails
+		l_buf.resize( p_bufSize ); 
 
-		l_err = unzReadCurrentFile( m_unzipFile, l_buf, p_bufSize );
+		l_err = unzReadCurrentFile( m_unzipFile, &l_buf[0], p_bufSize );
 
 		if ( l_err < 0 )
 			throw MinizipException( "unzReadCurrentFile", l_err, __FILE__, __LINE__ );
@@ -116,8 +117,6 @@ byte* UnzipFile::extractEntryToBuf(
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
 
 		throw;
 	}
@@ -125,14 +124,14 @@ byte* UnzipFile::extractEntryToBuf(
 	return l_buf;
 } // extract
 
-byte* UnzipFile::extractEntryToRaw(
+std::vector<byte> UnzipFile::extractEntryToRaw(
 	const string&	p_path,
 	int&			p_method,
 	int&			p_level,
 	FileInfo*&		p_fileInfo,
 	size_t&			p_bufSize ) const
 {
-	byte*	l_buf = NULL;
+	std::vector<byte>	l_buf;
 	int		l_err;
 
 	if ( !m_fileOpen )
@@ -156,9 +155,9 @@ byte* UnzipFile::extractEntryToRaw(
 			throw MinizipException( "unzOpenCurrentFile2", l_err, __FILE__, __LINE__ );
 
 		p_bufSize	= ( size_t ) ( ( p_fileInfo ->getUnzFileInfo() ) ->compressed_size );
-		l_buf		= new byte[ p_bufSize ]; // will throw bad_alloc if allocation fail
+		l_buf.resize( p_bufSize ); 
 
-		l_err = unzReadCurrentFile( m_unzipFile, l_buf, p_bufSize );
+		l_err = unzReadCurrentFile( m_unzipFile, &l_buf[0], p_bufSize );
 
 		if ( l_err < 0 )
 			throw MinizipException( "unzReadCurrentFile", l_err, __FILE__, __LINE__ );
@@ -171,9 +170,6 @@ byte* UnzipFile::extractEntryToRaw(
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
-
 		throw;
 	}
 
@@ -186,9 +182,9 @@ void UnzipFile::extractEntryToFile(
 {
 	size_t l_bufSize;
 
-	boost::scoped_array<byte> l_buf( extractEntryToBuf( p_path, l_bufSize ) );
+	std::vector<byte> l_buf = extractEntryToBuf( p_path, l_bufSize ) ;
 
-	OsFunc::writeFile( p_fileName, l_buf.get(), l_bufSize );
+	OsFunc::writeFile( p_fileName, l_buf.data(), l_bufSize );
 } // extractEntryToFile
 
 
@@ -254,12 +250,12 @@ void UnzipFile::read( char* p_buf, size_t p_bufSize )
 string UnzipFile::readStr()
 {
 	uint32						l_bufSize	= readNum<uint32>();
-	boost::scoped_array<char>	l_buf( new char[ l_bufSize + 1 ] );
+	std::vector<char>	l_buf( l_bufSize + 1 );
 
-	read( l_buf.get(), l_bufSize );
-	l_buf[ l_bufSize ] = NULL;
+	read( l_buf.data(), l_bufSize );
+	l_buf[ l_bufSize ] = 0;
 
-	return l_buf.get();
+	return std::string(l_buf.data(), strlen(l_buf.data()));
 } // readStr
 
 

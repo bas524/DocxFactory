@@ -4,8 +4,11 @@
 
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
+#if defined (WIN32) | defined (_WIN32)
 #include "zlib/zip.h"
-
+#else
+#include <minizip/zip.h>
+#endif
 #include <string>
 #include <ctime>
 
@@ -83,7 +86,7 @@ namespace DocxFactory
 		if ( m_littleEndian )
 			return;
 
-		reverse( ( char* ) p_val, sizeof( p_val ) );
+		reverse( ( char* ) &p_val, sizeof( p_val ) );
 
 		/*** return value version ***
 		if ( m_littleEndian )

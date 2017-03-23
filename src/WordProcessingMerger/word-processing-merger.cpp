@@ -24,7 +24,7 @@
 #include "DocxFactory/util/DocxFactoryException.h"
 #include "DocxFactory/util/tchar.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
 
 #include <cstdlib>
 #include <stdexcept>
@@ -492,9 +492,9 @@ void Merger::merge()
 	else
 	{
 		size_t						l_bufSize;
-		boost::scoped_array<byte>	l_buf( OsFunc::readFile( m_dataFile, l_bufSize ) );
+		std::vector<byte>	l_buf = OsFunc::readFile( m_dataFile, l_bufSize ) ;
 
-		l_data = string( ( char* ) l_buf.get(), l_bufSize );
+		l_data.assign( ( char* ) l_buf.data(), l_bufSize );
 	}
 
 	dfw_setCodePage( "UTF-8" );

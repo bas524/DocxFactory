@@ -8,7 +8,7 @@
 
 #include <list>
 #include <string>
-
+#include <vector>
 
 
 struct UConverter;
@@ -257,10 +257,10 @@ namespace DocxFactory
 		static void getNextNum				( const string& p_str, size_t& p_pos, size_t p_len, unsigned short& p_val, unsigned short& p_digits, char& p_nextChar );
 		
 		// low-level conversion functions also used by other libraries like XmlFunc
-		static UChar*	utf8ToUChar	( const char*	p_str,	size_t p_len );
-		static UChar*	strToUChar	( const char*	p_str,	size_t p_len );
-		static char*	ucharToUtf8	( const UChar*	p_ustr, size_t p_len );
-		static char*	ucharToStr	( const UChar*	p_ustr,	size_t p_len );
+		static std::vector<UChar>	utf8ToUChar	( const char*	p_str,	size_t p_len );
+		static std::vector<UChar>	strToUChar	( const char*	p_str,	size_t p_len );
+		static std::vector<char>	ucharToUtf8	( const UChar*	p_ustr, size_t p_len );
+		static std::vector<char>	ucharToStr	( const UChar*	p_ustr,	size_t p_len );
 
 		static bool				m_initialized;
 		static string			m_codePage;

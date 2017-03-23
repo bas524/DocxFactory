@@ -4,7 +4,7 @@
 
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
 
 #include <cstdlib>
 #include <cstdio>
@@ -104,14 +104,14 @@ string StrFunc::caps( const string& p_str )
 	size_t	l_len = p_str.length();
 	size_t	l_pos;
 
-	boost::scoped_array<char>	l_str( new char[ l_len + 1 ] );
+	std::vector<char>	l_str( l_len + 1 );
 
 	for ( l_pos = 0; l_pos < l_len; ++l_pos )
 		l_str[ l_pos ] = toupper( p_str[ l_pos ] );
 
-	l_str[ l_pos ] = NULL;
+	l_str[ l_pos ] = 0;
 
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // caps
 
 string StrFunc::lc( const string& p_str )
@@ -119,14 +119,14 @@ string StrFunc::lc( const string& p_str )
 	size_t	l_len = p_str.length();
 	size_t	l_pos;
 
-	boost::scoped_array<char>	l_str( new char[ l_len + 1 ] );
+	std::vector<char>	l_str( l_len + 1 );
 
 	for ( l_pos = 0; l_pos < l_len; ++l_pos )
 		l_str[ l_pos ] = tolower( p_str[ l_pos ] );
 
-	l_str[ l_pos ] = NULL;
+	l_str[ l_pos ] = 0;
 
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // lc
 
 
@@ -206,7 +206,7 @@ string StrFunc::removeDuplicate( const string& p_str, const string& p_chars )
 	size_t	l_len = p_str.length();
 	size_t	l_pos;
 
-	boost::scoped_array<char>	l_str( new char[ l_len + 1 ] );
+	std::vector<char>	l_str( l_len + 1 );
 	size_t						l_strLen	= 0;
 
 	const char*					l_chars		= p_chars.c_str();
@@ -226,9 +226,9 @@ string StrFunc::removeDuplicate( const string& p_str, const string& p_chars )
 		}
 	}
 
-	l_str[ l_strLen ] = NULL;
+	l_str[ l_strLen ] = 0;
 
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // removeDuplicate
 
 string StrFunc::replace( const string& p_str, const string& p_from, const string& p_to )

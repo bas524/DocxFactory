@@ -20,7 +20,7 @@
 #include "unicode/unistr.h"
 #include "unicode/ustring.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
 
 #include <locale>
 
@@ -2034,7 +2034,7 @@ string LocaleFunc::getSubStr( const string& p_str, size_t p_start, size_t p_len 
 	if ( !m_initialized )
 		initialize();
 
-	boost::scoped_array<char>	l_buf;
+	std::vector<char>			l_buf;
 	int32_t						l_bufSize;
 	int32_t						l_bufLen;
 
@@ -2059,14 +2059,14 @@ string LocaleFunc::getSubStr( const string& p_str, size_t p_start, size_t p_len 
 
 	l_bufLen	= l_ustr.length();
 	l_bufSize	= UCNV_GET_MAX_BYTES_FOR_STRING( l_bufLen, ucnv_getMaxCharSize( m_cnv ) );
-	l_buf.reset( new char[ l_bufSize ] );
+	l_buf.resize(l_bufSize);
 
-	l_ustr.extract( l_buf.get(), l_bufSize, m_cnv, l_err );
+	l_ustr.extract( &l_buf[0], l_bufSize, m_cnv, l_err );
 
 	if ( l_err != U_ZERO_ERROR )
 		throw IcuException( "UnicodeString.extract", l_err, __FILE__, __LINE__ );
 
-	return l_buf.get();
+	return std::string(l_buf.data(), strlen(l_buf.data()));
 } // getSubStr
 
 string LocaleFunc::getSubStrUtf8( const string& p_str, size_t p_start, size_t p_len )
@@ -2099,13 +2099,10 @@ string LocaleFunc::convertToUtf8( const string& p_str )
 	if ( ucnv_getType( m_cnv ) == UCNV_UTF8 )
 		return p_str;
 
-	boost::scoped_array<UChar>	l_ustr;
-	boost::scoped_array<char>	l_str;
+	std::vector<UChar>		l_ustr = strToUChar( p_str.c_str(), p_str.length() );
+	std::vector<char>		l_str = ucharToUtf8( l_ustr.data(), p_str.length() );
 
-	l_ustr.reset( strToUChar( p_str.c_str(), p_str.length() ) );
-	l_str.reset	( ucharToUtf8( l_ustr.get(), p_str.length() ) );
-
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // convertToUtf8
 
 string LocaleFunc::convertToUtf8( const wstring& p_wstr )
@@ -2116,18 +2113,17 @@ string LocaleFunc::convertToUtf8( const wstring& p_wstr )
 	if ( p_wstr.empty() )
 		return "";
 
-	boost::scoped_array<char>	l_str;
-	boost::scoped_array<UChar>	l_buf;
+	std::vector<UChar>	l_buf;
 	int32_t						l_bufSize;
 	int32_t						l_bufLen;
 
 	UErrorCode	l_err	= U_ZERO_ERROR;
 
 	l_bufSize	= UCNV_GET_MAX_BYTES_FOR_STRING( p_wstr.length(), 2 );
-	l_buf.reset( new UChar[ l_bufSize ] );
+	l_buf.resize( l_bufSize );
 
 	u_strFromWCS(
-		l_buf.get(),
+		&l_buf[0],
 		l_bufSize,
 		&l_bufLen,
 
@@ -2139,9 +2135,9 @@ string LocaleFunc::convertToUtf8( const wstring& p_wstr )
 	if ( l_err != U_ZERO_ERROR )
 		throw IcuException( "u_strFromWCS", l_err, __FILE__, __LINE__ );
 
-	l_str.reset( ucharToUtf8( l_buf.get(), p_wstr.length() ) );
+	std::vector<char>	l_str = ucharToUtf8( l_buf.data(), p_wstr.length() );
 	
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // convertToUtf8
 
 wstring LocaleFunc::convertToUtf16( const string& p_str )
@@ -2149,7 +2145,8 @@ wstring LocaleFunc::convertToUtf16( const string& p_str )
 	if ( !m_initialized )
 		initialize();
 
-	return ( wchar_t* ) strToUChar( p_str.c_str(), p_str.length() );
+        std::vector<UChar> result = strToUChar( p_str.c_str(), p_str.length() );
+	return wstring( reinterpret_cast<wchar_t *>(&result[0]), wcslen(reinterpret_cast<wchar_t *>(&result[0]) ) ) ;
 } // convertToUtf16
 
 string LocaleFunc::convertFromUtf8( const string& p_str )
@@ -2163,13 +2160,10 @@ string LocaleFunc::convertFromUtf8( const string& p_str )
 	if ( ucnv_getType( m_cnv ) == UCNV_UTF8 )
 		return p_str;
 
-	boost::scoped_array<UChar>	l_ustr;
-	boost::scoped_array<char>	l_str;
+	std::vector<UChar>	l_ustr = utf8ToUChar( p_str.c_str(), p_str.length() );
+	std::vector<char>	l_str  = ucharToStr( l_ustr.data(), p_str.length() );
 
-	l_ustr.reset( utf8ToUChar( p_str.c_str(), p_str.length() ) );
-	l_str.reset	( ucharToStr( l_ustr.get(), p_str.length() ) );
-
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // convertFromUtf8
 
 
@@ -2409,7 +2403,7 @@ string LocaleFunc::numToStrSingle(
 
 string LocaleFunc::dateTimeToStrSub(
 	double							p_time,
-	short							p_timeZone,
+	short 							p_timeZone,
 	const list<DateTimeFormat*>*	p_dateTimeFormat,
 	const string*					p_weekDayFullNames,
 	const string*					p_weekDayShortNames,
@@ -2773,18 +2767,19 @@ string LocaleFunc::dateTimeToStrSub(
 				switch ( l_entryLen )
 				{
 					case 3:
-						l_str		= StrFunc::intToStr( ( abs( p_timeZone ) - abs( p_timeZone ) % 60 ) % 24 );
+          {
+						l_str		= StrFunc::intToStr( ( ::abs( p_timeZone ) - ::abs( p_timeZone ) % 60 ) % 24 );
 						l_str		= ( l_str.length() < 2 ? '0' + l_str : l_str );
 
 						l_result	+= ( p_timeZone < 0 ? "-" : "+" ) + l_str;
-
+          }
 						break;
 
 					case 5: 
 					case 6: 
 
-						i =	abs( p_timeZone ) % 60;
-						j = ( abs( p_timeZone ) - i ) % 24;
+						i =	::abs( p_timeZone ) % 60;
+						j = ( ::abs( p_timeZone ) - i ) % 24;
 
 						l_str		= StrFunc::intToStr( j );
 						l_str		= ( l_str.length() < 2 ? '0' + l_str : l_str );
@@ -2896,21 +2891,21 @@ void LocaleFunc::getNextNum( const string& p_str, size_t& p_pos, size_t p_len, u
 
 
 
-UChar* LocaleFunc::utf8ToUChar( const char* p_str, size_t p_len )
+std::vector<UChar> LocaleFunc::utf8ToUChar( const char* p_str, size_t p_len )
 {
 	if ( !m_initialized )
 		initialize();
 
 	int32_t		l_bufLen;
 	int32_t		l_bufSize	= UCNV_GET_MAX_BYTES_FOR_STRING( p_len, 2 );
-	UChar*		l_buf		= new UChar[ l_bufSize ];
+	std::vector<UChar>		l_buf( l_bufSize );
 
 	UErrorCode	l_err		= U_ZERO_ERROR;
 	
 	try
 	{
 		u_strFromUTF8(
-			l_buf,
+			&l_buf[0],
 			l_bufSize,
 			&l_bufLen,
 
@@ -2924,8 +2919,6 @@ UChar* LocaleFunc::utf8ToUChar( const char* p_str, size_t p_len )
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
 
 		throw;
 	}
@@ -2933,14 +2926,14 @@ UChar* LocaleFunc::utf8ToUChar( const char* p_str, size_t p_len )
 	return l_buf;
 } // utf8ToUChar
 
-UChar* LocaleFunc::strToUChar( const char* p_str, size_t p_len )
+std::vector<UChar> LocaleFunc::strToUChar( const char* p_str, size_t p_len )
 {
 	if ( !m_initialized )
 		initialize();
 
-	UChar*		l_buf	= NULL;
-	int32_t		l_bufLen;
-	int32_t		l_bufSize;
+	std::vector<UChar>		l_buf;
+	int32_t					l_bufLen;
+	int32_t					l_bufSize;
 
 	UErrorCode	l_err	= U_ZERO_ERROR;
 
@@ -2957,9 +2950,9 @@ UChar* LocaleFunc::strToUChar( const char* p_str, size_t p_len )
 
 		l_bufLen	= l_ustr.length();
 		l_bufSize	= UCNV_GET_MAX_BYTES_FOR_STRING( l_bufLen, 2 );
-		l_buf		= new UChar[ l_bufSize ];
+		l_buf.resize( l_bufSize );
 
-		l_ustr.extract( l_buf, l_bufSize, l_err );
+		l_ustr.extract( &l_buf[0], l_bufSize, l_err );
 
 		if ( l_err != U_ZERO_ERROR )
 			throw IcuException( "UnicodeString.extract", l_err, __FILE__, __LINE__ );
@@ -2967,8 +2960,6 @@ UChar* LocaleFunc::strToUChar( const char* p_str, size_t p_len )
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
 
 		throw;
 	}
@@ -2976,21 +2967,21 @@ UChar* LocaleFunc::strToUChar( const char* p_str, size_t p_len )
 	return l_buf;
 } // strToUChar
 
-char* LocaleFunc::ucharToUtf8( const UChar* p_ustr, size_t p_len )
+std::vector<char> LocaleFunc::ucharToUtf8( const UChar* p_ustr, size_t p_len )
 {
 	if ( !m_initialized )
 		initialize();
 
 	int32_t		l_bufLen;
 	int32_t		l_bufSize	= UCNV_GET_MAX_BYTES_FOR_STRING( p_len, 4 );
-	char*		l_buf		= new char[ l_bufSize ];
+	std::vector<char>		l_buf( l_bufSize );
 
 	UErrorCode	l_err		= U_ZERO_ERROR;
 	
 	try
 	{
 		u_strToUTF8(
-			l_buf,
+			&l_buf[0],
 			l_bufSize,
 			&l_bufLen,
 
@@ -3004,8 +2995,6 @@ char* LocaleFunc::ucharToUtf8( const UChar* p_ustr, size_t p_len )
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
 
 		throw;
 	}
@@ -3013,12 +3002,12 @@ char* LocaleFunc::ucharToUtf8( const UChar* p_ustr, size_t p_len )
 	return l_buf;
 } // ucharToUtf8
 
-char* LocaleFunc::ucharToStr( const UChar* p_ustr, size_t p_len )
+std::vector<char> LocaleFunc::ucharToStr( const UChar* p_ustr, size_t p_len )
 {
 	if ( !m_initialized )
 		initialize();
 
-	char*		l_buf	= NULL;
+	std::vector<char>		l_buf;
 	int32_t		l_bufSize;
 	int32_t		l_bufLen;
 
@@ -3029,8 +3018,8 @@ char* LocaleFunc::ucharToStr( const UChar* p_ustr, size_t p_len )
 		UnicodeString	l_ustr( p_ustr );
 
 		l_bufSize	= UCNV_GET_MAX_BYTES_FOR_STRING( p_len, ucnv_getMaxCharSize( m_cnv ) );
-		l_buf		= new char[ l_bufSize ];
-		l_bufLen	= l_ustr.extract( l_buf, l_bufSize, m_cnv, l_err );
+		l_buf.resize( l_bufSize );
+		l_bufLen	= l_ustr.extract( &l_buf[0], l_bufSize, m_cnv, l_err );
 
 		if ( l_err != U_ZERO_ERROR )
 			throw IcuException( "UnicodeString.extract", l_err, __FILE__, __LINE__ );
@@ -3038,9 +3027,6 @@ char* LocaleFunc::ucharToStr( const UChar* p_ustr, size_t p_len )
 
 	catch ( ... )
 	{
-		if ( l_buf )
-			delete[] l_buf;
-
 		throw;
 	}
 

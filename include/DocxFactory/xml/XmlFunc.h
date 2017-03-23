@@ -53,7 +53,7 @@ namespace DocxFactory
 		// no validation is done on the file here (e.g. dir exists).
 		// all input should be validated in the top-level user function.
 		static void saveDocToFile( const xercesc::DOMDocument* p_doc, const string& p_fileName );
-		static byte* saveDocToBuf( const xercesc::DOMDocument* p_doc, size_t& p_bufSize );
+		static std::vector<byte> saveDocToBuf( const xercesc::DOMDocument* p_doc, size_t& p_bufSize );
 
 		static xercesc::DOMElement* getChildByTagName(
 			xercesc::DOMNode*	p_parentNode,
@@ -104,7 +104,7 @@ namespace DocxFactory
 		XmlFunc& operator = ( const XmlFunc& p_other );
 
 		static XMLCh*	ucharToXMLCh( const UChar*	p_ustr, size_t p_len );
-		static UChar*	XMLChToUChar( const XMLCh*	p_xstr, size_t p_len );
+		static std::vector<UChar>	XMLChToUChar( const XMLCh*	p_xstr, size_t p_len );
 		static size_t	getXMLChLen	( const XMLCh*	p_xstr );
 
 		static void unindentDocRecurr( const xercesc::DOMElement* p_parentNode );

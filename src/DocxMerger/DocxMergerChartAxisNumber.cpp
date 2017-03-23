@@ -41,7 +41,7 @@ size_t DocxMergerChartAxisNumber::setValue( DocxMergerPasteChartAxis* p_pasteAxi
 
 string DocxMergerChartAxisNumber::getValue( DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index ) const
 {
- 	return StrFunc::intToStr( ( ( DocxMergerPasteChartAxisNumber* ) p_pasteAxis ) ->getValues() ->at( p_index ) );
+ 	return StrFunc::intToStr( ( ( DocxMergerPasteChartAxisNumber* ) p_pasteAxis ) ->getValues() ->at( p_index ), 3 );
 } // getValue
 
 size_t DocxMergerChartAxisNumber::getLength( DocxMergerPasteChartAxis* p_pasteAxis ) const

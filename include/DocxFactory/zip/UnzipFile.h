@@ -5,13 +5,16 @@
 #include "DocxFactory/zip/ZipFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
+#if defined (WIN32) | defined (_WIN32)
 #include "zlib/unzip.h"
+#else
+#include <minizip/unzip.h>
+#endif
 
-#include "boost/type_traits.hpp"
-#include "boost/utility/enable_if.hpp"
-
+#include <type_traits>
 #include <map>
 #include <string>
+#include <vector>
 
 
 namespace DocxFactory
@@ -32,11 +35,11 @@ namespace DocxFactory
 
 		// functions for extracting file entries content from the zip file
 
-		byte* extractEntryToBuf(
+		std::vector<byte> extractEntryToBuf(
 			const string&	p_path,
 			size_t&			p_bufSize ) const;
 
-		byte* extractEntryToRaw(
+		std::vector<byte> extractEntryToRaw(
 			const string&	p_path,
 			int&			p_method,
 			int&			p_level,
@@ -55,10 +58,10 @@ namespace DocxFactory
 		void closeStream();
 
 		template <class T>
-		typename boost::enable_if<boost::is_integral<T>, T>::type		readNum();
+		typename std::enable_if<std::is_integral<T>::value, T>::type		readNum();
 
 		template <class T>
-		typename boost::enable_if<boost::is_floating_point<T>, T>::type	readNum();
+		typename std::enable_if<std::is_floating_point<T>::value, T>::type	readNum();
 
 		string	readStr	();
 		void	read	( char* p_buf, size_t p_bufSize );
@@ -93,7 +96,7 @@ namespace DocxFactory
 	};
 
 	template <class T>
-	typename boost::enable_if<boost::is_integral<T>, T>::type UnzipFile::readNum()
+	typename std::enable_if<std::is_integral<T>::value, T>::type UnzipFile::readNum()
 	{
 		T l_retVal;
 
@@ -105,7 +108,7 @@ namespace DocxFactory
 	} // readNum<integral>
 
 	template <class T>
-	typename boost::enable_if<boost::is_floating_point<T>, T>::type UnzipFile::readNum()
+	typename std::enable_if<std::is_floating_point<T>::value, T>::type UnzipFile::readNum()
 	{
 		DoublePack	l_pack;
 		double		l_retVal;

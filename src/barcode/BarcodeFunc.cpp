@@ -80,13 +80,13 @@ bool BarcodeFunc::encodeAndPrint(
 		strcpy( l_symbol ->primary, l_primary.c_str() );
 
 	l_errVal = ZBarcode_Encode( l_symbol, ( unsigned char* ) l_value.c_str(), 0);
-	if( l_errVal <= WARN_INVALID_OPTION )
+	if( l_errVal <= ZWARN_INVALID_OPTION )
 	{
-		l_errVal = ZBarcode_Export( l_symbol, p_barcodeFormat ->m_angle, p_barcodeFormat ->m_fontSize, ( char* ) p_barcodeFormat ->m_font.c_str(), l_retVal );
-		if( l_errVal <= WARN_INVALID_OPTION ) p_retVal = string( l_retVal );
+//		l_errVal = ZBarcode_Export( l_symbol, p_barcodeFormat ->m_angle, p_barcodeFormat ->m_fontSize, ( char* ) p_barcodeFormat ->m_font.c_str(), l_retVal );
+		if( l_errVal <= ZWARN_INVALID_OPTION ) p_retVal = string( l_retVal );
 	}
 
-	if( l_errVal > WARN_INVALID_OPTION )
+	if( l_errVal > ZWARN_INVALID_OPTION )
 	{
 		p_errTxt = StrFunc::trim( string( l_symbol ->errtxt ) );
 
@@ -100,7 +100,7 @@ bool BarcodeFunc::encodeAndPrint(
 
 	ZBarcode_Delete( l_symbol );
 
-	if( l_errVal > WARN_INVALID_OPTION )
+	if( l_errVal > ZWARN_INVALID_OPTION )
 		return false;
 	else
 		return true;

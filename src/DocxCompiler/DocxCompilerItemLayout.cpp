@@ -15,7 +15,7 @@
 #include "xercesc/util/XercesDefs.hpp"
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -57,7 +57,7 @@ DocxCompilerItemLayout::DocxCompilerItemLayout(
 	pair<unsigned short, DocxCompilerItemLayout*>*										l_tc;
 	pair<unsigned short, DocxCompilerItemLayout*>*										l_tcLast;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>		l_cursorDriller;
 	xercesc::DOMElement*				l_cursorNode;
 	string								l_wordMlPrefix = p_itemFile ->getWordMlPrefix();
 

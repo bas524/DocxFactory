@@ -17,7 +17,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -121,8 +121,8 @@ void DocxCompilerChartFieldSeries::serialize( ZipFile* p_zipFile )
 			p_zipFile ->writeNum<uint8>	( l_stringIterator ->second );
 		}
 	}
-
-	p_zipFile ->writeNum<int16>	( m_catType );
+        auto p_zipFileTypeNum = static_cast<int16>(m_catType);
+	p_zipFile ->writeNum<int16>	( p_zipFileTypeNum );
 } // serialize
 
 
@@ -135,7 +135,7 @@ void DocxCompilerChartFieldSeries::loadSeries(
 	DocxCompilerField:FieldType					l_fieldType;
 	string										l_format;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>	l_treeDriller;
 
 	xercesc::DOMNode*			l_cursorNode	= p_seriesNode;
 	XmlFunc::TagPos				l_cursorPos		= XmlFunc::TAG_BEFORE;

@@ -19,7 +19,7 @@
 #include "xercesc/util/XercesDefs.hpp"
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -135,7 +135,7 @@ void DocxCompilerItemGroup::createStripePlaceHoldersByGroup( DocxCompilerItemGro
 	DocxCompilerItem*						l_item;
 	DocxCompilerItemGroup*					l_itemGroup;
 
-	boost::scoped_ptr<XmlTreeDriller>		l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>			l_cursorDriller;
 	xercesc::DOMElement*					l_cursorNode;
 
 	xercesc::DOMDocument*					l_doc;

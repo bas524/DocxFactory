@@ -17,7 +17,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -108,7 +108,8 @@ void DocxCompilerChartFieldFixedSeries::serialize( ZipFile* p_zipFile )
 	FOR_EACH( l_stringIterator, &m_chartStrings )
 	{
 		p_zipFile ->writeStr		( l_stringIterator ->first );
-		p_zipFile ->writeNum<uint8>	( l_stringIterator ->second );
+                auto num = static_cast<uint8>(l_stringIterator ->second);
+		p_zipFile ->writeNum<uint8>	( num );
 	}
 
 	p_zipFile ->writeNum<uint32>( ( uint32 ) m_seriesStrings.size() );
@@ -118,7 +119,8 @@ void DocxCompilerChartFieldFixedSeries::serialize( ZipFile* p_zipFile )
 		FOR_EACH( l_stringIterator, l_seriesIterator )
 		{
 			p_zipFile ->writeStr		( l_stringIterator ->first );
-			p_zipFile ->writeNum<uint8>	( l_stringIterator ->second );
+                        auto num = static_cast<uint8>(l_stringIterator ->second);
+			p_zipFile ->writeNum<uint8>	( num );
 		}
 	}
 
@@ -126,10 +128,11 @@ void DocxCompilerChartFieldFixedSeries::serialize( ZipFile* p_zipFile )
 	FOR_EACH( l_idxIterator, &m_seriesIdx )
 	{
 		p_zipFile ->writeStr		( l_idxIterator ->first );
-		p_zipFile ->writeNum<uint8>	( l_idxIterator ->second );
+                auto num = static_cast<uint8>(l_idxIterator ->second);
+		p_zipFile ->writeNum<uint8>	( num );
 	}
-
-	p_zipFile ->writeNum<int16>	( m_catType );
+        int16 p_zipFileTypeNum = static_cast<int16>(m_catType);
+	p_zipFile ->writeNum<int16>	( p_zipFileTypeNum );
 } // serialize
 
 
@@ -142,7 +145,7 @@ void DocxCompilerChartFieldFixedSeries::loadSeries(
 	DocxCompilerField:FieldType					l_fieldType;
 	string										l_format;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>				l_treeDriller;
 
 	xercesc::DOMNode*	l_node;
 	xercesc::DOMNode*	l_cursorNode	= p_seriesNode;

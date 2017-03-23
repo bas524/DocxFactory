@@ -10,7 +10,7 @@
 #include "DocxFactory/os/FileNotFoundException.h"
 #include "DocxFactory/os/FileExistsException.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
 
 #include <ctime>
 #include <cstring>
@@ -194,9 +194,9 @@ void ZipFile::addEntryFromFile(
 {
 	size_t	l_bufSize;
 
-	boost::scoped_array<byte>l_buf( OsFunc::readFile( p_fileName, l_bufSize ) );
+	std::vector<byte>l_buf = OsFunc::readFile( p_fileName, l_bufSize ) ;
 
-	addEntryFromBuf( p_path, l_buf.get(), l_bufSize );
+	addEntryFromBuf( p_path, l_buf.data(), l_bufSize );
 } // addEntryFromFile
 
 

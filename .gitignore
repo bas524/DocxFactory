@@ -276,3 +276,6 @@ __pycache__/
 
 # OS files
 .DS_Store
+/.vscode/
+/build/
+/nbproject/

@@ -16,7 +16,8 @@
 
 #include "unicode/ucnv.h"
 
-#include "boost/scoped_array.hpp"
+#include <vector>
+#include <memory>
 
 #include <set>
 #include <list>
@@ -113,13 +114,13 @@ void XmlFunc::saveDocToFile( const xercesc::DOMDocument* p_doc, const string& p_
 	}
 } // saveDocToFile
 
-byte* XmlFunc::saveDocToBuf( const xercesc::DOMDocument* p_doc, size_t& p_bufSize )
+std::vector<byte> XmlFunc::saveDocToBuf( const xercesc::DOMDocument* p_doc, size_t& p_bufSize )
 {
-	byte*							l_buf			= NULL;
+	std::vector<byte>				l_buf;
 	xercesc::DOMImplementationLS*	l_impl			= NULL;
 	xercesc::DOMLSSerializer*		l_serializer	= NULL;
 	xercesc::DOMLSOutput*			l_outputStream	= NULL;
-	xercesc::MemBufFormatTarget*	l_target		= NULL;
+	//xercesc::MemBufFormatTarget*	l_target		= NULL;
 
 	try
 	{
@@ -127,17 +128,17 @@ byte* XmlFunc::saveDocToBuf( const xercesc::DOMDocument* p_doc, size_t& p_bufSiz
 		l_serializer	= l_impl ->createLSSerializer();
 
 		l_outputStream	= l_impl ->createLSOutput();
-		l_target		= new xercesc::MemBufFormatTarget();
+		std::unique_ptr<xercesc::MemBufFormatTarget> l_target( new xercesc::MemBufFormatTarget() );
 
-		l_outputStream	->setByteStream( l_target );
+		l_outputStream	->setByteStream( l_target.get() );
 		l_serializer	->write( p_doc, l_outputStream );
 
 		p_bufSize	= l_target ->getLen();
-		l_buf		= new byte[ p_bufSize ];
+		l_buf.resize( p_bufSize );
 
-		memcpy( l_buf, l_target ->getRawBuffer(), p_bufSize );
+		memcpy( &l_buf[0], l_target ->getRawBuffer(), p_bufSize );
 
-		delete l_target;
+		l_target.reset(nullptr);
 
 		l_outputStream ->release();
 		l_serializer ->release();
@@ -145,8 +146,6 @@ byte* XmlFunc::saveDocToBuf( const xercesc::DOMDocument* p_doc, size_t& p_bufSiz
 
 	catch ( ... )
 	{
-		if ( l_buf )	delete[]	l_buf;
-		if ( l_target )	delete		l_target;
 		
 		if ( l_outputStream )	l_outputStream ->release();
 		if ( l_serializer )		l_serializer ->release();
@@ -650,22 +649,22 @@ string XmlFunc::encodeXml( const string& p_srcStr )
 	size_t			l_dstPos	= 0;
 	unsigned char	l_ch;
 
-	boost::scoped_array<char> l_dstStr( new char[ l_srcLen * 6 + 1 ] );
+	std::vector<char> l_dstStr( l_srcLen * 6 + 1 );
 
 	while ( l_srcPos < l_srcLen )
 	{
 		l_ch = ( unsigned char ) p_srcStr[ l_srcPos ];
 
-			 if ( l_ch == '\t' )	{ strncpy( l_dstStr.get() + l_dstPos, "&#x9;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '\n' )	{ strncpy( l_dstStr.get() + l_dstPos, "&#xA;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '\v' )	{ strncpy( l_dstStr.get() + l_dstPos, "&#xB;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '\f' )	{ strncpy( l_dstStr.get() + l_dstPos, "&#xC;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '\r' )	{ strncpy( l_dstStr.get() + l_dstPos, "&#xD;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '&' )		{ strncpy( l_dstStr.get() + l_dstPos, "&amp;", 5 );		l_dstPos += 5; }
-		else if ( l_ch == '"' )		{ strncpy( l_dstStr.get() + l_dstPos, "&quot;", 6 );	l_dstPos += 6; }
-		else if ( l_ch == '~' )		{ strncpy( l_dstStr.get() + l_dstPos, "&apos;", 6 );	l_dstPos += 6; }
-		else if ( l_ch == '<' )		{ strncpy( l_dstStr.get() + l_dstPos, "&lt;", 4 );		l_dstPos += 4; }
-		else if ( l_ch == '>' )		{ strncpy( l_dstStr.get() + l_dstPos, "&gt;", 4 );		l_dstPos += 4; }
+			 if ( l_ch == '\t' )	{ strncpy( l_dstStr.data() + l_dstPos, "&#x9;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '\n' )	{ strncpy( l_dstStr.data() + l_dstPos, "&#xA;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '\v' )	{ strncpy( l_dstStr.data() + l_dstPos, "&#xB;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '\f' )	{ strncpy( l_dstStr.data() + l_dstPos, "&#xC;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '\r' )	{ strncpy( l_dstStr.data() + l_dstPos, "&#xD;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '&' )		{ strncpy( l_dstStr.data() + l_dstPos, "&amp;", 5 );		l_dstPos += 5; }
+		else if ( l_ch == '"' )		{ strncpy( l_dstStr.data() + l_dstPos, "&quot;", 6 );	l_dstPos += 6; }
+		else if ( l_ch == '~' )		{ strncpy( l_dstStr.data() + l_dstPos, "&apos;", 6 );	l_dstPos += 6; }
+		else if ( l_ch == '<' )		{ strncpy( l_dstStr.data() + l_dstPos, "&lt;", 4 );		l_dstPos += 4; }
+		else if ( l_ch == '>' )		{ strncpy( l_dstStr.data() + l_dstPos, "&gt;", 4 );		l_dstPos += 4; }
 
 		else if ( l_ch <= 31 || l_ch == 127 )
 		{
@@ -684,7 +683,7 @@ string XmlFunc::encodeXml( const string& p_srcStr )
 
 	l_dstStr[ l_dstPos ] = '\0';
 
-	return l_dstStr.get();
+	return std::string(l_dstStr.data(), strlen(l_dstStr.data()));
 } // encodeXml
 
 string XmlFunc::getXmlDeclaration( xercesc::DOMDocument* p_doc, bool p_standAlone )
@@ -704,14 +703,11 @@ string XmlFunc::XMLChToUtf8( const XMLCh* p_xstr )
 	if ( p_xstr == NULL || *p_xstr == 0 )
 		return "";
 
-	boost::scoped_array<UChar>	l_ustr;
-	boost::scoped_array<char>	l_str;
-	size_t						l_len = getXMLChLen( p_xstr );
+	size_t			    l_len  = getXMLChLen( p_xstr );
+	std::vector<UChar>	l_ustr = XMLChToUChar( p_xstr, l_len );
+	std::vector<char>	l_str  = LocaleFunc::ucharToUtf8( l_ustr.data(), l_len );
 
-	l_ustr.reset( XMLChToUChar( p_xstr, l_len ) );
-	l_str.reset	( LocaleFunc::ucharToUtf8( l_ustr.get(), l_len ) );
-
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // XMLChToUtf8
 
 string XmlFunc::XMLChToStr( const XMLCh* p_xstr )
@@ -719,35 +715,24 @@ string XmlFunc::XMLChToStr( const XMLCh* p_xstr )
 	if ( p_xstr == NULL || *p_xstr == 0 )
 		return "";
 
-	boost::scoped_array<UChar>	l_ustr;
-	boost::scoped_array<char>	l_str;
-	size_t						l_len = getXMLChLen( p_xstr );
+	size_t				l_len = getXMLChLen( p_xstr );
+	std::vector<UChar>	l_ustr = XMLChToUChar( p_xstr, l_len );
+	std::vector<char>	l_str = LocaleFunc::ucharToStr( l_ustr.data(), l_len );
 
-	l_ustr.reset( XMLChToUChar( p_xstr, l_len ) );
-	l_str.reset	( LocaleFunc::ucharToStr( l_ustr.get(), l_len ) );
-
-	return l_str.get();
+	return std::string(l_str.data(), strlen(l_str.data()));
 } // XMLChToStr
 
 XMLCh* XmlFunc::utf8ToXMLCh( const string& p_str )
 {
-	boost::scoped_array<UChar>	l_ustr;
-	XMLCh*						l_xstr;
-
-	l_ustr.reset( LocaleFunc::utf8ToUChar( p_str.c_str(), p_str.length() ) );
-	l_xstr		= ucharToXMLCh( l_ustr.get(), p_str.length() );
-
+	std::vector<UChar>	l_ustr = LocaleFunc::utf8ToUChar( p_str.c_str(), p_str.length() );
+	XMLCh*				l_xstr = ucharToXMLCh( l_ustr.data(), p_str.length() );
 	return l_xstr;
 } // utf8ToXMLCh
 
 XMLCh* XmlFunc::strToXMLCh( const string& p_str )
 {
-	boost::scoped_array<UChar>	l_ustr;
-	XMLCh*						l_xstr;
-
-	l_ustr.reset( LocaleFunc::strToUChar( p_str.c_str(), p_str.length() ) );
-	l_xstr		= ucharToXMLCh( l_ustr.get(), p_str.length() );
-
+	std::vector<UChar>			l_ustr = LocaleFunc::strToUChar( p_str.c_str(), p_str.length() );
+	XMLCh*						l_xstr = ucharToXMLCh( l_ustr.data(), p_str.size() );
 	return l_xstr;
 } // strToXMLCh
 
@@ -786,14 +771,14 @@ XMLCh* XmlFunc::ucharToXMLCh( const UChar* p_ustr, size_t p_len )
 		l_pos++;
 	}
 
-	l_xstr[ l_pos ] = NULL;
+	l_xstr[ l_pos ] = 0;
 
 	return l_xstr;
 } // ucharToXMLCh
 
-UChar* XmlFunc::XMLChToUChar( const XMLCh* p_xstr, size_t p_len )
+std::vector<UChar> XmlFunc::XMLChToUChar( const XMLCh* p_xstr, size_t p_len )
 {
-	UChar*	l_ustr	= new UChar[ UCNV_GET_MAX_BYTES_FOR_STRING( p_len, 2 ) ];
+	std::vector<UChar>	l_ustr( UCNV_GET_MAX_BYTES_FOR_STRING( p_len, 2 ) );
 	size_t	l_pos	= 0;
 
 	while ( p_xstr[ l_pos ] && l_pos < p_len )
@@ -802,7 +787,7 @@ UChar* XmlFunc::XMLChToUChar( const XMLCh* p_xstr, size_t p_len )
 		l_pos++;
 	}
 
-	l_ustr[ l_pos ] = NULL;
+	l_ustr[ l_pos ] = 0;
 
 	return l_ustr;
 } // XMLChToUChar

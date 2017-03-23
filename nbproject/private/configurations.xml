@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name=".vscode">
+      </df>
+      <df name="build">
+        <df name="CMakeFiles">
+          <df name="3.7.2">
+            <df name="CompilerIdC">
+              <in>CMakeCCompilerId.c</in>
+            </df>
+            <df name="CompilerIdCXX">
+              <in>CMakeCXXCompilerId.cpp</in>
+            </df>
+          </df>
+          <df name="CMakeTmp">
+          </df>
+          <df name="DocxFactory.dir">
+            <df name="src">
+              <df name="ConverterPrinter">
+              </df>
+              <df name="DocxCompiler">
+              </df>
+              <df name="DocxMerger">
+              </df>
+              <df name="opc">
+              </df>
+              <df name="WordProcessingCompiler">
+              </df>
+              <df name="WordProcessingMerger">
+              </df>
+            </df>
+          </df>
+          <df name="DocxFactoryLib.dir">
+            <df name="src">
+              <df name="barcode">
+              </df>
+              <df name="console">
+              </df>
+              <df name="json">
+              </df>
+              <df name="locale">
+              </df>
+              <df name="math">
+              </df>
+              <df name="os">
+              </df>
+              <df name="parser">
+              </df>
+              <df name="str">
+              </df>
+              <df name="time">
+              </df>
+              <df name="unix">
+              </df>
+              <df name="util">
+              </df>
+              <df name="xml">
+              </df>
+              <df name="zip">
+              </df>
+            </df>
+          </df>
+          <df name="UnoUtil.dir">
+            <df name="src">
+              <df name="UnoUtil">
+              </df>
+            </df>
+          </df>
+          <df name="word-processing-compiler.dir">
+            <df name="src">
+              <df name="WordProcessingCompiler">
+              </df>
+            </df>
+          </df>
+          <df name="word-processing-merger.dir">
+            <df name="src">
+              <df name="WordProcessingCompiler">
+              </df>
+            </df>
+          </df>
+          <in>feature_tests.c</in>
+          <in>feature_tests.cxx</in>
+        </df>
+      </df>
+      <df name="csharp">
+        <df name="Linux">
+          <in>WordProcessingCompiler.i</in>
+          <in>WordProcessingCompiler_wrap.cxx</in>
+          <in>WordProcessingMerger.i</in>
+          <in>WordProcessingMerger_wrap.cxx</in>
+        </df>
+        <df name="Windows">
+          <in>WordProcessingCompiler.i</in>
+          <in>WordProcessingCompiler_wrap.cxx</in>
+          <in>WordProcessingMerger.i</in>
+          <in>WordProcessingMerger_wrap.cxx</in>
+        </df>
+      </df>
+      <df name="exercises">
+        <df name="images">
+        </df>
+        <df name="templates">
+        </df>
+      </df>
+      <df name="gmake">
+      </df>
+      <df name="include">
+        <df name="DocxFactory">
+          <df name="barcode">
+            <in>BarcodeFormat.h</in>
+            <in>BarcodeFunc.h</in>
+          </df>
+          <df name="console">
+            <in>ConsoleException.h</in>
+            <in>ConsoleUsageException.h</in>
+            <in>GetOptException.h</in>
+            <in>InvalidArgException.h</in>
+            <in>InvalidOptException.h</in>
+            <in>MissingArgException.h</in>
+            <in>MissingOptException.h</in>
+            <in>UnexpectedArgException.h</in>
+            <in>UnexpectedOptException.h</in>
+            <in>getopt.h</in>
+          </df>
+          <df name="ConverterPrinter">
+            <in>ConversionNotSupportedException.h</in>
+            <in>ConverterPrinter.h</in>
+            <in>ConverterPrinterException.h</in>
+            <in>ConverterPrinterUtil.h</in>
+            <in>ExportFormatNotSupportedException.h</in>
+            <in>GradeGroup.h</in>
+            <in>MsExcelUtil.h</in>
+            <in>MsOfficeUtil.h</in>
+            <in>MsWordUtil.h</in>
+            <in>OdfConverterUtil.h</in>
+            <in>OleException.h</in>
+            <in>OpenOfficeUtil.h</in>
+            <in>PrintingNotSupportedException.h</in>
+            <in>UtilFailedException.h</in>
+            <in>UtilNotFoundException.h</in>
+          </df>
+          <df name="DocxCompiler">
+            <in>DocxCompilerAltChunkField.h</in>
+            <in>DocxCompilerBarcodeField.h</in>
+            <in>DocxCompilerBookmark.h</in>
+            <in>DocxCompilerBooleanField.h</in>
+            <in>DocxCompilerChartField.h</in>
+            <in>DocxCompilerChartFieldFixedSeries.h</in>
+            <in>DocxCompilerChartFieldSeries.h</in>
+            <in>DocxCompilerChartFieldSingleSeries.h</in>
+            <in>DocxCompilerChartFieldXY.h</in>
+            <in>DocxCompilerChartFieldXYSize.h</in>
+            <in>DocxCompilerDateTimeField.h</in>
+            <in>DocxCompilerField.h</in>
+            <in>DocxCompilerFile.h</in>
+            <in>DocxCompilerId.h</in>
+            <in>DocxCompilerItem.h</in>
+            <in>DocxCompilerItemFile.h</in>
+            <in>DocxCompilerItemGroup.h</in>
+            <in>DocxCompilerItemLayout.h</in>
+            <in>DocxCompilerNumberField.h</in>
+            <in>DocxCompilerPicField.h</in>
+            <in>DocxCompilerSettingsFile.h</in>
+            <in>DocxCompilerStyle.h</in>
+            <in>DocxCompilerStyleFile.h</in>
+            <in>DocxCompilerTableStyle.h</in>
+            <in>DocxCompilerTextField.h</in>
+            <in>DocxCompilerXmlString.h</in>
+          </df>
+          <df name="DocxMerger">
+            <in>DocxMergerAltChunkField.h</in>
+            <in>DocxMergerBarcodeField.h</in>
+            <in>DocxMergerBooleanField.h</in>
+            <in>DocxMergerChartAxis.h</in>
+            <in>DocxMergerChartAxisDateTime.h</in>
+            <in>DocxMergerChartAxisNumber.h</in>
+            <in>DocxMergerChartAxisText.h</in>
+            <in>DocxMergerChartField.h</in>
+            <in>DocxMergerChartFieldFixedSeries.h</in>
+            <in>DocxMergerChartFieldSeries.h</in>
+            <in>DocxMergerChartFieldSingleSeries.h</in>
+            <in>DocxMergerChartFieldXY.h</in>
+            <in>DocxMergerChartFieldXYSize.h</in>
+            <in>DocxMergerChartValues.h</in>
+            <in>DocxMergerDateTimeField.h</in>
+            <in>DocxMergerException.h</in>
+            <in>DocxMergerField.h</in>
+            <in>DocxMergerFile.h</in>
+            <in>DocxMergerId.h</in>
+            <in>DocxMergerItem.h</in>
+            <in>DocxMergerItemFile.h</in>
+            <in>DocxMergerItemGroup.h</in>
+            <in>DocxMergerItemLayout.h</in>
+            <in>DocxMergerNumberField.h</in>
+            <in>DocxMergerPasteAltChunkField.h</in>
+            <in>DocxMergerPasteBarcodeField.h</in>
+            <in>DocxMergerPasteBooleanField.h</in>
+            <in>DocxMergerPasteChartAxis.h</in>
+            <in>DocxMergerPasteChartAxisDateTime.h</in>
+            <in>DocxMergerPasteChartAxisNumber.h</in>
+            <in>DocxMergerPasteChartAxisText.h</in>
+            <in>DocxMergerPasteChartField.h</in>
+            <in>DocxMergerPasteChartFieldFixedSeries.h</in>
+            <in>DocxMergerPasteChartFieldSeries.h</in>
+            <in>DocxMergerPasteChartFieldSingleSeries.h</in>
+            <in>DocxMergerPasteChartFieldXY.h</in>
+            <in>DocxMergerPasteChartFieldXYSize.h</in>
+            <in>DocxMergerPasteChartValues.h</in>
+            <in>DocxMergerPasteDateTimeField.h</in>
+            <in>DocxMergerPasteField.h</in>
+            <in>DocxMergerPasteFieldGroup.h</in>
+            <in>DocxMergerPasteItem.h</in>
+            <in>DocxMergerPasteItemGroup.h</in>
+            <in>DocxMergerPasteNumberField.h</in>
+            <in>DocxMergerPastePicField.h</in>
+            <in>DocxMergerPasteTextField.h</in>
+            <in>DocxMergerPicField.h</in>
+            <in>DocxMergerSettingsFile.h</in>
+            <in>DocxMergerTextField.h</in>
+            <in>DocxMergerXmlString.h</in>
+          </df>
+          <df name="json">
+            <in>JsonException.h</in>
+            <in>JsonFunc.h</in>
+            <in>ParseJsonException.h</in>
+            <in>ParseJsonFileException.h</in>
+          </df>
+          <df name="locale">
+            <in>DateTimeFormat.h</in>
+            <in>IcuException.h</in>
+            <in>InvalidCodePageException.h</in>
+            <in>InvalidDateFormatException.h</in>
+            <in>InvalidDateTimeStrException.h</in>
+            <in>InvalidFirstWeekDayException.h</in>
+            <in>InvalidYearOffsetException.h</in>
+            <in>LocaleException.h</in>
+            <in>LocaleFunc.h</in>
+            <in>NumFormat.h</in>
+          </df>
+          <df name="math">
+            <in>MathFunc.h</in>
+          </df>
+          <df name="opc">
+            <in>ContentTypeNotFoundException.h</in>
+            <in>OpcContentTypes.h</in>
+            <in>OpcException.h</in>
+            <in>OpcFunc.h</in>
+            <in>OpcImageCache.h</in>
+            <in>OpcImageFile.h</in>
+            <in>OpcMediaDir.h</in>
+            <in>OpcPackage.h</in>
+            <in>OpcPart.h</in>
+            <in>OpcRelationship.h</in>
+            <in>OpcRelationships.h</in>
+            <in>PartNotFoundException.h</in>
+            <in>PartTypeNotFoundException.h</in>
+          </df>
+          <df name="os">
+            <in>DirNotFoundException.h</in>
+            <in>FileExistsException.h</in>
+            <in>FileNotFoundException.h</in>
+            <in>FileNotOpenException.h</in>
+            <in>FileNotRemovedException.h</in>
+            <in>InvalidFileUrlException.h</in>
+            <in>OsException.h</in>
+            <in>OsFunc.h</in>
+            <in>PathMissingExtException.h</in>
+            <in>PathMissingFileException.h</in>
+            <in>UnsupportedFileTypeException.h</in>
+          </df>
+          <df name="parser">
+            <in>ParserException.h</in>
+            <in>ParserFunc.h</in>
+            <in>UnclosedBracketException.h</in>
+            <in>UnexpectedBracketException.h</in>
+            <in>UnmatchedQuoteException.h</in>
+          </df>
+          <df name="str">
+            <in>StrEntries.h</in>
+            <in>StrFunc.h</in>
+          </df>
+          <df name="time">
+            <in>TimeFunc.h</in>
+          </df>
+          <df name="unix">
+            <in>UnixFunc.h</in>
+          </df>
+          <df name="UnoUtil">
+            <in>PropertyMap.h</in>
+            <in>UnoException.h</in>
+            <in>UnoUtil.h</in>
+            <in>UnoUtilImpl.h</in>
+          </df>
+          <df name="util">
+            <in>ArgTypeMismatchException.h</in>
+            <in>DocxFactoryDefs.h</in>
+            <in>DocxFactoryException.h</in>
+            <in>DocxFactoryTimer.h</in>
+            <in>GeneralException.h</in>
+            <in>UnknownException.h</in>
+            <in>tchar.h</in>
+          </df>
+          <df name="win">
+            <in>WinFunc.h</in>
+          </df>
+          <df name="WordProcessingCompiler">
+            <in>WordProcessingCompiler.h</in>
+            <in>dfwc.h</in>
+          </df>
+          <df name="WordProcessingMerger">
+            <in>CompileVersionMismatchException.h</in>
+            <in>InvalidItemNameException.h</in>
+            <in>InvalidMergeDataException.h</in>
+            <in>TemplateNotLoadedException.h</in>
+            <in>WordProcessingException.h</in>
+            <in>WordProcessingMerger.h</in>
+            <in>dfw.h</in>
+          </df>
+          <df name="xml">
+            <in>AsciiToXMLCh.h</in>
+            <in>DomException.h</in>
+            <in>InvalidXmlPathException.h</in>
+            <in>NodeNotFoundException.h</in>
+            <in>ParseXmlException.h</in>
+            <in>ParseXmlFileException.h</in>
+            <in>StrToXMLCh.h</in>
+            <in>Utf8ToXMLCh.h</in>
+            <in>XmlException.h</in>
+            <in>XmlFunc.h</in>
+            <in>XmlInitializer.h</in>
+            <in>XmlTreeDriller.h</in>
+          </df>
+          <df name="zip">
+            <in>FileInfo.h</in>
+            <in>MinizipException.h</in>
+            <in>UnzipFile.h</in>
+            <in>ZipException.h</in>
+            <in>ZipFile.h</in>
+            <in>ZipFileNotOpenException.h</in>
+            <in>ZipFunc.h</in>
+            <in>ZipStreamNotOpenException.h</in>
+            <in>ZipStreamOpenException.h</in>
+          </df>
+        </df>
+      </df>
+      <df name="java">
+        <in>WordProcessingCompiler.i</in>
+        <in>WordProcessingCompiler_wrap.cxx</in>
+        <in>WordProcessingMerger.i</in>
+        <in>WordProcessingMerger_wrap.cxx</in>
+      </df>
+      <df name="php">
+      </df>
+      <df name="progress">
+        <df name="samples">
+          <df name="jpgs">
+          </df>
+          <df name="src">
+            <df name="excel">
+            </df>
+          </df>
+          <df name="templates">
+          </df>
+        </df>
+        <df name="slib">
+          <in>slibbidi.i</in>
+          <in>slibbidiflip_ansi.i</in>
+          <in>slibbidiflip_win9x.i</in>
+          <in>slibbidifrwd.i</in>
+          <in>slibbidifunc_ansi.i</in>
+          <in>slibbidifunc_win9x.i</in>
+          <in>slibbidinum_ansi.i</in>
+          <in>slibbidinum_win9x.i</in>
+          <in>slibbidirange.i</in>
+          <in>slibdate.i</in>
+          <in>slibdatefrwd.i</in>
+          <in>sliberr.i</in>
+          <in>sliberrfrwd.i</in>
+          <in>slibimg.i</in>
+          <in>slibinfozip.i</in>
+          <in>slibinfozipfrwd.i</in>
+          <in>slibinfozipprop.i</in>
+          <in>slibmath.i</in>
+          <in>slibmathfrwd.i</in>
+          <in>slibmathprop.i</in>
+          <in>slibos.i</in>
+          <in>slibosfrwd.i</in>
+          <in>slibosprop.i</in>
+          <in>slibpro.i</in>
+          <in>slibprofrwd.i</in>
+          <in>slibproprop.i</in>
+          <in>slibstr.i</in>
+          <in>slibstrfrwd.i</in>
+          <in>slibunix.i</in>
+          <in>slibunixfrwd.i</in>
+          <in>slibunixprop.i</in>
+          <in>slibwin.i</in>
+          <in>slibwinfrwd.i</in>
+          <in>slibwinprop.i</in>
+          <in>slibxml.i</in>
+          <in>slibxmlfrwd.i</in>
+          <in>slibxmlprop.i</in>
+          <in>start-slib.i</in>
+        </df>
+        <df name="slibooxml">
+          <in>slibdocx.i</in>
+          <in>slibdocxfrwd.i</in>
+          <in>slibdocxprop.i</in>
+          <in>slibooxml.i</in>
+          <in>slibooxmlfrwd.i</in>
+          <in>slibooxmllic.i</in>
+          <in>slibooxmlprop.i</in>
+          <in>slibopc.i</in>
+          <in>slibxlsx.i</in>
+          <in>slibxlsxcomm.i</in>
+          <in>slibxlsxext.i</in>
+          <in>slibxlsxextfrwd.i</in>
+          <in>slibxlsxfrwd.i</in>
+          <in>slibxlsxprop.i</in>
+        </df>
+      </df>
+      <df name="python">
+        <in>DocxFactory.i</in>
+        <in>DocxFactory_wrap.cxx</in>
+      </df>
+      <df name="src">
+        <df name="barcode">
+          <in>BarcodeFunc.cpp</in>
+        </df>
+        <df name="console">
+          <in>ConsoleException.cpp</in>
+          <in>ConsoleUsageException.cpp</in>
+          <in>GetOptException.cpp</in>
+          <in>InvalidArgException.cpp</in>
+          <in>InvalidOptException.cpp</in>
+          <in>MissingArgException.cpp</in>
+          <in>MissingOptException.cpp</in>
+          <in>UnexpectedArgException.cpp</in>
+          <in>UnexpectedOptException.cpp</in>
+          <in>getopt.c</in>
+        </df>
+        <df name="ConverterPrinter">
+          <in>ConversionNotSupportedException.cpp</in>
+          <in>ConverterPrinter.cpp</in>
+          <in>ConverterPrinterException.cpp</in>
+          <in>ExportFormatNotSupportedException.cpp</in>
+          <in>GradeGroup.cpp</in>
+          <in>MsExcelUtil.cpp</in>
+          <in>MsOfficeUtil.cpp</in>
+          <in>MsWordUtil.cpp</in>
+          <in>OdfConverterUtil.cpp</in>
+          <in>OleException.cpp</in>
+          <in>OpenOfficeUtil.cpp</in>
+          <in>PrintingNotSupportedException.cpp</in>
+          <in>UtilFailedException.cpp</in>
+          <in>UtilNotFoundException.cpp</in>
+        </df>
+        <df name="DocxCompiler">
+          <in>DocxCompilerAltChunkField.cpp</in>
+          <in>DocxCompilerBarcodeField.cpp</in>
+          <in>DocxCompilerBookmark.cpp</in>
+          <in>DocxCompilerBooleanField.cpp</in>
+          <in>DocxCompilerChartField.cpp</in>
+          <in>DocxCompilerChartFieldFixedSeries.cpp</in>
+          <in>DocxCompilerChartFieldSeries.cpp</in>
+          <in>DocxCompilerChartFieldSingleSeries.cpp</in>
+          <in>DocxCompilerChartFieldXY.cpp</in>
+          <in>DocxCompilerChartFieldXYSize.cpp</in>
+          <in>DocxCompilerDateTimeField.cpp</in>
+          <in>DocxCompilerField.cpp</in>
+          <in>DocxCompilerFile.cpp</in>
+          <in>DocxCompilerId.cpp</in>
+          <in>DocxCompilerItem.cpp</in>
+          <in>DocxCompilerItemFile.cpp</in>
+          <in>DocxCompilerItemGroup.cpp</in>
+          <in>DocxCompilerItemLayout.cpp</in>
+          <in>DocxCompilerNumberField.cpp</in>
+          <in>DocxCompilerPicField.cpp</in>
+          <in>DocxCompilerSettingsFile.cpp</in>
+          <in>DocxCompilerStyle.cpp</in>
+          <in>DocxCompilerStyleFile.cpp</in>
+          <in>DocxCompilerTableStyle.cpp</in>
+          <in>DocxCompilerTextField.cpp</in>
+          <in>DocxCompilerXmlString.cpp</in>
+        </df>
+        <df name="DocxMerger">
+          <in>DocxMergerAltChunkField.cpp</in>
+          <in>DocxMergerBarcodeField.cpp</in>
+          <in>DocxMergerBooleanField.cpp</in>
+          <in>DocxMergerChartAxis.cpp</in>
+          <in>DocxMergerChartAxisDateTime.cpp</in>
+          <in>DocxMergerChartAxisNumber.cpp</in>
+          <in>DocxMergerChartAxisText.cpp</in>
+          <in>DocxMergerChartField.cpp</in>
+          <in>DocxMergerChartFieldFixedSeries.cpp</in>
+          <in>DocxMergerChartFieldSeries.cpp</in>
+          <in>DocxMergerChartFieldSingleSeries.cpp</in>
+          <in>DocxMergerChartFieldXY.cpp</in>
+          <in>DocxMergerChartFieldXYSize.cpp</in>
+          <in>DocxMergerChartValues.cpp</in>
+          <in>DocxMergerDateTimeField.cpp</in>
+          <in>DocxMergerException.cpp</in>
+          <in>DocxMergerField.cpp</in>
+          <in>DocxMergerFile.cpp</in>
+          <in>DocxMergerId.cpp</in>
+          <in>DocxMergerItem.cpp</in>
+          <in>DocxMergerItemFile.cpp</in>
+          <in>DocxMergerItemGroup.cpp</in>
+          <in>DocxMergerItemLayout.cpp</in>
+          <in>DocxMergerNumberField.cpp</in>
+          <in>DocxMergerPasteAltChunkField.cpp</in>
+          <in>DocxMergerPasteBarcodeField.cpp</in>
+          <in>DocxMergerPasteBooleanField.cpp</in>
+          <in>DocxMergerPasteChartAxis.cpp</in>
+          <in>DocxMergerPasteChartAxisDateTime.cpp</in>
+          <in>DocxMergerPasteChartAxisNumber.cpp</in>
+          <in>DocxMergerPasteChartAxisText.cpp</in>
+          <in>DocxMergerPasteChartField.cpp</in>
+          <in>DocxMergerPasteChartFieldFixedSeries.cpp</in>
+          <in>DocxMergerPasteChartFieldSeries.cpp</in>
+          <in>DocxMergerPasteChartFieldSingleSeries.cpp</in>
+          <in>DocxMergerPasteChartFieldXY.cpp</in>
+          <in>DocxMergerPasteChartFieldXYSize.cpp</in>
+          <in>DocxMergerPasteChartValues.cpp</in>
+          <in>DocxMergerPasteDateTimeField.cpp</in>
+          <in>DocxMergerPasteField.cpp</in>
+          <in>DocxMergerPasteFieldGroup.cpp</in>
+          <in>DocxMergerPasteItem.cpp</in>
+          <in>DocxMergerPasteItemGroup.cpp</in>
+          <in>DocxMergerPasteNumberField.cpp</in>
+          <in>DocxMergerPastePicField.cpp</in>
+          <in>DocxMergerPasteTextField.cpp</in>
+          <in>DocxMergerPicField.cpp</in>
+          <in>DocxMergerSettingsFile.cpp</in>
+          <in>DocxMergerTextField.cpp</in>
+          <in>DocxMergerXmlString.cpp</in>
+        </df>
+        <df name="json">
+          <in>JsonException.cpp</in>
+          <in>JsonFunc.cpp</in>
+          <in>ParseJsonException.cpp</in>
+          <in>ParseJsonFileException.cpp</in>
+        </df>
+        <df name="locale">
+          <in>IcuException.cpp</in>
+          <in>InvalidCodePageException.cpp</in>
+          <in>InvalidDateFormatException.cpp</in>
+          <in>InvalidDateTimeStrException.cpp</in>
+          <in>InvalidFirstWeekDayException.cpp</in>
+          <in>InvalidYearOffsetException.cpp</in>
+          <in>LocaleException.cpp</in>
+          <in>LocaleFunc.cpp</in>
+        </df>
+        <df name="math">
+          <in>MathFunc.cpp</in>
+        </df>
+        <df name="opc">
+          <in>ContentTypeNotFound.cpp</in>
+          <in>OpcContentTypes.cpp</in>
+          <in>OpcException.cpp</in>
+          <in>OpcFunc.cpp</in>
+          <in>OpcImageCache.cpp</in>
+          <in>OpcImageFile.cpp</in>
+          <in>OpcPackage.cpp</in>
+          <in>OpcPart.cpp</in>
+          <in>OpcRelationship.cpp</in>
+          <in>OpcRelationships.cpp</in>
+          <in>PartNotFoundException.cpp</in>
+          <in>PartTypeNotFoundException.cpp</in>
+        </df>
+        <df name="os">
+          <in>DirNotFoundException.cpp</in>
+          <in>FileExistsException.cpp</in>
+          <in>FileNotFoundException.cpp</in>
+          <in>FileNotOpenException.cpp</in>
+          <in>FileNotRemovedException.cpp</in>
+          <in>InvalidFileUrlException.cpp</in>
+          <in>OsException.cpp</in>
+          <in>OsFunc.cpp</in>
+          <in>PathMissingExtException.cpp</in>
+          <in>PathMissingFileException.cpp</in>
+          <in>UnsupportedFileTypeException.cpp</in>
+        </df>
+        <df name="parser">
+          <in>ParserException.cpp</in>
+          <in>ParserFunc.cpp</in>
+          <in>UnclosedBracketException.cpp</in>
+          <in>UnexpectedBracketException.cpp</in>
+          <in>UnmatchedQuoteException.cpp</in>
+        </df>
+        <df name="str">
+          <in>StrEntries.cpp</in>
+          <in>StrFunc.cpp</in>
+        </df>
+        <df name="time">
+          <in>TimeFunc.cpp</in>
+        </df>
+        <df name="unix">
+          <in>UnixFunc.cpp</in>
+        </df>
+        <df name="UnoUtil">
+          <in>PropertyMap.cpp</in>
+          <in>UnoException.cpp</in>
+          <in>UnoUtilImpl.cpp</in>
+        </df>
+        <df name="util">
+          <in>ArgTypeMismatchException.cpp</in>
+          <in>DocxFactoryException.cpp</in>
+          <in>DocxFactoryTimer.cpp</in>
+          <in>GeneralException.cpp</in>
+          <in>UnknownException.cpp</in>
+        </df>
+        <df name="win">
+          <in>WinFunc.cpp</in>
+        </df>
+        <df name="WordProcessingCompiler">
+          <in>WordProcessingCompiler.cpp</in>
+          <in>dfwc.cpp</in>
+          <in>word-processing-compiler.cpp</in>
+        </df>
+        <df name="WordProcessingMerger">
+          <in>CompileVersionMismatchException.cpp</in>
+          <in>InvalidItemNameException.cpp</in>
+          <in>InvalidMergeDataException.cpp</in>
+          <in>TemplateNotLoadedException.cpp</in>
+          <in>WordProcessingException.cpp</in>
+          <in>WordProcessingMerger.cpp</in>
+          <in>dfw.cpp</in>
+          <in>word-processing-merger.cpp</in>
+        </df>
+        <df name="xml">
+          <in>AsciiToXMLCh.cpp</in>
+          <in>DomException.cpp</in>
+          <in>InvalidXmlPathException.cpp</in>
+          <in>NodeNotFoundException.cpp</in>
+          <in>ParseXmlException.cpp</in>
+          <in>ParseXmlFileException.cpp</in>
+          <in>StrToXMLCh.cpp</in>
+          <in>Utf8ToXMLCh.cpp</in>
+          <in>XmlException.cpp</in>
+          <in>XmlFunc.cpp</in>
+          <in>XmlInitializer.cpp</in>
+          <in>XmlTreeDriller.cpp</in>
+        </df>
+        <df name="zip">
+          <in>FileInfo.cpp</in>
+          <in>MinizipException.cpp</in>
+          <in>UnzipFile.cpp</in>
+          <in>ZipException.cpp</in>
+          <in>ZipFile.cpp</in>
+          <in>ZipFileNotOpenException.cpp</in>
+          <in>ZipFunc.cpp</in>
+          <in>ZipStreamNotOpenException.cpp</in>
+          <in>ZipStreamOpenException.cpp</in>
+        </df>
+      </df>
+    </df>
+  </logicalFolder>
+  <projectmakefile>build/Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./ActDestruction.docx ./ActDestruction.dfw</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}" ./ActDestruction.docx ./ActDestruction.dfw</runcommand>
+        <rundir>build</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>

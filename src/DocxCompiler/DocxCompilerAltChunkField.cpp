@@ -294,7 +294,8 @@ void DocxCompilerAltChunkField::serialize( ZipFile* p_zipFile )
 {
 	DocxCompilerField::serialize( p_zipFile );
 
-	p_zipFile ->writeNum<int16>	( m_type );
+        int16 num = static_cast<int16>(m_type);
+	p_zipFile ->writeNum<int16>	( num );
 	p_zipFile ->writeStr		( m_altChunkString1 );
 	p_zipFile ->writeStr		( m_altChunkString2 );
 } // serialize

@@ -5,7 +5,7 @@
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
 #include <string>
-
+#include <vector>
 
 
 namespace DocxFactory
@@ -51,7 +51,7 @@ namespace DocxFactory
 		static string fileUrlToPath		( const string& p_url );
 		static string normalizeFileUrl	( const string& p_url );
 
-		static byte* readFile(
+		static std::vector<byte> readFile(
 			const string&	p_fileName,
 			size_t&			p_bufSize );
 

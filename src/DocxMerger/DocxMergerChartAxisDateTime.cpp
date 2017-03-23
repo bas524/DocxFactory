@@ -53,7 +53,7 @@ size_t DocxMergerChartAxisDateTime::setValue( DocxMergerPasteChartAxis* p_pasteA
 string DocxMergerChartAxisDateTime::getValue( DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index ) const
 {
 	return StrFunc::intToStr(
-		( ( DocxMergerPasteChartAxisDateTime* ) p_pasteAxis ) ->getValues() ->at( p_index ) / 86400.0 + 25569.0	);
+		( ( DocxMergerPasteChartAxisDateTime* ) p_pasteAxis ) ->getValues() ->at( p_index ) / 86400.0 + 25569.0, 3 );
 } // getValue
 
 size_t DocxMergerChartAxisDateTime::getLength( DocxMergerPasteChartAxis* p_pasteAxis ) const

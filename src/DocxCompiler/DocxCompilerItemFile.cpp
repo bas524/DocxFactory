@@ -40,9 +40,8 @@
 #include "xercesc/util/XercesDefs.hpp"
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/tuple/tuple.hpp"
-#include "boost/scoped_ptr.hpp"
-
+#include <tuple>
+#include <memory>
 #include <climits>
 
 using namespace DocxFactory;
@@ -136,7 +135,7 @@ void DocxCompilerItemFile::loadBookmarks()
 	list<DocxCompilerBookmark*>						l_parentBookmarks;
 	DocxCompilerBookmark*							l_parentBookmark = NULL;
 
-	boost::scoped_ptr<XmlTreeDriller>				l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>					l_cursorDriller;
 	xercesc::DOMElement*							l_cursorNode;
 
 	xercesc::DOMDocument*							l_doc = m_part ->getDoc();
@@ -265,7 +264,7 @@ void DocxCompilerItemFile::loadItems()
 	DocxCompilerItem*								l_item;
 	DocxCompilerItemGroup*							l_itemGroup;
 
-	boost::scoped_ptr<XmlTreeDriller> l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>					l_treeDriller;
 
 	xercesc::DOMDocument*	l_doc;
 	xercesc::DOMElement*	l_bodyNode;
@@ -828,7 +827,7 @@ void DocxCompilerItemFile::setItemsPath( DocxCompilerItemGroup* p_itemGroup )
 
 void DocxCompilerItemFile::loadFields()
 {
-	typedef list<boost::tuple<xercesc::DOMElement*, xercesc::DOMElement*, xercesc::DOMText*, string>> NodeList_T;
+	typedef list<std::tuple<xercesc::DOMElement*, xercesc::DOMElement*, xercesc::DOMText*, string>> NodeList_T;
 
 	list<DocxCompilerItem*>::iterator			l_itemIterator;
 	DocxCompilerItem*							l_item;
@@ -846,10 +845,10 @@ void DocxCompilerItemFile::loadFields()
 	map<DocxCompilerField::FieldParam, string>	l_valueByParam;
 	xercesc::DOMElement*						l_placeHolderNode;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>		l_cursorDriller;
 	xercesc::DOMElement*				l_cursorNode;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>		l_treeDriller;
 
 	NodeList_T				l_tNodeList;
 	NodeList_T::iterator	l_tIterator;
@@ -1019,7 +1018,7 @@ void DocxCompilerItemFile::loadFields()
 
 						while ( true )
 						{
-							l_tNodeList.push_back( boost::make_tuple( l_rNode, l_tNode, l_textNode, l_textValue ) );
+							l_tNodeList.push_back( std::make_tuple( l_rNode, l_tNode, l_textNode, l_textValue ) );
 
 							l_tNode = ( xercesc::DOMElement* ) l_tNode ->getNextSibling();
 							if ( !l_tNode )
@@ -2043,8 +2042,8 @@ void DocxCompilerItemFile::loadXmlStrings()
 
 void DocxCompilerItemFile::normalize()
 {
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
-	boost::scoped_ptr<XmlTreeDriller>	l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>		l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>		l_cursorDriller;
 	xercesc::DOMElement*				l_cursorNode;
 
 	xercesc::DOMDocument*				l_doc;
@@ -2971,7 +2970,7 @@ void DocxCompilerItemFile::normalize()
 
 void DocxCompilerItemFile::normalizeRuns()
 {
-	boost::scoped_ptr<XmlTreeDriller>	l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>		l_cursorDriller;
 	xercesc::DOMElement*				l_cursorNode;
 
 	xercesc::DOMElement*				l_rNode;
@@ -3151,7 +3150,7 @@ void DocxCompilerItemFile::normalizeTableBorders()
 	const map<string, DocxCompilerTableStyle*>*				l_tableStyles = m_file ->getStyleFile() ->getTableStyles();
 	DocxCompilerTableStyle*									l_tableStyle;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_tblDriller;
+	std::unique_ptr<XmlTreeDriller>		l_tblDriller;
 	xercesc::DOMElement*				l_tblNode;
 	xercesc::DOMElement*				l_tblPrNode;
 	xercesc::DOMElement*				l_tblStyleNode;
@@ -3709,7 +3708,7 @@ void DocxCompilerItemFile::normalizeBookmarksStartEnd()
 	Bookmark*							l_bookmark;
 	Bookmark*							l_prevBookmark;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>		l_cursorDriller;
 	xercesc::DOMElement*				l_cursorNode;
 
 	xercesc::DOMElement*				l_bookmarkStartNode	= NULL;
@@ -4024,7 +4023,7 @@ void DocxCompilerItemFile::normalizeBookmarksBr()
 	map<size_t, DocxCompilerBookmark*>::iterator	l_bookmarkIterator;
 	DocxCompilerBookmark*							l_bookmark;
 
-	boost::scoped_ptr<XmlTreeDriller>				l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>					l_cursorDriller;
 	xercesc::DOMElement*							l_cursorNode;
 	xercesc::DOMDocument*							l_doc		= m_part ->getDoc();
 
@@ -4122,7 +4121,7 @@ void DocxCompilerItemFile::trimItems()
 	list<DocxCompilerItem*>::iterator	l_itemIterator;
 	DocxCompilerItem*					l_item;
 
-	boost::scoped_ptr<XmlTreeDriller>	l_cursorDriller;
+	std::unique_ptr<XmlTreeDriller>		l_cursorDriller;
 	xercesc::DOMNode*					l_cursorNode;
 	xercesc::DOMNode*					l_node;
 

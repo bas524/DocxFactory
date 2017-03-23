@@ -1,0 +1,1935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="src">
+        <df name="barcode">
+          <in>BarcodeFunc.cpp</in>
+        </df>
+        <df name="console">
+          <in>ConsoleException.cpp</in>
+          <in>ConsoleUsageException.cpp</in>
+          <in>GetOptException.cpp</in>
+          <in>InvalidArgException.cpp</in>
+          <in>InvalidOptException.cpp</in>
+          <in>MissingArgException.cpp</in>
+          <in>MissingOptException.cpp</in>
+          <in>UnexpectedArgException.cpp</in>
+          <in>UnexpectedOptException.cpp</in>
+          <in>getopt.c</in>
+        </df>
+        <df name="ConverterPrinter">
+          <in>ConversionNotSupportedException.cpp</in>
+          <in>ConverterPrinter.cpp</in>
+          <in>ConverterPrinterException.cpp</in>
+          <in>ExportFormatNotSupportedException.cpp</in>
+          <in>GradeGroup.cpp</in>
+          <in>MsExcelUtil.cpp</in>
+          <in>MsWordUtil.cpp</in>
+          <in>OdfConverterUtil.cpp</in>
+          <in>OleException.cpp</in>
+          <in>OpenOfficeUtil.cpp</in>
+          <in>PrintingNotSupportedException.cpp</in>
+          <in>UtilFailedException.cpp</in>
+          <in>UtilNotFoundException.cpp</in>
+        </df>
+        <df name="DocxCompiler">
+          <in>DocxCompilerAltChunkField.cpp</in>
+          <in>DocxCompilerBarcodeField.cpp</in>
+          <in>DocxCompilerBookmark.cpp</in>
+          <in>DocxCompilerBooleanField.cpp</in>
+          <in>DocxCompilerChartField.cpp</in>
+          <in>DocxCompilerChartFieldFixedSeries.cpp</in>
+          <in>DocxCompilerChartFieldSeries.cpp</in>
+          <in>DocxCompilerChartFieldSingleSeries.cpp</in>
+          <in>DocxCompilerChartFieldXY.cpp</in>
+          <in>DocxCompilerChartFieldXYSize.cpp</in>
+          <in>DocxCompilerDateTimeField.cpp</in>
+          <in>DocxCompilerField.cpp</in>
+          <in>DocxCompilerFile.cpp</in>
+          <in>DocxCompilerId.cpp</in>
+          <in>DocxCompilerItem.cpp</in>
+          <in>DocxCompilerItemFile.cpp</in>
+          <in>DocxCompilerItemGroup.cpp</in>
+          <in>DocxCompilerItemLayout.cpp</in>
+          <in>DocxCompilerNumberField.cpp</in>
+          <in>DocxCompilerPicField.cpp</in>
+          <in>DocxCompilerSettingsFile.cpp</in>
+          <in>DocxCompilerStyle.cpp</in>
+          <in>DocxCompilerStyleFile.cpp</in>
+          <in>DocxCompilerTableStyle.cpp</in>
+          <in>DocxCompilerTextField.cpp</in>
+          <in>DocxCompilerXmlString.cpp</in>
+        </df>
+        <df name="DocxMerger">
+          <in>DocxMergerAltChunkField.cpp</in>
+          <in>DocxMergerBarcodeField.cpp</in>
+          <in>DocxMergerBooleanField.cpp</in>
+          <in>DocxMergerChartAxis.cpp</in>
+          <in>DocxMergerChartAxisDateTime.cpp</in>
+          <in>DocxMergerChartAxisNumber.cpp</in>
+          <in>DocxMergerChartAxisText.cpp</in>
+          <in>DocxMergerChartField.cpp</in>
+          <in>DocxMergerChartFieldFixedSeries.cpp</in>
+          <in>DocxMergerChartFieldSeries.cpp</in>
+          <in>DocxMergerChartFieldSingleSeries.cpp</in>
+          <in>DocxMergerChartFieldXY.cpp</in>
+          <in>DocxMergerChartFieldXYSize.cpp</in>
+          <in>DocxMergerChartValues.cpp</in>
+          <in>DocxMergerDateTimeField.cpp</in>
+          <in>DocxMergerException.cpp</in>
+          <in>DocxMergerField.cpp</in>
+          <in>DocxMergerFile.cpp</in>
+          <in>DocxMergerId.cpp</in>
+          <in>DocxMergerItem.cpp</in>
+          <in>DocxMergerItemFile.cpp</in>
+          <in>DocxMergerItemGroup.cpp</in>
+          <in>DocxMergerItemLayout.cpp</in>
+          <in>DocxMergerNumberField.cpp</in>
+          <in>DocxMergerPasteAltChunkField.cpp</in>
+          <in>DocxMergerPasteBarcodeField.cpp</in>
+          <in>DocxMergerPasteBooleanField.cpp</in>
+          <in>DocxMergerPasteChartAxis.cpp</in>
+          <in>DocxMergerPasteChartAxisDateTime.cpp</in>
+          <in>DocxMergerPasteChartAxisNumber.cpp</in>
+          <in>DocxMergerPasteChartAxisText.cpp</in>
+          <in>DocxMergerPasteChartField.cpp</in>
+          <in>DocxMergerPasteChartFieldFixedSeries.cpp</in>
+          <in>DocxMergerPasteChartFieldSeries.cpp</in>
+          <in>DocxMergerPasteChartFieldSingleSeries.cpp</in>
+          <in>DocxMergerPasteChartFieldXY.cpp</in>
+          <in>DocxMergerPasteChartFieldXYSize.cpp</in>
+          <in>DocxMergerPasteChartValues.cpp</in>
+          <in>DocxMergerPasteDateTimeField.cpp</in>
+          <in>DocxMergerPasteField.cpp</in>
+          <in>DocxMergerPasteFieldGroup.cpp</in>
+          <in>DocxMergerPasteItem.cpp</in>
+          <in>DocxMergerPasteItemGroup.cpp</in>
+          <in>DocxMergerPasteNumberField.cpp</in>
+          <in>DocxMergerPastePicField.cpp</in>
+          <in>DocxMergerPasteTextField.cpp</in>
+          <in>DocxMergerPicField.cpp</in>
+          <in>DocxMergerSettingsFile.cpp</in>
+          <in>DocxMergerTextField.cpp</in>
+          <in>DocxMergerXmlString.cpp</in>
+        </df>
+        <df name="json">
+          <in>JsonException.cpp</in>
+          <in>JsonFunc.cpp</in>
+          <in>ParseJsonException.cpp</in>
+          <in>ParseJsonFileException.cpp</in>
+        </df>
+        <df name="locale">
+          <in>IcuException.cpp</in>
+          <in>InvalidCodePageException.cpp</in>
+          <in>InvalidDateFormatException.cpp</in>
+          <in>InvalidDateTimeStrException.cpp</in>
+          <in>InvalidFirstWeekDayException.cpp</in>
+          <in>InvalidYearOffsetException.cpp</in>
+          <in>LocaleException.cpp</in>
+          <in>LocaleFunc.cpp</in>
+        </df>
+        <df name="math">
+          <in>MathFunc.cpp</in>
+        </df>
+        <df name="opc">
+          <in>ContentTypeNotFound.cpp</in>
+          <in>OpcContentTypes.cpp</in>
+          <in>OpcException.cpp</in>
+          <in>OpcFunc.cpp</in>
+          <in>OpcImageCache.cpp</in>
+          <in>OpcImageFile.cpp</in>
+          <in>OpcPackage.cpp</in>
+          <in>OpcPart.cpp</in>
+          <in>OpcRelationship.cpp</in>
+          <in>OpcRelationships.cpp</in>
+          <in>PartNotFoundException.cpp</in>
+          <in>PartTypeNotFoundException.cpp</in>
+        </df>
+        <df name="os">
+          <in>DirNotFoundException.cpp</in>
+          <in>FileExistsException.cpp</in>
+          <in>FileNotFoundException.cpp</in>
+          <in>FileNotOpenException.cpp</in>
+          <in>FileNotRemovedException.cpp</in>
+          <in>InvalidFileUrlException.cpp</in>
+          <in>OsException.cpp</in>
+          <in>OsFunc.cpp</in>
+          <in>PathMissingExtException.cpp</in>
+          <in>PathMissingFileException.cpp</in>
+          <in>UnsupportedFileTypeException.cpp</in>
+        </df>
+        <df name="parser">
+          <in>ParserException.cpp</in>
+          <in>ParserFunc.cpp</in>
+          <in>UnclosedBracketException.cpp</in>
+          <in>UnexpectedBracketException.cpp</in>
+          <in>UnmatchedQuoteException.cpp</in>
+        </df>
+        <df name="str">
+          <in>StrEntries.cpp</in>
+          <in>StrFunc.cpp</in>
+        </df>
+        <df name="time">
+          <in>TimeFunc.cpp</in>
+        </df>
+        <df name="unix">
+          <in>UnixFunc.cpp</in>
+        </df>
+        <df name="UnoUtil">
+          <in>PropertyMap.cpp</in>
+          <in>UnoException.cpp</in>
+          <in>UnoUtilImpl.cpp</in>
+        </df>
+        <df name="util">
+          <in>ArgTypeMismatchException.cpp</in>
+          <in>DocxFactoryException.cpp</in>
+          <in>DocxFactoryTimer.cpp</in>
+          <in>GeneralException.cpp</in>
+          <in>UnknownException.cpp</in>
+        </df>
+        <df name="WordProcessingCompiler">
+          <in>dfwc.cpp</in>
+          <in>word-processing-compiler.cpp</in>
+        </df>
+        <df name="WordProcessingMerger">
+          <in>CompileVersionMismatchException.cpp</in>
+          <in>InvalidItemNameException.cpp</in>
+          <in>InvalidMergeDataException.cpp</in>
+          <in>TemplateNotLoadedException.cpp</in>
+          <in>WordProcessingException.cpp</in>
+          <in>dfw.cpp</in>
+        </df>
+        <df name="xml">
+          <in>AsciiToXMLCh.cpp</in>
+          <in>DomException.cpp</in>
+          <in>InvalidXmlPathException.cpp</in>
+          <in>NodeNotFoundException.cpp</in>
+          <in>ParseXmlException.cpp</in>
+          <in>ParseXmlFileException.cpp</in>
+          <in>StrToXMLCh.cpp</in>
+          <in>Utf8ToXMLCh.cpp</in>
+          <in>XmlException.cpp</in>
+          <in>XmlFunc.cpp</in>
+          <in>XmlInitializer.cpp</in>
+          <in>XmlTreeDriller.cpp</in>
+        </df>
+        <df name="zip">
+          <in>FileInfo.cpp</in>
+          <in>MinizipException.cpp</in>
+          <in>UnzipFile.cpp</in>
+          <in>ZipException.cpp</in>
+          <in>ZipFile.cpp</in>
+          <in>ZipFileNotOpenException.cpp</in>
+          <in>ZipFunc.cpp</in>
+          <in>ZipStreamNotOpenException.cpp</in>
+          <in>ZipStreamOpenException.cpp</in>
+        </df>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Важные файлы"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>build/Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>build/Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-m32 -fpic -m32 -fPIC"/>
+        <element flagsID="1" commonFlags="-m32 -fpic -std=c++11 -fPIC -m32"/>
+        <element flagsID="2" commonFlags="-m32 -fpic -std=c++11 -fPIC -m32 -fPIC"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile -j4</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>/home/ivk/load_libs/DocxFactory/build/word-processing-compiler</executablePath>
+          <cTool>
+            <standard>10</standard>
+            <incDir>
+              <pElem>/usr/local/include</pElem>
+              <pElem>../zint/include</pElem>
+              <pElem>../rapidjson/include</pElem>
+              <pElem>../libreoffice5.3/sdk/include</pElem>
+              <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+              <pElem>/usr/include/ImageMagick-6</pElem>
+              <pElem>include</pElem>
+              <pElem>build</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>DEBUG</Elem>
+              <Elem>DocxFactoryLib_EXPORTS</Elem>
+              <Elem>MAGICKCORE_HDRI_ENABLE=0</Elem>
+              <Elem>MAGICKCORE_QUANTUM_DEPTH=16</Elem>
+              <Elem>_DEBUG</Elem>
+            </preprocessorList>
+          </cTool>
+          <ccTool>
+            <standard>8</standard>
+            <incDir>
+              <pElem>/usr/local/include</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>DEBUG</Elem>
+              <Elem>MAGICKCORE_HDRI_ENABLE=0</Elem>
+              <Elem>MAGICKCORE_QUANTUM_DEPTH=16</Elem>
+              <Elem>_DEBUG</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_INSTALL_PREFIX=/home/ivk/coding/swf/base_alt64/x32/docxfactory -DCMAKE_C_FLAGS="-m32 -fpic" -DCMAKE_CXX_FLAGS="-m32 -fpic" -DCMAKE_EXE_LINKER_FLAGS=-m32 -DCMAKE_C_FLAGS_DEBUG="-g3 -gdwarf-2 -m32" -DCMAKE_CXX_FLAGS_DEBUG="-g3 -gdwarf-2 -m32" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..</preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <folder path="0/src/ConverterPrinter">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactory_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/DocxCompiler">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactory_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/DocxMerger">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactory_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/UnoUtil">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>UnoUtil_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/WordProcessingCompiler">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/src/WordProcessingMerger">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactory_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/barcode">
+        <ccTool>
+          <incDir>
+            <pElem>../../coding/swf/base_alt64/x32/zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/console">
+        <ccTool>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/json">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/locale">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/math">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/opc">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactory_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/os">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/parser">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/str">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/time">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/unix">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/util">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/xml">
+        <ccTool>
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src/zip">
+        <ccTool>
+          <preprocessorList>
+            <Elem>DocxFactoryLib_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <item path="src/ConverterPrinter/ConversionNotSupportedException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/ConverterPrinter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/ConverterPrinterException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/ExportFormatNotSupportedException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/GradeGroup.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/MsExcelUtil.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../minizip/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/MsWordUtil.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../minizip/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/OdfConverterUtil.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/OleException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/OpenOfficeUtil.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/PrintingNotSupportedException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/UtilFailedException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/ConverterPrinter/UtilNotFoundException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerAltChunkField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerBarcodeField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerBookmark.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerBooleanField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerChartField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerChartFieldFixedSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerChartFieldSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerChartFieldSingleSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerChartFieldXY.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerChartFieldXYSize.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerDateTimeField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerId.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerItemFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerItemGroup.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerItemLayout.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerNumberField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerPicField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerSettingsFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerStyle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerStyleFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerTableStyle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerTextField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxCompiler/DocxCompilerXmlString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerAltChunkField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerBarcodeField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerBooleanField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartAxis.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartAxisDateTime.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartAxisNumber.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartAxisText.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartFieldFixedSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartFieldSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartFieldSingleSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartFieldXY.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartFieldXYSize.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerChartValues.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerDateTimeField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerField.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerFile.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerId.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerItem.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerItemFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerItemGroup.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerItemLayout.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerNumberField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteAltChunkField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteBarcodeField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteBooleanField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartAxis.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartAxisDateTime.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartAxisNumber.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartAxisText.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartFieldFixedSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartFieldSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartFieldSingleSeries.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartFieldXY.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartFieldXYSize.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteChartValues.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteDateTimeField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteFieldGroup.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteItem.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteItemGroup.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteNumberField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPastePicField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPasteTextField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerPicField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerSettingsFile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerTextField.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/DocxMerger/DocxMergerXmlString.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/UnoUtil/PropertyMap.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/UnoUtil/UnoException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/UnoUtil/UnoUtilImpl.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <preprocessorList>
+            <Elem>CPPU_ENV=gcc3</Elem>
+            <Elem>GCC</Elem>
+            <Elem>LINUX</Elem>
+            <Elem>UNX</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingCompiler/dfwc.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <preprocessorList>
+            <Elem>DocxFactory_EXPORTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingCompiler/word-processing-compiler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingMerger/CompileVersionMismatchException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingMerger/InvalidItemNameException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingMerger/InvalidMergeDataException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingMerger/TemplateNotLoadedException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingMerger/WordProcessingException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/WordProcessingMerger/dfw.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/barcode/BarcodeFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/console/ConsoleException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../../coding/swf/base_alt64/x32/zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/ConsoleUsageException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/GetOptException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/InvalidArgException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/InvalidOptException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/MissingArgException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/MissingOptException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/UnexpectedArgException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/UnexpectedOptException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/console/getopt.c" ex="false" tool="0" flavor2="10">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="src/json/JsonException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/json/JsonFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/json/ParseJsonException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/json/ParseJsonFileException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/IcuException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/InvalidCodePageException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/InvalidDateFormatException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/InvalidDateTimeStrException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/InvalidFirstWeekDayException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/InvalidYearOffsetException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/LocaleException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/locale/LocaleFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/math/MathFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/ContentTypeNotFound.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcContentTypes.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcImageCache.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcImageFile.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcPackage.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcPart.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcRelationship.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/OpcRelationships.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/PartNotFoundException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/opc/PartTypeNotFoundException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/DirNotFoundException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/FileExistsException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/FileNotFoundException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/FileNotOpenException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/FileNotRemovedException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/InvalidFileUrlException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/OsException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/OsFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/PathMissingExtException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/PathMissingFileException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/os/UnsupportedFileTypeException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/parser/ParserException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/parser/ParserFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/parser/UnclosedBracketException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/parser/UnexpectedBracketException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/parser/UnmatchedQuoteException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/str/StrEntries.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/str/StrFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/time/TimeFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/unix/UnixFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/util/ArgTypeMismatchException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/util/DocxFactoryException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/util/DocxFactoryTimer.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/util/GeneralException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/util/UnknownException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/AsciiToXMLCh.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/DomException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/InvalidXmlPathException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/NodeNotFoundException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/ParseXmlException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/ParseXmlFileException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/StrToXMLCh.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/Utf8ToXMLCh.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/XmlException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/XmlFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/XmlInitializer.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/xml/XmlTreeDriller.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/zip/FileInfo.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/MinizipException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../../coding/swf/base_alt64/x32/zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/UnzipFile.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../../coding/swf/base_alt64/x32/zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/ZipException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/ZipFile.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/ZipFileNotOpenException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/ZipFunc.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/ZipStreamNotOpenException.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/zip/ZipStreamOpenException.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>../zint/include</pElem>
+            <pElem>../rapidjson/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include</pElem>
+            <pElem>../libreoffice5.3/sdk/include_generated</pElem>
+            <pElem>/usr/include/ImageMagick-6</pElem>
+            <pElem>include</pElem>
+            <pElem>build</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

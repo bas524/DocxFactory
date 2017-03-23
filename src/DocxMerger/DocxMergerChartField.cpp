@@ -55,8 +55,8 @@ void DocxMergerChartField::save( DocxMergerPasteFieldGroup* p_pasteFieldGroup )
 
 void DocxMergerChartField::saveChart( ZipFile* p_zipFile, const string* p_value )
 {
-	list<pair<string, char>>::const_iterator					l_stringIterator;
-	list<boost::tuple<string, string, string, bool>>::iterator	l_relationshipIterator;
+	list<std::pair<string, char>>::const_iterator				l_stringIterator;
+	list<std::tuple<string, string, string, bool>>::iterator	l_relationshipIterator;
 
 	DocxMergerFile*		l_file = m_itemFile ->getFile();
 	OpcPart*			l_part;
@@ -162,7 +162,7 @@ void DocxMergerChartField::deserialize( UnzipFile* p_unzipFile )
 		l_str3	= p_unzipFile ->readStr();
 		l_ok	= p_unzipFile ->readNum<uint8>() == 1;
 
-		m_chartRelationships.push_back( boost::make_tuple( l_str, l_str2, l_str3, l_ok ) );
+		m_chartRelationships.push_back( std::make_tuple( l_str, l_str2, l_str3, l_ok ) );
 	}
 } // deserialize
 
@@ -188,7 +188,7 @@ const list<pair<string, char>>* DocxMergerChartField::getDrawingStrings() const
 	return &m_drawingStrings;
 } // getDrawingStrings
 
-const list<boost::tuple<string, string, string, bool>>*	DocxMergerChartField::getChartRelationships() const
+const list<std::tuple<string, string, string, bool>>*	DocxMergerChartField::getChartRelationships() const
 {
 	return &m_chartRelationships;
 } // getChartRelationships

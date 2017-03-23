@@ -17,7 +17,7 @@
 
 #include "xercesc/dom/DOM.hpp"
 
-#include "boost/scoped_ptr.hpp"
+#include <memory>
 
 using namespace DocxFactory;
 using namespace std;
@@ -39,7 +39,7 @@ DocxCompilerChartFieldXY::DocxCompilerChartFieldXY(
 		p_drawingNode,
 		p_chartPart )
 {
-	boost::scoped_ptr<XmlTreeDriller>	l_treeDriller;
+	std::unique_ptr<XmlTreeDriller>	l_treeDriller;
 
 	xercesc::DOMDocument*	l_doc			= p_chartPart ->getDoc();
 	xercesc::DOMElement*	l_rootNode		= l_doc ->getDocumentElement();
@@ -163,6 +163,7 @@ void DocxCompilerChartFieldXY::serialize( ZipFile* p_zipFile )
 	FOR_EACH( l_stringIterator, &m_chartStrings )
 	{
 		p_zipFile ->writeStr		( l_stringIterator ->first );
-		p_zipFile ->writeNum<uint8>	( l_stringIterator ->second );
+                auto num = static_cast<uint8>(l_stringIterator ->second);
+		p_zipFile ->writeNum<uint8>	( num );
 	}
 } // serialize
