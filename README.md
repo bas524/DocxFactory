@@ -1,4 +1,4 @@
-DocxFactory Project
+This ia a fork of DocxFactory Project
 ===================
 
 Description
@@ -18,8 +18,7 @@ and command line tools for generating ([Microsoft Word .DOCX](https://de.wikiped
 Compiling DocxFactory and high-level language wrappers
 ------------------------------------------------------
 
-Read the [compilation instructions](https://github.com/DocxFactory/DocxFactory/blob/master/COMPILING.md)
-
+use cmake
 
 History
 -------
