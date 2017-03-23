@@ -377,7 +377,7 @@ add_dependencies(DocxFactory UnoUtil)
 
 # word-processing-merger
 set(WORD_PROCESSING_MERGER_SRC
-    src/WordProcessingCompiler/word-processing-compiler.cpp
+    src/WordProcessingMerger/word-processing-merger.cpp
 )
 add_executable(word-processing-merger ${WORD_PROCESSING_MERGER_SRC})
 target_link_libraries(word-processing-merger
