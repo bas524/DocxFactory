@@ -16,62 +16,61 @@ class DOMLSParser;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class OpcPart;
-	class OpcRelationships;
-	class OpcContentTypes;
-	class OpcImageCache;
-	class OpcImageFile;
-	class OpcPackage
-	{
-	public:
-		OpcPackage();
-		virtual ~OpcPackage();
+    class OpcPart;
+    class OpcRelationships;
+    class OpcContentTypes;
+    class OpcImageCache;
+    class OpcImageFile;
 
-		virtual void load( const string& p_fileName );
-		virtual void save( const string& p_fileName );
+    class OpcPackage {
+    public:
+        OpcPackage();
+        virtual ~OpcPackage();
 
-		OpcPart*	insertPart			( const string& p_fullPath );
-		OpcPart*	insertImageFilePart	( OpcImageFile* p_imageFile );
-		void		deletePart			( OpcPart* p_part );
+        virtual void load(const string& p_fileName);
+        virtual void save(const string& p_fileName);
 
-		const map<string, OpcPart*>*	getPartsByFullPath() const;
-		OpcRelationships*				getRelationships() const;
-		OpcContentTypes*				getContentTypes() const;
-		OpcImageCache*					getImageCache() const;
-		UnzipFile*						getUnzipFile() const;
-		ZipFile*						getZipFile() const;
-		xercesc::DOMLSParser*			getDomParser() const;
+        OpcPart* insertPart(const string& p_fullPath);
+        OpcPart* insertImageFilePart(OpcImageFile* p_imageFile);
+        void deletePart(OpcPart* p_part);
 
-	protected:
+        const map<string, OpcPart*>* getPartsByFullPath() const;
+        OpcRelationships* getRelationships() const;
+        OpcContentTypes* getContentTypes() const;
+        OpcImageCache* getImageCache() const;
+        UnzipFile* getUnzipFile() const;
+        ZipFile* getZipFile() const;
+        xercesc::DOMLSParser* getDomParser() const;
 
-	private:
-		OpcPackage( const OpcPackage& p_other );
-		OpcPackage& operator = ( const OpcPackage& p_other );
+    protected:
 
-		void loadParts();
-		void saveParts();
+    private:
+        OpcPackage(const OpcPackage& p_other);
+        OpcPackage& operator=(const OpcPackage& p_other);
 
-		map<string, OpcPart*>			m_partsByFullPath;
-		map<OpcImageFile*, OpcPart*>	m_partsByImageFile;
-		OpcRelationships*				m_relationships;
-		OpcContentTypes*				m_contentTypes;
-		OpcImageCache*					m_imageCache;
+        void loadParts();
+        void saveParts();
 
-		UnzipFile*						m_unzipFile;
-		ZipFile*						m_zipFile;
+        map<string, OpcPart*> m_partsByFullPath;
+        map<OpcImageFile*, OpcPart*> m_partsByImageFile;
+        OpcRelationships* m_relationships;
+        OpcContentTypes* m_contentTypes;
+        OpcImageCache* m_imageCache;
 
-		// docs created by the parser are tied to the scope of the parser.
-		// the package has a parser making all docs parsed in the package scoped to the package.
-		xercesc::DOMLSParser*			m_domParser;
+        UnzipFile* m_unzipFile;
+        ZipFile* m_zipFile;
 
-	};
+        // docs created by the parser are tied to the scope of the parser.
+        // the package has a parser making all docs parsed in the package scoped to the package.
+        xercesc::DOMLSParser* m_domParser;
+
+    };
 };
 
 #endif

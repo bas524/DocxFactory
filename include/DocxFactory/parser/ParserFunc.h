@@ -7,31 +7,29 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ParserFunc
-	{
-	public:
-		enum SpaceHandle
-		{
-			SPACE_REMOVE,
-			SPACE_TRIM,
-			SPACE_KEEP
-		};
+    class ParserFunc {
+    public:
 
-		static vector<string>	parseWordList	( const string& p_str, SpaceHandle p_space, bool p_drill ); 
-		static string			unquote			( const string& p_str );
+        enum SpaceHandle {
+            SPACE_REMOVE,
+            SPACE_TRIM,
+            SPACE_KEEP
+        };
 
-	protected:
+        static vector<string> parseWordList(const string& p_str, SpaceHandle p_space, bool p_drill);
+        static string unquote(const string& p_str);
 
-	private:
-		ParserFunc();
-		ParserFunc( const ParserFunc& p_other );
-		ParserFunc& operator = ( const ParserFunc& p_other );
+    protected:
 
-	};
+    private:
+        ParserFunc();
+        ParserFunc(const ParserFunc& p_other);
+        ParserFunc& operator=(const ParserFunc& p_other);
+
+    };
 };
 
 #endif

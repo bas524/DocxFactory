@@ -4,14 +4,10 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-ConverterPrinterException::ConverterPrinterException( const string& p_file, int p_line ) : DocxFactoryException( p_file, p_line )
-{
+ConverterPrinterException::ConverterPrinterException(const string& p_file, int p_line) : DocxFactoryException(p_file, p_line) {
 
 } // c'tor
 
-ConverterPrinterException::~ConverterPrinterException() throw()
-{
+ConverterPrinterException::~ConverterPrinterException() throw () {
 
 } // d'tor

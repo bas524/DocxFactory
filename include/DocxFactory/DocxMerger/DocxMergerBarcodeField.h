@@ -6,40 +6,39 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class	ZipFile;
-	class 	UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	struct	BarcodeFormat;
-	struct	NumFormat;
+    struct BarcodeFormat;
+    struct NumFormat;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerBarcodeField : public DocxMergerField
-	{
-	public:
-		DocxMergerBarcodeField();
-		virtual ~DocxMergerBarcodeField();
+    class DocxMergerPasteFieldGroup;
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+    class DocxMergerBarcodeField : public DocxMergerField {
+    public:
+        DocxMergerBarcodeField();
+        virtual ~DocxMergerBarcodeField();
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-	protected:
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-	private:
-		DocxMergerBarcodeField( const DocxMergerBarcodeField& p_other );
-		DocxMergerBarcodeField operator = ( const DocxMergerBarcodeField& p_other );
+    protected:
 
-		BarcodeFormat*		m_barcodeFormat;
-		static NumFormat*	m_numFormat;
+    private:
+        DocxMergerBarcodeField(const DocxMergerBarcodeField& p_other);
+        DocxMergerBarcodeField operator=(const DocxMergerBarcodeField& p_other);
 
-	};
+        BarcodeFormat* m_barcodeFormat;
+        static NumFormat* m_numFormat;
+
+    };
 };
 
 #endif

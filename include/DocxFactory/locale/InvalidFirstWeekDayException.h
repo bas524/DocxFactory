@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidFirstWeekDayException : public LocaleException
-	{
-	public:
-		InvalidFirstWeekDayException(
-			unsigned short	p_weekDayNum,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidFirstWeekDayException : public LocaleException {
+    public:
+        InvalidFirstWeekDayException(
+                unsigned short p_weekDayNum,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidFirstWeekDayException() throw();
+        virtual ~InvalidFirstWeekDayException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

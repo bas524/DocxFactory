@@ -1,4 +1,4 @@
-    
+
 /**
  * slibprofrwd.i -
  *
@@ -24,16 +24,43 @@
 
 
 
-function pro_getStackTrace          returns char    ( piStartLevel as int, plHideDlcProc as log ) {1}.
+function pro_getStackTrace returns char ( piStartLevel as int, plHideDlcProc as log) {
+    1
+}
+.
 
-function pro_getRunFile             returns char    ( pcFileName as char ) {1}.
+function pro_getRunFile returns char ( pcFileName as char) {
+    1
+}
+.
 
-function pro_getBufferFieldValue    returns char    ( pcBufferFieldHandle as char ) {1}.
+function pro_getBufferFieldValue returns char ( pcBufferFieldHandle as char) {
+    1
+}
+.
 
-function pro_compareTable           returns log     ( phSourceBuffer as handle, phTargetBuffer as handle ) {1}.
+function pro_compareTable returns log(phSourceBuffer as handle, phTargetBuffer as handle) {
+    1
+}
+.
 
-function pro_parseKeywordPhraseList returns char    ( pcStatement as char, pcKeywordList as char ) {1}.
-function pro_parseWordList          returns char    ( pcStatement as char, plRemoveSpaces as log, plFlat as log ) {1}.
-function pro_replaceNnn             returns char    ( pcStr as char ) {1}.
-function pro_unquote                returns char    ( pcStr as char ) {1}.
-function pro_unparenthesis          returns char    ( pcStr as char ) {1}.
+function pro_parseKeywordPhraseList returns char ( pcStatement as char, pcKeywordList as char) {
+    1
+}
+.
+function pro_parseWordList returns char ( pcStatement as char, plRemoveSpaces as log, plFlat as log) {
+    1
+}
+.
+function pro_replaceNnn returns char ( pcStr as char) {
+    1
+}
+.
+function pro_unquote returns char ( pcStr as char) {
+    1
+}
+.
+function pro_unparenthesis returns char ( pcStr as char) {
+    1
+}
+.

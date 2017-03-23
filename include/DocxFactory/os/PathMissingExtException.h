@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class PathMissingExtException : public OsException
-	{
-	public:
-		PathMissingExtException(
-			const string&	p_path,
-			const string&	p_file,
-			const int		p_line );
+    class PathMissingExtException : public OsException {
+    public:
+        PathMissingExtException(
+                const string& p_path,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~PathMissingExtException() throw();
+        virtual ~PathMissingExtException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -14,83 +14,65 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerBooleanField::DocxMergerBooleanField() : DocxMergerField( DocxMergerField::TYPE_BOOLEAN )
-{
+DocxMergerBooleanField::DocxMergerBooleanField() : DocxMergerField(DocxMergerField::TYPE_BOOLEAN) {
 
 } // c'tor
 
-DocxMergerBooleanField::~DocxMergerBooleanField()
-{
+DocxMergerBooleanField::~DocxMergerBooleanField() {
 
 } // d'tor
 
+void DocxMergerBooleanField::save(DocxMergerPasteFieldGroup* p_pasteFieldGroup) {
+  ZipFile* l_zipFile = m_itemFile ->getZipFile();
 
+  map<DocxMergerField*, DocxMergerPasteField*>::const_iterator l_pasteFieldIterator;
+  const map<DocxMergerField*, DocxMergerPasteField*>* l_pasteFields = p_pasteFieldGroup ->getPasteFieldsByField();
+  DocxMergerPasteBooleanField* l_pasteBooleanField;
 
-void DocxMergerBooleanField::save( DocxMergerPasteFieldGroup* p_pasteFieldGroup )
-{
-	ZipFile* l_zipFile = m_itemFile ->getZipFile();
+  if (p_pasteFieldGroup) {
+    l_pasteFieldIterator = l_pasteFields ->find(this);
+    if (l_pasteFieldIterator != l_pasteFields ->end()) {
+      l_pasteBooleanField = (DocxMergerPasteBooleanField*) l_pasteFieldIterator ->second;
 
-	map<DocxMergerField*, DocxMergerPasteField*>::const_iterator	l_pasteFieldIterator;
-	const map<DocxMergerField*, DocxMergerPasteField*>*				l_pasteFields = p_pasteFieldGroup ->getPasteFieldsByField();
-	DocxMergerPasteBooleanField*									l_pasteBooleanField;
-
-	if ( p_pasteFieldGroup )
-	{
-		l_pasteFieldIterator = l_pasteFields ->find( this );
-		if ( l_pasteFieldIterator != l_pasteFields ->end() )
-		{
-			l_pasteBooleanField = ( DocxMergerPasteBooleanField* ) l_pasteFieldIterator ->second;
-
-			if ( m_value == DocxMergerBooleanField::BOOLEAN_TRUE	&& l_pasteBooleanField ->getValue() == true
-			  || m_value == DocxMergerBooleanField::BOOLEAN_FALSE	&& l_pasteBooleanField ->getValue() == false )
-				( *l_zipFile ) << m_booleanString;
-		}
-
-		else
-		if ( m_value == DocxMergerBooleanField::BOOLEAN_UNDEFINED )
-			( *l_zipFile ) << m_booleanString;
-	}
-
-	else
-	if ( m_value == DocxMergerBooleanField::BOOLEAN_UNDEFINED )
-		( *l_zipFile ) << m_booleanString;
+      if (m_value == DocxMergerBooleanField::BOOLEAN_TRUE && l_pasteBooleanField ->getValue() == true
+              || m_value == DocxMergerBooleanField::BOOLEAN_FALSE && l_pasteBooleanField ->getValue() == false)
+        (*l_zipFile) << m_booleanString;
+    }
+    else
+      if (m_value == DocxMergerBooleanField::BOOLEAN_UNDEFINED)
+      (*l_zipFile) << m_booleanString;
+  }
+  else
+    if (m_value == DocxMergerBooleanField::BOOLEAN_UNDEFINED)
+    (*l_zipFile) << m_booleanString;
 
 } // save
 
+void DocxMergerBooleanField::setClipboardValue(const string& p_value) {
+  string l_value = StrFunc::lc(StrFunc::trim(p_value));
 
+  if (l_value == ""
+          || l_value == "0"
+          || l_value == "0.0"
+          || l_value == "no"
+          || l_value == "false")
+    createPasteField<bool, DocxMergerPasteBooleanField > (false);
 
-void DocxMergerBooleanField::setClipboardValue( const string& p_value )
-{
-	string l_value = StrFunc::lc( StrFunc::trim( p_value ) );
-
-	if ( l_value == ""
-	  || l_value == "0"
-	  || l_value == "0.0"
-	  || l_value == "no"
-	  || l_value == "false" )
-		createPasteField<bool, DocxMergerPasteBooleanField>( false );
-
-	else
-		createPasteField<bool, DocxMergerPasteBooleanField>( true );
+  else
+    createPasteField<bool, DocxMergerPasteBooleanField > (true);
 } // setClipboardValue( string )
 
-void DocxMergerBooleanField::setClipboardValue( double p_value )
-{
-	if ( p_value == 0.0 )
-		createPasteField<bool, DocxMergerPasteBooleanField>( false );
+void DocxMergerBooleanField::setClipboardValue(double p_value) {
+  if (p_value == 0.0)
+    createPasteField<bool, DocxMergerPasteBooleanField > (false);
 
-	else
-		createPasteField<bool, DocxMergerPasteBooleanField>( true );
+  else
+    createPasteField<bool, DocxMergerPasteBooleanField > (true);
 } // setClipboardValue( double )
 
+void DocxMergerBooleanField::deserialize(UnzipFile* p_unzipFile) {
+  DocxMergerField::deserialize(p_unzipFile);
 
-
-void DocxMergerBooleanField::deserialize( UnzipFile* p_unzipFile )
-{
-	DocxMergerField::deserialize( p_unzipFile );
-
-	m_booleanString	=					p_unzipFile ->readStr();
-	m_value			= ( BooleanValue )	p_unzipFile ->readNum<int16>();
+  m_booleanString = p_unzipFile ->readStr();
+  m_value = (BooleanValue) p_unzipFile ->readNum<int16>();
 } // deserialize

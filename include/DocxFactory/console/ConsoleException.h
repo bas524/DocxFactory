@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ConsoleException : public DocxFactoryException
-	{
-	public:
-		virtual ~ConsoleException() throw();
+    class ConsoleException : public DocxFactoryException {
+    public:
+        virtual ~ConsoleException() throw ();
 
-	protected:
-		ConsoleException( const string& p_file, int p_line );
+    protected:
+        ConsoleException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

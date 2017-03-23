@@ -8,37 +8,36 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteChartAxisNumber;
-	class DocxMergerPasteChartFieldXYSize : public DocxMergerPasteChartField
-	{
-	public:
-		DocxMergerPasteChartFieldXYSize( DocxMergerField* p_field );
-		virtual ~DocxMergerPasteChartFieldXYSize();
+    class DocxMergerField;
+    class DocxMergerPasteChartAxisNumber;
 
-		virtual string* getValue();
+    class DocxMergerPasteChartFieldXYSize : public DocxMergerPasteChartField {
+    public:
+        DocxMergerPasteChartFieldXYSize(DocxMergerField* p_field);
+        virtual ~DocxMergerPasteChartFieldXYSize();
 
-		void pushBack( double p_x, double p_y, double p_size );
+        virtual string* getValue();
 
-		const vector<double>*	getPasteXAxis() const;
-		const vector<double>*	getPasteYAxis() const;
-		const vector<double>*	getPasteSizeAxis() const;
+        void pushBack(double p_x, double p_y, double p_size);
 
-	protected:
+        const vector<double>* getPasteXAxis() const;
+        const vector<double>* getPasteYAxis() const;
+        const vector<double>* getPasteSizeAxis() const;
 
-	private:
-		DocxMergerPasteChartFieldXYSize( const DocxMergerPasteChartFieldXYSize& p_other );
-		DocxMergerPasteChartFieldXYSize& operator = ( const DocxMergerPasteChartFieldXYSize& p_other );
+    protected:
 
-		vector<double> m_pasteXAxis;
-		vector<double> m_pasteYAxis;
-		vector<double> m_pasteSizeAxis;
+    private:
+        DocxMergerPasteChartFieldXYSize(const DocxMergerPasteChartFieldXYSize& p_other);
+        DocxMergerPasteChartFieldXYSize& operator=(const DocxMergerPasteChartFieldXYSize& p_other);
 
-	};
+        vector<double> m_pasteXAxis;
+        vector<double> m_pasteYAxis;
+        vector<double> m_pasteSizeAxis;
+
+    };
 };
 
 #endif

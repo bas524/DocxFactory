@@ -24,14 +24,17 @@
 
 
 
-&if defined( xSLibOs ) = 0 &then
+&if defined(xSLibOs) = 0 & then
+{slib / start - slib.i "'slib/slibos.p'"}
 
-    {slib/start-slib.i "'slib/slibos.p'"}
+    {
+        slib / slibosfrwd.i "in super"
+    }
 
-    {slib/slibosfrwd.i "in super"}
+{
+    slib / slibosprop.i
+}
 
-    {slib/slibosprop.i}
+&glob xSLibOs defined
 
-    &glob xSLibOs defined
-
-&endif /* defined */
+        &endif /* defined */

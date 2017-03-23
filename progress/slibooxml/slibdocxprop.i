@@ -8,14 +8,14 @@
  * alonb@docxfactory.com
  */
 
- 
- 
-&if "{&opsys}" begins "win" &then
 
-&global docx_xDocxFactoryLib    'DocxFactory.dll'
 
-&else
+&if "{&opsys}" begins "win" & then
 
-&global docx_xDocxFactoryLib    'libDocxFactory.so'
+        & global docx_xDocxFactoryLib 'DocxFactory.dll'
 
-&endif
+        & else
+
+    &global docx_xDocxFactoryLib 'libDocxFactory.so'
+
+        & endif

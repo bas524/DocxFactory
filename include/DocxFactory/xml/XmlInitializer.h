@@ -2,23 +2,22 @@
 #ifndef __DOCXFACTORY_XML_INITIALIZER_H__
 #define __DOCXFACTORY_XML_INITIALIZER_H__
 
-namespace DocxFactory
-{
-	class XmlInitializer
-	{
-	public:
-		static XmlInitializer& getInstance();
+namespace DocxFactory {
 
-		virtual ~XmlInitializer();
+    class XmlInitializer {
+    public:
+        static XmlInitializer& getInstance();
 
-	protected:
+        virtual ~XmlInitializer();
 
-	private:
-		XmlInitializer();
-		XmlInitializer( const XmlInitializer& p_other );
-		XmlInitializer operator = ( const XmlInitializer& p_other );
+    protected:
 
-	};
+    private:
+        XmlInitializer();
+        XmlInitializer(const XmlInitializer& p_other);
+        XmlInitializer operator=(const XmlInitializer& p_other);
+
+    };
 };
 
 #endif

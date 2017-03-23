@@ -6,45 +6,43 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class OpcFunc
-	{
-	public:
-		enum SubPathPos
-		{
-			SUBPATH_DIR,
-			SUBPATH_FILE,
-			SUBPATH_EXT
-		};
+    class OpcFunc {
+    public:
 
-		static void breakPath(
-			const string&		p_path,
-			string&				p_dir,
-			string&				p_file,
-			string&				p_ext );
+        enum SubPathPos {
+            SUBPATH_DIR,
+            SUBPATH_FILE,
+            SUBPATH_EXT
+        };
 
-		static string getSubPath(
-			const string&		p_path,
-			const SubPathPos&	p_from,
-			const SubPathPos&	p_to );
+        static void breakPath(
+                const string& p_path,
+                string& p_dir,
+                string& p_file,
+                string& p_ext);
 
-		static string getRelativePath	( const string& p_sourceDir, const string& p_path );
-		static string normalizePath		( const string& p_path );
+        static string getSubPath(
+                const string& p_path,
+                const SubPathPos& p_from,
+                const SubPathPos& p_to);
 
-		static string opcToZipPath		( const string& p_path );
-		static string zipToOpcPath		( const string& p_path );
+        static string getRelativePath(const string& p_sourceDir, const string& p_path);
+        static string normalizePath(const string& p_path);
 
-	protected:
+        static string opcToZipPath(const string& p_path);
+        static string zipToOpcPath(const string& p_path);
 
-	private:
-		OpcFunc();
-		OpcFunc( const OpcFunc& p_other );
-		OpcFunc& operator = ( const OpcFunc& p_other );
+    protected:
 
-	};
+    private:
+        OpcFunc();
+        OpcFunc(const OpcFunc& p_other);
+        OpcFunc& operator=(const OpcFunc& p_other);
+
+    };
 };
 
 #endif

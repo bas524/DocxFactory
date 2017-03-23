@@ -6,26 +6,24 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ArgTypeMismatchException : public DocxFactoryException
-	{
-	public:
-		ArgTypeMismatchException(
-			const string&	p_expectedType,
-			const string&	p_receivedType,
-			const string&	p_file,
-			const int		p_line );
+    class ArgTypeMismatchException : public DocxFactoryException {
+    public:
+        ArgTypeMismatchException(
+                const string& p_expectedType,
+                const string& p_receivedType,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~ArgTypeMismatchException() throw();
+        virtual ~ArgTypeMismatchException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -6,26 +6,25 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteBarcodeField : public DocxMergerPasteField
-	{
-	public:
-		DocxMergerPasteBarcodeField( DocxMergerField* p_field, const string& p_value );
-		virtual ~DocxMergerPasteBarcodeField();
+    class DocxMergerField;
 
-		const string* getValue();
+    class DocxMergerPasteBarcodeField : public DocxMergerPasteField {
+    public:
+        DocxMergerPasteBarcodeField(DocxMergerField* p_field, const string& p_value);
+        virtual ~DocxMergerPasteBarcodeField();
 
-	private:
-		DocxMergerPasteBarcodeField( const DocxMergerPasteBarcodeField& p_other );
-		DocxMergerPasteBarcodeField operator = ( const DocxMergerPasteBarcodeField& p_other );
+        const string* getValue();
 
-		string m_value;
+    private:
+        DocxMergerPasteBarcodeField(const DocxMergerPasteBarcodeField& p_other);
+        DocxMergerPasteBarcodeField operator=(const DocxMergerPasteBarcodeField& p_other);
 
-	};
+        string m_value;
+
+    };
 };
 
 #endif

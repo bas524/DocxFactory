@@ -14,47 +14,46 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class OpcPart;
+    class ZipFile;
+    class OpcPart;
 
-	class DocxCompilerFile;
-	class DocxCompilerSettingsFile
-	{
-	public:
-		DocxCompilerSettingsFile( DocxCompilerFile* p_file );
-		virtual ~DocxCompilerSettingsFile();
+    class DocxCompilerFile;
 
-		void load();
+    class DocxCompilerSettingsFile {
+    public:
+        DocxCompilerSettingsFile(DocxCompilerFile* p_file);
+        virtual ~DocxCompilerSettingsFile();
 
-		void serialize( ZipFile* p_zipFile );
+        void load();
 
-		DocxCompilerFile*		getFile() const;
-		OpcPart*				getPart() const;
+        void serialize(ZipFile* p_zipFile);
 
-		xercesc::DOMElement*	getSettingsNode() const;
-		string					getWordMlPrefix() const;
-		string					getRelMlPrefix() const;
+        DocxCompilerFile* getFile() const;
+        OpcPart* getPart() const;
 
-	protected:
+        xercesc::DOMElement* getSettingsNode() const;
+        string getWordMlPrefix() const;
+        string getRelMlPrefix() const;
 
-	private:
-		DocxCompilerSettingsFile( const DocxCompilerSettingsFile& p_other );
-		DocxCompilerSettingsFile& operator = ( const DocxCompilerSettingsFile& p_other );
+    protected:
 
-		void normalize();
+    private:
+        DocxCompilerSettingsFile(const DocxCompilerSettingsFile& p_other);
+        DocxCompilerSettingsFile& operator=(const DocxCompilerSettingsFile& p_other);
 
-		DocxCompilerFile*		m_file;
-		OpcPart*				m_part;
+        void normalize();
 
-		xercesc::DOMElement*	m_settingsNode;
-		string					m_wordMlPrefix;
-		string					m_relMlPrefix;
+        DocxCompilerFile* m_file;
+        OpcPart* m_part;
 
-	};
+        xercesc::DOMElement* m_settingsNode;
+        string m_wordMlPrefix;
+        string m_relMlPrefix;
+
+    };
 };
 
 #endif

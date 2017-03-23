@@ -6,36 +6,34 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class	ZipFile;
-	struct	BarcodeFormat;
+    class ZipFile;
+    struct BarcodeFormat;
 
-	class DocxCompilerBarcodeField : public DocxCompilerField
-	{
-	public:
-		DocxCompilerBarcodeField(
-			DocxCompilerItem*				p_item,
-			const string&					p_name,
-			const string&					p_format,
-			const map<FieldParam, string>*	p_valueByParam,
-			xercesc::DOMElement*			p_placeHolderNode );
+    class DocxCompilerBarcodeField : public DocxCompilerField {
+    public:
+        DocxCompilerBarcodeField(
+                DocxCompilerItem* p_item,
+                const string& p_name,
+                const string& p_format,
+                const map<FieldParam, string>* p_valueByParam,
+                xercesc::DOMElement* p_placeHolderNode);
 
-		virtual ~DocxCompilerBarcodeField();
+        virtual ~DocxCompilerBarcodeField();
 
-		virtual void serialize( ZipFile* p_zipFile );
+        virtual void serialize(ZipFile* p_zipFile);
 
-	protected:
+    protected:
 
-	private:
-		DocxCompilerBarcodeField( const DocxCompilerBarcodeField& p_other );
-		DocxCompilerBarcodeField& operator = ( const DocxCompilerBarcodeField& p_other );
-		
-		BarcodeFormat* m_barcodeFormat;
+    private:
+        DocxCompilerBarcodeField(const DocxCompilerBarcodeField& p_other);
+        DocxCompilerBarcodeField& operator=(const DocxCompilerBarcodeField& p_other);
 
-	};
+        BarcodeFormat* m_barcodeFormat;
+
+    };
 };
 
 #endif

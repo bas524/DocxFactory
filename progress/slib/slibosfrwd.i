@@ -24,25 +24,75 @@
 
 
 
-function os_getHostName         returns char {1}.
-function os_getUserName         returns char {1}.
+function os_getHostName returns char
+{
+    1
+}
+.
+function os_getUserName returns char{1}
+.
 
-function os_isFileExists        returns log  ( pcPath as char ) {1}.
-function os_isDirExists         returns log  ( pcPath as char ) {1}.
+function os_isFileExists returns log(pcPath as char) {
+    1
+}
+.
+function os_isDirExists returns log(pcPath as char) {
+    1
+}
+.
 
-function os_getSubPath          returns char ( pcPath as char, pcFrom as char, pcTo as char ) {1}.
-function os_getFullPath         returns char ( pcPath as char ) {1}.
-function os_getRelativePath     returns char ( pcSourceDir as char, pcPath as char ) {1}.
-function os_isRelativePath      returns log  ( pcPath as char ) {1}.
-function os_normalizePath       returns char ( pcPath as char ) {1}.
+function os_getSubPath returns char ( pcPath as char, pcFrom as char, pcTo as char) {
+    1
+}
+.
+function os_getFullPath returns char ( pcPath as char) {
+    1
+}
+.
+function os_getRelativePath returns char ( pcSourceDir as char, pcPath as char) {
+    1
+}
+.
+function os_isRelativePath returns log(pcPath as char) {
+    1
+}
+.
+function os_normalizePath returns char ( pcPath as char) {
+    1
+}
+.
 
-function os_getSubFileUrl       returns char ( pcFileUrl as char, pcFrom as char, pcTo as char ) {1}.
-function os_FileUrl2Path        returns char ( pcFileUrl as char ) {1}.
-function os_normalizeFileUrl    returns char ( pcFileUrl as char ) {1}.
+function os_getSubFileUrl returns char ( pcFileUrl as char, pcFrom as char, pcTo as char) {
+    1
+}
+.
+function os_FileUrl2Path returns char ( pcFileUrl as char) {
+    1
+}
+.
+function os_normalizeFileUrl returns char ( pcFileUrl as char) {
+    1
+}
+.
 
-function os_getTempFile         returns char ( pcUserChars as char, pcExt as char ) {1}.
-function os_getTempFileByDir    returns char ( pcDir as char, pcUserChars as char, pcExt as char ) {1}.
-function os_getNextFile         returns char ( pcFile as char ) {1}.
-function os_isEmptyDir          returns log  ( pcDir as char ) {1}.
+function os_getTempFile returns char ( pcUserChars as char, pcExt as char) {
+    1
+}
+.
+function os_getTempFileByDir returns char ( pcDir as char, pcUserChars as char, pcExt as char) {
+    1
+}
+.
+function os_getNextFile returns char ( pcFile as char) {
+    1
+}
+.
+function os_isEmptyDir returns log(pcDir as char) {
+    1
+}
+.
 
-function os_getBigFileSize      returns dec ( pcFileName as char ) {1}.
+function os_getBigFileSize returns dec(pcFileName as char) {
+    1
+}
+.

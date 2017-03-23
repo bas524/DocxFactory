@@ -6,26 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnmatchedQuoteException : public ParserException
-	{
-	
-	public:
-		UnmatchedQuoteException(
-			const string&	p_str,
-			const string&	p_file,
-			const int		p_line );
+    class UnmatchedQuoteException : public ParserException {
+    public:
+        UnmatchedQuoteException(
+                const string& p_str,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~UnmatchedQuoteException() throw();
+        virtual ~UnmatchedQuoteException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

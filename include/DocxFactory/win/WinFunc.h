@@ -10,79 +10,77 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class WinFunc
-	{
-	public:
-		enum SubPathPos
-		{
-			SUBPATH_PROTOCOL,
-			SUBPATH_HOST,
-			SUBPATH_SHARED_DIR,
-			SUBPATH_DRIVE,
-			SUBPATH_DIR,
-			SUBPATH_FILE,
-			SUBPATH_EXT
-		};
+    class WinFunc {
+    public:
 
-		static void breakPath(
-			const string&		p_path,
-			string&				p_protocol,
-			string&				p_host,
-			string&				p_sharedDir,
-			string&				p_drive,
-			string&				p_dir,
-			string&				p_file,
-			string&				p_ext );
+        enum SubPathPos {
+            SUBPATH_PROTOCOL,
+            SUBPATH_HOST,
+            SUBPATH_SHARED_DIR,
+            SUBPATH_DRIVE,
+            SUBPATH_DIR,
+            SUBPATH_FILE,
+            SUBPATH_EXT
+        };
 
-		static string getSubPath(
-			const string&		p_path,
-			const SubPathPos&	p_from,
-			const SubPathPos&	p_to );
+        static void breakPath(
+                const string& p_path,
+                string& p_protocol,
+                string& p_host,
+                string& p_sharedDir,
+                string& p_drive,
+                string& p_dir,
+                string& p_file,
+                string& p_ext);
 
-		static string			getRelativePath	( const string& p_sourceDir, const string& p_path );
-		static string			getFullPath		( const string& p_path );
-		static string			normalizePath	( const string& p_path );
+        static string getSubPath(
+                const string& p_path,
+                const SubPathPos& p_from,
+                const SubPathPos& p_to);
 
-		static bool				isRelativePath	( const string& p_path );
-		static bool				isDirExists		( const string& p_dir );
+        static string getRelativePath(const string& p_sourceDir, const string& p_path);
+        static string getFullPath(const string& p_path);
+        static string normalizePath(const string& p_path);
 
-		static void				setTempDir();
-		static void				setTempDir( const string& p_dir );
+        static bool isRelativePath(const string& p_path);
+        static bool isDirExists(const string& p_dir);
 
-		static string			getWorkDir();
-		static string			getTempDir();
-		static StrEntries*		getPath();
-		static string			getFolderPath( int p_CSIDL );
+        static void setTempDir();
+        static void setTempDir(const string& p_dir);
 
-		static unsigned long	getMajorVersion();
-		static unsigned long	getMinorVersion();
-		static bool				isWorkStation();
+        static string getWorkDir();
+        static string getTempDir();
+        static StrEntries* getPath();
+        static string getFolderPath(int p_CSIDL);
 
-	protected:
+        static unsigned long getMajorVersion();
+        static unsigned long getMinorVersion();
+        static bool isWorkStation();
 
-	private:
-		WinFunc();
-		WinFunc( const WinFunc& p_other );
-		WinFunc& operator = ( const WinFunc& p_other );
+    protected:
 
-		static void initialize();
-		static void setWorkDir();
-		static void setPath();
+    private:
+        WinFunc();
+        WinFunc(const WinFunc& p_other);
+        WinFunc& operator=(const WinFunc& p_other);
 
-		static bool				m_initialized;
-		static string			m_workDir;
-		static string			m_tempDir;
-		static StrEntries*		m_pathEntries;
+        static void initialize();
+        static void setWorkDir();
+        static void setPath();
 
-		static unsigned long	m_majorVersion;
-		static unsigned long	m_minorVersion;
-		static char				m_productType;
+        static bool m_initialized;
+        static string m_workDir;
+        static string m_tempDir;
+        static StrEntries* m_pathEntries;
 
-	};
+        static unsigned long m_majorVersion;
+        static unsigned long m_minorVersion;
+        static char m_productType;
+
+    };
 };
 
 #endif

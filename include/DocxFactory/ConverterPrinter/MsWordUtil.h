@@ -6,32 +6,30 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class MsWordUtil : public MsOfficeUtil
-	{
-	public:
-		MsWordUtil();
-		virtual ~MsWordUtil();
+    class MsWordUtil : public MsOfficeUtil {
+    public:
+        MsWordUtil();
+        virtual ~MsWordUtil();
 
-		virtual IDispatch*	openDoc		( IDispatch* p_docDispatch, const string& p_fileName );
-		virtual void		saveDocAs	( IDispatch* p_docDispatch, const string& p_fileName );
-		virtual void		printDoc	( IDispatch* p_appDispatch, IDispatch* p_docDispatch, const string& p_printerName, int p_copyCnt );
+        virtual IDispatch* openDoc(IDispatch* p_docDispatch, const string& p_fileName);
+        virtual void saveDocAs(IDispatch* p_docDispatch, const string& p_fileName);
+        virtual void printDoc(IDispatch* p_appDispatch, IDispatch* p_docDispatch, const string& p_printerName, int p_copyCnt);
 
-	protected:
+    protected:
 
-	private:
-		MsWordUtil( const MsWordUtil& p_other );
-		MsWordUtil& operator = ( const MsWordUtil& p_other );
+    private:
+        MsWordUtil(const MsWordUtil& p_other);
+        MsWordUtil& operator=(const MsWordUtil& p_other);
 
-		void updateToc( IDispatch* p_docDispatch );
+        void updateToc(IDispatch* p_docDispatch);
 
-		void initializeGrades();
-		void initializeSaveProperties();
+        void initializeGrades();
+        void initializeSaveProperties();
 
-	};
+    };
 };
 
 #endif

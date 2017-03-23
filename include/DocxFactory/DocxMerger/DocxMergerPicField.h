@@ -8,55 +8,54 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerPicField : public DocxMergerField
-	{
-	public:
-		enum UseSize
-		{
-			USE_IMAGE_FILE_SIZE,
-			USE_PLACE_HOLDER_WIDTH,
-			USE_PLACE_HOLDER_HEIGHT,
-			USE_PLACE_HOLDER_SIZE
-		};
+    class DocxMergerPasteFieldGroup;
 
-		DocxMergerPicField();
-		virtual ~DocxMergerPicField();
+    class DocxMergerPicField : public DocxMergerField {
+    public:
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+        enum UseSize {
+            USE_IMAGE_FILE_SIZE,
+            USE_PLACE_HOLDER_WIDTH,
+            USE_PLACE_HOLDER_HEIGHT,
+            USE_PLACE_HOLDER_SIZE
+        };
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
-		
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        DocxMergerPicField();
+        virtual ~DocxMergerPicField();
 
-	protected:
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-	private:
-		DocxMergerPicField( const DocxMergerPicField& p_other );
-		DocxMergerPicField operator = ( const DocxMergerPicField& p_other );
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-		void createPasteField(
-			OpcImageFile::TargetMode	p_targetMode,
-			const string&				p_fileName,
-			const string&				p_fileExt,
-			const string&				p_fileUrl );
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-		unsigned short	m_picId;
-		unsigned int	m_emuWidth;
-		unsigned int	m_emuHeight;
-		UseSize			m_useSize;
+    protected:
 
-		list<pair<string, char>>	m_picStrings;
+    private:
+        DocxMergerPicField(const DocxMergerPicField& p_other);
+        DocxMergerPicField operator=(const DocxMergerPicField& p_other);
 
-	};
+        void createPasteField(
+                OpcImageFile::TargetMode p_targetMode,
+                const string& p_fileName,
+                const string& p_fileExt,
+                const string& p_fileUrl);
+
+        unsigned short m_picId;
+        unsigned int m_emuWidth;
+        unsigned int m_emuHeight;
+        UseSize m_useSize;
+
+        list<pair<string, char>> m_picStrings;
+
+    };
 };
 
 #endif

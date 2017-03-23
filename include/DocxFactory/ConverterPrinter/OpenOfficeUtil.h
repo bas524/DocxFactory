@@ -9,43 +9,42 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class OdfConverterUtil;
-	class UnoUtil;
-	class GradeGroup;
-	class OpenOfficeUtil : public ConverterPrinterUtil
-	{
-	public:
-		OpenOfficeUtil( OdfConverterUtil* p_odfConverter = NULL );
-		virtual ~OpenOfficeUtil();
+    class OdfConverterUtil;
+    class UnoUtil;
+    class GradeGroup;
 
-		virtual void	saveAs	( const string& p_importFile, const string& p_exportFile );
-		virtual void	print	( const string& p_fileName, const string& p_printerName, int p_copyCnt );
+    class OpenOfficeUtil : public ConverterPrinterUtil {
+    public:
+        OpenOfficeUtil(OdfConverterUtil* p_odfConverter = NULL);
+        virtual ~OpenOfficeUtil();
 
-		virtual double	getConversionGrade	( const string& p_importExt, const string& p_exportExt );
-		virtual double	getPrintingGrade	( const string& p_ext );
+        virtual void saveAs(const string& p_importFile, const string& p_exportFile);
+        virtual void print(const string& p_fileName, const string& p_printerName, int p_copyCnt);
 
-	protected:
+        virtual double getConversionGrade(const string& p_importExt, const string& p_exportExt);
+        virtual double getPrintingGrade(const string& p_ext);
 
-	private:
-		OpenOfficeUtil( const OpenOfficeUtil& p_other );
-		OpenOfficeUtil& operator = ( const OpenOfficeUtil& p_other );
+    protected:
 
-		void initializeGrades();
-		void initializeUnoUtil();
-		void ( *m_destroyUnoUtilFunc )( UnoUtil* );
+    private:
+        OpenOfficeUtil(const OpenOfficeUtil& p_other);
+        OpenOfficeUtil& operator=(const OpenOfficeUtil& p_other);
 
-		string	openXmlToOdf( const string& p_openXmlExt );
-		bool	isOpenXml	( const string& p_ext );
+        void initializeGrades();
+        void initializeUnoUtil();
+        void ( *m_destroyUnoUtilFunc)(UnoUtil*);
 
-		OdfConverterUtil*	m_odfConverter;
-		UnoUtil*			m_unoUtil;
-		list<GradeGroup*>	m_gradeGroups;
+        string openXmlToOdf(const string& p_openXmlExt);
+        bool isOpenXml(const string& p_ext);
 
-	};
+        OdfConverterUtil* m_odfConverter;
+        UnoUtil* m_unoUtil;
+        list<GradeGroup*> m_gradeGroups;
+
+    };
 };
 
 #endif

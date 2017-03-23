@@ -8,24 +8,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ParseJsonException : public JsonException
-	{
-	public:
-		ParseJsonException(
-			const string&	p_file,
-			const int		p_line );
+    class ParseJsonException : public JsonException {
+    public:
+        ParseJsonException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~ParseJsonException() throw();
+        virtual ~ParseJsonException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

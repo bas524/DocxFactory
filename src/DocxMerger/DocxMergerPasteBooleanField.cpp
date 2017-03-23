@@ -6,21 +6,14 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerPasteBooleanField::DocxMergerPasteBooleanField( DocxMergerField* p_field, bool p_value ) : DocxMergerPasteField( p_field )
-{
-	m_value = p_value;
+DocxMergerPasteBooleanField::DocxMergerPasteBooleanField(DocxMergerField* p_field, bool p_value) : DocxMergerPasteField(p_field) {
+  m_value = p_value;
 } // c'tor
 
-DocxMergerPasteBooleanField::~DocxMergerPasteBooleanField()
-{
+DocxMergerPasteBooleanField::~DocxMergerPasteBooleanField() {
 
 } // d'tor
 
-
-
-bool DocxMergerPasteBooleanField::getValue() const
-{
-	return m_value;
+bool DocxMergerPasteBooleanField::getValue() const {
+  return m_value;
 } // getValue

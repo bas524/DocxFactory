@@ -6,26 +6,24 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnsupportedFileTypeException : public OsException
-	{
-	public:
-		UnsupportedFileTypeException(
-			const string&	p_fileName,
-			const string&	p_fileTypes,
-			const string&	p_file,
-			const int		p_line );
+    class UnsupportedFileTypeException : public OsException {
+    public:
+        UnsupportedFileTypeException(
+                const string& p_fileName,
+                const string& p_fileTypes,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~UnsupportedFileTypeException() throw();
+        virtual ~UnsupportedFileTypeException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -7,34 +7,33 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	struct	BarcodeFormat;
-	class	BarcodeFunc
-	{
-	public:
-		enum BarcodePrinter
-		{
-			PRINT_VML
-		};
+    struct BarcodeFormat;
 
-		static bool encodeAndPrint( 
-			BarcodeFormat*		p_barcodeFormat,
-			const string&		p_value,
-			BarcodePrinter		p_printer,
-			string&				p_errTxt,
-			string&				p_retVal );
+    class BarcodeFunc {
+    public:
 
-	protected:
+        enum BarcodePrinter {
+            PRINT_VML
+        };
 
-	private:
-		BarcodeFunc();
-		BarcodeFunc( const BarcodeFunc& p_other );
-		BarcodeFunc& operator = ( const BarcodeFunc& p_other );
+        static bool encodeAndPrint(
+                BarcodeFormat* p_barcodeFormat,
+                const string& p_value,
+                BarcodePrinter p_printer,
+                string& p_errTxt,
+                string& p_retVal);
 
-	};
+    protected:
+
+    private:
+        BarcodeFunc();
+        BarcodeFunc(const BarcodeFunc& p_other);
+        BarcodeFunc& operator=(const BarcodeFunc& p_other);
+
+    };
 };
 
 #endif

@@ -6,29 +6,28 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerPasteChartAxis;
-	class DocxMergerChartAxisDateTime : public DocxMergerChartAxis
-	{
-	public:
-		DocxMergerChartAxisDateTime();
-		virtual ~DocxMergerChartAxisDateTime();
+    class DocxMergerPasteChartAxis;
 
-		virtual size_t setValue ( DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value );
-		virtual size_t setValue ( DocxMergerPasteChartAxis* p_pasteAxis, double p_value );
-		virtual string getValue	( DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index ) const;
-		virtual size_t getLength( DocxMergerPasteChartAxis* p_pasteAxis ) const;
+    class DocxMergerChartAxisDateTime : public DocxMergerChartAxis {
+    public:
+        DocxMergerChartAxisDateTime();
+        virtual ~DocxMergerChartAxisDateTime();
 
-	protected:
+        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value);
+        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value);
+        virtual string getValue(DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index) const;
+        virtual size_t getLength(DocxMergerPasteChartAxis* p_pasteAxis) const;
 
-	private:
-		DocxMergerChartAxisDateTime( const DocxMergerChartAxisDateTime& p_other );
-		DocxMergerChartAxisDateTime& operator = ( const DocxMergerChartAxisDateTime& p_other );
+    protected:
 
-	};
+    private:
+        DocxMergerChartAxisDateTime(const DocxMergerChartAxisDateTime& p_other);
+        DocxMergerChartAxisDateTime& operator=(const DocxMergerChartAxisDateTime& p_other);
+
+    };
 };
 
 #endif

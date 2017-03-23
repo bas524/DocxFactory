@@ -24,13 +24,14 @@
 
 
 
-&if defined( xSLibDate ) = 0 &then
+&if defined(xSLibDate) = 0 & then
+{slib / start - slib.i "'slib/slibdate.p'"}
 
-    {slib/start-slib.i "'slib/slibdate.p'"}
+    {
+        slib / slibdatefrwd.i "in super"
+    }
 
-    {slib/slibdatefrwd.i "in super"}
+&global xSLibDate defined
 
-    &global xSLibDate defined
-
-&endif /* defined = 0 */
+        &endif /* defined = 0 */
 

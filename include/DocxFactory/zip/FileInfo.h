@@ -11,28 +11,26 @@
 #endif
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class FileInfo
-	{
-	public:
-		FileInfo( unz_file_info p_unzFileInfo );
-		virtual ~FileInfo();
+    class FileInfo {
+    public:
+        FileInfo(unz_file_info p_unzFileInfo);
+        virtual ~FileInfo();
 
-		const unz_file_info* getUnzFileInfo()	const;
-		const zip_fileinfo* getZipFileInfo()	const;
+        const unz_file_info* getUnzFileInfo() const;
+        const zip_fileinfo* getZipFileInfo() const;
 
-	protected:
+    protected:
 
-	private:
-		FileInfo( const FileInfo& p_other );
-		FileInfo operator = ( const FileInfo& p_other );
+    private:
+        FileInfo(const FileInfo& p_other);
+        FileInfo operator=(const FileInfo& p_other);
 
-		unz_file_info	m_unzFileInfo;
-		zip_fileinfo	m_zipFileInfo;
-	};
+        unz_file_info m_unzFileInfo;
+        zip_fileinfo m_zipFileInfo;
+    };
 };
 
 #endif

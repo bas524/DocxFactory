@@ -25,51 +25,62 @@
 
 
 assign
-    cNumRetVal  = ""
+cNumRetVal = ""
 
-    &if {&xCursor} &then iNumRetCur = ? &endif.
+        & if {
+    &xCursor
+}
+&then iNumRetCur = ? &endif.
 
-repeat while
+        repeat while
 
-    &if     "{&xRead}" = "ltr" &then iPos <= iLen
-    &elseif "{&xRead}" = "rtl" &then iPos >= 1
-    &endif:
+    &if "{&xRead}" = "ltr" & then iPos <= iLen
+            & elseif "{&xRead}" = "rtl" & then iPos >= 1
+            & endif :
 
-    ch = substr( pcStr, iPos, 1 ).
+            ch = substr(pcStr, iPos, 1).
 
-    if {slib/slibbidirange.i ch "'0'" "'9'"}
-    or ( ch = "#" or ch = "$" or ch = "%" )
-    or ( ch = "," or ch = "." or ch = ":" or ch = "/" or ch = "-" )
+        if {
+            slib / slibbidirange.i ch "'0'" "'9'"
+        }
+or(ch = "#" or ch = "$" or ch = "%")
+or(ch = "," or ch = "." or ch = ":" or ch = "/" or ch = "-")
 
-    and &if     "{&xRead}" = "ltr" &then iPos < iLen    and {slib/slibbidirange.i "substr( pcStr, iPos + 1, 1 )" "'0'" "'9'"} 
-        &elseif "{&xRead}" = "rtl" &then iPos > 1       and {slib/slibbidirange.i "substr( pcStr, iPos - 1, 1 )" "'0'" "'9'"}
-        &endif then
+and &if "{&xRead}" = "ltr" & then iPos < iLen and
+    {
+        slib / slibbidirange.i "substr( pcStr, iPos + 1, 1 )" "'0'" "'9'"
+    }
+&elseif "{&xRead}" = "rtl" & then iPos > 1 and{slib / slibbidirange.i "substr( pcStr, iPos - 1, 1 )" "'0'" "'9'"}
+&endif then
 
-    assign
+assign
 
-        &if     "{&xDispNum}" = "ltr" &then cNumRetVal = cNumRetVal + ch
-        &elseif "{&xDispNum}" = "rtl" &then cNumRetVal = ch + cNumRetVal
-        &endif
+        &if "{&xDispNum}" = "ltr" & then cNumRetVal = cNumRetVal + ch
+        & elseif "{&xDispNum}" = "rtl" & then cNumRetVal = ch + cNumRetVal
+        & endif
 
-        &if {&xCursor} &then
+        &if {
+        &xCursor
+    }
+    &then
 
-            &if     "{&xDispNum}" = "ltr" &then
+        &if "{&xDispNum}" = "ltr" & then
 
-                iNumRetCur = length( cNumRetVal )   when iNumRetCur  = ? and iPos = piCur
+        iNumRetCur = length(cNumRetVal) when iNumRetCur = ? and iPos = piCur
 
-            &elseif "{&xDispNum}" = "rtl" &then
+        & elseif "{&xDispNum}" = "rtl" & then
 
-                iNumRetCur = 1                      when iNumRetCur  = ? and iPos = piCur
-                iNumRetCur = iNumRetCur + 1         when iNumRetCur <> ?
+        iNumRetCur = 1 when iNumRetCur = ? and iPos = piCur
+        iNumRetCur = iNumRetCur + 1 when iNumRetCur <> ?
 
-            &endif /* rtl */
+        &endif /* rtl */
 
-        &endif /* xCursor */
+        & endif /* xCursor */
 
-        &if     "{&xRead}" = "ltr" &then iPos = iPos + 1
-        &elseif "{&xRead}" = "rtl" &then iPos = iPos - 1
-        &endif.
+        &if "{&xRead}" = "ltr" & then iPos = iPos + 1
+            & elseif "{&xRead}" = "rtl" & then iPos = iPos - 1
+            & endif.
 
     else leave.
 
-end. /* repeat */
+            end. /* repeat */

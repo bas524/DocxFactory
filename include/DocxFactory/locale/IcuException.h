@@ -6,26 +6,24 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class IcuException : public LocaleException
-	{
-	public:
-		IcuException(
-			const string&	p_funcName,
-			const int		p_errorCode,
-			const string&	p_file,
-			const int		p_line );
+    class IcuException : public LocaleException {
+    public:
+        IcuException(
+                const string& p_funcName,
+                const int p_errorCode,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~IcuException() throw();
+        virtual ~IcuException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

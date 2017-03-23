@@ -8,25 +8,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class MissingOptException : public ConsoleUsageException
-	{
-	public:
-		MissingOptException(
-			const string&	p_opt,
-			const string&	p_file,
-			const int		p_line );
+    class MissingOptException : public ConsoleUsageException {
+    public:
+        MissingOptException(
+                const string& p_opt,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~MissingOptException() throw();
+        virtual ~MissingOptException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

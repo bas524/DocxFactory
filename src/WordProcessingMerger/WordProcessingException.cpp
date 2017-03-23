@@ -4,14 +4,10 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-WordProcessingException::WordProcessingException( const string& p_file, int p_line ) : DocxFactoryException( p_file, p_line )
-{
+WordProcessingException::WordProcessingException(const string& p_file, int p_line) : DocxFactoryException(p_file, p_line) {
 
 } // c'tor
 
-WordProcessingException::~WordProcessingException() throw()
-{
+WordProcessingException::~WordProcessingException() throw () {
 
 } // d'tor

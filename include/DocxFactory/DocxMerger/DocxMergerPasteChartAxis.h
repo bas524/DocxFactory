@@ -6,23 +6,21 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerPasteChartAxis
-	{
-	public:
-		DocxMergerPasteChartAxis();
-		virtual ~DocxMergerPasteChartAxis();
+    class DocxMergerPasteChartAxis {
+    public:
+        DocxMergerPasteChartAxis();
+        virtual ~DocxMergerPasteChartAxis();
 
-	protected:
+    protected:
 
-	private:
-		DocxMergerPasteChartAxis( const DocxMergerPasteChartAxis& p_other );
-		DocxMergerPasteChartAxis& operator = ( const DocxMergerPasteChartAxis& p_other );
+    private:
+        DocxMergerPasteChartAxis(const DocxMergerPasteChartAxis& p_other);
+        DocxMergerPasteChartAxis& operator=(const DocxMergerPasteChartAxis& p_other);
 
-	};
+    };
 };
 
 #endif

@@ -24,14 +24,17 @@
 
 
 
-&if defined( xSLibMath ) = 0 &then
+&if defined(xSLibMath) = 0 & then
+{slib / start - slib.i "'slib/slibmath.p'"}
 
-    {slib/start-slib.i "'slib/slibmath.p'"}
+    {
+        slib / slibmathfrwd.i "in super"
+    }
 
-    {slib/slibmathfrwd.i "in super"}
+{
+    slib / slibmathprop.i
+}
 
-    {slib/slibmathprop.i}
+&global xSLibMath defined
 
-    &global xSLibMath defined
-
-&endif /* defined */
+        &endif /* defined */

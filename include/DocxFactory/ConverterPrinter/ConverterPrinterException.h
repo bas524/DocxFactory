@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ConverterPrinterException : public DocxFactoryException
-	{
-	public:
-		virtual ~ConverterPrinterException() throw();
+    class ConverterPrinterException : public DocxFactoryException {
+    public:
+        virtual ~ConverterPrinterException() throw ();
 
-	protected:
-		ConverterPrinterException( const string& p_file, int p_line );
+    protected:
+        ConverterPrinterException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

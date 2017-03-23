@@ -15,53 +15,52 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class OpcPart;
+    class OpcPart;
 
-	class DocxCompilerFile;
-	class DocxCompilerStyle;
-	class DocxCompilerTableStyle;
-	class DocxCompilerStyleFile
-	{
-	public:
-		DocxCompilerStyleFile( DocxCompilerFile* p_file );
-		virtual ~DocxCompilerStyleFile();
+    class DocxCompilerFile;
+    class DocxCompilerStyle;
+    class DocxCompilerTableStyle;
 
-		void load();
+    class DocxCompilerStyleFile {
+    public:
+        DocxCompilerStyleFile(DocxCompilerFile* p_file);
+        virtual ~DocxCompilerStyleFile();
 
-		DocxCompilerFile*		getFile() const;
-		OpcPart*				getPart() const;
+        void load();
 
-		xercesc::DOMElement*	getStylesNode() const;
-		string					getWordMlPrefix() const;
-		string					getRelMlPrefix() const;
+        DocxCompilerFile* getFile() const;
+        OpcPart* getPart() const;
 
-		const map<string, DocxCompilerTableStyle*>*	getTableStyles() const;
+        xercesc::DOMElement* getStylesNode() const;
+        string getWordMlPrefix() const;
+        string getRelMlPrefix() const;
 
-	protected:
+        const map<string, DocxCompilerTableStyle*>* getTableStyles() const;
 
-	private:
-		DocxCompilerStyleFile( const DocxCompilerStyleFile& p_other );
-		DocxCompilerStyleFile& operator = ( const DocxCompilerStyleFile& p_other );
+    protected:
 
-		void loadStyles();
+    private:
+        DocxCompilerStyleFile(const DocxCompilerStyleFile& p_other);
+        DocxCompilerStyleFile& operator=(const DocxCompilerStyleFile& p_other);
 
-		void normalize();
-		void normalizeStyles();
+        void loadStyles();
 
-		DocxCompilerFile*						m_file;
-		OpcPart*								m_part;
+        void normalize();
+        void normalizeStyles();
 
-		xercesc::DOMElement*					m_stylesNode;
-		string									m_wordMlPrefix;
-		string									m_relMlPrefix;
+        DocxCompilerFile* m_file;
+        OpcPart* m_part;
 
-		map<string, DocxCompilerTableStyle*>	m_tableStyles;
+        xercesc::DOMElement* m_stylesNode;
+        string m_wordMlPrefix;
+        string m_relMlPrefix;
 
-	};
+        map<string, DocxCompilerTableStyle*> m_tableStyles;
+
+    };
 };
 
 #endif

@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class JsonException : public DocxFactoryException
-	{
-	public:
-		virtual ~JsonException() throw();
+    class JsonException : public DocxFactoryException {
+    public:
+        virtual ~JsonException() throw ();
 
-	protected:
-		JsonException( const string& p_file, int p_line );
+    protected:
+        JsonException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

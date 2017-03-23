@@ -8,27 +8,25 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class StrToXMLCh
-	{
-	public:
-		StrToXMLCh( const string& p_str );
-		operator XMLCh*();
+    class StrToXMLCh {
+    public:
+        StrToXMLCh(const string& p_str);
+        operator XMLCh*();
 
-		virtual ~StrToXMLCh();
+        virtual ~StrToXMLCh();
 
-	protected:
+    protected:
 
-	private:
-		StrToXMLCh( const StrToXMLCh& p_other );
-		StrToXMLCh operator = ( const StrToXMLCh& p_other );
+    private:
+        StrToXMLCh(const StrToXMLCh& p_other);
+        StrToXMLCh operator=(const StrToXMLCh& p_other);
 
-		XMLCh* m_xmlCh;
+        XMLCh* m_xmlCh;
 
-	};
+    };
 };
 
 #endif

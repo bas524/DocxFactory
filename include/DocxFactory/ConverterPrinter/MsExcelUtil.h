@@ -6,29 +6,27 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class MsExcelUtil : public MsOfficeUtil
-	{
-	public:
-		MsExcelUtil();
-		virtual ~MsExcelUtil();
+    class MsExcelUtil : public MsOfficeUtil {
+    public:
+        MsExcelUtil();
+        virtual ~MsExcelUtil();
 
-		virtual void saveDocAs	( IDispatch* p_docDispatch, const string& p_fileName );
-		virtual void printDoc	( IDispatch* p_appDispatch, IDispatch* p_docDispatch, const string& p_printerName, int p_copyCnt );
+        virtual void saveDocAs(IDispatch* p_docDispatch, const string& p_fileName);
+        virtual void printDoc(IDispatch* p_appDispatch, IDispatch* p_docDispatch, const string& p_printerName, int p_copyCnt);
 
-	protected:
+    protected:
 
-	private:
-		MsExcelUtil( const MsExcelUtil& p_other );
-		MsExcelUtil& operator = ( const MsExcelUtil& p_other );
+    private:
+        MsExcelUtil(const MsExcelUtil& p_other);
+        MsExcelUtil& operator=(const MsExcelUtil& p_other);
 
-		void initializeGrades();
-		void initializeSaveProperties();
+        void initializeGrades();
+        void initializeSaveProperties();
 
-	};
+    };
 };
 
 #endif

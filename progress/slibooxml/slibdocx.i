@@ -10,14 +10,17 @@
 
 
 
-&if defined( xSLibDocx ) = 0 &then
+&if defined(xSLibDocx) = 0 & then
+{slib / start - slib.i "'slibooxml/slibdocx.p'"}
 
-    {slib/start-slib.i "'slibooxml/slibdocx.p'"}
-    
-    {slibooxml/slibdocxfrwd.i "in super"}
+    {
+        slibooxml / slibdocxfrwd.i "in super"
+    }
 
-    {slibooxml/slibdocxprop.i}
-    
-    &global xSLibDocx defined
+{
+    slibooxml / slibdocxprop.i
+}
 
-&endif /* defined = 0 */
+&global xSLibDocx defined
+
+        &endif /* defined = 0 */

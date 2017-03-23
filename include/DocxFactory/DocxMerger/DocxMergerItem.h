@@ -8,77 +8,76 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerItemFile;
-	class DocxMergerItemGroup;
-	class DocxMergerItemLayout;
-	class DocxMergerField;
-	class DocxMergerXmlString;
-	class DocxMergerPasteItem;
-	class DocxMergerItem
-	{
-	public:
-		DocxMergerItem();
-		virtual ~DocxMergerItem();
+    class DocxMergerItemFile;
+    class DocxMergerItemGroup;
+    class DocxMergerItemLayout;
+    class DocxMergerField;
+    class DocxMergerXmlString;
+    class DocxMergerPasteItem;
 
-		void save( DocxMergerPasteItem* p_pasteItem );
+    class DocxMergerItem {
+    public:
+        DocxMergerItem();
+        virtual ~DocxMergerItem();
 
-		void deserialize( UnzipFile* p_unzipFile );
-		void link		( UnzipFile* p_unzipFile );
+        void save(DocxMergerPasteItem* p_pasteItem);
 
-		DocxMergerItemFile*							getItemFile() const;
-		DocxMergerItemGroup*						getItemGroup() const;
-		string										getName() const;
+        void deserialize(UnzipFile* p_unzipFile);
+        void link(UnzipFile* p_unzipFile);
 
-		const list<DocxMergerItem*>*				getPath() const;
-		const list<DocxMergerItemGroup*>*			getChildItemGroups() const;
-		const multimap<string, DocxMergerField*>*	getFieldsByName() const;
-		const list<DocxMergerXmlString*>*			getXmlStrings() const;
+        DocxMergerItemFile* getItemFile() const;
+        DocxMergerItemGroup* getItemGroup() const;
+        string getName() const;
 
-		bool										isTopLevel() const;
-		DocxMergerItem*								getFillItemParent() const;
-		DocxMergerItemGroup*						getFillItemGroup() const;
+        const list<DocxMergerItem*>* getPath() const;
+        const list<DocxMergerItemGroup*>* getChildItemGroups() const;
+        const multimap<string, DocxMergerField*>* getFieldsByName() const;
+        const list<DocxMergerXmlString*>* getXmlStrings() const;
 
-		DocxMergerItemLayout*						getItemLayout() const;
-		double										getPageSize() const;
-		bool										isPageBottom() const;
-		bool										isKeepTogether() const;
-		bool										isKeepWithPrev() const;
+        bool isTopLevel() const;
+        DocxMergerItem* getFillItemParent() const;
+        DocxMergerItemGroup* getFillItemGroup() const;
 
-	protected:
+        DocxMergerItemLayout* getItemLayout() const;
+        double getPageSize() const;
+        bool isPageBottom() const;
+        bool isKeepTogether() const;
+        bool isKeepWithPrev() const;
 
-	private:
-		DocxMergerItem( const DocxMergerItem& p_other );
-		DocxMergerItem operator = ( const DocxMergerItem& p_other );
+    protected:
 
-		void fill( DocxMergerPasteItem* p_pasteItem );
+    private:
+        DocxMergerItem(const DocxMergerItem& p_other);
+        DocxMergerItem operator=(const DocxMergerItem& p_other);
 
-		DocxMergerItemFile*					m_itemFile;
-		DocxMergerItemGroup*				m_itemGroup;
-		string								m_name;
+        void fill(DocxMergerPasteItem* p_pasteItem);
 
-		list<DocxMergerItem*>				m_path;
-		list<DocxMergerItemGroup*>			m_childItemGroups;
-		multimap<string, DocxMergerField*>	m_fieldsByName;
-		list<DocxMergerXmlString*>			m_xmlStrings;
+        DocxMergerItemFile* m_itemFile;
+        DocxMergerItemGroup* m_itemGroup;
+        string m_name;
 
-		bool								m_topLevel;
-		DocxMergerItem*						m_fillItemParent;
-		DocxMergerItemGroup*				m_fillItemGroup;
+        list<DocxMergerItem*> m_path;
+        list<DocxMergerItemGroup*> m_childItemGroups;
+        multimap<string, DocxMergerField*> m_fieldsByName;
+        list<DocxMergerXmlString*> m_xmlStrings;
 
-		DocxMergerItemLayout*				m_itemLayout;
-		double								m_pageSize;
-		bool								m_pageBottom;
-		bool								m_keepTogether;
-		bool								m_keepWithPrev;
+        bool m_topLevel;
+        DocxMergerItem* m_fillItemParent;
+        DocxMergerItemGroup* m_fillItemGroup;
 
-	};
+        DocxMergerItemLayout* m_itemLayout;
+        double m_pageSize;
+        bool m_pageBottom;
+        bool m_keepTogether;
+        bool m_keepWithPrev;
+
+    };
 };
 
 #endif

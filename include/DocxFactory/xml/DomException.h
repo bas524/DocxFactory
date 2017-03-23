@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DomException : public XmlException
-	{
-	public:
-		DomException(
-			const string&	p_msg,
-			const string&	p_file,
-			const int		p_line );
+    class DomException : public XmlException {
+    public:
+        DomException(
+                const string& p_msg,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~DomException() throw();
+        virtual ~DomException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

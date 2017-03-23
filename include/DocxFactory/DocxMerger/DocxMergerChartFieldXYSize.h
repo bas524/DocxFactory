@@ -6,39 +6,38 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerChartFieldXYSize : public DocxMergerChartField
-	{
-	public:
-		DocxMergerChartFieldXYSize();
-		virtual ~DocxMergerChartFieldXYSize();
+    class DocxMergerPasteFieldGroup;
 
-		virtual void setChartValue( const string&	p_series, const string&	p_category, double p_value );
-		virtual void setChartValue( const string&	p_series, double		p_category, double p_value );
-		virtual void setChartValue( double			p_series, double		p_category, double p_value );
+    class DocxMergerChartFieldXYSize : public DocxMergerChartField {
+    public:
+        DocxMergerChartFieldXYSize();
+        virtual ~DocxMergerChartFieldXYSize();
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void setChartValue(const string& p_series, const string& p_category, double p_value);
+        virtual void setChartValue(const string& p_series, double p_category, double p_value);
+        virtual void setChartValue(double p_series, double p_category, double p_value);
 
-		const list<pair<string, char>>* getChartStrings() const;
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-	protected:
+        const list<pair<string, char>>*getChartStrings() const;
 
-	private:
-		DocxMergerChartFieldXYSize( const DocxMergerChartFieldXYSize& p_other );
-		DocxMergerChartFieldXYSize& operator = ( const DocxMergerChartFieldXYSize& p_other );
+    protected:
 
-		void setPasteChartValue( double p_x, double p_y, double p_size );
+    private:
+        DocxMergerChartFieldXYSize(const DocxMergerChartFieldXYSize& p_other);
+        DocxMergerChartFieldXYSize& operator=(const DocxMergerChartFieldXYSize& p_other);
 
-		list<pair<string, char>> m_chartStrings;
+        void setPasteChartValue(double p_x, double p_y, double p_size);
 
-	};
+        list<pair<string, char>> m_chartStrings;
+
+    };
 };
 
 #endif

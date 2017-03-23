@@ -6,44 +6,43 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerBooleanField : public DocxMergerField
-	{
-	public:
-		enum BooleanValue
-		{
-			BOOLEAN_FALSE		= 0,
-			BOOLEAN_TRUE		= 1,
-			BOOLEAN_UNDEFINED
-		};
+    class DocxMergerPasteFieldGroup;
 
-		DocxMergerBooleanField();
-		virtual ~DocxMergerBooleanField();
+    class DocxMergerBooleanField : public DocxMergerField {
+    public:
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+        enum BooleanValue {
+            BOOLEAN_FALSE = 0,
+            BOOLEAN_TRUE = 1,
+            BOOLEAN_UNDEFINED
+        };
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
+        DocxMergerBooleanField();
+        virtual ~DocxMergerBooleanField();
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-	protected:
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-	private:
-		DocxMergerBooleanField( const DocxMergerBooleanField& p_other );
-		DocxMergerBooleanField operator = ( const DocxMergerBooleanField& p_other );
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-		string			m_booleanString;
-		BooleanValue	m_value;
+    protected:
 
-	};
+    private:
+        DocxMergerBooleanField(const DocxMergerBooleanField& p_other);
+        DocxMergerBooleanField operator=(const DocxMergerBooleanField& p_other);
+
+        string m_booleanString;
+        BooleanValue m_value;
+
+    };
 };
 
 #endif

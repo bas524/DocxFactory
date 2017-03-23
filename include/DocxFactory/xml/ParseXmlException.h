@@ -6,24 +6,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ParseXmlException : public XmlException
-	{
-	public:
-		ParseXmlException(
-			const string&	p_file,
-			const int		p_line );
+    class ParseXmlException : public XmlException {
+    public:
+        ParseXmlException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~ParseXmlException() throw();
+        virtual ~ParseXmlException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

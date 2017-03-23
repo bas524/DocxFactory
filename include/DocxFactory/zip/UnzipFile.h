@@ -17,109 +17,106 @@
 #include <vector>
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class FileInfo;
-	class UnzipFile
-	{
-	public:
-		UnzipFile();
-		virtual ~UnzipFile();
+    class FileInfo;
 
-		void open( const string& p_fileName );
-		void close();
+    class UnzipFile {
+    public:
+        UnzipFile();
+        virtual ~UnzipFile();
 
-
-
-		// functions for extracting file entries content from the zip file
-
-		std::vector<byte> extractEntryToBuf(
-			const string&	p_path,
-			size_t&			p_bufSize ) const;
-
-		std::vector<byte> extractEntryToRaw(
-			const string&	p_path,
-			int&			p_method,
-			int&			p_level,
-			FileInfo*&		p_fileInfo,
-			size_t&			p_bufSize ) const;
-
-		void extractEntryToFile(
-			const string&	p_fileName,
-			const string&	p_path ) const;
+        void open(const string& p_fileName);
+        void close();
 
 
 
-		// file streaming functions
+        // functions for extracting file entries content from the zip file
 
-		void openStream( const string& p_path );
-		void closeStream();
+        std::vector<byte> extractEntryToBuf(
+                const string& p_path,
+                size_t& p_bufSize) const;
 
-		template <class T>
-		typename std::enable_if<std::is_integral<T>::value, T>::type		readNum();
+        std::vector<byte> extractEntryToRaw(
+                const string& p_path,
+                int& p_method,
+                int& p_level,
+                FileInfo*& p_fileInfo,
+                size_t& p_bufSize) const;
 
-		template <class T>
-		typename std::enable_if<std::is_floating_point<T>::value, T>::type	readNum();
+        void extractEntryToFile(
+                const string& p_fileName,
+                const string& p_path) const;
 
-		string	readStr	();
-		void	read	( char* p_buf, size_t p_bufSize );
 
-		void	insertPtrBySeq( uint32 p_key, void* p_ptr );
-		const	map<uint32, void*>* getPtrsBySeq() const;
 
-		bool	isFileOpen() const;
-		string	getFileName() const;
-		size_t	getStreamPos() const;
-		const	map<string, FileInfo*>* getEntryList() const;
+        // file streaming functions
 
-	protected:
+        void openStream(const string& p_path);
+        void closeStream();
 
-	private:
-		UnzipFile( const UnzipFile& p_other );
-		UnzipFile operator = ( const UnzipFile& p_other );
+        template <class T>
+        typename std::enable_if<std::is_integral<T>::value, T>::type readNum();
 
-		void fillEntryList();
-		void clearEntryList();
+        template <class T>
+        typename std::enable_if<std::is_floating_point<T>::value, T>::type readNum();
 
-		unzFile					m_unzipFile;
-		string					m_fileName;
+        string readStr();
+        void read(char* p_buf, size_t p_bufSize);
 
-		bool					m_fileOpen;
-		bool					m_streamOpen;
-		size_t					m_streamPos;
+        void insertPtrBySeq(uint32 p_key, void* p_ptr);
+        const map<uint32, void*>* getPtrsBySeq() const;
 
-		map<string, FileInfo*>	m_entryList;
-		map<uint32, void*>		m_ptrsBySeq;
+        bool isFileOpen() const;
+        string getFileName() const;
+        size_t getStreamPos() const;
+        const map<string, FileInfo*>* getEntryList() const;
 
-	};
+    protected:
 
-	template <class T>
-	typename std::enable_if<std::is_integral<T>::value, T>::type UnzipFile::readNum()
-	{
-		T l_retVal;
+    private:
+        UnzipFile(const UnzipFile& p_other);
+        UnzipFile operator=(const UnzipFile& p_other);
 
-		read( ( char* ) &l_retVal, sizeof( l_retVal ) );
-		
-		ZipFunc::fromLittleEndian( l_retVal );
+        void fillEntryList();
+        void clearEntryList();
 
-		return l_retVal;
-	} // readNum<integral>
+        unzFile m_unzipFile;
+        string m_fileName;
 
-	template <class T>
-	typename std::enable_if<std::is_floating_point<T>::value, T>::type UnzipFile::readNum()
-	{
-		DoublePack	l_pack;
-		double		l_retVal;
+        bool m_fileOpen;
+        bool m_streamOpen;
+        size_t m_streamPos;
 
-		l_pack.m_exp	= readNum<int32>();
-		l_pack.m_frac	= readNum<int64>();
+        map<string, FileInfo*> m_entryList;
+        map<uint32, void*> m_ptrsBySeq;
 
-		l_retVal = ZipFunc::unpack( l_pack );
+    };
 
-		return (T) l_retVal;
-	} // readNum<floating_point>
+    template <class T>
+    typename std::enable_if<std::is_integral<T>::value, T>::type UnzipFile::readNum() {
+        T l_retVal;
+
+        read((char*) &l_retVal, sizeof ( l_retVal));
+
+        ZipFunc::fromLittleEndian(l_retVal);
+
+        return l_retVal;
+    } // readNum<integral>
+
+    template <class T>
+    typename std::enable_if<std::is_floating_point<T>::value, T>::type UnzipFile::readNum() {
+        DoublePack l_pack;
+        double l_retVal;
+
+        l_pack.m_exp = readNum<int32>();
+        l_pack.m_frac = readNum<int64>();
+
+        l_retVal = ZipFunc::unpack(l_pack);
+
+        return (T) l_retVal;
+    } // readNum<floating_point>
 
 };
 

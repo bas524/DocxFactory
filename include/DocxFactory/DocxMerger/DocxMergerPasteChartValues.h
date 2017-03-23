@@ -6,30 +6,28 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerPasteChartValues
-	{
-	public:
-		DocxMergerPasteChartValues();
-		DocxMergerPasteChartValues( size_t p_serLength, size_t p_catLength );
-		virtual ~DocxMergerPasteChartValues();
+    class DocxMergerPasteChartValues {
+    public:
+        DocxMergerPasteChartValues();
+        DocxMergerPasteChartValues(size_t p_serLength, size_t p_catLength);
+        virtual ~DocxMergerPasteChartValues();
 
-		virtual void setValue( size_t p_series, size_t p_category, double p_value );
+        virtual void setValue(size_t p_series, size_t p_category, double p_value);
 
-		const vector<vector<double>>* getValues() const;
+        const vector<vector<double>>*getValues() const;
 
-	protected:
+    protected:
 
-	private:
-		DocxMergerPasteChartValues( const DocxMergerPasteChartValues& p_other );
-		DocxMergerPasteChartValues& operator = ( const DocxMergerPasteChartValues& p_other );
+    private:
+        DocxMergerPasteChartValues(const DocxMergerPasteChartValues& p_other);
+        DocxMergerPasteChartValues& operator=(const DocxMergerPasteChartValues& p_other);
 
-		vector<vector<double>> m_values;
+        vector<vector<double>> m_values;
 
-	};
+    };
 };
 
 #endif

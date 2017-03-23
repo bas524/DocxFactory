@@ -8,25 +8,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class GeneralException : public DocxFactoryException
-	{
-	public:
-		GeneralException(
-			const string&	p_msg,
-			const string&	p_file,
-			const int		p_line );
+    class GeneralException : public DocxFactoryException {
+    public:
+        GeneralException(
+                const string& p_msg,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~GeneralException() throw();
+        virtual ~GeneralException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

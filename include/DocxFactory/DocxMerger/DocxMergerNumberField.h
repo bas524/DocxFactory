@@ -6,37 +6,36 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class	ZipFile;
-	class	UnzipFile;
-	struct	NumFormat;
+    class ZipFile;
+    class UnzipFile;
+    struct NumFormat;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerNumberField : public DocxMergerField
-	{
-	public:
-		DocxMergerNumberField();
-		virtual ~DocxMergerNumberField();
+    class DocxMergerPasteFieldGroup;
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+    class DocxMergerNumberField : public DocxMergerField {
+    public:
+        DocxMergerNumberField();
+        virtual ~DocxMergerNumberField();
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-	protected:
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-	private:
-		DocxMergerNumberField( const DocxMergerNumberField& p_other );
-		DocxMergerNumberField operator = ( const DocxMergerNumberField );
+    protected:
 
-		NumFormat*	m_numFormat;
+    private:
+        DocxMergerNumberField(const DocxMergerNumberField& p_other);
+        DocxMergerNumberField operator=(const DocxMergerNumberField);
 
-	};
+        NumFormat* m_numFormat;
+
+    };
 };
 
 #endif

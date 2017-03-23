@@ -10,26 +10,28 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnoUtil
-	{
-	public:
-		virtual ~UnoUtil() {}
+    class UnoUtil {
+    public:
 
-		virtual void saveAs	( const string& p_importFile, const string& p_exportFile ) = 0;
-		virtual void print	( const string& p_fileName, const string& p_printerName, int p_copyCnt ) = 0;
+        virtual ~UnoUtil() {
+        }
 
-	protected:
-		UnoUtil() {}
-		UnoUtil( const UnoUtil& p_other );
-		UnoUtil& operator = ( const UnoUtil& p_other );
+        virtual void saveAs(const string& p_importFile, const string& p_exportFile) = 0;
+        virtual void print(const string& p_fileName, const string& p_printerName, int p_copyCnt) = 0;
 
-	private:
+    protected:
 
-	};
+        UnoUtil() {
+        }
+        UnoUtil(const UnoUtil& p_other);
+        UnoUtil& operator=(const UnoUtil& p_other);
+
+    private:
+
+    };
 };
 
 
@@ -37,10 +39,9 @@ namespace DocxFactory
 using namespace DocxFactory;
 using namespace std;
 
-extern "C"
-{
-	__declspec( dllexport ) UnoUtil* createUnoUtil();
-	__declspec( dllexport ) void destroyUnoUtil( UnoUtil* p_util );
+extern "C" {
+    __declspec ( dllexport) UnoUtil* createUnoUtil();
+    __declspec ( dllexport) void destroyUnoUtil(UnoUtil* p_util);
 }
 
 #endif

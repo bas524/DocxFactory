@@ -8,28 +8,26 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxFactoryTimer
-	{
-	public:
-		static DocxFactoryTimer& getInstance();
+    class DocxFactoryTimer {
+    public:
+        static DocxFactoryTimer& getInstance();
 
-		virtual ~DocxFactoryTimer();
+        virtual ~DocxFactoryTimer();
 
-		void showTime( const string& p_str );
+        void showTime(const string& p_str);
 
-	protected:
+    protected:
 
-	private:
-		DocxFactoryTimer();
-		DocxFactoryTimer( const DocxFactoryTimer& p_other );
-		DocxFactoryTimer operator = ( const DocxFactoryTimer& p_other );
+    private:
+        DocxFactoryTimer();
+        DocxFactoryTimer(const DocxFactoryTimer& p_other);
+        DocxFactoryTimer operator=(const DocxFactoryTimer& p_other);
 
-		clock_t m_start;
-	};
+        clock_t m_start;
+    };
 };
 
 #endif

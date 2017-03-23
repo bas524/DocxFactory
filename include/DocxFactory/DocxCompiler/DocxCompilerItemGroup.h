@@ -7,78 +7,77 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
+    class ZipFile;
 
-	class DocxCompilerItemFile;
-	class DocxCompilerItem;
-	class DocxCompilerItemGroup
-	{
-	public:
-		DocxCompilerItemGroup( DocxCompilerItemFile* p_itemFile, DocxCompilerItem* p_parent );
-		virtual ~DocxCompilerItemGroup();
+    class DocxCompilerItemFile;
+    class DocxCompilerItem;
 
-		void loadStripes();
-		void createStripePlaceHolders();
-		void serialize( ZipFile* p_zipFile );
+    class DocxCompilerItemGroup {
+    public:
+        DocxCompilerItemGroup(DocxCompilerItemFile* p_itemFile, DocxCompilerItem* p_parent);
+        virtual ~DocxCompilerItemGroup();
 
-		void setItem			( DocxCompilerItem* p_parent );
-		void insertChildItem	( DocxCompilerItem* p_item );
-		void setFillItem		( DocxCompilerItem* p_fillItem );
-		void setSpacerItem		( DocxCompilerItem* p_spacerItem );
-		void setCalcTrCnt		( bool p_calcTrCnt );
+        void loadStripes();
+        void createStripePlaceHolders();
+        void serialize(ZipFile* p_zipFile);
 
-		DocxCompilerItem*						getItem() const;
-		const map<string,DocxCompilerItem*>*	getChildItemsByName() const;
-		const list<DocxCompilerItem*>*			getChildItems() const;
+        void setItem(DocxCompilerItem* p_parent);
+        void insertChildItem(DocxCompilerItem* p_item);
+        void setFillItem(DocxCompilerItem* p_fillItem);
+        void setSpacerItem(DocxCompilerItem* p_spacerItem);
+        void setCalcTrCnt(bool p_calcTrCnt);
 
-		DocxCompilerItem*						getFillItemTop() const;
-		DocxCompilerItem*						getFillItemMiddle() const;
-		DocxCompilerItem*						getFillItemBottom() const;
-		DocxCompilerItem*						getFillItemSingle() const;
-		bool									getFillItemEqual() const;
-		double									getFillItemTrCnt() const;
+        DocxCompilerItem* getItem() const;
+        const map<string, DocxCompilerItem*>* getChildItemsByName() const;
+        const list<DocxCompilerItem*>* getChildItems() const;
 
-		DocxCompilerItem*						getSpacerItem() const;
-		double									getSpacerTrCnt() const;
+        DocxCompilerItem* getFillItemTop() const;
+        DocxCompilerItem* getFillItemMiddle() const;
+        DocxCompilerItem* getFillItemBottom() const;
+        DocxCompilerItem* getFillItemSingle() const;
+        bool getFillItemEqual() const;
+        double getFillItemTrCnt() const;
 
-		bool									isStriped() const;
-		string									getShade1() const;
-		string									getShade2() const;
+        DocxCompilerItem* getSpacerItem() const;
+        double getSpacerTrCnt() const;
 
-	protected:
+        bool isStriped() const;
+        string getShade1() const;
+        string getShade2() const;
 
-	private:	
-		DocxCompilerItemGroup( const DocxCompilerItemGroup& p_other );
-		DocxCompilerItemGroup& operator = ( const DocxCompilerItemGroup& p_other );
+    protected:
 
-		bool isFieldExistsByItem( DocxCompilerItem* p_item );
-		void createStripePlaceHoldersByGroup( DocxCompilerItemGroup* p_itemGroup );
+    private:
+        DocxCompilerItemGroup(const DocxCompilerItemGroup& p_other);
+        DocxCompilerItemGroup& operator=(const DocxCompilerItemGroup& p_other);
 
-		DocxCompilerItemFile*			m_itemFile;
-		DocxCompilerItem*				m_item;
+        bool isFieldExistsByItem(DocxCompilerItem* p_item);
+        void createStripePlaceHoldersByGroup(DocxCompilerItemGroup* p_itemGroup);
 
-		map<string, DocxCompilerItem*>	m_childItemsByName;
-		list<DocxCompilerItem*>			m_childItems;
+        DocxCompilerItemFile* m_itemFile;
+        DocxCompilerItem* m_item;
 
-		DocxCompilerItem*				m_fillItemTop;
-		DocxCompilerItem*				m_fillItemMiddle;
-		DocxCompilerItem*				m_fillItemBottom;
-		DocxCompilerItem*				m_fillItemSingle;
-		bool							m_fillItemEqual;
-		double							m_fillItemTrCnt;
+        map<string, DocxCompilerItem*> m_childItemsByName;
+        list<DocxCompilerItem*> m_childItems;
 
-		DocxCompilerItem*				m_spacerItem;
-		double							m_spacerTrCnt;
+        DocxCompilerItem* m_fillItemTop;
+        DocxCompilerItem* m_fillItemMiddle;
+        DocxCompilerItem* m_fillItemBottom;
+        DocxCompilerItem* m_fillItemSingle;
+        bool m_fillItemEqual;
+        double m_fillItemTrCnt;
 
-		string							m_shade1;
-		string							m_shade2;
-		bool							m_striped;
+        DocxCompilerItem* m_spacerItem;
+        double m_spacerTrCnt;
 
-	};
+        string m_shade1;
+        string m_shade2;
+        bool m_striped;
+
+    };
 };
 
 #endif

@@ -7,24 +7,22 @@
 
 
 
-namespace DocxFactory
-{	
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class JsonFunc
-	{
-	public:
-		static string	getStr( rapidjson::Value* p_value );
-		static double	getNum( rapidjson::Value* p_value );
+    class JsonFunc {
+    public:
+        static string getStr(rapidjson::Value* p_value);
+        static double getNum(rapidjson::Value* p_value);
 
-	protected:
+    protected:
 
-	private:
-		JsonFunc();
-		JsonFunc( const JsonFunc& p_other );
-		JsonFunc& operator = ( const JsonFunc& p_other );
+    private:
+        JsonFunc();
+        JsonFunc(const JsonFunc& p_other);
+        JsonFunc& operator=(const JsonFunc& p_other);
 
-	};
+    };
 };
 
 #endif

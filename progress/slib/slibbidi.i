@@ -36,17 +36,21 @@
 
 
 
-&if defined( xSLibBidi ) = 0 &then
+&if defined(xSLibBidi) = 0 & then
 
-    &if "{1}" = "" &then
-          &scoped xSpec ansi
-    &else &scoped xSpec {1}
-    &endif
+        &if "{1}" = "" & then
+            & scoped xSpec ansi
+            & else &scoped xSpec {
+        1
+    }
+&endif
 
-    {slib/start-slib.i "'slib/slibbidi_{&xSpec}.p'"}
+{slib / start - slib.i "'slib/slibbidi_{&xSpec}.p'"}
 
-    {slib/slibbidifrwd.i "in super"}
+{
+    slib / slibbidifrwd.i "in super"
+}
 
-    &global xSLibBidi defined
+&global xSLibBidi defined
 
-&endif /* defined = 0 */
+        &endif /* defined = 0 */

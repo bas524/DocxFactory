@@ -6,32 +6,31 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerPasteChartAxis;
-	class DocxMergerChartAxis
-	{
-	public:
-		DocxMergerChartAxis( DocxMergerField::FieldType p_axisType );
-		virtual ~DocxMergerChartAxis();
+    class DocxMergerPasteChartAxis;
 
-		virtual size_t setValue	( DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value );
-		virtual size_t setValue	( DocxMergerPasteChartAxis* p_pasteAxis, double p_value );
-		virtual string getValue	( DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index ) const;
-		virtual size_t getLength( DocxMergerPasteChartAxis* p_pasteAxis ) const;
+    class DocxMergerChartAxis {
+    public:
+        DocxMergerChartAxis(DocxMergerField::FieldType p_axisType);
+        virtual ~DocxMergerChartAxis();
 
-		DocxMergerField::FieldType getAxisType() const;
+        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value);
+        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value);
+        virtual string getValue(DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index) const;
+        virtual size_t getLength(DocxMergerPasteChartAxis* p_pasteAxis) const;
 
-	protected:
-		DocxMergerField::FieldType m_axisType;
+        DocxMergerField::FieldType getAxisType() const;
 
-	private:
-		DocxMergerChartAxis( const DocxMergerChartAxis& p_other );
-		DocxMergerChartAxis& operator = ( const DocxMergerChartAxis& p_other );
+    protected:
+        DocxMergerField::FieldType m_axisType;
 
-	};
+    private:
+        DocxMergerChartAxis(const DocxMergerChartAxis& p_other);
+        DocxMergerChartAxis& operator=(const DocxMergerChartAxis& p_other);
+
+    };
 };
 
 #endif

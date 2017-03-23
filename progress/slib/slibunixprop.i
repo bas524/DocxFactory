@@ -24,6 +24,6 @@
 
 
 
-define new global shared var unix_iExitCode         as int no-undo.
+define new global shared var unix_iExitCode as int no - undo.
 
-define new global shared var unix_tDeleteTempFiles  as date no-undo init ?.
+        define new global shared var unix_tDeleteTempFiles as date no - undo init ? .

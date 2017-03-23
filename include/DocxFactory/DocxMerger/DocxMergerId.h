@@ -6,39 +6,38 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerItemFile;
-	class DocxMergerItem;
-	class DocxMergerId
-	{
-	public:
-		DocxMergerId();
-		virtual ~DocxMergerId();
+    class DocxMergerItemFile;
+    class DocxMergerItem;
 
-		void deserialize( UnzipFile* p_unzipFile );
-		void link		( UnzipFile* p_unzipFile );
+    class DocxMergerId {
+    public:
+        DocxMergerId();
+        virtual ~DocxMergerId();
 
-		string getNextId();
-		string getCurrId();
+        void deserialize(UnzipFile* p_unzipFile);
+        void link(UnzipFile* p_unzipFile);
 
-	protected:
+        string getNextId();
+        string getCurrId();
 
-	private:
-		DocxMergerFile*	m_file;
-		DocxMergerItem*	m_item;
-		string			m_tag;
-		string			m_id;
-		string			m_prefix;
-		size_t			m_seq;
-		bool			m_isNum;
+    protected:
 
-	};
+    private:
+        DocxMergerFile* m_file;
+        DocxMergerItem* m_item;
+        string m_tag;
+        string m_id;
+        string m_prefix;
+        size_t m_seq;
+        bool m_isNum;
+
+    };
 };
 
 #endif

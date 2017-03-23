@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UtilFailedException : public ConverterPrinterException
-	{
-	public:
-		UtilFailedException(
-			const string&	p_util,
-			const string&	p_file,
-			int				p_line );
+    class UtilFailedException : public ConverterPrinterException {
+    public:
+        UtilFailedException(
+                const string& p_util,
+                const string& p_file,
+                int p_line);
 
-		virtual ~UtilFailedException() throw();
+        virtual ~UtilFailedException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

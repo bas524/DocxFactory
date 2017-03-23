@@ -6,26 +6,25 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteNumberField : public DocxMergerPasteField
-	{
-	public:
-		DocxMergerPasteNumberField( DocxMergerField* p_field, double p_value );
-		virtual ~DocxMergerPasteNumberField();
+    class DocxMergerField;
 
-		double getValue() const;
+    class DocxMergerPasteNumberField : public DocxMergerPasteField {
+    public:
+        DocxMergerPasteNumberField(DocxMergerField* p_field, double p_value);
+        virtual ~DocxMergerPasteNumberField();
 
-	private:
-		DocxMergerPasteNumberField( const DocxMergerPasteNumberField& p_other );
-		DocxMergerPasteNumberField operator = ( const DocxMergerPasteNumberField& p_other );
+        double getValue() const;
 
-		double m_value;
+    private:
+        DocxMergerPasteNumberField(const DocxMergerPasteNumberField& p_other);
+        DocxMergerPasteNumberField operator=(const DocxMergerPasteNumberField& p_other);
 
-	};
+        double m_value;
+
+    };
 };
 
 #endif

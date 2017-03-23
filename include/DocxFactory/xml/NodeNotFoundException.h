@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class NodeNotFoundException : public XmlException
-	{
-	public:
-		NodeNotFoundException(
-			const string&	p_name,
-			const string&	p_file,
-			const int		p_line );
+    class NodeNotFoundException : public XmlException {
+    public:
+        NodeNotFoundException(
+                const string& p_name,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~NodeNotFoundException() throw();
+        virtual ~NodeNotFoundException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

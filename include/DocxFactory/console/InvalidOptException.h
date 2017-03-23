@@ -8,26 +8,24 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidOptException : public ConsoleException
-	{
-	public:
-		InvalidOptException(
-			const string&	p_opt,
-			const string&	p_arg,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidOptException : public ConsoleException {
+    public:
+        InvalidOptException(
+                const string& p_opt,
+                const string& p_arg,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidOptException() throw();
+        virtual ~InvalidOptException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

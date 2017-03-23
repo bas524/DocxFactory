@@ -8,24 +8,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnknownException : public DocxFactoryException
-	{
-	public:
-		UnknownException(
-			const string&	p_file,
-			const int		p_line );
+    class UnknownException : public DocxFactoryException {
+    public:
+        UnknownException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~UnknownException() throw();
+        virtual ~UnknownException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

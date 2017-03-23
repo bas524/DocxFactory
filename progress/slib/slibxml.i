@@ -24,14 +24,17 @@
 
 
 
-&if defined( xSLibXml ) = 0 &then
+&if defined(xSLibXml) = 0 & then
+{slib / start - slib.i "'slib/slibxml.p'"}
 
-    {slib/start-slib.i "'slib/slibxml.p'"}
-    
-    {slib/slibxmlfrwd.i "in super"}
+    {
+        slib / slibxmlfrwd.i "in super"
+    }
 
-    {slib/slibxmlprop.i}
+{
+    slib / slibxmlprop.i
+}
 
-    &global xSLibXml defined
+&global xSLibXml defined
 
-&endif /* defined = 0 */
+        &endif /* defined = 0 */

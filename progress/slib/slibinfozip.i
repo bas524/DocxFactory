@@ -24,19 +24,22 @@
 
 
 
-&if defined( xSLibInfoZip ) = 0 &then
+&if defined(xSLibInfoZip) = 0 & then
 
-    define var infozip_lRunning as log no-undo.
+        define var infozip_lRunning as log no - undo.
 
-    &if "{1}" = "no-error" &then
-          {slib/start-slib.i "'slib/slibinfozip.p'" "( 'no-error', output infozip_lRunning )"}
-    &else {slib/start-slib.i "'slib/slibinfozip.p'" "( ?,          output infozip_lRunning )"}
-    &endif
+        &if "{1}" = "no-error" & then{slib / start - slib.i "'slib/slibinfozip.p'" "( 'no-error', output infozip_lRunning )"}
+        & else {
+        slib / start - slib.i "'slib/slibinfozip.p'" "( ?,          output infozip_lRunning )"
+    }
+&endif
 
-    {slib/slibinfozipfrwd.i "in super"}
+{slib / slibinfozipfrwd.i "in super"}
 
-    {slib/slibinfozipprop.i}
+{
+    slib / slibinfozipprop.i
+}
 
-    &glob xSLibInfoZip defined
+&glob xSLibInfoZip defined
 
-&endif /* defined */
+        &endif /* defined */

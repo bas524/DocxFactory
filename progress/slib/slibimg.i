@@ -24,10 +24,9 @@
 
 
 
-&if defined( xSLibImg ) = 0 &then
-
-    {slib/start-slib.i "'slib/slibimg.p'"}
+&if defined(xSLibImg) = 0 & then
+{slib / start - slib.i "'slib/slibimg.p'"}
 
     &glob xSLibImg defined
 
-&endif /* defined */
+        & endif /* defined */

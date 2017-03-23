@@ -5,23 +5,16 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerPasteTextField::DocxMergerPasteTextField( DocxMergerField* p_field, const string& p_value ) : DocxMergerPasteField( p_field )
-{
-	m_value = p_value;
+DocxMergerPasteTextField::DocxMergerPasteTextField(DocxMergerField* p_field, const string& p_value) : DocxMergerPasteField(p_field) {
+  m_value = p_value;
 } // c'tor
 
-DocxMergerPasteTextField::~DocxMergerPasteTextField()
-{
+DocxMergerPasteTextField::~DocxMergerPasteTextField() {
 
 } // d'tor
 
-
-
-const string* DocxMergerPasteTextField::getValue() const
-{
-	return &m_value;
+const string* DocxMergerPasteTextField::getValue() const {
+  return &m_value;
 } // getValue
 
 

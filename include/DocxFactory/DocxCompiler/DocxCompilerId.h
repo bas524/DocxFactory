@@ -6,43 +6,42 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
+    class ZipFile;
 
-	class DocxCompilerItemFile;
-	class DocxCompilerItem;
-	class DocxCompilerId
-	{
-	public:
-		DocxCompilerId(
-			DocxCompilerItem*	p_item,
-			const string&		p_tag,
-			const string&		p_id );
+    class DocxCompilerItemFile;
+    class DocxCompilerItem;
 
-		virtual ~DocxCompilerId();
+    class DocxCompilerId {
+    public:
+        DocxCompilerId(
+                DocxCompilerItem* p_item,
+                const string& p_tag,
+                const string& p_id);
 
-		virtual void serialize( ZipFile* p_zipFile );
+        virtual ~DocxCompilerId();
 
-		string getTag() const;
-		string getId() const;
+        virtual void serialize(ZipFile* p_zipFile);
 
-	protected:
+        string getTag() const;
+        string getId() const;
 
-	private:
-		DocxCompilerId( const DocxCompilerId& p_other );
-		DocxCompilerId operator = ( const DocxCompilerId& p_other );
+    protected:
 
-		DocxCompilerItem*	m_item;
-		string				m_tag;
-		string				m_id;
-		string				m_prefix;
-		int					m_seq;
-		bool				m_isNum;
+    private:
+        DocxCompilerId(const DocxCompilerId& p_other);
+        DocxCompilerId operator=(const DocxCompilerId& p_other);
 
-	};
+        DocxCompilerItem* m_item;
+        string m_tag;
+        string m_id;
+        string m_prefix;
+        int m_seq;
+        bool m_isNum;
+
+    };
 };
 
 #endif

@@ -8,65 +8,64 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteItemGroup;
-	class DocxMergerItemFile;
-	class DocxMergerItem;
-	class DocxMergerItemGroup
-	{
-	public:
-		DocxMergerItemGroup();
-		virtual ~DocxMergerItemGroup();
+    class DocxMergerPasteItemGroup;
+    class DocxMergerItemFile;
+    class DocxMergerItem;
 
-		void save( DocxMergerPasteItemGroup* p_pasteItemGroup );
+    class DocxMergerItemGroup {
+    public:
+        DocxMergerItemGroup();
+        virtual ~DocxMergerItemGroup();
 
-		void deserialize( UnzipFile* p_unzipFile );
-		void link		( UnzipFile* p_unzipFile );
+        void save(DocxMergerPasteItemGroup* p_pasteItemGroup);
 
-		DocxMergerItem*						getItem() const;
-		const map<string, DocxMergerItem*>*	getChildItemsByName() const;
+        void deserialize(UnzipFile* p_unzipFile);
+        void link(UnzipFile* p_unzipFile);
 
-		DocxMergerItem*						getSpacerItem() const;
-		double								getSpacerTrCnt() const;
+        DocxMergerItem* getItem() const;
+        const map<string, DocxMergerItem*>* getChildItemsByName() const;
 
-		bool								getFillItemEqual() const;
-		double								getFillItemTrCnt() const;
+        DocxMergerItem* getSpacerItem() const;
+        double getSpacerTrCnt() const;
 
-	protected:
+        bool getFillItemEqual() const;
+        double getFillItemTrCnt() const;
 
-	private:
-		DocxMergerItemGroup( const DocxMergerItemGroup& p_other );
-		DocxMergerItemGroup operator = ( const DocxMergerItemGroup& p_other );
+    protected:
 
-		void fill(
-			DocxMergerPasteItemGroup*	p_pasteItemGroup,
-			bool&						p_shadeFlag );
+    private:
+        DocxMergerItemGroup(const DocxMergerItemGroup& p_other);
+        DocxMergerItemGroup operator=(const DocxMergerItemGroup& p_other);
 
-		DocxMergerItemFile*				m_itemFile;
-		DocxMergerItem*					m_item;
-		map<string, DocxMergerItem*>	m_childItemsByName;
+        void fill(
+                DocxMergerPasteItemGroup* p_pasteItemGroup,
+                bool& p_shadeFlag);
 
-		DocxMergerItem*					m_fillItemTop;
-		DocxMergerItem*					m_fillItemMiddle;
-		DocxMergerItem*					m_fillItemBottom;
-		DocxMergerItem*					m_fillItemSingle;
-		bool							m_fillItemEqual;
-		double							m_fillItemTrCnt;
+        DocxMergerItemFile* m_itemFile;
+        DocxMergerItem* m_item;
+        map<string, DocxMergerItem*> m_childItemsByName;
 
-		DocxMergerItem*					m_spacerItem;
-		double							m_spacerTrCnt;
+        DocxMergerItem* m_fillItemTop;
+        DocxMergerItem* m_fillItemMiddle;
+        DocxMergerItem* m_fillItemBottom;
+        DocxMergerItem* m_fillItemSingle;
+        bool m_fillItemEqual;
+        double m_fillItemTrCnt;
 
-		bool							m_striped;
-		string							m_shade1;
-		string							m_shade2;
+        DocxMergerItem* m_spacerItem;
+        double m_spacerTrCnt;
 
-	};
+        bool m_striped;
+        string m_shade1;
+        string m_shade2;
+
+    };
 };
 
 #endif

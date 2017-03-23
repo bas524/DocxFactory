@@ -15,47 +15,45 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
+    class ZipFile;
 
-	class DocxCompilerBooleanField : public DocxCompilerField
-	{
-	public:
-		enum BooleanValue
-		{
-			BOOLEAN_FALSE		= 0,
-			BOOLEAN_TRUE		= 1,
-			BOOLEAN_UNDEFINED
-		};
+    class DocxCompilerBooleanField : public DocxCompilerField {
+    public:
 
-		DocxCompilerBooleanField(
-			const string&			p_name,
-			xercesc::DOMElement*	p_placeHolderNode,
-			BooleanValue			p_value );
+        enum BooleanValue {
+            BOOLEAN_FALSE = 0,
+            BOOLEAN_TRUE = 1,
+            BOOLEAN_UNDEFINED
+        };
 
-		virtual ~DocxCompilerBooleanField();
+        DocxCompilerBooleanField(
+                const string& p_name,
+                xercesc::DOMElement* p_placeHolderNode,
+                BooleanValue p_value);
 
-		virtual void serialize( ZipFile* p_zipFile );
+        virtual ~DocxCompilerBooleanField();
 
-		void concatStr( const string& p_str );
+        virtual void serialize(ZipFile* p_zipFile);
 
-		xercesc::DOMDocument* getDoc() const;
+        void concatStr(const string& p_str);
 
-	protected:
+        xercesc::DOMDocument* getDoc() const;
 
-	private:
-		DocxCompilerBooleanField( const DocxCompilerBooleanField& p_other );
-		DocxCompilerBooleanField& operator = ( const DocxCompilerBooleanField& p_other );
+    protected:
 
-		xercesc::DOMDocument*	m_doc;
+    private:
+        DocxCompilerBooleanField(const DocxCompilerBooleanField& p_other);
+        DocxCompilerBooleanField& operator=(const DocxCompilerBooleanField& p_other);
 
-		string					m_booleanString;
-		BooleanValue			m_value;
+        xercesc::DOMDocument* m_doc;
 
-	};
+        string m_booleanString;
+        BooleanValue m_value;
+
+    };
 };
 
 #endif

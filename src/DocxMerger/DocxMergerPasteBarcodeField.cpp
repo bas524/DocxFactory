@@ -6,21 +6,14 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerPasteBarcodeField::DocxMergerPasteBarcodeField( DocxMergerField* p_field, const string& p_value ) : DocxMergerPasteField( p_field )
-{
-	m_value = p_value;
+DocxMergerPasteBarcodeField::DocxMergerPasteBarcodeField(DocxMergerField* p_field, const string& p_value) : DocxMergerPasteField(p_field) {
+  m_value = p_value;
 } // c'tor
 
-DocxMergerPasteBarcodeField::~DocxMergerPasteBarcodeField()
-{
+DocxMergerPasteBarcodeField::~DocxMergerPasteBarcodeField() {
 
 } // d'tor
 
-
-
-const string* DocxMergerPasteBarcodeField::getValue()
-{
-	return &m_value;
+const string* DocxMergerPasteBarcodeField::getValue() {
+  return &m_value;
 } // getValue

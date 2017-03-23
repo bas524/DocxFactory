@@ -14,47 +14,46 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class UnzipFile;
-	class ZipFile;
-	class OpcPart;
+    class UnzipFile;
+    class ZipFile;
+    class OpcPart;
 
-	class DocxMergerFile;
-	class DocxMergerSettingsFile
-	{
-	public:
-		DocxMergerSettingsFile();
-		virtual ~DocxMergerSettingsFile();
+    class DocxMergerFile;
 
-		void deserialize( UnzipFile* p_unzipFile );
-		void link		( UnzipFile* p_unzipFile );
+    class DocxMergerSettingsFile {
+    public:
+        DocxMergerSettingsFile();
+        virtual ~DocxMergerSettingsFile();
 
-		void setUpdateFields( bool p_val );
+        void deserialize(UnzipFile* p_unzipFile);
+        void link(UnzipFile* p_unzipFile);
 
-		DocxMergerFile*			getFile() const;
-		OpcPart*				getPart() const;
+        void setUpdateFields(bool p_val);
 
-		xercesc::DOMElement*	getSettingsNode() const;
-		string					getWordMlPrefix() const;
-		string					getRelMlPrefix() const;
+        DocxMergerFile* getFile() const;
+        OpcPart* getPart() const;
 
-	protected:
+        xercesc::DOMElement* getSettingsNode() const;
+        string getWordMlPrefix() const;
+        string getRelMlPrefix() const;
 
-	private:
-		DocxMergerSettingsFile( const DocxMergerSettingsFile& p_other );
-		DocxMergerSettingsFile& operator = ( const DocxMergerSettingsFile& p_other );
+    protected:
 
-		DocxMergerFile*			m_file;
-		OpcPart*				m_part;
+    private:
+        DocxMergerSettingsFile(const DocxMergerSettingsFile& p_other);
+        DocxMergerSettingsFile& operator=(const DocxMergerSettingsFile& p_other);
 
-		xercesc::DOMElement*	m_settingsNode;
-		string					m_wordMlPrefix;
-		string					m_relMlPrefix;
+        DocxMergerFile* m_file;
+        OpcPart* m_part;
 
-	};
+        xercesc::DOMElement* m_settingsNode;
+        string m_wordMlPrefix;
+        string m_relMlPrefix;
+
+    };
 };
 
 #endif

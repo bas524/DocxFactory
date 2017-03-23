@@ -8,25 +8,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnexpectedArgException : public ConsoleUsageException
-	{
-	public:
-		UnexpectedArgException(
-			const string&	p_arg,
-			const string&	p_file,
-			const int		p_line );
+    class UnexpectedArgException : public ConsoleUsageException {
+    public:
+        UnexpectedArgException(
+                const string& p_arg,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~UnexpectedArgException() throw();
+        virtual ~UnexpectedArgException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

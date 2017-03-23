@@ -6,16 +6,14 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	struct DateTimeFormat
-	{
-		string			m_str;
-		char			m_entry;
-		unsigned short	m_entryLen;
-	};
+    struct DateTimeFormat {
+        string m_str;
+        char m_entry;
+        unsigned short m_entryLen;
+    };
 };
 
 #endif

@@ -9,30 +9,28 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerPasteChartAxisDateTime : public DocxMergerPasteChartAxis
-	{
-	public:
-		DocxMergerPasteChartAxisDateTime();
-		virtual ~DocxMergerPasteChartAxisDateTime();
+    class DocxMergerPasteChartAxisDateTime : public DocxMergerPasteChartAxis {
+    public:
+        DocxMergerPasteChartAxisDateTime();
+        virtual ~DocxMergerPasteChartAxisDateTime();
 
-		virtual size_t setValue( double p_value );
+        virtual size_t setValue(double p_value);
 
-		const vector<double>* getValues() const;
+        const vector<double>* getValues() const;
 
-	protected:
+    protected:
 
-	private:
-		DocxMergerPasteChartAxisDateTime( const DocxMergerPasteChartAxisDateTime& p_other );
-		DocxMergerPasteChartAxisDateTime& operator = ( const DocxMergerPasteChartAxisDateTime& p_other );
+    private:
+        DocxMergerPasteChartAxisDateTime(const DocxMergerPasteChartAxisDateTime& p_other);
+        DocxMergerPasteChartAxisDateTime& operator=(const DocxMergerPasteChartAxisDateTime& p_other);
 
-		map<double, size_t>	m_index;
-		vector<double>		m_values;
+        map<double, size_t> m_index;
+        vector<double> m_values;
 
-	};
+    };
 };
 
 #endif

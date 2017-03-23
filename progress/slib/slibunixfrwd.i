@@ -24,15 +24,41 @@
 
 
 
-function unix_getHostName       returns char {1}.
-function unix_getUserName       returns char {1}.
+function unix_getHostName returns char
+{
+    1
+}
+.
+function unix_getUserName returns char{1}
+.
 
-function unix_getSubPath        returns char ( pcPath as char, pcFrom as char, pcTo as char ) {1}.
-function unix_getRelativePath   returns char ( pcSourceDir as char, pcPath as char ) {1}.
-function unix_isRelativePath    returns log  ( pcPath as char ) {1}.
-function unix_normalizePath     returns char ( pcPath as char ) {1}.
+function unix_getSubPath returns char ( pcPath as char, pcFrom as char, pcTo as char) {
+    1
+}
+.
+function unix_getRelativePath returns char ( pcSourceDir as char, pcPath as char) {
+    1
+}
+.
+function unix_isRelativePath returns log(pcPath as char) {
+    1
+}
+.
+function unix_normalizePath returns char ( pcPath as char) {
+    1
+}
+.
 
-function unix_getTempFile       returns char ( pcUserChars as char, pcExt as char ) {1}.
-function unix_getTempFileByDir  returns char ( pcDir as char, pcUserChars as char, pcExt as char ) {1}.
+function unix_getTempFile returns char ( pcUserChars as char, pcExt as char) {
+    1
+}
+.
+function unix_getTempFileByDir returns char ( pcDir as char, pcUserChars as char, pcExt as char) {
+    1
+}
+.
 
-function unix_getBigFileSize    returns dec ( pcFileName as char ) {1}.
+function unix_getBigFileSize returns dec(pcFileName as char) {
+    1
+}
+.

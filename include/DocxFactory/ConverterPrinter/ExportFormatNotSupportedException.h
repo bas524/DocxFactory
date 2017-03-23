@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ExportFormatNotSupportedException : public ConverterPrinterException
-	{
-	public:
-		ExportFormatNotSupportedException(
-			const string&	p_ext,
-			const string&	p_file,
-			int				p_line );
+    class ExportFormatNotSupportedException : public ConverterPrinterException {
+    public:
+        ExportFormatNotSupportedException(
+                const string& p_ext,
+                const string& p_file,
+                int p_line);
 
-		virtual ~ExportFormatNotSupportedException() throw();
+        virtual ~ExportFormatNotSupportedException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

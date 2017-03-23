@@ -6,29 +6,28 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerPasteChartAxis;
-	class DocxMergerChartAxisText : public DocxMergerChartAxis
-	{
-	public:
-		DocxMergerChartAxisText();
-		virtual ~DocxMergerChartAxisText();
+    class DocxMergerPasteChartAxis;
 
-		virtual size_t setValue	( DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value );
-		virtual size_t setValue	( DocxMergerPasteChartAxis* p_pasteAxis, double p_value );
-		virtual string getValue	( DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index ) const;
-		virtual size_t getLength( DocxMergerPasteChartAxis* p_pasteAxis ) const;
+    class DocxMergerChartAxisText : public DocxMergerChartAxis {
+    public:
+        DocxMergerChartAxisText();
+        virtual ~DocxMergerChartAxisText();
 
-	protected:
+        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value);
+        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value);
+        virtual string getValue(DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index) const;
+        virtual size_t getLength(DocxMergerPasteChartAxis* p_pasteAxis) const;
 
-	private:
-		DocxMergerChartAxisText( const DocxMergerChartAxisText& p_other );
-		DocxMergerChartAxisText& operator = ( const DocxMergerChartAxisText& p_other );
+    protected:
 
-	};
+    private:
+        DocxMergerChartAxisText(const DocxMergerChartAxisText& p_other);
+        DocxMergerChartAxisText& operator=(const DocxMergerChartAxisText& p_other);
+
+    };
 };
 
 #endif

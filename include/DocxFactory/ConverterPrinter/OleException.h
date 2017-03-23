@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class OleException : public ConverterPrinterException
-	{
-	public:
-		OleException( const string& p_funcName, const string& p_file, int p_line );
-		virtual ~OleException() throw();
+    class OleException : public ConverterPrinterException {
+    public:
+        OleException(const string& p_funcName, const string& p_file, int p_line);
+        virtual ~OleException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

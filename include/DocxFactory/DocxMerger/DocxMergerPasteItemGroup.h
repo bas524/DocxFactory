@@ -6,46 +6,45 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerItemGroup;
-	class DocxMergerPasteItem;
-	class DocxMergerPasteItemGroup
-	{
-	public:
-		DocxMergerPasteItemGroup( DocxMergerItemGroup* p_itemGroup, DocxMergerPasteItem* p_pasteItem );
-		virtual ~DocxMergerPasteItemGroup();
+    class DocxMergerItemGroup;
+    class DocxMergerPasteItem;
 
-		void pushBackChildPasteItem( DocxMergerPasteItem* p_pasteItem );
-		void popBackChildPasteItem();
+    class DocxMergerPasteItemGroup {
+    public:
+        DocxMergerPasteItemGroup(DocxMergerItemGroup* p_itemGroup, DocxMergerPasteItem* p_pasteItem);
+        virtual ~DocxMergerPasteItemGroup();
 
-		void pushFrontChildPasteItem( DocxMergerPasteItem* p_pasteItem );
-		void popFrontChildPasteItem();
+        void pushBackChildPasteItem(DocxMergerPasteItem* p_pasteItem);
+        void popBackChildPasteItem();
 
-		void setTrCnt	( double p_trCnt );
-		void setFill	( unsigned int p_fill );
+        void pushFrontChildPasteItem(DocxMergerPasteItem* p_pasteItem);
+        void popFrontChildPasteItem();
 
-		DocxMergerItemGroup*				getItemGroup() const;
-		DocxMergerPasteItem*				getPasteItem() const;
-		const list<DocxMergerPasteItem*>*	getChildPasteItems() const;
-		double								getTrCnt() const;
-		unsigned int						getFill() const;
+        void setTrCnt(double p_trCnt);
+        void setFill(unsigned int p_fill);
 
-	protected:
+        DocxMergerItemGroup* getItemGroup() const;
+        DocxMergerPasteItem* getPasteItem() const;
+        const list<DocxMergerPasteItem*>* getChildPasteItems() const;
+        double getTrCnt() const;
+        unsigned int getFill() const;
 
-	private:
-		DocxMergerPasteItemGroup( const DocxMergerPasteItemGroup& p_other );
-		DocxMergerPasteItemGroup operator = ( const DocxMergerPasteItemGroup& p_other );
+    protected:
 
-		DocxMergerItemGroup*		m_itemGroup;
-		DocxMergerPasteItem*		m_pasteItem;
-		list<DocxMergerPasteItem*>	m_childPasteItems;
-		double						m_trCnt;
-		unsigned int				m_fill;
+    private:
+        DocxMergerPasteItemGroup(const DocxMergerPasteItemGroup& p_other);
+        DocxMergerPasteItemGroup operator=(const DocxMergerPasteItemGroup& p_other);
 
-	};
+        DocxMergerItemGroup* m_itemGroup;
+        DocxMergerPasteItem* m_pasteItem;
+        list<DocxMergerPasteItem*> m_childPasteItems;
+        double m_trCnt;
+        unsigned int m_fill;
+
+    };
 };
 
 #endif

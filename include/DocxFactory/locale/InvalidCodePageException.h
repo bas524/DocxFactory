@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidCodePageException : public LocaleException
-	{
-	public:
-		InvalidCodePageException(
-			const string&	p_name,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidCodePageException : public LocaleException {
+    public:
+        InvalidCodePageException(
+                const string& p_name,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidCodePageException() throw();
+        virtual ~InvalidCodePageException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -6,28 +6,27 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteDateTimeField : public DocxMergerPasteField
-	{
-	public:
-		DocxMergerPasteDateTimeField( DocxMergerField* p_field, double p_time, short p_timeZone );
-		virtual ~DocxMergerPasteDateTimeField();
+    class DocxMergerField;
 
-		double	getTime() const;
-		short	getTimeZone() const;
+    class DocxMergerPasteDateTimeField : public DocxMergerPasteField {
+    public:
+        DocxMergerPasteDateTimeField(DocxMergerField* p_field, double p_time, short p_timeZone);
+        virtual ~DocxMergerPasteDateTimeField();
 
-	private:
-		DocxMergerPasteDateTimeField( const DocxMergerPasteDateTimeField& p_other );
-		DocxMergerPasteDateTimeField operator = ( const DocxMergerPasteDateTimeField& p_other );
+        double getTime() const;
+        short getTimeZone() const;
 
-		double	m_time;
-		short	m_timeZone;
+    private:
+        DocxMergerPasteDateTimeField(const DocxMergerPasteDateTimeField& p_other);
+        DocxMergerPasteDateTimeField operator=(const DocxMergerPasteDateTimeField& p_other);
 
-	};
+        double m_time;
+        short m_timeZone;
+
+    };
 };
 
 #endif

@@ -15,57 +15,56 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class DocxCompilerItemFile;
-	class DocxCompilerBookmark
-	{
-	public:
-		DocxCompilerBookmark(
-			DocxCompilerItemFile*	p_itemFile,
-			DocxCompilerBookmark*	p_parent,
-			const string&			p_name,
-			size_t					p_id,
-			xercesc::DOMElement*	p_startNode );
+    class DocxCompilerItemFile;
 
-		virtual ~DocxCompilerBookmark();
+    class DocxCompilerBookmark {
+    public:
+        DocxCompilerBookmark(
+                DocxCompilerItemFile* p_itemFile,
+                DocxCompilerBookmark* p_parent,
+                const string& p_name,
+                size_t p_id,
+                xercesc::DOMElement* p_startNode);
 
-		void normalize();
-		
-		void setGroupId	( size_t p_groupId );
-		void setEndNode	( xercesc::DOMElement* p_node );
-		void insertChild( DocxCompilerBookmark* p_bookmark );
+        virtual ~DocxCompilerBookmark();
 
-		string								getName() const;
-		size_t								getId() const;
-		size_t								getGroupId() const;
-		xercesc::DOMElement*				getStartNode() const;
-		xercesc::DOMElement*				getEndNode() const;
-		DocxCompilerBookmark*				getParent() const;
-		const list<DocxCompilerBookmark*>*	getChildren() const;
+        void normalize();
 
-	protected:
+        void setGroupId(size_t p_groupId);
+        void setEndNode(xercesc::DOMElement* p_node);
+        void insertChild(DocxCompilerBookmark* p_bookmark);
 
-	private:
-		DocxCompilerBookmark( const DocxCompilerBookmark& p_other );
-		DocxCompilerBookmark& operator = ( const DocxCompilerBookmark& p_other );
+        string getName() const;
+        size_t getId() const;
+        size_t getGroupId() const;
+        xercesc::DOMElement* getStartNode() const;
+        xercesc::DOMElement* getEndNode() const;
+        DocxCompilerBookmark* getParent() const;
+        const list<DocxCompilerBookmark*>* getChildren() const;
 
-		DocxCompilerItemFile*		m_itemFile;
-		DocxCompilerBookmark*		m_parent;
-		string						m_name;
+    protected:
 
-		size_t						m_id;
-		size_t						m_groupId;
+    private:
+        DocxCompilerBookmark(const DocxCompilerBookmark& p_other);
+        DocxCompilerBookmark& operator=(const DocxCompilerBookmark& p_other);
 
-		xercesc::DOMElement*		m_startNode;
-		xercesc::DOMElement*		m_endNode;
+        DocxCompilerItemFile* m_itemFile;
+        DocxCompilerBookmark* m_parent;
+        string m_name;
 
-		list<DocxCompilerBookmark*>	m_parents;
-		list<DocxCompilerBookmark*>	m_children;
+        size_t m_id;
+        size_t m_groupId;
 
- 	};
+        xercesc::DOMElement* m_startNode;
+        xercesc::DOMElement* m_endNode;
+
+        list<DocxCompilerBookmark*> m_parents;
+        list<DocxCompilerBookmark*> m_children;
+
+    };
 };
 
 #endif

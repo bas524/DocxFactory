@@ -28,13 +28,13 @@
 
 
 #if defined( __unix__ ) || defined( SWIG )
-	#define DOCXFACTORY_DLL
+#define DOCXFACTORY_DLL
 #else
-	#ifdef  DOCXFACTORY_DLL_EXPORT
-	#define DOCXFACTORY_DLL __declspec(dllexport)
-	#else
-	#define DOCXFACTORY_DLL __declspec(dllimport)
-	#endif
+#ifdef  DOCXFACTORY_DLL_EXPORT
+#define DOCXFACTORY_DLL __declspec(dllexport)
+#else
+#define DOCXFACTORY_DLL __declspec(dllimport)
+#endif
 #endif
 
 
@@ -54,34 +54,33 @@ using ::rtl::OUStringToOString;
 
 
 
-namespace DocxFactory
-{
-	class UnoUtilImpl : public UnoUtil
-	{
-	public:
-		DOCXFACTORY_DLL UnoUtilImpl();
-		DOCXFACTORY_DLL virtual ~UnoUtilImpl();
+namespace DocxFactory {
 
-		DOCXFACTORY_DLL virtual void saveAs	( const string& p_importFile,	const string& p_exportFile );
-		DOCXFACTORY_DLL virtual void print	( const string& p_fileName,		const string& p_printerName, int p_copyCnt );
+    class UnoUtilImpl : public UnoUtil {
+    public:
+        DOCXFACTORY_DLL UnoUtilImpl();
+        DOCXFACTORY_DLL virtual ~UnoUtilImpl();
 
-	protected:
+        DOCXFACTORY_DLL virtual void saveAs(const string& p_importFile, const string& p_exportFile);
+        DOCXFACTORY_DLL virtual void print(const string& p_fileName, const string& p_printerName, int p_copyCnt);
 
-	private:
-		UnoUtilImpl( const UnoUtilImpl& p_other );
-		UnoUtilImpl& operator = ( const UnoUtilImpl& p_other );
+    protected:
 
-		Reference<XComponentContext> connect();
-		Reference<XComponent> openDoc( Reference<XComponentContext> p_xContext, const string& p_fileName );
+    private:
+        UnoUtilImpl(const UnoUtilImpl& p_other);
+        UnoUtilImpl& operator=(const UnoUtilImpl& p_other);
 
-		void	closeDoc	( Reference<XComponent> p_xComponentDoc );
-		void	saveDocAs	( Reference<XComponent> p_xComponentDoc, const string& p_fileName );
-		void	printDoc	( Reference<XComponent> p_xComponentDoc, const string& p_printerName, int p_copyCnt );
-		string	detectFamily( Reference<XComponent> p_xComponentDoc ); 
+        Reference<XComponentContext> connect();
+        Reference<XComponent> openDoc(Reference<XComponentContext> p_xContext, const string& p_fileName);
 
-		OUString fileNameToAbsoluteFileUrl( const string& p_fileName );
+        void closeDoc(Reference<XComponent> p_xComponentDoc);
+        void saveDocAs(Reference<XComponent> p_xComponentDoc, const string& p_fileName);
+        void printDoc(Reference<XComponent> p_xComponentDoc, const string& p_printerName, int p_copyCnt);
+        string detectFamily(Reference<XComponent> p_xComponentDoc);
 
-	};
+        OUString fileNameToAbsoluteFileUrl(const string& p_fileName);
+
+    };
 };
 
 #ifdef DOCXFACTORY_DLL

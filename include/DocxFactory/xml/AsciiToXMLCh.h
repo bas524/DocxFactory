@@ -18,27 +18,25 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class AsciiToXMLCh
-	{
-	public:
-		AsciiToXMLCh( const string& p_str );
-		operator XMLCh*();
+    class AsciiToXMLCh {
+    public:
+        AsciiToXMLCh(const string& p_str);
+        operator XMLCh*();
 
-		virtual ~AsciiToXMLCh();
+        virtual ~AsciiToXMLCh();
 
-	protected:
+    protected:
 
-	private:
-		AsciiToXMLCh( const AsciiToXMLCh& p_other );
-		AsciiToXMLCh operator = ( const AsciiToXMLCh& p_other );
+    private:
+        AsciiToXMLCh(const AsciiToXMLCh& p_other);
+        AsciiToXMLCh operator=(const AsciiToXMLCh& p_other);
 
-		XMLCh* m_xmlCh;
+        XMLCh* m_xmlCh;
 
-	};
+    };
 };
 
 #endif

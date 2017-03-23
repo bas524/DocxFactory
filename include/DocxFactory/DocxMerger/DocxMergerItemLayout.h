@@ -8,38 +8,37 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnzipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteItem;
-	class DocxMergerItemGroup;
-	class DocxMergerItemLayout
-	{
-	public:
-		~DocxMergerItemLayout();
+    class DocxMergerPasteItem;
+    class DocxMergerItemGroup;
 
-		static DocxMergerItemLayout* deserializeItemLayout( UnzipFile* p_unzipFile );
-		void link( UnzipFile* p_unzipFile );
+    class DocxMergerItemLayout {
+    public:
+        ~DocxMergerItemLayout();
 
-		double calcTrCnt( DocxMergerPasteItem* p_pasteItem ) const;
+        static DocxMergerItemLayout* deserializeItemLayout(UnzipFile* p_unzipFile);
+        void link(UnzipFile* p_unzipFile);
 
-	protected:
+        double calcTrCnt(DocxMergerPasteItem* p_pasteItem) const;
 
-	private:
-		DocxMergerItemLayout();
-		DocxMergerItemLayout( const DocxMergerItemLayout& p_other );
-		DocxMergerItemLayout& operator = ( const DocxMergerItemLayout& p_other );
+    protected:
 
-		void deserialize( UnzipFile* p_unzipFile );
+    private:
+        DocxMergerItemLayout();
+        DocxMergerItemLayout(const DocxMergerItemLayout& p_other);
+        DocxMergerItemLayout& operator=(const DocxMergerItemLayout& p_other);
 
-		double													m_fixedTrCnt;
-		list<list<pair<unsigned short, DocxMergerItemLayout*>>>	m_trList;
-		list<DocxMergerItemGroup*>								m_childItemGroups;
+        void deserialize(UnzipFile* p_unzipFile);
 
-	};
+        double m_fixedTrCnt;
+        list<list<pair<unsigned short, DocxMergerItemLayout*>>> m_trList;
+        list<DocxMergerItemGroup*> m_childItemGroups;
+
+    };
 };
 
 #endif

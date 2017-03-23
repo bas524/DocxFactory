@@ -8,25 +8,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidItemNameException : public WordProcessingException
-	{
-	public:
-		InvalidItemNameException(
-			const string&	p_itemName,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidItemNameException : public WordProcessingException {
+    public:
+        InvalidItemNameException(
+                const string& p_itemName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidItemNameException() throw();
+        virtual ~InvalidItemNameException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

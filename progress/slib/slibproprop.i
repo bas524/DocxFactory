@@ -26,43 +26,46 @@
 
 /* defines a "99.9x" formatted proversion preprocessor so "09.1d" can be compared with "10.0b" */
 
-&if index( proversion, "." ) = 2 &then
+&if index(proversion, ".") = 2 & then
 
-    &global pro_xProversion '0' + proversion
+        & global pro_xProversion '0' + proversion
 
-&else
+        & else
     &global pro_xProversion proversion
 
-&endif
+        & endif
 
 
 
-&if {&pro_xProversion} >= "10.1b" &then
+        &if {
+    &pro_xProversion
+}
+>= "10.1b" & then
 
-    &global pro_xBigInt int64
+        &global pro_xBigInt int64
 
-&else
+        & else
 
     &global pro_xBigInt int
 
-&endif
+        &endif
 
 
 
-define new global shared var pro_cDlc               as char no-undo.
-define new global shared var pro_cProCfg            as char no-undo.
-define new global shared var pro_cWorkDir           as char no-undo.
-define new global shared var pro_cTempFullDir       as char no-undo.
-define new global shared var pro_cFullPropath       as char no-undo.
-define new global shared var pro_cFullProversion    as char no-undo.
+        define new global shared var pro_cDlc as char no - undo.
+        define new global shared var pro_cProCfg as char no - undo.
+        define new global shared var pro_cWorkDir as char no - undo.
+        define new global shared var pro_cTempFullDir as char no - undo.
+        define new global shared var pro_cFullPropath as char no - undo.
+        define new global shared var pro_cFullProversion as char no - undo.
 
 
 
-define temp-table pro_ttLine no-undo
+        define temp - table pro_ttLine no - undo
 
-    field iLineNum  as int
-    field cLine     as char
-    
-    index iLineNum is primary unique
-          iLineNum.
+        field iLineNum as int
+        field cLine as char
+
+        index iLineNum is primary unique
+        iLineNum.
 

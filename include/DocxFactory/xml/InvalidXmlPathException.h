@@ -6,24 +6,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidXmlPathException : public XmlException
-	{
-	public:
-		InvalidXmlPathException(
-			const string&	p_file,
-			const int		p_line );
+    class InvalidXmlPathException : public XmlException {
+    public:
+        InvalidXmlPathException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidXmlPathException() throw();
+        virtual ~InvalidXmlPathException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -5,20 +5,15 @@
 
 using namespace DocxFactory;
 
-
-
-XmlInitializer::XmlInitializer()
-{
-	xercesc::XMLPlatformUtils::Initialize();
+XmlInitializer::XmlInitializer() {
+  xercesc::XMLPlatformUtils::Initialize();
 } // c'tor
 
-XmlInitializer::~XmlInitializer()
-{
-	xercesc::XMLPlatformUtils::Terminate();
+XmlInitializer::~XmlInitializer() {
+  xercesc::XMLPlatformUtils::Terminate();
 } // d'tor
 
-XmlInitializer& XmlInitializer::getInstance()
-{
-	static XmlInitializer s_instance;
-	return s_instance;
+XmlInitializer& XmlInitializer::getInstance() {
+  static XmlInitializer s_instance;
+  return s_instance;
 } // getInstance

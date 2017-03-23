@@ -6,55 +6,54 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerAltChunkField : public DocxMergerField
-	{
-	public:
-		enum AltChunkType
-		{
-			TYPE_MHTML,
-			TYPE_HTML,
-			TYPE_RTF
-		};
+    class DocxMergerPasteFieldGroup;
 
-		DocxMergerAltChunkField();
-		virtual ~DocxMergerAltChunkField();
+    class DocxMergerAltChunkField : public DocxMergerField {
+    public:
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+        enum AltChunkType {
+            TYPE_MHTML,
+            TYPE_HTML,
+            TYPE_RTF
+        };
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
+        DocxMergerAltChunkField();
+        virtual ~DocxMergerAltChunkField();
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-		AltChunkType getAltChunkType() const;
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-	protected:
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-	private:
-		DocxMergerAltChunkField( const DocxMergerAltChunkField& p_other );
-		DocxMergerAltChunkField operator = ( const DocxMergerAltChunkField& p_other );
+        AltChunkType getAltChunkType() const;
 
-		void insertAltChunk		( const string* p_value, AltChunkType p_type, string& p_fileRId );
-		void createPasteField	( const string& p_value, AltChunkType p_type );
+    protected:
 
-		void getMultiPart		( const string& p_str, string& m_multiPart );
-		bool getAttr			( const string& p_str, const size_t& p_len, size_t& p_pos, string& p_name, string& p_value );
-		bool getWord			( const string& p_str, const size_t& p_len, size_t& p_pos, string& p_keyword );
-		bool skipSpace			( const string& p_str, const size_t& p_len, size_t& p_pos );
+    private:
+        DocxMergerAltChunkField(const DocxMergerAltChunkField& p_other);
+        DocxMergerAltChunkField operator=(const DocxMergerAltChunkField& p_other);
 
-		AltChunkType	m_altChunkType;
-		string			m_altChunkString1;
-		string			m_altChunkString2;
+        void insertAltChunk(const string* p_value, AltChunkType p_type, string& p_fileRId);
+        void createPasteField(const string& p_value, AltChunkType p_type);
 
-	};
+        void getMultiPart(const string& p_str, string& m_multiPart);
+        bool getAttr(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_name, string& p_value);
+        bool getWord(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_keyword);
+        bool skipSpace(const string& p_str, const size_t& p_len, size_t& p_pos);
+
+        AltChunkType m_altChunkType;
+        string m_altChunkString1;
+        string m_altChunkString2;
+
+    };
 };
 
 #endif

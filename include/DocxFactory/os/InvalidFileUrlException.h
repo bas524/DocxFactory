@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidFileUrlException : public OsException
-	{
-	public:
-		InvalidFileUrlException(
-			const string&	p_url,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidFileUrlException : public OsException {
+    public:
+        InvalidFileUrlException(
+                const string& p_url,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidFileUrlException() throw();
+        virtual ~InvalidFileUrlException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

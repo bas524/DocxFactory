@@ -13,33 +13,24 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerChartValues::DocxMergerChartValues()
-{
+DocxMergerChartValues::DocxMergerChartValues() {
 
 } // c'tor
 
-DocxMergerChartValues::~DocxMergerChartValues()
-{
+DocxMergerChartValues::~DocxMergerChartValues() {
 
 } // d'tor
 
+void DocxMergerChartValues::setValue(DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category, const string& p_value) {
+  double l_value = LocaleFunc::strToNum(p_value);
 
-
-void DocxMergerChartValues::setValue( DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category, const string& p_value )
-{
-	double l_value = LocaleFunc::strToNum( p_value );
-
-	p_pasteValues ->setValue( p_series, p_category, l_value );
+  p_pasteValues ->setValue(p_series, p_category, l_value);
 } // setValue
 
-void DocxMergerChartValues::setValue( DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category, double p_value )
-{
-	p_pasteValues ->setValue( p_series, p_category, p_value );
+void DocxMergerChartValues::setValue(DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category, double p_value) {
+  p_pasteValues ->setValue(p_series, p_category, p_value);
 } // setValue
 
-string DocxMergerChartValues::getValue( DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category ) const
-{
-	return StrFunc::intToStr( ( *p_pasteValues ->getValues() )[ p_series ][ p_category ] , 3 );
+string DocxMergerChartValues::getValue(DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category) const {
+  return StrFunc::intToStr((*p_pasteValues ->getValues())[ p_series ][ p_category ], 3);
 } // getValue

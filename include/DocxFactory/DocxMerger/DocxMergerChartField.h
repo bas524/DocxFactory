@@ -8,80 +8,77 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
-	class DocxMergerChartField : public DocxMergerField
-	{
-	public:
-		enum ChartType
-		{
-			CHART_SERIES,
-			CHART_SINGLE_SERIES,
-			CHART_FIXED_SERIES,
-			CHART_X_Y,
-			CHART_X_Y_SIZE
-		};
+    class ZipFile;
+    class UnzipFile;
 
-		DocxMergerChartField( ChartType p_chartType );
-		virtual ~DocxMergerChartField();
+    class DocxMergerChartField : public DocxMergerField {
+    public:
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+        enum ChartType {
+            CHART_SERIES,
+            CHART_SINGLE_SERIES,
+            CHART_FIXED_SERIES,
+            CHART_X_Y,
+            CHART_X_Y_SIZE
+        };
 
-		virtual void setChartValue( const string&	p_series, const string&	p_category, double p_value );
-		virtual void setChartValue( const string&	p_series, double		p_category, double p_value );
-		virtual void setChartValue( double			p_series, double		p_category, double p_value );
+        DocxMergerChartField(ChartType p_chartType);
+        virtual ~DocxMergerChartField();
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-		ChartType												getChartType() const;
-		string													getChartMlPrefix() const;
-		string													getRelMlPrefix() const;
-		const list<pair<string, char>>*							getDrawingStrings() const;
-		const list<std::tuple<string, string, string, bool>>*	getChartRelationships() const;
+        virtual void setChartValue(const string& p_series, const string& p_category, double p_value);
+        virtual void setChartValue(const string& p_series, double p_category, double p_value);
+        virtual void setChartValue(double p_series, double p_category, double p_value);
 
-	protected:
-		void saveChart( ZipFile* p_zipFile, const string* p_value );
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-		template <class Field_T>
-		Field_T* createPasteChartField();
+        ChartType getChartType() const;
+        string getChartMlPrefix() const;
+        string getRelMlPrefix() const;
+        const list<pair<string, char>>*getDrawingStrings() const;
+        const list<std::tuple<string, string, string, bool>>*getChartRelationships() const;
 
-		ChartType											m_chartType;
-		string												m_chartMlPrefix;
-		string												m_relMlPrefix;
-		list<pair<string, char>>							m_drawingStrings;
-		list<std::tuple<string, string, string, bool>>		m_chartRelationships; // id, type, part/external path, external
+    protected:
+        void saveChart(ZipFile* p_zipFile, const string* p_value);
 
-	private:
-		DocxMergerChartField( const DocxMergerChartField& p_other );
-		DocxMergerChartField& operator = ( const DocxMergerChartField& p_other );
+        template <class Field_T>
+        Field_T* createPasteChartField();
 
-	};
+        ChartType m_chartType;
+        string m_chartMlPrefix;
+        string m_relMlPrefix;
+        list<pair<string, char>> m_drawingStrings;
+        list<std::tuple<string, string, string, bool>> m_chartRelationships; // id, type, part/external path, external
 
-	template <class Field_T>
-	Field_T* DocxMergerChartField::createPasteChartField()
-	{
-		DocxMergerPasteFieldGroup*										l_group;
-		map<DocxMergerField*, DocxMergerPasteField*>::const_iterator	l_iterator;
-		Field_T*														l_pasteField;
+    private:
+        DocxMergerChartField(const DocxMergerChartField& p_other);
+        DocxMergerChartField& operator=(const DocxMergerChartField& p_other);
 
-		l_group		= m_itemFile ->getPasteFieldGroup();
-		l_iterator	= l_group ->getPasteFieldsByField() ->find( this );
+    };
 
-		if( l_iterator != l_group ->getPasteFieldsByField() ->cend() )
-			l_pasteField = ( Field_T* ) l_iterator ->second;
+    template <class Field_T>
+    Field_T* DocxMergerChartField::createPasteChartField() {
+        DocxMergerPasteFieldGroup* l_group;
+        map<DocxMergerField*, DocxMergerPasteField*>::const_iterator l_iterator;
+        Field_T* l_pasteField;
 
-		else
-		{
-			l_pasteField = new Field_T( this );
-			l_group ->insertPasteField( this, l_pasteField );
-		}
+        l_group = m_itemFile ->getPasteFieldGroup();
+        l_iterator = l_group ->getPasteFieldsByField() ->find(this);
 
-		return l_pasteField;
-	} // createPasteField
+        if (l_iterator != l_group ->getPasteFieldsByField() ->cend())
+            l_pasteField = (Field_T*) l_iterator ->second;
+
+        else {
+            l_pasteField = new Field_T(this);
+            l_group ->insertPasteField(this, l_pasteField);
+        }
+
+        return l_pasteField;
+    } // createPasteField
 };
 
 #endif

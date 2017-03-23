@@ -6,39 +6,38 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class	ZipFile;
-	class	UnzipFile;
-	struct	DateTimeFormat;
+    class ZipFile;
+    class UnzipFile;
+    struct DateTimeFormat;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerDateTimeField : public DocxMergerField
-	{
-	public:
-		DocxMergerDateTimeField();
-		virtual ~DocxMergerDateTimeField();
+    class DocxMergerPasteFieldGroup;
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+    class DocxMergerDateTimeField : public DocxMergerField {
+    public:
+        DocxMergerDateTimeField();
+        virtual ~DocxMergerDateTimeField();
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-	protected:
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-	private:
-		DocxMergerDateTimeField( const DocxMergerDateTimeField& p_other );
-		DocxMergerDateTimeField operator = ( const DocxMergerDateTimeField );
+    protected:
 
-		void createPasteField( double p_time, short p_timeZone );
+    private:
+        DocxMergerDateTimeField(const DocxMergerDateTimeField& p_other);
+        DocxMergerDateTimeField operator=(const DocxMergerDateTimeField);
 
-		list<DateTimeFormat*>	m_dateTimeFormat;
+        void createPasteField(double p_time, short p_timeZone);
 
-	};
+        list<DateTimeFormat*> m_dateTimeFormat;
+
+    };
 };
 
 #endif

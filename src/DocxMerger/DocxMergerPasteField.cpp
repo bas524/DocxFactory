@@ -5,14 +5,10 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerPasteField::DocxMergerPasteField( DocxMergerField* p_field )
-{
-	m_field = p_field;
+DocxMergerPasteField::DocxMergerPasteField(DocxMergerField* p_field) {
+  m_field = p_field;
 } // c'tor
 
-DocxMergerPasteField::~DocxMergerPasteField()
-{
+DocxMergerPasteField::~DocxMergerPasteField() {
 
 } // d'tor

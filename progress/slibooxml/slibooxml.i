@@ -11,18 +11,22 @@
 
 
 
-&if defined( xSlibOoXml ) = 0 &then
+&if defined(xSlibOoXml) = 0 & then
+{slib / start - slib.i "'slibooxml/slibooxml.p'"}
 
-    {slib/start-slib.i "'slibooxml/slibooxml.p'"}
+    {
+        slibooxml / slibooxmlprop.i
+    }
 
-    {slibooxml/slibooxmlprop.i}
+run initializeConvertPrint(
+        input{&ooxml_xOpenOfficeDir},
+{
+    &ooxml_xOpenOfficePort
+},
+input{&ooxml_xOdfConverterExec},
+input{&ooxml_xPortraitTemplate},
+input{&ooxml_xLandscapeTemplate}).
 
-    run initializeConvertPrint (
-        input {&ooxml_xOpenOfficeDir}, {&ooxml_xOpenOfficePort},
-        input {&ooxml_xOdfConverterExec},
-        input {&ooxml_xPortraitTemplate},
-        input {&ooxml_xLandscapeTemplate} ).
-    
-    &global xSlibOoXml defined
+&global xSlibOoXml defined
 
 &endif /* defined = 0 */

@@ -24,24 +24,24 @@
 
 
 
-&if "{&opsys}" begins "win" &then
+&if "{&opsys}" begins "win" & then
 
-    &global os_xDirSeparator '~\'
+        & global os_xDirSeparator '~\'
 
-&else
+        & else
 
     &global os_xDirSeparator '/'
 
-&endif
+        & endif
 
 
 
-define temp-table os_ttFile no-undo
+        define temp - table os_ttFile no - undo
 
-    field cFullPath as char
-    field cFileName as char
-    field cAttrList as char
+        field cFullPath as char
+        field cFileName as char
+        field cAttrList as char
 
-    index cFullPath is primary unique
-          cFullPath.
+        index cFullPath is primary unique
+        cFullPath.
 

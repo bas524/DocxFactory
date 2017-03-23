@@ -4,25 +4,23 @@
 
 #include "DocxFactory/parser/ParserException.h"
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnclosedBracketException : public ParserException
-	{
-	public:
-		UnclosedBracketException(
-			const string&	p_str,
-			const string&	p_file,
-			const int		p_line );
+    class UnclosedBracketException : public ParserException {
+    public:
+        UnclosedBracketException(
+                const string& p_str,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~UnclosedBracketException() throw();
+        virtual ~UnclosedBracketException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

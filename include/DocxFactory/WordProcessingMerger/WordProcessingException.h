@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class WordProcessingException : public DocxFactoryException
-	{
-	public:
-		virtual ~WordProcessingException() throw();
+    class WordProcessingException : public DocxFactoryException {
+    public:
+        virtual ~WordProcessingException() throw ();
 
-	protected:
-		WordProcessingException( const string& p_file, int p_line );
+    protected:
+        WordProcessingException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerException : public DocxFactoryException
-	{
-	public:
-		virtual ~DocxMergerException() throw();
+    class DocxMergerException : public DocxFactoryException {
+    public:
+        virtual ~DocxMergerException() throw ();
 
-	protected:
-		DocxMergerException( const string& p_file, int p_line );
+    protected:
+        DocxMergerException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

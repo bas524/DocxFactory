@@ -4,14 +4,10 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-ConsoleUsageException::ConsoleUsageException( const string& p_file, int p_line ) : ConsoleException( p_file, p_line )
-{
+ConsoleUsageException::ConsoleUsageException(const string& p_file, int p_line) : ConsoleException(p_file, p_line) {
 
 } // c'tor
 
-ConsoleUsageException::~ConsoleUsageException() throw()
-{
+ConsoleUsageException::~ConsoleUsageException() throw () {
 
 } // d'tor

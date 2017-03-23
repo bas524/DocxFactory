@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class FileNotFoundException : public OsException
-	{
-	public:
-		FileNotFoundException(
-			const string&	p_fileName,
-			const string&	p_file,
-			const int		p_line );
+    class FileNotFoundException : public OsException {
+    public:
+        FileNotFoundException(
+                const string& p_fileName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~FileNotFoundException() throw();
+        virtual ~FileNotFoundException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

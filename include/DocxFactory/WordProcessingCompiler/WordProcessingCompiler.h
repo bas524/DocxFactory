@@ -6,33 +6,31 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class WordProcessingCompiler
-	{
-	public:
-		static WordProcessingCompiler& getInstance();
-		virtual ~WordProcessingCompiler();
+    class WordProcessingCompiler {
+    public:
+        static WordProcessingCompiler& getInstance();
+        virtual ~WordProcessingCompiler();
 
-		void compile( const string& p_srcFileName, const string& p_dstFileName );
+        void compile(const string& p_srcFileName, const string& p_dstFileName);
 
-		// os functions
-		void setTempDir();
-		void setTempDir( const string& p_dir );
+        // os functions
+        void setTempDir();
+        void setTempDir(const string& p_dir);
 
-		string getWorkDir() const;
-		string getTempDir() const;
+        string getWorkDir() const;
+        string getTempDir() const;
 
-	protected:
+    protected:
 
-	private:
-		WordProcessingCompiler();
-		WordProcessingCompiler( const WordProcessingCompiler& p_other );
-		WordProcessingCompiler& operator = ( const WordProcessingCompiler& p_other );
+    private:
+        WordProcessingCompiler();
+        WordProcessingCompiler(const WordProcessingCompiler& p_other);
+        WordProcessingCompiler& operator=(const WordProcessingCompiler& p_other);
 
-	};
+    };
 };
 
 #endif

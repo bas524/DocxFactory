@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class OpcException : public DocxFactoryException
-	{
-	public:
-		virtual ~OpcException() throw();
+    class OpcException : public DocxFactoryException {
+    public:
+        virtual ~OpcException() throw ();
 
-	protected:
-		OpcException( const string& p_file, int p_line );
+    protected:
+        OpcException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

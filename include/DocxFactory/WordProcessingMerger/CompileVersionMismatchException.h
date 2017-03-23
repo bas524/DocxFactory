@@ -8,24 +8,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class CompileVersionMismatchException : public WordProcessingException
-	{
-	public:
-		CompileVersionMismatchException(
-			const string&	p_file,
-			const int		p_line );
+    class CompileVersionMismatchException : public WordProcessingException {
+    public:
+        CompileVersionMismatchException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~CompileVersionMismatchException() throw();
+        virtual ~CompileVersionMismatchException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

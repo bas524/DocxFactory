@@ -17,73 +17,72 @@ class DOMDocument;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class OpcPackage;
-	class OpcRelationships;
-	class OpcImageFile;
-	class OpcPart
-	{
-	public:
-		enum PartChangeStatus
-		{
-			PART_NOT_CHANGED,
-			PART_CHANGED_IN_DOM,
-			PART_CHANGED_IN_IMAGE_FILE,
-			PART_CHANGED_IN_BUFFER,
-			PART_SAVED
-		};
+    class OpcPackage;
+    class OpcRelationships;
+    class OpcImageFile;
 
-		OpcPart( OpcPackage* p_package, const string& p_fullPath );
-		virtual ~OpcPart();
+    class OpcPart {
+    public:
 
-		void loadDoc();
-		void save();
-		void updateRefCnt( int p_refCnt );
+        enum PartChangeStatus {
+            PART_NOT_CHANGED,
+            PART_CHANGED_IN_DOM,
+            PART_CHANGED_IN_IMAGE_FILE,
+            PART_CHANGED_IN_BUFFER,
+            PART_SAVED
+        };
 
-		void setDoc			( xercesc::DOMDocument* p_doc );
-		void setImageFile	( OpcImageFile* p_imageFile );
-		void setBuf			( const char* p_buf, size_t p_bufSize );
-		void setChangeStatus( PartChangeStatus p_changeStatus );
+        OpcPart(OpcPackage* p_package, const string& p_fullPath);
+        virtual ~OpcPart();
 
-		OpcImageFile* insertImageFile(
-			OpcImageFile::TargetMode	p_targetMode,
-			const string&				p_fileName,
-			const string&				p_fileExt,
-			const string&				p_fileUrl,
-			string&						p_fileRId );
+        void loadDoc();
+        void save();
+        void updateRefCnt(int p_refCnt);
 
-		OpcPackage*				getPackage() const;
-		string					getFullPath() const;
-		OpcRelationships*		getRelationships() const;
+        void setDoc(xercesc::DOMDocument* p_doc);
+        void setImageFile(OpcImageFile* p_imageFile);
+        void setBuf(const char* p_buf, size_t p_bufSize);
+        void setChangeStatus(PartChangeStatus p_changeStatus);
 
-		xercesc::DOMDocument*	getDoc() const;
-		OpcImageFile*			getImageFile() const;
-		const char*				getBuf( size_t& p_bufSize ) const;
-		PartChangeStatus		getChangeStatus() const;
+        OpcImageFile* insertImageFile(
+                OpcImageFile::TargetMode p_targetMode,
+                const string& p_fileName,
+                const string& p_fileExt,
+                const string& p_fileUrl,
+                string& p_fileRId);
 
-	protected:
+        OpcPackage* getPackage() const;
+        string getFullPath() const;
+        OpcRelationships* getRelationships() const;
 
-	private:
-		OpcPart( const OpcPart& p_other );
-		OpcPart operator = ( const OpcPart& p_other );
+        xercesc::DOMDocument* getDoc() const;
+        OpcImageFile* getImageFile() const;
+        const char* getBuf(size_t& p_bufSize) const;
+        PartChangeStatus getChangeStatus() const;
 
-		void destroy();
+    protected:
 
-		OpcPackage*				m_package;
-		string					m_fullPath;
-		OpcRelationships*		m_relationships;
-		int						m_refCnt;
+    private:
+        OpcPart(const OpcPart& p_other);
+        OpcPart operator=(const OpcPart& p_other);
 
-		xercesc::DOMDocument*	m_doc;
-		OpcImageFile*			m_imageFile;
-		const char*				m_buf;
-		size_t					m_bufSize;
-		PartChangeStatus		m_changeStatus;
+        void destroy();
 
-	};
+        OpcPackage* m_package;
+        string m_fullPath;
+        OpcRelationships* m_relationships;
+        int m_refCnt;
+
+        xercesc::DOMDocument* m_doc;
+        OpcImageFile* m_imageFile;
+        const char* m_buf;
+        size_t m_bufSize;
+        PartChangeStatus m_changeStatus;
+
+    };
 };
 
 #endif

@@ -11,6 +11,15 @@
 
 
 
-function getSubPath     returns char ( pcPath as char, pcFrom as char, pcTo as char ) {1}.
-function normalizePath  returns char ( pcPath as char ) {1}.
-function isRelativePath returns log  ( pcPath as char ) {1}.
+function getSubPath returns char ( pcPath as char, pcFrom as char, pcTo as char) {
+    1
+}
+.
+function normalizePath returns char ( pcPath as char) {
+    1
+}
+.
+function isRelativePath returns log(pcPath as char) {
+    1
+}
+.

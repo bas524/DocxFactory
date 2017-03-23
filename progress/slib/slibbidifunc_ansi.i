@@ -24,282 +24,317 @@
 
 
 
-&global xFunc {1}
+&global xFunc
+{
+    1
+}
 
-&if "{2}" = "Cur" &then
+&if "{2}" = "Cur" & then
 
-    &global xCursor yes
+        & global xCursor yes
 
-&else
+        & else
 
     &global xCursor no
 
+        & endif
+
+
+
+        &if "{&xFunc}" = "Log2VisLtr" & then /* default Log2Vis function (display is ltr afaik) */
+
+        & scoped xLangMatch eng /* language with matching read and display directions */
+        & scoped xLangFlip heb /* language with opposite read and display directions */
+
+        & scoped xRead ltr /* read direction */
+        & scoped xDispMatch ltr /* matching language display direction */
+        & scoped xDispFlip rtl /* opposite language display direction */
+        & scoped xDispNum ltr /* numbers display direction */
+
+
+
+        & elseif "{&xFunc}" = "Log2VisRtl" & then
+
+        & scoped xLangMatch heb
+        & scoped xLangFlip eng
+
+        & scoped xRead ltr
+        & scoped xDispMatch rtl
+        & scoped xDispFlip ltr
+        & scoped xDispNum ltr
+
+
+
+        /* reverse process */
+
+        & elseif "{&xFunc}" = "VisLtr2Log" & then /* default Vis2Log function (display is ltr afaik) */
+
+        & scoped xLangMatch eng
+        & scoped xLangFlip heb
+
+        & scoped xRead ltr
+        & scoped xDispMatch ltr
+        & scoped xDispFlip rtl
+        & scoped xDispNum ltr
+
+
+
+        & elseif "{&xFunc}" = "VisRtl2Log" & then
+
+        & scoped xLangMatch heb
+        & scoped xLangFlip eng
+
+        & scoped xRead rtl
+        & scoped xDispMatch ltr
+        & scoped xDispFlip rtl
+        & scoped xDispNum rtl
+
+        & endif
+
+
+
+        /* because the function is used in highly repetitive operations and queries and because of the 
+           relative high cost of 4gl function and procedure calls the function was designed without 
+           sub function calls include files were used instead. */
+
+        &if not {
+        &xCursor
+    }
+    &then
+
+function bidi_{&xFunc} returns char ( pcStr as char) :
+
+& else
+
+    function bidi_ {
+    &xFunc
+}
+Cur returns char ( pcStr as char, piCur as int, output piRetCur as int) :
+
 &endif
 
+define var cRetVal as char no - undo.
+define var iLen as int no - undo.
+define var iPos as int no - undo.
+define var ch as char no - undo.
 
+/* slibbidiflip_ansi.i variables */
 
-&if     "{&xFunc}" = "Log2VisLtr" &then /* default Log2Vis function (display is ltr afaik) */
+define var cFlipRetVal as char no - undo.
+define var cFlipStr as char no - undo.
+define var iFlipPos as int no - undo.
 
-    &scoped xLangMatch  eng /* language with matching read and display directions */
-    &scoped xLangFlip   heb /* language with opposite read and display directions */
+&if {
+    &xCursor
+}
+&then
 
-    &scoped xRead       ltr /* read direction */
-    &scoped xDispMatch  ltr /* matching language display direction */
-    &scoped xDispFlip   rtl /* opposite language display direction */
-    &scoped xDispNum    ltr /* numbers display direction */
+define var iFlipCur as int no - undo.
+        define var iFlipRetCur as int no - undo.
 
+        &endif
 
+        /* slibbidinum_ansi.i variables */
 
-&elseif "{&xFunc}" = "Log2VisRtl" &then
+        define var cNumRetVal as char no - undo.
 
-    &scoped xLangMatch  heb
-    &scoped xLangFlip   eng
+        &if {
+    &xCursor
+}
+&then
 
-    &scoped xRead       ltr
-    &scoped xDispMatch  rtl
-    &scoped xDispFlip   ltr
-    &scoped xDispNum    ltr
+define var iNumRetCur as int no - undo.
 
+        &endif
 
-
-/* reverse process */
-
-&elseif "{&xFunc}" = "VisLtr2Log" &then /* default Vis2Log function (display is ltr afaik) */
-
-    &scoped xLangMatch  eng
-    &scoped xLangFlip   heb
-
-    &scoped xRead       ltr
-    &scoped xDispMatch  ltr
-    &scoped xDispFlip   rtl
-    &scoped xDispNum    ltr
-
-
-
-&elseif "{&xFunc}" = "VisRtl2Log" &then
-
-    &scoped xLangMatch  heb
-    &scoped xLangFlip   eng
-
-    &scoped xRead       rtl
-    &scoped xDispMatch  ltr
-    &scoped xDispFlip   rtl
-    &scoped xDispNum    rtl
-
-&endif
+if session : cpinternal <> "iso8859-8"
+        and session : cpinternal <> "ibm862" then return pcStr.
 
 
 
-/* because the function is used in highly repetitive operations and queries and because of the 
-   relative high cost of 4gl function and procedure calls the function was designed without 
-   sub function calls include files were used instead. */
+        assign
+        iLen = length(pcStr)
+    iPos =
 
-&if not {&xCursor} &then
+        &if "{&xRead}" = "ltr" & then 1
+            & elseif "{&xRead}" = "rtl" & then iLen
+            & endif
 
-function bidi_{&xFunc}      returns char ( pcStr as char ):
+            cRetVal = ""
 
-&else
+            & if {
+            &xCursor
+        }
+        &then piRetCur = ? &endif.
 
-function bidi_{&xFunc}Cur   returns char ( pcStr as char, piCur as int, output piRetCur as int ):
+        repeat while
 
-&endif
+    &if "{&xRead}" = "ltr" & then iPos <= iLen
+            & elseif "{&xRead}" = "rtl" & then iPos >= 1
+            & endif :
 
-    define var cRetVal      as char no-undo.
-    define var iLen         as int no-undo.
-    define var iPos         as int no-undo.
-    define var ch           as char no-undo.
+            ch = substr(pcStr, iPos, 1).
 
-    /* slibbidiflip_ansi.i variables */
-
-    define var cFlipRetVal  as char no-undo.
-    define var cFlipStr     as char no-undo.
-    define var iFlipPos     as int no-undo.
-
-    &if {&xCursor} &then
-
-    define var iFlipCur     as int no-undo.
-    define var iFlipRetCur  as int no-undo.
-
-    &endif
-
-    /* slibbidinum_ansi.i variables */
-
-    define var cNumRetVal   as char no-undo.
-
-    &if {&xCursor} &then
-
-    define var iNumRetCur   as int no-undo.
-
-    &endif
-
-    if  session:cpinternal <> "iso8859-8"
-    and session:cpinternal <> "ibm862" then return pcStr.
-
-
-
-    assign
-        iLen = length( pcStr )
-        iPos = 
-
-            &if     "{&xRead}" = "ltr" &then 1
-            &elseif "{&xRead}" = "rtl" &then iLen
-            &endif
-
-        cRetVal = ""
-
-        &if {&xCursor} &then piRetCur = ? &endif.
-
-    repeat while
-
-            &if     "{&xRead}" = "ltr" &then iPos <= iLen
-            &elseif "{&xRead}" = "rtl" &then iPos >= 1
-            &endif:
-
-        ch = substr( pcStr, iPos, 1 ).
-
-        if  &if     "{&xLangFlip}" = "heb" &then {slib/slibbidirange.i ch cAlef cTaf}
-            &elseif "{&xLangFlip}" = "eng" &then {slib/slibbidirange.i ch "'a'" "'z'"}
-            &endif
-
-            then do:
-
-            {slib/slibbidiflip_ansi.i}
-
-            &if not {&xCursor} &then
-
-                &if     "{&xDispMatch}" = "ltr" &then cRetVal = cRetVal + cFlipRetVal.
-                &elseif "{&xDispMatch}" = "rtl" &then cRetVal = cFlipRetVal + cRetVal.
+        if &if "{&xLangFlip}" = "heb" & then{slib / slibbidirange.i ch cAlef cTaf}
+                &elseif "{&xLangFlip}" = "eng" & then{slib / slibbidirange.i ch "'a'" "'z'"}
                 &endif
 
-            &else /* not xCursor */
+                then do :
+ {
+                    slib / slibbidiflip_ansi.i
+                }
 
-                &if     "{&xDispMatch}" = "ltr" &then
+&if not {
+    &xCursor
+}
+&then
 
-                    assign
-                        piRetCur    = iFlipRetCur + length( cRetVal )   when iFlipRetCur    <> ? 
+        &if "{&xDispMatch}" = "ltr" & then cRetVal = cRetVal + cFlipRetVal.
+        &elseif "{&xDispMatch}" = "rtl" & then cRetVal = cFlipRetVal + cRetVal.
+        &endif
 
-                        cRetVal     = cRetVal + cFlipRetVal.
+        & else /* not xCursor */
 
-                &elseif "{&xDispMatch}" = "rtl" &then
+    &if "{&xDispMatch}" = "ltr" & then
 
-                    assign
-                        piRetCur    = iFlipRetCur                       when iFlipRetCur    <> ?
-                        piRetCur    = piRetCur + length( cFlipRetVal )  when piRetCur       <> ?
+        assign
+        piRetCur = iFlipRetCur + length(cRetVal) when iFlipRetCur <> ?
 
-                        cRetVal     = cFlipRetVal + cRetVal.
+        cRetVal = cRetVal + cFlipRetVal.
 
-                &endif /* rtl */
+        &elseif "{&xDispMatch}" = "rtl" & then
 
-            &endif /* else */
+        assign
+        piRetCur = iFlipRetCur when iFlipRetCur <> ?
+        piRetCur = piRetCur + length(cFlipRetVal) when piRetCur <> ?
+
+        cRetVal = cFlipRetVal + cRetVal.
+
+        &endif /* rtl */
+
+        & endif /* else */
 
         end. /* xLangFlip */
 
 
 
-        else
-        if {slib/slibbidirange.i ch "'0'" "'9'"}
-        or ( ch = "#" or ch = "$" or ch = "%" )
+else
+    if {
+    slib / slibbidirange.i ch "'0'" "'9'"
+}
+or(ch = "#" or ch = "$" or ch = "%")
 
-        and &if     "{&xRead}" = "ltr" &then iPos < iLen    and {slib/slibbidirange.i "substr( pcStr, iPos + 1, 1 )" "'0'" "'9'"}
-            &elseif "{&xRead}" = "rtl" &then iPos > 1       and {slib/slibbidirange.i "substr( pcStr, iPos - 1, 1 )" "'0'" "'9'"}
-            &endif 
+and &if "{&xRead}" = "ltr" & then iPos < iLen and
+    {
+        slib / slibbidirange.i "substr( pcStr, iPos + 1, 1 )" "'0'" "'9'"
+    }
+&elseif "{&xRead}" = "rtl" & then iPos > 1 and{slib / slibbidirange.i "substr( pcStr, iPos - 1, 1 )" "'0'" "'9'"}
+&endif
 
-            then do:
+then do :
+ {
+    slib / slibbidinum_ansi.i
+}
 
-            {slib/slibbidinum_ansi.i}
+if &if "{&xRead}" = "ltr" & then iPos <= iLen
+            & elseif "{&xRead}" = "rtl" & then iPos >= 1
+            & endif
 
-            if  &if     "{&xRead}" = "ltr" &then iPos <= iLen
-                &elseif "{&xRead}" = "rtl" &then iPos >= 1
-                &endif
+            and &if "{&xLangFlip}" = "heb" & then{slib / slibbidirange.i "substr( pcStr, iPos, 1 )" cAlef cTaf}
+            &elseif "{&xLangFlip}" = "eng" & then{slib / slibbidirange.i "substr( pcStr, iPos, 1 )" "'a'" "'z'"}
+            &endif
 
-            and &if     "{&xLangFlip}" = "heb" &then {slib/slibbidirange.i "substr( pcStr, iPos, 1 )" cAlef cTaf}
-                &elseif "{&xLangFlip}" = "eng" &then {slib/slibbidirange.i "substr( pcStr, iPos, 1 )" "'a'" "'z'"}
-                &endif
+            then do :
+ {
+                slib / slibbidiflip_ansi.i cNumRetVal
+            }
 
-                then do:
+&if not {
+    &xCursor
+}
+&then
 
-                {slib/slibbidiflip_ansi.i cNumRetVal}
+        &if "{&xDispMatch}" = "ltr" & then cRetVal = cRetVal + cFlipRetVal.
+        &elseif "{&xDispMatch}" = "rtl" & then cRetVal = cFlipRetVal + cRetVal.
+        &endif
 
-                &if not {&xCursor} &then
+        & else /* not xCursor */
 
-                    &if     "{&xDispMatch}" = "ltr" &then cRetVal = cRetVal + cFlipRetVal.
-                    &elseif "{&xDispMatch}" = "rtl" &then cRetVal = cFlipRetVal + cRetVal.
-                    &endif
+    &if "{&xDispMatch}" = "ltr" & then
 
-                &else /* not xCursor */
+        assign
+        piRetCur = iFlipRetCur + length(cRetVal) when iFlipRetCur <> ?
 
-                    &if     "{&xDispMatch}" = "ltr" &then
+        cRetVal = cRetVal + cFlipRetVal.
 
-                        assign
-                            piRetCur    = iFlipRetCur + length( cRetVal )   when iFlipRetCur    <> ? 
+        &elseif "{&xDispMatch}" = "rtl" & then
 
-                            cRetVal     = cRetVal + cFlipRetVal.
+        assign
+        piRetCur = iFlipRetCur when iFlipRetCur <> ?
+        piRetCur = piRetCur + length(cFlipRetVal) when piRetCur <> ?
 
-                    &elseif "{&xDispMatch}" = "rtl" &then
+        cRetVal = cFlipRetVal + cRetVal.
 
-                        assign
-                            piRetCur    = iFlipRetCur                       when iFlipRetCur    <> ?
-                            piRetCur    = piRetCur + length( cFlipRetVal )  when piRetCur       <> ?
+        &endif /* rtl */
 
-                            cRetVal     = cFlipRetVal + cRetVal.
+        & endif /* else */
 
-                    &endif /* rtl */
-
-                &endif /* else */
-
-            end. /* xLangFlip */
-
+        end. /* xLangFlip */
 
 
-            else
 
-            &if not {&xCursor} &then
+else
 
-                &if     "{&xDispMatch}" = "ltr" &then cRetVal = cRetVal + cNumRetVal.
-                &elseif "{&xDispMatch}" = "rtl" &then cRetVal = cNumRetVal + cRetVal.
-                &endif
+    &if not {
+    &xCursor
+}
+&then
 
-            &else /* not xCursor */
+        &if "{&xDispMatch}" = "ltr" & then cRetVal = cRetVal + cNumRetVal.
+        &elseif "{&xDispMatch}" = "rtl" & then cRetVal = cNumRetVal + cRetVal.
+        &endif
 
-                &if     "{&xDispMatch}" = "ltr" &then
+        & else /* not xCursor */
 
-                    assign
-                        piRetCur    = iNumRetCur + length( cRetVal )    when iNumRetCur <> ?
+    &if "{&xDispMatch}" = "ltr" & then
 
-                        cRetVal     = cRetVal + cNumRetVal.
+        assign
+        piRetCur = iNumRetCur + length(cRetVal) when iNumRetCur <> ?
 
-                &elseif "{&xDispMatch}" = "rtl" &then
+        cRetVal = cRetVal + cNumRetVal.
 
-                    assign
-                        piRetCur    = iNumRetCur                        when iNumRetCur <> ?
-                        piRetCur    = piRetCur + length( cNumRetVal )   when piRetCur   <> ?
+        &elseif "{&xDispMatch}" = "rtl" & then
 
-                        cRetVal     = cNumRetVal + cRetVal.
+        assign
+        piRetCur = iNumRetCur when iNumRetCur <> ?
+        piRetCur = piRetCur + length(cNumRetVal) when piRetCur <> ?
 
-                &endif /* rtl */
+        cRetVal = cNumRetVal + cRetVal.
 
-            &endif /* else */
+        &endif /* rtl */
+
+        & endif /* else */
 
         end. /* 0..9 */
 
 
 
-        else do:
+else do :
 
-            &if "{&xRead}" <> "{&xDispMatch}" &then
+        &if "{&xRead}" < > "{&xDispMatch}" & then
 
-                case ch:
+            case ch:
 
-                    when "("    then ch = ")".
-                    when ")"    then ch = "(".
-                    when "["    then ch = "]".
-                    when "]"    then ch = "[".
-                    when "~{"   then ch = "~}".
-                    when "~}"   then ch = "~{".
-                    when ">"    then ch = "<".
-                    when "<"    then ch = ">".
+            when "(" then ch = ")".
+                when ")" then ch = "(".
+                when "[" then ch = "]".
+                when "]" then ch = "[".
+                when "~{" then ch = "~}".
+                when "~}" then ch = "~{".
+                when ">" then ch = "<".
+                when "<" then ch = ">".
 
-                 end case. /* ch */
+                end case. /* ch */
 
             &endif /* read <> disp */
 
@@ -307,33 +342,36 @@ function bidi_{&xFunc}Cur   returns char ( pcStr as char, piCur as int, output p
 
             assign
 
-                &if     "{&xDispMatch}" = "ltr" &then cRetVal = cRetVal + ch
-                &elseif "{&xDispMatch}" = "rtl" &then cRetVal = ch + cRetVal
-                &endif
+                &if "{&xDispMatch}" = "ltr" & then cRetVal = cRetVal + ch
+                    & elseif "{&xDispMatch}" = "rtl" & then cRetVal = ch + cRetVal
+                    & endif
 
-                &if {&xCursor} &then
+                    &if {
+                    &xCursor
+                }
+                &then
 
-                    &if     "{&xDispMatch}" = "ltr" &then
+        &if "{&xDispMatch}" = "ltr" & then
 
-                        piRetCur = length( cRetVal )    when piRetCur  = ? and iPos = piCur
+        piRetCur = length(cRetVal) when piRetCur = ? and iPos = piCur
 
-                    &elseif "{&xDispMatch}" = "rtl" &then
+        & elseif "{&xDispMatch}" = "rtl" & then
 
-                        piRetCur = 1                    when piRetCur  = ? and iPos = piCur
-                        piRetCur = piRetCur + 1         when piRetCur <> ?
+        piRetCur = 1 when piRetCur = ? and iPos = piCur
+        piRetCur = piRetCur + 1 when piRetCur <> ?
 
-                    &endif /* rtl */
+        &endif /* rtl */
 
-                &endif /* xCursor */
+        & endif /* xCursor */
 
-                &if     "{&xRead}" = "ltr" &then iPos = iPos + 1
-                &elseif "{&xRead}" = "rtl" &then iPos = iPos - 1
-                &endif.
+        &if "{&xRead}" = "ltr" & then iPos = iPos + 1
+            & elseif "{&xRead}" = "rtl" & then iPos = iPos - 1
+            & endif.
 
-        end. /* else */
+            end. /* else */
 
-    end. /* repeat */
+            end. /* repeat */
 
-    return cRetVal.
+        return cRetVal.
 
-end function. /* bidi_{&xFunc} */
+            end function. /* bidi_{&xFunc} */

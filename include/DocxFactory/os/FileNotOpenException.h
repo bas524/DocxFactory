@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class FileNotOpenException : public OsException
-	{
-	public:
-		FileNotOpenException(
-			const string&	p_fileName,
-			const string&	p_file,
-			const int		p_line );
+    class FileNotOpenException : public OsException {
+    public:
+        FileNotOpenException(
+                const string& p_fileName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~FileNotOpenException() throw();
+        virtual ~FileNotOpenException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

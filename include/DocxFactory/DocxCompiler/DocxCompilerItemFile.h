@@ -18,102 +18,101 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class OpcPart;
+    class ZipFile;
+    class OpcPart;
 
-	class DocxCompilerFile;
-	class DocxCompilerBookmark;
-	class DocxCompilerItemGroup;
-	class DocxCompilerItem;
-	class DocxCompilerItemLayout;
-	class DocxCompilerField;
-	class DocxCompilerXmlString;
-	class DocxCompilerItemFile
-	{
-	public:
-		enum ItemFileType
-		{
-			DOCUMENT,
-			HEADER,
-			FOOTER
-		};
+    class DocxCompilerFile;
+    class DocxCompilerBookmark;
+    class DocxCompilerItemGroup;
+    class DocxCompilerItem;
+    class DocxCompilerItemLayout;
+    class DocxCompilerField;
+    class DocxCompilerXmlString;
 
-		DocxCompilerItemFile(
-			DocxCompilerFile*	p_file,
-			OpcPart*			p_part,
-			ItemFileType		p_type );
+    class DocxCompilerItemFile {
+    public:
 
-		virtual ~DocxCompilerItemFile();
+        enum ItemFileType {
+            DOCUMENT,
+            HEADER,
+            FOOTER
+        };
 
-		void load();
-		void loadBookmarks();
-		void loadItems();
-		void loadFields();
-		void loadStripes();
-		void loadXmlStrings();
+        DocxCompilerItemFile(
+                DocxCompilerFile* p_file,
+                OpcPart* p_part,
+                ItemFileType p_type);
 
-		void serialize( ZipFile* p_zipFile );
+        virtual ~DocxCompilerItemFile();
 
-		void insertItem	( DocxCompilerItem*	p_item );
-		void insertField( DocxCompilerField* p_field );
+        void load();
+        void loadBookmarks();
+        void loadItems();
+        void loadFields();
+        void loadStripes();
+        void loadXmlStrings();
 
-		DocxCompilerFile*		getFile() const;
-		OpcPart*				getPart() const;
-		ItemFileType			getType() const;
+        void serialize(ZipFile* p_zipFile);
 
-		xercesc::DOMElement*	getBodyNode() const;
-		string					getWordMlPrefix() const;
-		string					getRelMlPrefix() const;
-		string					getVmlPrefix() const;
+        void insertItem(DocxCompilerItem* p_item);
+        void insertField(DocxCompilerField* p_field);
 
-		const vector<DocxCompilerXmlString*>* getSects() const;
+        DocxCompilerFile* getFile() const;
+        OpcPart* getPart() const;
+        ItemFileType getType() const;
 
-	protected:
+        xercesc::DOMElement* getBodyNode() const;
+        string getWordMlPrefix() const;
+        string getRelMlPrefix() const;
+        string getVmlPrefix() const;
 
-	private:
-		DocxCompilerItemFile( const DocxCompilerItemFile& p_other );
-		DocxCompilerItemFile& operator = ( const DocxCompilerItemFile& p_other );
+        const vector<DocxCompilerXmlString*>* getSects() const;
 
-		void loadItemsByBookmark();
-		void loadItemsByBookmark( DocxCompilerBookmark* p_bookmark, list<DocxCompilerItem*>* p_itemPath );
-		void loadItemLayout		( DocxCompilerItem* p_item, DocxCompilerItem*& p_fillItem );
-		void setItemsPath		( DocxCompilerItemGroup* p_itemGroup );
+    protected:
 
-		void normalize();
-		void normalizeRuns();
-		void normalizeTableBorders();
-		void normalizeBookmarksStartEnd();
-		void normalizeBookmarksBr();
-		void normalizeBookmarksHierarchy( DocxCompilerBookmark* p_bookmark = NULL );
+    private:
+        DocxCompilerItemFile(const DocxCompilerItemFile& p_other);
+        DocxCompilerItemFile& operator=(const DocxCompilerItemFile& p_other);
 
-		void trimItems();
+        void loadItemsByBookmark();
+        void loadItemsByBookmark(DocxCompilerBookmark* p_bookmark, list<DocxCompilerItem*>* p_itemPath);
+        void loadItemLayout(DocxCompilerItem* p_item, DocxCompilerItem*& p_fillItem);
+        void setItemsPath(DocxCompilerItemGroup* p_itemGroup);
 
-		DocxCompilerFile*	m_file;
-		OpcPart*			m_part;
-		ItemFileType		m_type;
+        void normalize();
+        void normalizeRuns();
+        void normalizeTableBorders();
+        void normalizeBookmarksStartEnd();
+        void normalizeBookmarksBr();
+        void normalizeBookmarksHierarchy(DocxCompilerBookmark* p_bookmark = NULL);
 
-		xercesc::DOMElement*	m_bodyNode;
-		string					m_body1;
-		string					m_body2;
-		string					m_wordMlPrefix;
-		string					m_relMlPrefix;
-		string					m_vmlPrefix;
-		size_t					m_groupIdSeq;
-		size_t					m_sectLen;
+        void trimItems();
 
-		list<DocxCompilerBookmark*>			m_rootBookmarks;
-		map<size_t, DocxCompilerBookmark*>	m_bookmarksById;
-		DocxCompilerItemGroup*				m_rootItemGroup;
-		list<DocxCompilerItemGroup*>		m_itemGroups;
-		list<DocxCompilerItem*>				m_items;
-		list<DocxCompilerField*>			m_fields;
-		vector<DocxCompilerXmlString*>		m_sects;
+        DocxCompilerFile* m_file;
+        OpcPart* m_part;
+        ItemFileType m_type;
 
-	};
+        xercesc::DOMElement* m_bodyNode;
+        string m_body1;
+        string m_body2;
+        string m_wordMlPrefix;
+        string m_relMlPrefix;
+        string m_vmlPrefix;
+        size_t m_groupIdSeq;
+        size_t m_sectLen;
+
+        list<DocxCompilerBookmark*> m_rootBookmarks;
+        map<size_t, DocxCompilerBookmark*> m_bookmarksById;
+        DocxCompilerItemGroup* m_rootItemGroup;
+        list<DocxCompilerItemGroup*> m_itemGroups;
+        list<DocxCompilerItem*> m_items;
+        list<DocxCompilerField*> m_fields;
+        vector<DocxCompilerXmlString*> m_sects;
+
+    };
 };
 
 #endif

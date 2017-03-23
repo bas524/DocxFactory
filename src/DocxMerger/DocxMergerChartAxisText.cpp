@@ -12,38 +12,28 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerChartAxisText::DocxMergerChartAxisText() : DocxMergerChartAxis( DocxMergerField::TYPE_TEXT )
-{
+DocxMergerChartAxisText::DocxMergerChartAxisText() : DocxMergerChartAxis(DocxMergerField::TYPE_TEXT) {
 
 } // c'tor
 
-DocxMergerChartAxisText::~DocxMergerChartAxisText()
-{
+DocxMergerChartAxisText::~DocxMergerChartAxisText() {
 
 } // d'tor
 
-
-
-size_t DocxMergerChartAxisText::setValue( DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value )
-{
-	return ( ( DocxMergerPasteChartAxisText* ) p_pasteAxis ) ->setValue( p_value );
+size_t DocxMergerChartAxisText::setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value) {
+  return ( (DocxMergerPasteChartAxisText*) p_pasteAxis) ->setValue(p_value);
 } // setValue
 
-size_t DocxMergerChartAxisText::setValue( DocxMergerPasteChartAxis* p_pasteAxis, double p_value )
-{
-	string l_value = LocaleFunc::numToStr( p_value );
+size_t DocxMergerChartAxisText::setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value) {
+  string l_value = LocaleFunc::numToStr(p_value);
 
-	return ( ( DocxMergerPasteChartAxisText* ) p_pasteAxis ) ->setValue( l_value );
+  return ( (DocxMergerPasteChartAxisText*) p_pasteAxis) ->setValue(l_value);
 } // setValue
 
-string DocxMergerChartAxisText::getValue( DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index ) const
-{
-	return ( ( DocxMergerPasteChartAxisText* ) p_pasteAxis ) ->getValues() ->at( p_index );
+string DocxMergerChartAxisText::getValue(DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index) const {
+  return ( (DocxMergerPasteChartAxisText*) p_pasteAxis) ->getValues() ->at(p_index);
 } // getValue
 
-size_t DocxMergerChartAxisText::getLength( DocxMergerPasteChartAxis* p_pasteAxis ) const
-{
-	return ( ( DocxMergerPasteChartAxisText* ) p_pasteAxis ) ->getValues() ->size();
+size_t DocxMergerChartAxisText::getLength(DocxMergerPasteChartAxis* p_pasteAxis) const {
+  return ( (DocxMergerPasteChartAxisText*) p_pasteAxis) ->getValues() ->size();
 } // getLength

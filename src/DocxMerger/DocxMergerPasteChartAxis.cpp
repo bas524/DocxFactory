@@ -4,14 +4,10 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerPasteChartAxis::DocxMergerPasteChartAxis()
-{
+DocxMergerPasteChartAxis::DocxMergerPasteChartAxis() {
 
 } // c'tor
 
-DocxMergerPasteChartAxis::~DocxMergerPasteChartAxis()
-{
+DocxMergerPasteChartAxis::~DocxMergerPasteChartAxis() {
 
 } // d'tor

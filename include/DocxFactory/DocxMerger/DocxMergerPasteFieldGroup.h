@@ -6,31 +6,30 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteField;
-	class DocxMergerPasteFieldGroup
-	{
-	public:
-		DocxMergerPasteFieldGroup();
-		virtual ~DocxMergerPasteFieldGroup();
+    class DocxMergerField;
+    class DocxMergerPasteField;
 
-		bool insertPasteField( DocxMergerField* p_field, DocxMergerPasteField* p_pasteField );
+    class DocxMergerPasteFieldGroup {
+    public:
+        DocxMergerPasteFieldGroup();
+        virtual ~DocxMergerPasteFieldGroup();
 
-		const map<DocxMergerField*, DocxMergerPasteField*>* getPasteFieldsByField() const;
+        bool insertPasteField(DocxMergerField* p_field, DocxMergerPasteField* p_pasteField);
 
-	protected:
+        const map<DocxMergerField*, DocxMergerPasteField*>* getPasteFieldsByField() const;
 
-	private:
-		DocxMergerPasteFieldGroup( const DocxMergerPasteFieldGroup& p_other );
-		DocxMergerPasteFieldGroup operator = ( const DocxMergerPasteFieldGroup& p_other );
+    protected:
 
-		map<DocxMergerField*, DocxMergerPasteField*> m_pasteFieldsByField;
+    private:
+        DocxMergerPasteFieldGroup(const DocxMergerPasteFieldGroup& p_other);
+        DocxMergerPasteFieldGroup operator=(const DocxMergerPasteFieldGroup& p_other);
 
-	};
+        map<DocxMergerField*, DocxMergerPasteField*> m_pasteFieldsByField;
+
+    };
 };
 
 #endif

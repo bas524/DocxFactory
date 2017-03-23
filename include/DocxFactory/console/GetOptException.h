@@ -8,24 +8,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class GetOptException : public ConsoleUsageException
-	{
-	public:
-		GetOptException(
-			const string&	p_file,
-			const int		p_line );
+    class GetOptException : public ConsoleUsageException {
+    public:
+        GetOptException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~GetOptException() throw();
+        virtual ~GetOptException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -6,24 +6,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class TemplateNotLoadedException : public WordProcessingException
-	{
-	public:
-		TemplateNotLoadedException(
-			const string&	p_file,
-			const int		p_line );
+    class TemplateNotLoadedException : public WordProcessingException {
+    public:
+        TemplateNotLoadedException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~TemplateNotLoadedException() throw();
+        virtual ~TemplateNotLoadedException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

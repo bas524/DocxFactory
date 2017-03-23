@@ -11,14 +11,17 @@
 
 
 
-&if defined( xSLibXlsx ) = 0 &then
+&if defined(xSLibXlsx) = 0 & then
+{slib / start - slib.i "'slibooxml/slibxlsx.p'"}
 
-    {slib/start-slib.i "'slibooxml/slibxlsx.p'"}
-    
-    {slibooxml/slibxlsxfrwd.i "in super"}
+    {
+        slibooxml / slibxlsxfrwd.i "in super"
+    }
 
-    {slibooxml/slibxlsxprop.i}
+{
+    slibooxml / slibxlsxprop.i
+}
 
-    &global xSLibXlsx defined
+&global xSLibXlsx defined
 
-&endif /* defined = 0 */
+        &endif /* defined = 0 */

@@ -24,460 +24,395 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-DocxMergerAltChunkField::DocxMergerAltChunkField() : DocxMergerField( DocxMergerField::TYPE_ALT_CHUNK )
-{
+DocxMergerAltChunkField::DocxMergerAltChunkField() : DocxMergerField(DocxMergerField::TYPE_ALT_CHUNK) {
 
 } // c'tor
 
-DocxMergerAltChunkField::~DocxMergerAltChunkField()
-{
+DocxMergerAltChunkField::~DocxMergerAltChunkField() {
 
 } // d'tor
 
+void DocxMergerAltChunkField::save(DocxMergerPasteFieldGroup* p_pasteFieldGroup) {
+  if (!p_pasteFieldGroup)
+    return;
 
+  ZipFile* l_zipFile = m_itemFile ->getZipFile();
 
-void DocxMergerAltChunkField::save( DocxMergerPasteFieldGroup* p_pasteFieldGroup )
-{
-	if ( !p_pasteFieldGroup )
-		return;
+  map<DocxMergerField*, DocxMergerPasteField*>::const_iterator l_pasteFieldIterator;
+  const map<DocxMergerField*, DocxMergerPasteField*>* l_pasteFields = p_pasteFieldGroup ->getPasteFieldsByField();
 
-	ZipFile* l_zipFile = m_itemFile ->getZipFile();
+  DocxMergerPasteAltChunkField* l_pasteAltChunkField;
+  string l_fileRId;
 
-	map<DocxMergerField*, DocxMergerPasteField*>::const_iterator	l_pasteFieldIterator;
-	const map<DocxMergerField*, DocxMergerPasteField*>*				l_pasteFields = p_pasteFieldGroup ->getPasteFieldsByField();
+  l_pasteFieldIterator = l_pasteFields ->find(this);
+  if (l_pasteFieldIterator != l_pasteFields ->end()) {
+    l_pasteAltChunkField = (DocxMergerPasteAltChunkField*) l_pasteFieldIterator ->second;
 
-	DocxMergerPasteAltChunkField*	l_pasteAltChunkField;
-	string							l_fileRId;
+    insertAltChunk(
+            l_pasteAltChunkField ->getValue(),
+            l_pasteAltChunkField ->getType(),
+            l_fileRId);
 
-	l_pasteFieldIterator = l_pasteFields ->find( this );
-	if ( l_pasteFieldIterator != l_pasteFields ->end() )
-	{
-		l_pasteAltChunkField = ( DocxMergerPasteAltChunkField* ) l_pasteFieldIterator ->second;
-
-		insertAltChunk(
-			l_pasteAltChunkField ->getValue(),
-			l_pasteAltChunkField ->getType(),
-			l_fileRId );
-
-		( *l_zipFile ) << m_altChunkString1;
-		( *l_zipFile ) << l_fileRId;
-		( *l_zipFile ) << m_altChunkString2;
-	}
+    (*l_zipFile) << m_altChunkString1;
+    (*l_zipFile) << l_fileRId;
+    (*l_zipFile) << m_altChunkString2;
+  }
 } // save
 
-void DocxMergerAltChunkField::insertAltChunk( const string* p_value, AltChunkType p_type, string& p_fileRId )
-{
-	DocxMergerFile*		l_file = m_itemFile ->getFile();
-	OpcPart*			l_part;
-	OpcRelationship*	l_relationship;
+void DocxMergerAltChunkField::insertAltChunk(const string* p_value, AltChunkType p_type, string& p_fileRId) {
+  DocxMergerFile* l_file = m_itemFile ->getFile();
+  OpcPart* l_part;
+  OpcRelationship* l_relationship;
 
-	string				l_path;
-	string				l_ext;
-	string				l_contentType;
+  string l_path;
+  string l_ext;
+  string l_contentType;
 
-	switch ( p_type )
-	{
-	case TYPE_MHTML:
-		l_ext			= ".mht";
-		l_contentType	= "message/rfc822";
-		break;
+  switch (p_type) {
+    case TYPE_MHTML:
+      l_ext = ".mht";
+      l_contentType = "message/rfc822";
+      break;
 
-	case TYPE_HTML:
-		l_ext			= ".htm";
-		l_contentType	= "text/html";
-		break;
+    case TYPE_HTML:
+      l_ext = ".htm";
+      l_contentType = "text/html";
+      break;
 
-	case TYPE_RTF:
-		l_ext			= ".rtf";
-		l_contentType	= "application/rtf";
-		break;
-	}
+    case TYPE_RTF:
+      l_ext = ".rtf";
+      l_contentType = "application/rtf";
+      break;
+  }
 
-	l_path = l_file ->getAltChunkDir() + "altChunk-dfw-" + StrFunc::intToStr( l_file ->nextAltChunkSeq() ) + l_ext;
-	l_part = l_file ->insertPart( l_path );
-	l_file ->getContentTypes() ->insertDefault( l_ext, l_contentType );
+  l_path = l_file ->getAltChunkDir() + "altChunk-dfw-" + StrFunc::intToStr(l_file ->nextAltChunkSeq()) + l_ext;
+  l_part = l_file ->insertPart(l_path);
+  l_file ->getContentTypes() ->insertDefault(l_ext, l_contentType);
 
-	l_part ->setBuf( p_value ->c_str(), p_value ->length() );
-	l_part ->setChangeStatus( OpcPart::PART_CHANGED_IN_BUFFER );
+  l_part ->setBuf(p_value ->c_str(), p_value ->length());
+  l_part ->setChangeStatus(OpcPart::PART_CHANGED_IN_BUFFER);
 
-	l_relationship	= m_itemFile ->getPart() ->getRelationships() ->insertRelationship( "http://schemas.openxmlformats.org/officeDocument/2006/relationships/aFChunk", l_part );
-	p_fileRId		= l_relationship ->getId();
+  l_relationship = m_itemFile ->getPart() ->getRelationships() ->insertRelationship("http://schemas.openxmlformats.org/officeDocument/2006/relationships/aFChunk", l_part);
+  p_fileRId = l_relationship ->getId();
 } // insertAltChunk
 
+void DocxMergerAltChunkField::setClipboardValue(const string& p_value) {
+  string l_value;
+  string l_multiPart;
 
+  switch (m_altChunkType) {
+    case DocxMergerAltChunkField::TYPE_MHTML:
 
-void DocxMergerAltChunkField::setClipboardValue( const string& p_value )
-{
-	string l_value;
-	string l_multiPart;
+      createPasteField(l_value, TYPE_MHTML);
 
-	switch ( m_altChunkType )
-	{
-	case DocxMergerAltChunkField::TYPE_MHTML:
+      break;
 
-		createPasteField( l_value, TYPE_MHTML );
+    case DocxMergerAltChunkField::TYPE_HTML:
 
-		break;
+      if (!StrFunc::begins(p_value, "<!")
+              && !StrFunc::begins(p_value, "<?")
+              && !StrFunc::begins(StrFunc::lc(p_value.substr(0, 6)), "<html>"))
+        l_value = "<html><body>" + p_value + "</body></html>";
 
-	case DocxMergerAltChunkField::TYPE_HTML:
+      else
+        l_value = p_value;
 
-		if ( !StrFunc::begins( p_value, "<!" )
-		  && !StrFunc::begins( p_value, "<?" )
-		  && !StrFunc::begins( StrFunc::lc( p_value.substr( 0, 6 ) ), "<html>" ) )
-			l_value = "<html><body>" + p_value + "</body></html>";
+      getMultiPart(l_value, l_multiPart);
 
-		else
-			l_value = p_value;
+      if (!l_multiPart.empty())
 
-		getMultiPart( l_value, l_multiPart );
+        createPasteField(
+              "MIME-Version: 1.0\r\n"
+              "Content-Type: multipart/related; type=\"text/html\"; boundary=\"----=_dfw-separator\"\r\n"
+              "\r\n"
+              "------=_dfw-separator\r\n"
+              "Content-Type: text/html;charset=\"utf-8\"\r\n"
+              "Content-Transfer-Encoding: binary\r\n"
+              "\r\n"
+              + l_value + "\r\n"
+              + "\r\n"
+              + "------=_dfw-separator\r\n"
+              + l_multiPart
+              + "------=_dfw-separator--\r\n",
+              TYPE_MHTML);
 
-		if ( !l_multiPart.empty() )
+      else
+        createPasteField(l_value, TYPE_HTML);
 
-			createPasteField(
-				  "MIME-Version: 1.0\r\n"
-				  "Content-Type: multipart/related; type=\"text/html\"; boundary=\"----=_dfw-separator\"\r\n"
-				  "\r\n"
-				  "------=_dfw-separator\r\n"
-				  "Content-Type: text/html;charset=\"utf-8\"\r\n"
-				  "Content-Transfer-Encoding: binary\r\n"
-				  "\r\n"
-				+ l_value + "\r\n"
-				+ "\r\n"
-				+ "------=_dfw-separator\r\n"
-				+ l_multiPart
-				+ "------=_dfw-separator--\r\n",
-				TYPE_MHTML );
+      break;
 
-		else
-			createPasteField( l_value, TYPE_HTML );
+    case DocxMergerAltChunkField::TYPE_RTF:
 
-		break;
+      if (!StrFunc::begins(p_value, "{"))
+        createPasteField("{\\rtf1\\ansi\\deff0" + p_value + "}", TYPE_RTF);
 
-	case DocxMergerAltChunkField::TYPE_RTF:
+      else
+        createPasteField(p_value, TYPE_RTF);
 
-		if ( !StrFunc::begins( p_value, "{" ) )
-			createPasteField( "{\\rtf1\\ansi\\deff0" + p_value + "}", TYPE_RTF );
-
-		else
-			createPasteField( p_value, TYPE_RTF );
-
-		break;
-	}
+      break;
+  }
 } // setClipboardValue( string )
 
-void DocxMergerAltChunkField::setClipboardValue( double p_value )
-{
-	string l_value = LocaleFunc::numToStr( p_value, 0, 3, true );
+void DocxMergerAltChunkField::setClipboardValue(double p_value) {
+  string l_value = LocaleFunc::numToStr(p_value, 0, 3, true);
 
-	setClipboardValue( l_value );
+  setClipboardValue(l_value);
 } // setClipboardValue( double )
 
-void DocxMergerAltChunkField::createPasteField( const string& p_value, AltChunkType p_type )
-{
-	DocxMergerPasteAltChunkField*	l_pasteField;
-	bool							l_ok;
+void DocxMergerAltChunkField::createPasteField(const string& p_value, AltChunkType p_type) {
+  DocxMergerPasteAltChunkField* l_pasteField;
+  bool l_ok;
 
-	l_pasteField	= new DocxMergerPasteAltChunkField( this, p_value, p_type );
-	l_ok			= m_itemFile ->getPasteFieldGroup() ->insertPasteField( this, l_pasteField );
+  l_pasteField = new DocxMergerPasteAltChunkField(this, p_value, p_type);
+  l_ok = m_itemFile ->getPasteFieldGroup() ->insertPasteField(this, l_pasteField);
 
-	if ( !l_ok )
-		delete l_pasteField;
+  if (!l_ok)
+    delete l_pasteField;
 } // createPasteField
 
+void DocxMergerAltChunkField::getMultiPart(const string& p_str, string& p_multiPart) {
+  std::vector<byte> l_buf;
+  size_t l_bufSize;
 
+  string l_file;
+  string l_ext;
+  string l_mime;
 
-void DocxMergerAltChunkField::getMultiPart( const string& p_str, string& p_multiPart )
-{
-	std::vector<byte>	l_buf;
-	size_t	l_bufSize;
+  string l_name;
+  string l_value;
 
-	string	l_file;
-	string	l_ext;
-	string	l_mime;
+  size_t l_len = p_str.length();
+  size_t l_pos = 0;
 
-	string	l_name;
-	string	l_value;
+  p_multiPart = "";
 
-	size_t	l_len = p_str.length();
-	size_t	l_pos = 0;
+  while (l_pos < l_len) {
+    switch (p_str[ l_pos ]) {
+      case '"':
 
-	p_multiPart = "";
+        l_pos++;
 
-	while ( l_pos < l_len )
-	{
-		switch ( p_str[ l_pos ] )
-		{
-		case '"':
+        while (l_pos < l_len && p_str[ l_pos ] != '"') {
+          l_pos++;
+        }
 
-			l_pos++;
+        break;
 
-			while ( l_pos < l_len && p_str[ l_pos ] != '"' )
-			{
-				l_pos++;
-			}
+      case '<':
 
-			break;
+        if (l_len - l_pos >= 4
+                && p_str[ l_pos + 1 ] == '!'
+                && p_str[ l_pos + 2 ] == '-'
+                && p_str[ l_pos + 3 ] == '-') {
+          l_pos += 4;
 
-		case '<':
+          while (l_pos < l_len) {
+            if (l_len - l_pos < 3) {
+              l_pos = l_len;
+              break;
+            }
+            else
+              if (p_str[ l_pos ] == '-'
+                    && p_str[ l_pos + 1 ] == '-'
+                    && p_str[ l_pos + 2 ] == '>') {
+              l_pos += 2;
+              break;
+            }
 
-			if ( l_len - l_pos >= 4
-			  && p_str[ l_pos + 1 ] == '!'
-			  && p_str[ l_pos + 2 ] == '-'
-			  && p_str[ l_pos + 3 ] == '-' )
-			{
-				l_pos += 4;
+            l_pos++;
+          }
+        }
+        else
+          if (l_len - l_pos >= 9
+                && p_str[ l_pos + 1 ] == '!'
+                && p_str[ l_pos + 2 ] == '['
+                && p_str[ l_pos + 3 ] == 'C'
+                && p_str[ l_pos + 4 ] == 'D'
+                && p_str[ l_pos + 5 ] == 'A'
+                && p_str[ l_pos + 6 ] == 'T'
+                && p_str[ l_pos + 7 ] == 'A'
+                && p_str[ l_pos + 8 ] == '[') {
+          l_pos += 9;
 
-				while ( l_pos < l_len )
-				{
-					if ( l_len - l_pos < 3 )
-					{
-						l_pos = l_len;
-						break;
-					}
+          while (l_pos < l_len) {
+            if (l_len - l_pos < 3) {
+              l_pos = l_len;
+              break;
+            }
+            else
+              if (p_str[ l_pos ] == ']'
+                    && p_str[ l_pos + 1 ] == ']'
+                    && p_str[ l_pos + 2 ] == '>') {
+              l_pos += 2;
+              break;
+            }
 
-					else
-					if ( p_str[ l_pos ]		== '-'
-					  && p_str[ l_pos + 1 ] == '-'
-					  && p_str[ l_pos + 2 ] == '>' )
-					{
-						l_pos += 2;
-						break;
-					}
+            l_pos++;
+          }
+        }
+        else
+          if (l_len - l_pos >= 5
+                && (p_str[ l_pos + 1 ] == 'i' || p_str[ l_pos + 1 ] == 'I')
+                && (p_str[ l_pos + 2 ] == 'm' || p_str[ l_pos + 2 ] == 'M')
+                && (p_str[ l_pos + 3 ] == 'g' || p_str[ l_pos + 3 ] == 'G')
+                && (p_str[ l_pos + 4 ] == ' ' || p_str[ l_pos + 4 ] == '\t' || p_str[ l_pos + 4 ] == '\n' || p_str[ l_pos + 4 ] == '\r')) {
+          l_pos += 5;
 
-					l_pos++;
-				}
-			}
+          while (getAttr(p_str, l_len, l_pos, l_name, l_value)) {
+            if (StrFunc::lc(l_name) == "src" && !l_value.empty() && l_value.length() <= 100) {
+              if (l_value.find("://") != string::npos)
+                break;
 
-			else
-			if ( l_len - l_pos >= 9
-			  && p_str[ l_pos + 1 ] == '!'
-			  && p_str[ l_pos + 2 ] == '['
-			  && p_str[ l_pos + 3 ] == 'C'
-			  && p_str[ l_pos + 4 ] == 'D'
-			  && p_str[ l_pos + 5 ] == 'A'
-			  && p_str[ l_pos + 6 ] == 'T'
-			  && p_str[ l_pos + 7 ] == 'A'
-			  && p_str[ l_pos + 8 ] == '[' )
-			{
-				l_pos += 9;
+              l_file = OsFunc::normalizePath(l_value);
+              l_file = OsFunc::getFullPath(l_file);
 
-				while ( l_pos < l_len )
-				{
-					if ( l_len - l_pos < 3 )
-					{
-						l_pos = l_len;
-						break;
-					}
+              l_ext = OsFunc::getSubPath(l_file, OsFunc::SUBPATH_EXT, OsFunc::SUBPATH_EXT);
+              l_ext = StrFunc::lc(l_ext);
 
-					else
-					if ( p_str[ l_pos ]		== ']'
-					  && p_str[ l_pos + 1 ] == ']'
-					  && p_str[ l_pos + 2 ] == '>' )
-					{
-						l_pos += 2;
-						break;
-					}
+              if (l_ext == ".jpg" || l_ext == ".jpeg") l_mime = "image/jpeg";
+              else if (l_ext == ".png") l_mime = "image/png";
+              else if (l_ext == ".tiff" || l_ext == ".tif") l_mime = "image/tiff";
+              else if (l_ext == ".gif") l_mime = "image/gif";
+              else if (l_ext == ".bmp") l_mime = "image/bmp";
+              else if (l_ext == ".ico") l_mime = "image/x-icon";
+              else l_mime = "application/octet-stream";
 
-					l_pos++;
-				}
-			}
+              try {
+                l_buf = OsFunc::readFile(l_file, l_bufSize);
 
-			else
-			if ( l_len - l_pos >= 5
-			  && ( p_str[ l_pos + 1 ] == 'i' || p_str[ l_pos + 1 ] == 'I' )
-			  && ( p_str[ l_pos + 2 ] == 'm' || p_str[ l_pos + 2 ] == 'M' )
-			  && ( p_str[ l_pos + 3 ] == 'g' || p_str[ l_pos + 3 ] == 'G' )
-			  && ( p_str[ l_pos + 4 ] == ' ' || p_str[ l_pos + 4 ] == '\t' || p_str[ l_pos + 4 ] == '\n' || p_str[ l_pos + 4 ] == '\r' )  )
-			{
-				l_pos += 5;
+                p_multiPart = p_multiPart + (!p_multiPart.empty() ? "------=_dfw-separator\r\n" : "") +
+                        "Content-Type: " + l_mime + "\r\n"
+                        "Content-Transfer-Encoding: base64\r\n"
+                        "Content-Location: " + l_value + "\r\n"
+                        "\r\n"
+                        + StrFunc::encodeBase64((char*) l_buf.data(), l_bufSize)
+                        + "\r\n"
+                        "\r\n";
 
-				while ( getAttr( p_str, l_len, l_pos, l_name, l_value ) )
-				{
-					if ( StrFunc::lc( l_name ) == "src" && !l_value.empty() && l_value.length() <= 100 )
-					{
-						if ( l_value.find( "://" ) != string::npos )
-							break;
+                l_buf.clear();
+              } catch (...) {
+              }
 
-						l_file	= OsFunc::normalizePath( l_value );
-						l_file	= OsFunc::getFullPath( l_file );
+              break;
+            }
+          }
+        }
 
-						l_ext	= OsFunc::getSubPath( l_file, OsFunc::SUBPATH_EXT, OsFunc::SUBPATH_EXT );
-						l_ext	= StrFunc::lc( l_ext );
+        break;
+    }
 
-							 if ( l_ext == ".jpg" || l_ext == ".jpeg" )	l_mime = "image/jpeg";
-						else if ( l_ext == ".png" )						l_mime = "image/png";
-						else if ( l_ext == ".tiff" || l_ext == ".tif" )	l_mime = "image/tiff";
-						else if ( l_ext == ".gif" )						l_mime = "image/gif";
-						else if ( l_ext == ".bmp" )						l_mime = "image/bmp";
-						else if ( l_ext == ".ico" )						l_mime = "image/x-icon";
-						else											l_mime = "application/octet-stream";
-
-						try
-						{
-							l_buf = OsFunc::readFile( l_file, l_bufSize );
-
-							p_multiPart = p_multiPart + ( !p_multiPart.empty() ? "------=_dfw-separator\r\n" : "" ) +
-								  "Content-Type: " + l_mime + "\r\n"
-								  "Content-Transfer-Encoding: base64\r\n"
-								  "Content-Location: " + l_value + "\r\n"
-								  "\r\n"
-								+ StrFunc::encodeBase64( ( char* ) l_buf.data(), l_bufSize )
-								+ "\r\n"
-								  "\r\n";
-
-							l_buf.clear();
-						}
-
-						catch ( ... )
-						{
-						}
-
-						break;
-					}
-				}
-			}
-
-			break;
-		}
-
-		l_pos++;
-	}
+    l_pos++;
+  }
 } // getMultiPart
 
-bool DocxMergerAltChunkField::getAttr( const string& p_str, const size_t& p_len, size_t& p_pos, string& p_name, string& p_value )
-{
-	p_name	= "";
-	p_value	= "";
+bool DocxMergerAltChunkField::getAttr(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_name, string& p_value) {
+  p_name = "";
+  p_value = "";
 
-	if ( !skipSpace( p_str, p_len, p_pos ) )
-		return false;
+  if (!skipSpace(p_str, p_len, p_pos))
+    return false;
 
-	if ( !getWord( p_str, p_len, p_pos, p_name ) )
-		return false;
+  if (!getWord(p_str, p_len, p_pos, p_name))
+    return false;
 
-	if ( !skipSpace( p_str, p_len, p_pos ) )
-		return false;
+  if (!skipSpace(p_str, p_len, p_pos))
+    return false;
 
-	if ( p_str[ p_pos ] != '=' )
-		return true;
+  if (p_str[ p_pos ] != '=')
+    return true;
 
-	p_pos++;
+  p_pos++;
 
-	if ( !skipSpace( p_str, p_len, p_pos ) )
-		return false;
+  if (!skipSpace(p_str, p_len, p_pos))
+    return false;
 
-	if ( !getWord( p_str, p_len, p_pos, p_value ) )
-		return false;
+  if (!getWord(p_str, p_len, p_pos, p_value))
+    return false;
 
-	return true;
+  return true;
 } // getAttr
 
-bool DocxMergerAltChunkField::getWord( const string& p_str, const size_t& p_len, size_t& p_pos, string& p_word )
-{
-	if ( p_str[ p_pos ] == '"' )
-	{
-		p_pos++;
+bool DocxMergerAltChunkField::getWord(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_word) {
+  if (p_str[ p_pos ] == '"') {
+    p_pos++;
 
-		while ( true )
-		{
-			if ( p_pos >= p_len )
-				return false;
+    while (true) {
+      if (p_pos >= p_len)
+        return false;
 
-			else
-			if ( p_str[ p_pos ] == '"' )
-			{
-				p_pos++;
-				break;
-			}
+      else
+        if (p_str[ p_pos ] == '"') {
+        p_pos++;
+        break;
+      }
 
-			p_word	+= p_str[ p_pos ];
-			p_pos	+= 1;
-		}
-	}
+      p_word += p_str[ p_pos ];
+      p_pos += 1;
+    }
+  }
+  else {
+    while (true) {
+      if (p_pos >= p_len)
+        return false;
 
-	else
-	{
-		while ( true )
-		{
-			if ( p_pos >= p_len )
-				return false;
+      else
+        if (p_str[ p_pos ] == '>') {
+        p_pos++;
+        return false;
+      }
+      else
+        if (p_len - p_pos >= 2 && p_str[ p_pos ] == '/' && p_str[ p_pos + 1 ] == '>') {
+        p_pos += 2;
+        return false;
+      }
+      else
+        if (!(p_str[ p_pos ] >= 'a' && p_str[ p_pos ] <= 'z'
+              || p_str[ p_pos ] >= 'A' && p_str[ p_pos ] <= 'Z'
+              || p_str[ p_pos ] >= '0' && p_str[ p_pos ] <= '9'
+              || p_str[ p_pos ] == '_'))
+        break;
 
-			else
-			if ( p_str[ p_pos ] == '>' )
-			{
-				p_pos++;
-				return false;
-			}
+      p_word += p_str[ p_pos ];
+      p_pos += 1;
+    }
+  }
 
-			else
-			if ( p_len - p_pos >= 2 && p_str[ p_pos ] == '/' && p_str[ p_pos + 1 ] == '>' )
-			{
-				p_pos += 2;
-				return false;
-			}
-
-			else
-			if ( !( p_str[ p_pos ] >= 'a' && p_str[ p_pos ] <= 'z'
-				 || p_str[ p_pos ] >= 'A' && p_str[ p_pos ] <= 'Z'
-				 || p_str[ p_pos ] >= '0' && p_str[ p_pos ] <= '9'
-				 || p_str[ p_pos ] == '_' ) )
-				break;
-
-			p_word	+= p_str[ p_pos ];
-			p_pos	+= 1;
-		}
-	}
-
-	return true;
+  return true;
 } // getWord
 
-bool DocxMergerAltChunkField::skipSpace( const string& p_str, const size_t& p_len, size_t& p_pos )
-{
-	while ( true )
-	{
-		if ( p_pos >= p_len )
-			return false;
+bool DocxMergerAltChunkField::skipSpace(const string& p_str, const size_t& p_len, size_t& p_pos) {
+  while (true) {
+    if (p_pos >= p_len)
+      return false;
 
-		else
-		if ( p_str[ p_pos ] == '>' )
-		{
-			p_pos++;
-			return false;
-		}
+    else
+      if (p_str[ p_pos ] == '>') {
+      p_pos++;
+      return false;
+    }
+    else
+      if (p_len - p_pos >= 2 && p_str[ p_pos ] == '/' && p_str[ p_pos + 1 ] == '>') {
+      p_pos += 2;
+      return false;
+    }
+    else
+      if (p_str[ p_pos ] != ' ' && p_str[ p_pos ] != '\t' && p_str[ p_pos ] != '\n' && p_str[ p_pos ] != '\r')
+      break;
 
-		else
-		if ( p_len - p_pos >= 2 && p_str[ p_pos ] == '/'  && p_str[ p_pos + 1 ] == '>' )
-		{
-			p_pos += 2;
-			return false;
-		}
+    p_pos++;
+  }
 
-		else
-		if ( p_str[ p_pos ] != ' ' && p_str[ p_pos ] != '\t' && p_str[ p_pos ] != '\n' && p_str[ p_pos ] != '\r' )
-			break;
-
-		p_pos++;
-	}
-
-	return true;
+  return true;
 } // skipSpace
 
+void DocxMergerAltChunkField::deserialize(UnzipFile* p_unzipFile) {
+  DocxMergerField::deserialize(p_unzipFile);
 
-
-void DocxMergerAltChunkField::deserialize( UnzipFile* p_unzipFile )
-{
-	DocxMergerField::deserialize( p_unzipFile );
-
-	m_altChunkType		= ( DocxMergerAltChunkField::AltChunkType ) p_unzipFile ->readNum<int16>();
-	m_altChunkString1	= p_unzipFile ->readStr();
-	m_altChunkString2	= p_unzipFile ->readStr();
+  m_altChunkType = (DocxMergerAltChunkField::AltChunkType) p_unzipFile ->readNum<int16>();
+  m_altChunkString1 = p_unzipFile ->readStr();
+  m_altChunkString2 = p_unzipFile ->readStr();
 } // deserialize
 
-
-
-DocxMergerAltChunkField::AltChunkType DocxMergerAltChunkField::getAltChunkType() const
-{
-	return m_altChunkType;
+DocxMergerAltChunkField::AltChunkType DocxMergerAltChunkField::getAltChunkType() const {
+  return m_altChunkType;
 } // getAltChunkType

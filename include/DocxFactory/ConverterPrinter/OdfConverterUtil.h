@@ -8,38 +8,37 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class GradeGroup;
-	class OdfConverterUtil : public ConverterPrinterUtil
-	{
-	public:
-		OdfConverterUtil();
-		virtual ~OdfConverterUtil();
+    class GradeGroup;
 
-		virtual void	saveAs	( const string& p_importFile,	const string& p_exportFile );
-		virtual void	print	( const string& p_fileName,		const string& p_printerName, int p_copyCnt );
+    class OdfConverterUtil : public ConverterPrinterUtil {
+    public:
+        OdfConverterUtil();
+        virtual ~OdfConverterUtil();
 
-		virtual double	getConversionGrade	( const string& p_importExt, const string& p_exportExt );
-		virtual double	getPrintingGrade	( const string& p_ext );
+        virtual void saveAs(const string& p_importFile, const string& p_exportFile);
+        virtual void print(const string& p_fileName, const string& p_printerName, int p_copyCnt);
 
-	protected:
+        virtual double getConversionGrade(const string& p_importExt, const string& p_exportExt);
+        virtual double getPrintingGrade(const string& p_ext);
 
-	private:
-		OdfConverterUtil( const OdfConverterUtil& p_other );
-		OdfConverterUtil& operator = ( const OdfConverterUtil& p_other );
+    protected:
 
-		void initializeGrades();
+    private:
+        OdfConverterUtil(const OdfConverterUtil& p_other);
+        OdfConverterUtil& operator=(const OdfConverterUtil& p_other);
 
-		string	openXmlToOdf( const string& p_openXmlExt );
-		bool	isOpenXml	( const string& p_ext );
+        void initializeGrades();
 
-		list<GradeGroup*>	m_gradeGroups;
-		string				m_exec;
+        string openXmlToOdf(const string& p_openXmlExt);
+        bool isOpenXml(const string& p_ext);
 
-	};
+        list<GradeGroup*> m_gradeGroups;
+        string m_exec;
+
+    };
 };
 
 #endif

@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DirNotFoundException : public OsException
-	{
-	public:
-		DirNotFoundException(
-			const string&	p_dirName,
-			const string&	p_file,
-			const int		p_line );
+    class DirNotFoundException : public OsException {
+    public:
+        DirNotFoundException(
+                const string& p_dirName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~DirNotFoundException() throw();
+        virtual ~DirNotFoundException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

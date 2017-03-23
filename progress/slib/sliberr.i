@@ -24,22 +24,25 @@
 
 
 
-&if defined( xSLibErr ) = 0 &then
+&if defined(xSLibErr) = 0 & then
+{slib / start - slib.i "'slib/sliberr.p'"}
 
-    {slib/start-slib.i "'slib/sliberr.p'"}
+    {
+        slib / sliberrfrwd.i "in super"
+    }
 
-    {slib/sliberrfrwd.i "in super"}
 
 
+&if "{1}" < > "" & then
 
-    &if "{1}" <> "" &then 
+    run err_loadErrorMsgFile({1}).
 
-        run err_loadErrorMsgFile( {1} ).
+    &global err_xErrorMsgFile {
+    1
+}
 
-        &global err_xErrorMsgFile {1}
+&endif
 
-    &endif
+        &global xSLibErr defined
 
-    &global xSLibErr defined
-
-&endif /* defined = 0 */
+        &endif /* defined = 0 */

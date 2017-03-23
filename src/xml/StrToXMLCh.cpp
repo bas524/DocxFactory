@@ -5,19 +5,14 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-StrToXMLCh::StrToXMLCh( const string& p_str )
-{
-	m_xmlCh = XmlFunc::strToXMLCh( p_str );
+StrToXMLCh::StrToXMLCh(const string& p_str) {
+  m_xmlCh = XmlFunc::strToXMLCh(p_str);
 } // c'tor
 
-StrToXMLCh::operator XMLCh*()
-{
-	return m_xmlCh;
+StrToXMLCh::operator XMLCh*() {
+  return m_xmlCh;
 } // operator XMLCh*
 
-StrToXMLCh::~StrToXMLCh()
-{
-	delete[] m_xmlCh;
+StrToXMLCh::~StrToXMLCh() {
+  delete[] m_xmlCh;
 } // d'tor

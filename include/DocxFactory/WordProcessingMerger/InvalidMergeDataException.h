@@ -8,24 +8,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidMergeDataException : public WordProcessingException
-	{
-	public:
-		InvalidMergeDataException(
-			const string&	p_file,
-			const int		p_line );
+    class InvalidMergeDataException : public WordProcessingException {
+    public:
+        InvalidMergeDataException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidMergeDataException() throw();
+        virtual ~InvalidMergeDataException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

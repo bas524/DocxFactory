@@ -24,60 +24,66 @@
 
 
 
-&if defined( xStartSLib ) = 0 &then
+&if defined(xStartSLib) = 0 & then
 
-    define var slib_cStartSLibFile  as char no-undo.
-    define var slib_hStartSLibHndl  as handle no-undo.
+        define var slib_cStartSLibFile as char no - undo.
+        define var slib_hStartSLibHndl as handle no - undo.
 
-    define var slib_hProcHndl       as handle no-undo.
-    define var slib_lInitializeProc as log no-undo.
-
-
-
-    if      search( "slib/start-slib.r" ) <> ?  then slib_cStartSLibFile = "slib/start-slib.r".
-    else if search( "slib/start-slib.p" ) <> ?  then slib_cStartSLibFile = "slib/start-slib.p".
-
-    /***
-    else if search( "start-slib.r" ) <> ?       then slib_cStartSLibFile = "start-slib.r".
-    else if search( "start-slib.p" ) <> ?       then slib_cStartSLibFile = "start-slib.p".
-
-    else if search( "xx/start-slib.r" ) <> ?    then slib_cStartSLibFile = "xx/start-slib.r".
-    else if search( "xx/start-slib.p" ) <> ?    then slib_cStartSLibFile = "xx/start-slib.p".
-
-    else if search( "us/xx/start-slib.r" ) <> ? then slib_cStartSLibFile = "us/xx/start-slib.r".
-    else if search( "us/xx/start-slib.p" ) <> ? then slib_cStartSLibFile = "us/xx/start-slib.p".
-    ***/
+        define var slib_hProcHndl as handle no - undo.
+        define var slib_lInitializeProc as log no - undo.
 
 
 
-    slib_hStartSLibHndl = session:first-procedure.
+    if search("slib/start-slib.r") <> ? then slib_cStartSLibFile = "slib/start-slib.r".
+    else if search("slib/start-slib.p") <> ? then slib_cStartSLibFile = "slib/start-slib.p".
 
-    do while valid-handle( slib_hStartSLibHndl ) and slib_hStartSLibHndl:file-name <> slib_cStartSLibFile:
-        slib_hStartSLibHndl = slib_hStartSLibHndl:next-sibling.
-    end.
+            /***
+            else if search( "start-slib.r" ) <> ?       then slib_cStartSLibFile = "start-slib.r".
+            else if search( "start-slib.p" ) <> ?       then slib_cStartSLibFile = "start-slib.p".
 
-    if not valid-handle( slib_hStartSLibHndl ) then
-        run value( slib_cStartSLibFile ) persistent set slib_hStartSLibHndl.
+            else if search( "xx/start-slib.r" ) <> ?    then slib_cStartSLibFile = "xx/start-slib.r".
+            else if search( "xx/start-slib.p" ) <> ?    then slib_cStartSLibFile = "xx/start-slib.p".
 
-    &global xStartSLib defined
+            else if search( "us/xx/start-slib.r" ) <> ? then slib_cStartSLibFile = "us/xx/start-slib.r".
+            else if search( "us/xx/start-slib.p" ) <> ? then slib_cStartSLibFile = "us/xx/start-slib.p".
+             ***/
 
-&endif /* defined( ) = 0 */
+
+
+            slib_hStartSLibHndl = session : first - procedure.
+
+        do while valid - handle(slib_hStartSLibHndl) and slib_hStartSLibHndl : file - name <> slib_cStartSLibFile :
+                    slib_hStartSLibHndl = slib_hStartSLibHndl : next - sibling.
+                    end.
+
+                if not valid - handle(slib_hStartSLibHndl) then
+                    run value(slib_cStartSLibFile) persistent set slib_hStartSLibHndl.
+
+                        &global xStartSLib defined
+
+                        & endif /* defined( ) = 0 */
 
 
 
-run startSLib in slib_hStartSLibHndl (
+                        run startSLib in slib_hStartSLibHndl(
 
-    input   {1},
-    input   &if "{3}" <> "" &then {3} &else ? &endif,
-    output  slib_hProcHndl,
-    output  slib_lInitializeProc ).
+                        input{1},
+                    input &if "{3}" < > "" & then {
+                        3
+                    }
+                    & else ? &endif,
+        output slib_hProcHndl,
+        output slib_lInitializeProc).
 
-if slib_lInitializeProc then do:
+    if slib_lInitializeProc then do :
 
-    &if "{2}" <> "" &then
-        run initializeProc in slib_hProcHndl {2}.
-    &else
-        run initializeProc in slib_hProcHndl.
-    &endif
+        &if "{2}" < > "" & then
+            run initializeProc in slib_hProcHndl {
+            2
+        }
+        .
+& else
+    run initializeProc in slib_hProcHndl.
+        &endif
 
-end. /* lInitializeProc */
+        end. /* lInitializeProc */

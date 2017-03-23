@@ -7,30 +7,29 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteAltChunkField : public DocxMergerPasteField
-	{
-	public:
-		DocxMergerPasteAltChunkField( DocxMergerField* p_field, const string& p_value, DocxMergerAltChunkField::AltChunkType p_type );
-		virtual ~DocxMergerPasteAltChunkField();
+    class DocxMergerField;
 
-		const string*							getValue() const;
-		DocxMergerAltChunkField::AltChunkType	getType() const;
+    class DocxMergerPasteAltChunkField : public DocxMergerPasteField {
+    public:
+        DocxMergerPasteAltChunkField(DocxMergerField* p_field, const string& p_value, DocxMergerAltChunkField::AltChunkType p_type);
+        virtual ~DocxMergerPasteAltChunkField();
 
-	protected:
+        const string* getValue() const;
+        DocxMergerAltChunkField::AltChunkType getType() const;
 
-	private:
-		DocxMergerPasteAltChunkField( const DocxMergerPasteAltChunkField& p_other );
-		DocxMergerPasteAltChunkField operator = ( const DocxMergerPasteAltChunkField& p_other );
+    protected:
 
-		string									m_value;
-		DocxMergerAltChunkField::AltChunkType	m_type;
+    private:
+        DocxMergerPasteAltChunkField(const DocxMergerPasteAltChunkField& p_other);
+        DocxMergerPasteAltChunkField operator=(const DocxMergerPasteAltChunkField& p_other);
 
-	};
+        string m_value;
+        DocxMergerAltChunkField::AltChunkType m_type;
+
+    };
 };
 
 #endif

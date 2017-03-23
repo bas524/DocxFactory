@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class PrintingNotSupportedException : public ConverterPrinterException
-	{
-	public:
-		PrintingNotSupportedException(
-			const string&	p_fileName,
-			const string&	p_file,
-			int				p_line );
+    class PrintingNotSupportedException : public ConverterPrinterException {
+    public:
+        PrintingNotSupportedException(
+                const string& p_fileName,
+                const string& p_file,
+                int p_line);
 
-		virtual ~PrintingNotSupportedException() throw();
+        virtual ~PrintingNotSupportedException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

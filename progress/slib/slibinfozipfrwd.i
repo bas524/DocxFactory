@@ -24,5 +24,11 @@
 
 
 
-function infozip_isFileExists   returns log ( pcArchive as char, pcFiles as char ) {1}.
-function infozip_normalizePath  returns char( pcPath as char ) {1}.
+function infozip_isFileExists returns log(pcArchive as char, pcFiles as char) {
+    1
+}
+.
+function infozip_normalizePath returns char( pcPath as char) {
+    1
+}
+.

@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class FileNotRemovedException : public OsException
-	{
-	public:
-		FileNotRemovedException(
-			const string&	p_fileName,
-			const string&	p_file,
-			const int		p_line );
+    class FileNotRemovedException : public OsException {
+    public:
+        FileNotRemovedException(
+                const string& p_fileName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~FileNotRemovedException() throw();
+        virtual ~FileNotRemovedException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

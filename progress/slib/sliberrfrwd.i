@@ -24,22 +24,56 @@
 
 
 
-function err_isProcUsesSlibErr  returns log     ( input phProc as handle ) {1}.
+function err_isProcUsesSlibErr returns log(input phProc as handle) {
+    1
+}
+.
 
-function err_catchQuit          returns log {1}.
-function err_catchStop          returns log {1}.
-function err_quit               returns log {1}.
-function err_stop               returns log {1}.
+function err_catchQuit returns log{1}.
+function err_catchStop returns log{1}.
+function err_quit returns log{1}.
+function err_stop returns log{1}
+.
 
-function err_catch              returns log     ( output pcError as char, output pcErrorMsg as char, output pcStackTrace as char ) {1}.
-function err_throw              returns log     ( input pcError as char, input pcParam as char, input pcFileName as char ) {1}.
-function err_throwExact         returns log     ( input pcError as char, input pcErrorMsg as char, pcStackTrace as char ) {1}.
+function err_catch returns log(output pcError as char, output pcErrorMsg as char, output pcStackTrace as char) {
+    1
+}
+.
+function err_throw returns log(input pcError as char, input pcParam as char, input pcFileName as char) {
+    1
+}
+.
+function err_throwExact returns log(input pcError as char, input pcErrorMsg as char, pcStackTrace as char) {
+    1
+}
+.
 
-function err_catchReturn        returns log     ( output pcReturn as char ) {1}.
-function err_catchReturnError   returns log     ( output pcReturn as char ) {1}.
-function err_catchReturnNoApply returns log     ( ) {1}.
+function err_catchReturn returns log(output pcReturn as char) {
+    1
+}
+.
+function err_catchReturnError returns log(output pcReturn as char) {
+    1
+}
+.
+function err_catchReturnNoApply returns log() {
+    1
+}
+.
 
-function err_return             returns log     ( input pcReturn as char ) {1}.
-function err_returnDyn          returns char    ( input pcReturn as char ) {1}.
-function err_returnError        returns log     ( input pcReturn as char ) {1}.
-function err_returnNoApply      returns log     ( ) {1}.
+function err_return returns log(input pcReturn as char) {
+    1
+}
+.
+function err_returnDyn returns char ( input pcReturn as char) {
+    1
+}
+.
+function err_returnError returns log(input pcReturn as char) {
+    1
+}
+.
+function err_returnNoApply returns log() {
+    1
+}
+.

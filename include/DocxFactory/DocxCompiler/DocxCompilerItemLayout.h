@@ -18,54 +18,53 @@ class DOMNode;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
+    class ZipFile;
 
-	class DocxCompilerItemFile;
-	class DocxCompilerItemGroup;
-	class DocxCompilerItemLayout
-	{
-	public:
-		static DocxCompilerItemLayout* createItemLayout(
-			DocxCompilerItemFile*	p_itemFile,
-			xercesc::DOMElement*	p_containerNode,
-			xercesc::DOMNode*		p_fromNode,
-			double					p_fixedTrCnt );
+    class DocxCompilerItemFile;
+    class DocxCompilerItemGroup;
 
-		virtual ~DocxCompilerItemLayout();
+    class DocxCompilerItemLayout {
+    public:
+        static DocxCompilerItemLayout* createItemLayout(
+                DocxCompilerItemFile* p_itemFile,
+                xercesc::DOMElement* p_containerNode,
+                xercesc::DOMNode* p_fromNode,
+                double p_fixedTrCnt);
 
-		static void	serializeItemLayout(
-			ZipFile*				p_zipFile,
-			DocxCompilerItemLayout*	p_itemLayout );
+        virtual ~DocxCompilerItemLayout();
 
-		double																			getFixedTrCnt() const;
-		const list<pair<bool, vector<pair<unsigned short, DocxCompilerItemLayout*>>>>*	getTrList() const;
-		const list<DocxCompilerItemGroup*>*												getChildItemGroups() const;
-		bool																			empty() const;
+        static void serializeItemLayout(
+                ZipFile* p_zipFile,
+                DocxCompilerItemLayout* p_itemLayout);
 
-	protected:
+        double getFixedTrCnt() const;
+        const list<pair<bool, vector<pair<unsigned short, DocxCompilerItemLayout*>>>>*getTrList() const;
+        const list<DocxCompilerItemGroup*>* getChildItemGroups() const;
+        bool empty() const;
 
-	private:
-		DocxCompilerItemLayout();
-		DocxCompilerItemLayout(
-			DocxCompilerItemFile*	p_itemFile,
-			xercesc::DOMElement*	p_containerNode,
-			xercesc::DOMNode*		p_fromNode,
-			double					p_fixedTrCnt );
+    protected:
 
-		DocxCompilerItemLayout( const DocxCompilerItemLayout& p_other );
-		DocxCompilerItemLayout& operator = ( const DocxCompilerItemLayout& p_other );
+    private:
+        DocxCompilerItemLayout();
+        DocxCompilerItemLayout(
+                DocxCompilerItemFile* p_itemFile,
+                xercesc::DOMElement* p_containerNode,
+                xercesc::DOMNode* p_fromNode,
+                double p_fixedTrCnt);
 
-		void serialize( ZipFile* p_zipFile );
+        DocxCompilerItemLayout(const DocxCompilerItemLayout& p_other);
+        DocxCompilerItemLayout& operator=(const DocxCompilerItemLayout& p_other);
 
-		double																	m_fixedTrCnt;
-		list<pair<bool, vector<pair<unsigned short, DocxCompilerItemLayout*>>>>	m_trList;
-		list<DocxCompilerItemGroup*>											m_childItemGroups;
+        void serialize(ZipFile* p_zipFile);
 
-	};
+        double m_fixedTrCnt;
+        list<pair<bool, vector<pair<unsigned short, DocxCompilerItemLayout*>>>> m_trList;
+        list<DocxCompilerItemGroup*> m_childItemGroups;
+
+    };
 };
 
 #endif

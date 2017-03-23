@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidDateTimeStrException : public LocaleException
-	{
-	public:
-		InvalidDateTimeStrException(
-			const string&	p_name,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidDateTimeStrException : public LocaleException {
+    public:
+        InvalidDateTimeStrException(
+                const string& p_name,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidDateTimeStrException() throw();
+        virtual ~InvalidDateTimeStrException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

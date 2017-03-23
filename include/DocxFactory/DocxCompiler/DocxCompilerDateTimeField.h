@@ -6,37 +6,35 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	struct DateTimeFormat;
+    struct DateTimeFormat;
 
-	class ZipFile;
+    class ZipFile;
 
-	class DocxCompilerDateTimeField : public DocxCompilerField
-	{
-	public:
-		DocxCompilerDateTimeField(
-			DocxCompilerItem*				p_item,
-			const string&					p_name,
-			const string&					p_format,
-			const map<FieldParam, string>*	p_valueByParam,
-			xercesc::DOMElement*			p_placeHolderNode );
+    class DocxCompilerDateTimeField : public DocxCompilerField {
+    public:
+        DocxCompilerDateTimeField(
+                DocxCompilerItem* p_item,
+                const string& p_name,
+                const string& p_format,
+                const map<FieldParam, string>* p_valueByParam,
+                xercesc::DOMElement* p_placeHolderNode);
 
-		virtual ~DocxCompilerDateTimeField();
+        virtual ~DocxCompilerDateTimeField();
 
-		virtual void serialize( ZipFile* p_zipFile );
+        virtual void serialize(ZipFile* p_zipFile);
 
-	protected:
+    protected:
 
-	private:
-		DocxCompilerDateTimeField( const DocxCompilerDateTimeField& p_other );
-		DocxCompilerDateTimeField& operator = ( const DocxCompilerDateTimeField );
+    private:
+        DocxCompilerDateTimeField(const DocxCompilerDateTimeField& p_other);
+        DocxCompilerDateTimeField& operator=(const DocxCompilerDateTimeField);
 
-		list<DateTimeFormat*> m_dateTimeFormat;
+        list<DateTimeFormat*> m_dateTimeFormat;
 
-	};
+    };
 };
 
 #endif

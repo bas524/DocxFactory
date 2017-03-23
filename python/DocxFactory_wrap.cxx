@@ -13,21 +13,49 @@
 
 
 #ifdef __cplusplus
+
 /* SwigValueWrapper is described in swig.swg */
 template<typename T> class SwigValueWrapper {
+
   struct SwigMovePointer {
     T *ptr;
-    SwigMovePointer(T *p) : ptr(p) { }
-    ~SwigMovePointer() { delete ptr; }
-    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }
+
+    SwigMovePointer(T *p) : ptr(p) {
+    }
+
+    ~SwigMovePointer() {
+      delete ptr;
+    }
+
+    SwigMovePointer& operator=(SwigMovePointer& rhs) {
+      T* oldptr = ptr;
+      ptr = 0;
+      delete oldptr;
+      ptr = rhs.ptr;
+      rhs.ptr = 0;
+      return *this;
+    }
   } pointer;
   SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);
   SwigValueWrapper(const SwigValueWrapper<T>& rhs);
 public:
-  SwigValueWrapper() : pointer(0) { }
-  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }
-  operator T&() const { return *pointer.ptr; }
-  T *operator&() { return pointer.ptr; }
+
+  SwigValueWrapper() : pointer(0) {
+  }
+
+  SwigValueWrapper& operator=(const T& t) {
+    SwigMovePointer tmp(new T(t));
+    pointer = tmp;
+    return *this;
+  }
+
+  operator T&() const {
+    return *pointer.ptr;
+  }
+
+  T *operator&() {
+    return pointer.ptr;
+  }
 };
 
 template <typename T> T SwigValueInit() {
@@ -42,116 +70,116 @@ template <typename T> T SwigValueInit() {
 
 /* template workaround for compilers that cannot correctly implement the C++ standard */
 #ifndef SWIGTEMPLATEDISAMBIGUATOR
-# if defined(__SUNPRO_CC) && (__SUNPRO_CC <= 0x560)
-#  define SWIGTEMPLATEDISAMBIGUATOR template
-# elif defined(__HP_aCC)
+#if defined(__SUNPRO_CC) && (__SUNPRO_CC <= 0x560)
+#define SWIGTEMPLATEDISAMBIGUATOR template
+#elif defined(__HP_aCC)
 /* Needed even with `aCC -AA' when `aCC -V' reports HP ANSI C++ B3910B A.03.55 */
 /* If we find a maximum version that requires this, the test would be __HP_aCC <= 35500 for A.03.55 */
-#  define SWIGTEMPLATEDISAMBIGUATOR template
-# else
-#  define SWIGTEMPLATEDISAMBIGUATOR
-# endif
+#define SWIGTEMPLATEDISAMBIGUATOR template
+#else
+#define SWIGTEMPLATEDISAMBIGUATOR
+#endif
 #endif
 
 /* inline attribute */
 #ifndef SWIGINLINE
-# if defined(__cplusplus) || (defined(__GNUC__) && !defined(__STRICT_ANSI__))
-#   define SWIGINLINE inline
-# else
-#   define SWIGINLINE
-# endif
+#if defined(__cplusplus) || (defined(__GNUC__) && !defined(__STRICT_ANSI__))
+#define SWIGINLINE inline
+#else
+#define SWIGINLINE
+#endif
 #endif
 
 /* attribute recognised by some compilers to avoid 'unused' warnings */
 #ifndef SWIGUNUSED
-# if defined(__GNUC__)
-#   if !(defined(__cplusplus)) || (__GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4))
-#     define SWIGUNUSED __attribute__ ((__unused__))
-#   else
-#     define SWIGUNUSED
-#   endif
-# elif defined(__ICC)
-#   define SWIGUNUSED __attribute__ ((__unused__))
-# else
-#   define SWIGUNUSED
-# endif
+#if defined(__GNUC__)
+#if !(defined(__cplusplus)) || (__GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4))
+#define SWIGUNUSED __attribute__ ((__unused__))
+#else
+#define SWIGUNUSED
+#endif
+#elif defined(__ICC)
+#define SWIGUNUSED __attribute__ ((__unused__))
+#else
+#define SWIGUNUSED
+#endif
 #endif
 
 #ifndef SWIG_MSC_UNSUPPRESS_4505
-# if defined(_MSC_VER)
-#   pragma warning(disable : 4505) /* unreferenced local function has been removed */
-# endif
+#if defined(_MSC_VER)
+#pragma warning(disable : 4505) /* unreferenced local function has been removed */
+#endif
 #endif
 
 #ifndef SWIGUNUSEDPARM
-# ifdef __cplusplus
-#   define SWIGUNUSEDPARM(p)
-# else
-#   define SWIGUNUSEDPARM(p) p SWIGUNUSED
-# endif
+#ifdef __cplusplus
+#define SWIGUNUSEDPARM(p)
+#else
+#define SWIGUNUSEDPARM(p) p SWIGUNUSED
+#endif
 #endif
 
 /* internal SWIG method */
 #ifndef SWIGINTERN
-# define SWIGINTERN static SWIGUNUSED
+#define SWIGINTERN static SWIGUNUSED
 #endif
 
 /* internal inline SWIG method */
 #ifndef SWIGINTERNINLINE
-# define SWIGINTERNINLINE SWIGINTERN SWIGINLINE
+#define SWIGINTERNINLINE SWIGINTERN SWIGINLINE
 #endif
 
 /* exporting methods */
 #if (__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
-#  ifndef GCC_HASCLASSVISIBILITY
-#    define GCC_HASCLASSVISIBILITY
-#  endif
+#ifndef GCC_HASCLASSVISIBILITY
+#define GCC_HASCLASSVISIBILITY
+#endif
 #endif
 
 #ifndef SWIGEXPORT
-# if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#   if defined(STATIC_LINKED)
-#     define SWIGEXPORT
-#   else
-#     define SWIGEXPORT __declspec(dllexport)
-#   endif
-# else
-#   if defined(__GNUC__) && defined(GCC_HASCLASSVISIBILITY)
-#     define SWIGEXPORT __attribute__ ((visibility("default")))
-#   else
-#     define SWIGEXPORT
-#   endif
-# endif
+#if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
+#if defined(STATIC_LINKED)
+#define SWIGEXPORT
+#else
+#define SWIGEXPORT __declspec(dllexport)
+#endif
+#else
+#if defined(__GNUC__) && defined(GCC_HASCLASSVISIBILITY)
+#define SWIGEXPORT __attribute__ ((visibility("default")))
+#else
+#define SWIGEXPORT
+#endif
+#endif
 #endif
 
 /* calling conventions for Windows */
 #ifndef SWIGSTDCALL
-# if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#   define SWIGSTDCALL __stdcall
-# else
-#   define SWIGSTDCALL
-# endif
+#if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
+#define SWIGSTDCALL __stdcall
+#else
+#define SWIGSTDCALL
+#endif
 #endif
 
 /* Deal with Microsoft's attempt at deprecating C standard runtime functions */
 #if !defined(SWIG_NO_CRT_SECURE_NO_DEPRECATE) && defined(_MSC_VER) && !defined(_CRT_SECURE_NO_DEPRECATE)
-# define _CRT_SECURE_NO_DEPRECATE
+#define _CRT_SECURE_NO_DEPRECATE
 #endif
 
 /* Deal with Microsoft's attempt at deprecating methods in the standard C++ library */
 #if !defined(SWIG_NO_SCL_SECURE_NO_DEPRECATE) && defined(_MSC_VER) && !defined(_SCL_SECURE_NO_DEPRECATE)
-# define _SCL_SECURE_NO_DEPRECATE
+#define _SCL_SECURE_NO_DEPRECATE
 #endif
 
 
 
 #if defined(_DEBUG) && defined(SWIG_PYTHON_INTERPRETER_NO_DEBUG)
 /* Use debug wrappers with the Python release dll */
-# undef _DEBUG
-# include <Python.h>
-# define _DEBUG
+#undef _DEBUG
+#include <Python.h>
+#define _DEBUG
 #else
-# include <Python.h>
+#include <Python.h>
 #endif
 
 /* -----------------------------------------------------------------------------
@@ -167,11 +195,11 @@ template <typename T> T SwigValueInit() {
 
 /* define SWIG_TYPE_TABLE_NAME as "SWIG_TYPE_TABLE" */
 #ifdef SWIG_TYPE_TABLE
-# define SWIG_QUOTE_STRING(x) #x
-# define SWIG_EXPAND_AND_QUOTE_STRING(x) SWIG_QUOTE_STRING(x)
-# define SWIG_TYPE_TABLE_NAME SWIG_EXPAND_AND_QUOTE_STRING(SWIG_TYPE_TABLE)
+#define SWIG_QUOTE_STRING(x) #x
+#define SWIG_EXPAND_AND_QUOTE_STRING(x) SWIG_QUOTE_STRING(x)
+#define SWIG_TYPE_TABLE_NAME SWIG_EXPAND_AND_QUOTE_STRING(SWIG_TYPE_TABLE)
 #else
-# define SWIG_TYPE_TABLE_NAME
+#define SWIG_TYPE_TABLE_NAME
 #endif
 
 /*
@@ -181,19 +209,19 @@ template <typename T> T SwigValueInit() {
 
   But only do this if strictly necessary, ie, if you have problems
   with your compiler or suchlike.
-*/
+ */
 
 #ifndef SWIGRUNTIME
-# define SWIGRUNTIME SWIGINTERN
+#define SWIGRUNTIME SWIGINTERN
 #endif
 
 #ifndef SWIGRUNTIMEINLINE
-# define SWIGRUNTIMEINLINE SWIGRUNTIME SWIGINLINE
+#define SWIGRUNTIMEINLINE SWIGRUNTIME SWIGINLINE
 #endif
 
 /*  Generic buffer size */
 #ifndef SWIG_BUFFER_SIZE
-# define SWIG_BUFFER_SIZE 1024
+#define SWIG_BUFFER_SIZE 1024
 #endif
 
 /* Flags for pointer conversions */
@@ -239,7 +267,7 @@ template <typename T> T SwigValueInit() {
       // success code
       if (SWIG_IsNewObj(res) {
         ...
-	delete *ptr;
+  delete *ptr;
       } else {
         ...
       }
@@ -254,10 +282,10 @@ template <typename T> T SwigValueInit() {
       int SWIG_ConvertPtr(obj, ptr,...) {
         if (<obj is ok>) {
           if (<need new object>) {
-            *ptr = <ptr to new allocated object>;
+ *ptr = <ptr to new allocated object>;
             return SWIG_NEWOBJ;
           } else {
-            *ptr = <ptr to old object>;
+ *ptr = <ptr to old object>;
             return SWIG_OLDOBJ;
           }
         } else {
@@ -281,7 +309,7 @@ template <typename T> T SwigValueInit() {
       fooi(1)   // cast rank '0'
 
    just use the SWIG_AddCast()/SWIG_CheckState()
-*/
+ */
 
 #define SWIG_OK                    (0)
 #define SWIG_ERROR                 (-1)
@@ -309,23 +337,25 @@ template <typename T> T SwigValueInit() {
 
 /* Cast-Rank Mode */
 #if defined(SWIG_CASTRANK_MODE)
-#  ifndef SWIG_TypeRank
-#    define SWIG_TypeRank             unsigned long
-#  endif
-#  ifndef SWIG_MAXCASTRANK            /* Default cast allowed */
-#    define SWIG_MAXCASTRANK          (2)
-#  endif
-#  define SWIG_CASTRANKMASK          ((SWIG_CASTRANKLIMIT) -1)
-#  define SWIG_CastRank(r)           (r & SWIG_CASTRANKMASK)
+#ifndef SWIG_TypeRank
+#define SWIG_TypeRank             unsigned long
+#endif
+#ifndef SWIG_MAXCASTRANK            /* Default cast allowed */
+#define SWIG_MAXCASTRANK          (2)
+#endif
+#define SWIG_CASTRANKMASK          ((SWIG_CASTRANKLIMIT) -1)
+#define SWIG_CastRank(r)           (r & SWIG_CASTRANKMASK)
+
 SWIGINTERNINLINE int SWIG_AddCast(int r) {
   return SWIG_IsOK(r) ? ((SWIG_CastRank(r) < SWIG_MAXCASTRANK) ? (r + 1) : SWIG_ERROR) : r;
 }
+
 SWIGINTERNINLINE int SWIG_CheckState(int r) {
   return SWIG_IsOK(r) ? SWIG_CastRank(r) + 1 : 0;
 }
 #else /* no cast-rank mode */
-#  define SWIG_AddCast(r) (r)
-#  define SWIG_CheckState(r) (SWIG_IsOK(r) ? 1 : 0)
+#define SWIG_AddCast(r) (r)
+#define SWIG_CheckState(r) (SWIG_IsOK(r) ? 1 : 0)
 #endif
 
 
@@ -340,32 +370,32 @@ typedef struct swig_type_info *(*swig_dycast_func)(void **);
 
 /* Structure to store information on one type */
 typedef struct swig_type_info {
-  const char             *name;			/* mangled name of this type */
-  const char             *str;			/* human readable name of this type */
-  swig_dycast_func        dcast;		/* dynamic cast function down a hierarchy */
-  struct swig_cast_info  *cast;			/* linked list of types that can cast into this type */
-  void                   *clientdata;		/* language specific type data */
-  int                    owndata;		/* flag if the structure owns the clientdata */
+  const char *name; /* mangled name of this type */
+  const char *str; /* human readable name of this type */
+  swig_dycast_func dcast; /* dynamic cast function down a hierarchy */
+  struct swig_cast_info *cast; /* linked list of types that can cast into this type */
+  void *clientdata; /* language specific type data */
+  int owndata; /* flag if the structure owns the clientdata */
 } swig_type_info;
 
 /* Structure to store a type and conversion function used for casting */
 typedef struct swig_cast_info {
-  swig_type_info         *type;			/* pointer to type that is equivalent to this type */
-  swig_converter_func     converter;		/* function to cast the void pointers */
-  struct swig_cast_info  *next;			/* pointer to next cast in linked list */
-  struct swig_cast_info  *prev;			/* pointer to the previous cast */
+  swig_type_info *type; /* pointer to type that is equivalent to this type */
+  swig_converter_func converter; /* function to cast the void pointers */
+  struct swig_cast_info *next; /* pointer to next cast in linked list */
+  struct swig_cast_info *prev; /* pointer to the previous cast */
 } swig_cast_info;
 
 /* Structure used to store module information
  * Each module generates one structure like this, and the runtime collects
  * all of these structures and stores them in a circularly linked list.*/
 typedef struct swig_module_info {
-  swig_type_info         **types;		/* Array of pointers to swig_type_info structures that are in this module */
-  size_t                 size;		        /* Number of types in this module */
-  struct swig_module_info *next;		/* Pointer to next element in circularly linked list */
-  swig_type_info         **type_initial;	/* Array of initially generated type structures */
-  swig_cast_info         **cast_initial;	/* Array of initially generated casting structures */
-  void                    *clientdata;		/* Language specific module data */
+  swig_type_info **types; /* Array of pointers to swig_type_info structures that are in this module */
+  size_t size; /* Number of types in this module */
+  struct swig_module_info *next; /* Pointer to next element in circularly linked list */
+  swig_type_info **type_initial; /* Array of initially generated type structures */
+  swig_cast_info **cast_initial; /* Array of initially generated casting structures */
+  void *clientdata; /* Language specific module data */
 } swig_module_info;
 
 /*
@@ -374,22 +404,22 @@ typedef struct swig_module_info {
 
   Return 0 when the two name types are equivalent, as in
   strncmp, but skipping ' '.
-*/
+ */
 SWIGRUNTIME int
 SWIG_TypeNameComp(const char *f1, const char *l1,
-		  const char *f2, const char *l2) {
-  for (;(f1 != l1) && (f2 != l2); ++f1, ++f2) {
+        const char *f2, const char *l2) {
+  for (; (f1 != l1) && (f2 != l2); ++f1, ++f2) {
     while ((*f1 == ' ') && (f1 != l1)) ++f1;
     while ((*f2 == ' ') && (f2 != l2)) ++f2;
     if (*f1 != *f2) return (*f1 > *f2) ? 1 : -1;
   }
-  return (int)((l1 - f1) - (l2 - f2));
+  return (int) ((l1 - f1) - (l2 - f2));
 }
 
 /*
   Check type equivalence in a name list like <name1>|<name2>|...
   Return 0 if equal, -1 if nb < tb, 1 if nb > tb
-*/
+ */
 SWIGRUNTIME int
 SWIG_TypeCmp(const char *nb, const char *tb) {
   int equiv = 1;
@@ -408,7 +438,7 @@ SWIG_TypeCmp(const char *nb, const char *tb) {
 /*
   Check type equivalence in a name list like <name1>|<name2>|...
   Return 0 if not equal, 1 if equal
-*/
+ */
 SWIGRUNTIME int
 SWIG_TypeEquiv(const char *nb, const char *tb) {
   return SWIG_TypeCmp(nb, tb) == 0 ? 1 : 0;
@@ -416,7 +446,7 @@ SWIG_TypeEquiv(const char *nb, const char *tb) {
 
 /*
   Check the typename
-*/
+ */
 SWIGRUNTIME swig_cast_info *
 SWIG_TypeCheck(const char *c, swig_type_info *ty) {
   if (ty) {
@@ -443,7 +473,7 @@ SWIG_TypeCheck(const char *c, swig_type_info *ty) {
 
 /*
   Identical to SWIG_TypeCheck, except strcmp is replaced with a pointer comparison
-*/
+ */
 SWIGRUNTIME swig_cast_info *
 SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {
   if (ty) {
@@ -470,7 +500,7 @@ SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {
 
 /*
   Cast a pointer up an inheritance hierarchy
-*/
+ */
 SWIGRUNTIMEINLINE void *
 SWIG_TypeCast(swig_cast_info *ty, void *ptr, int *newmemory) {
   return ((!ty) || (!ty->converter)) ? ptr : (*ty->converter)(ptr, newmemory);
@@ -478,7 +508,7 @@ SWIG_TypeCast(swig_cast_info *ty, void *ptr, int *newmemory) {
 
 /*
    Dynamic pointer casting. Down an inheritance hierarchy
-*/
+ */
 SWIGRUNTIME swig_type_info *
 SWIG_TypeDynamicCast(swig_type_info *ty, void **ptr) {
   swig_type_info *lastty = ty;
@@ -492,7 +522,7 @@ SWIG_TypeDynamicCast(swig_type_info *ty, void **ptr) {
 
 /*
   Return the name associated with this type
-*/
+ */
 SWIGRUNTIMEINLINE const char *
 SWIG_TypeName(const swig_type_info *ty) {
   return ty->name;
@@ -501,7 +531,7 @@ SWIG_TypeName(const swig_type_info *ty) {
 /*
   Return the pretty name associated with this type,
   that is an unmangled type name in a form presentable to the user.
-*/
+ */
 SWIGRUNTIME const char *
 SWIG_TypePrettyName(const swig_type_info *type) {
   /* The "str" field contains the equivalent pretty names of the
@@ -513,16 +543,15 @@ SWIG_TypePrettyName(const swig_type_info *type) {
     const char *last_name = type->str;
     const char *s;
     for (s = type->str; *s; s++)
-      if (*s == '|') last_name = s+1;
+      if (*s == '|') last_name = s + 1;
     return last_name;
-  }
-  else
+  } else
     return type->name;
 }
 
 /*
    Set the clientdata field for a type
-*/
+ */
 SWIGRUNTIME void
 SWIG_TypeClientData(swig_type_info *ti, void *clientdata) {
   swig_cast_info *cast = ti->cast;
@@ -533,12 +562,13 @@ SWIG_TypeClientData(swig_type_info *ti, void *clientdata) {
     if (!cast->converter) {
       swig_type_info *tc = cast->type;
       if (!tc->clientdata) {
-	SWIG_TypeClientData(tc, clientdata);
+        SWIG_TypeClientData(tc, clientdata);
       }
     }
     cast = cast->next;
   }
 }
+
 SWIGRUNTIME void
 SWIG_TypeNewClientData(swig_type_info *ti, void *clientdata) {
   SWIG_TypeClientData(ti, clientdata);
@@ -552,36 +582,36 @@ SWIG_TypeNewClientData(swig_type_info *ti, void *clientdata) {
   We start searching at module start, and finish searching when start == end.
   Note: if start == end at the beginning of the function, we go all the way around
   the circular list.
-*/
+ */
 SWIGRUNTIME swig_type_info *
 SWIG_MangledTypeQueryModule(swig_module_info *start,
-                            swig_module_info *end,
-		            const char *name) {
+        swig_module_info *end,
+        const char *name) {
   swig_module_info *iter = start;
   do {
     if (iter->size) {
       size_t l = 0;
       size_t r = iter->size - 1;
       do {
-	/* since l+r >= 0, we can (>> 1) instead (/ 2) */
-	size_t i = (l + r) >> 1;
-	const char *iname = iter->types[i]->name;
-	if (iname) {
-	  int compare = strcmp(name, iname);
-	  if (compare == 0) {
-	    return iter->types[i];
-	  } else if (compare < 0) {
-	    if (i) {
-	      r = i - 1;
-	    } else {
-	      break;
-	    }
-	  } else if (compare > 0) {
-	    l = i + 1;
-	  }
-	} else {
-	  break; /* should never happen */
-	}
+        /* since l+r >= 0, we can (>> 1) instead (/ 2) */
+        size_t i = (l + r) >> 1;
+        const char *iname = iter->types[i]->name;
+        if (iname) {
+          int compare = strcmp(name, iname);
+          if (compare == 0) {
+            return iter->types[i];
+          } else if (compare < 0) {
+            if (i) {
+              r = i - 1;
+            } else {
+              break;
+            }
+          } else if (compare > 0) {
+            l = i + 1;
+          }
+        } else {
+          break; /* should never happen */
+        }
       } while (l <= r);
     }
     iter = iter->next;
@@ -597,11 +627,11 @@ SWIG_MangledTypeQueryModule(swig_module_info *start,
   We start searching at module start, and finish searching when start == end.
   Note: if start == end at the beginning of the function, we go all the way around
   the circular list.
-*/
+ */
 SWIGRUNTIME swig_type_info *
 SWIG_TypeQueryModule(swig_module_info *start,
-                     swig_module_info *end,
-		     const char *name) {
+        swig_module_info *end,
+        const char *name) {
   /* STEP 1: Search the name field using binary search */
   swig_type_info *ret = SWIG_MangledTypeQueryModule(start, end, name);
   if (ret) {
@@ -613,8 +643,8 @@ SWIG_TypeQueryModule(swig_module_info *start,
     do {
       size_t i = 0;
       for (; i < iter->size; ++i) {
-	if (iter->types[i]->str && (SWIG_TypeEquiv(iter->types[i]->str, name)))
-	  return iter->types[i];
+        if (iter->types[i]->str && (SWIG_TypeEquiv(iter->types[i]->str, name)))
+          return iter->types[i];
       }
       iter = iter->next;
     } while (iter != end);
@@ -626,12 +656,12 @@ SWIG_TypeQueryModule(swig_module_info *start,
 
 /*
    Pack binary data into a string
-*/
+ */
 SWIGRUNTIME char *
 SWIG_PackData(char *c, void *ptr, size_t sz) {
   static const char hex[17] = "0123456789abcdef";
   const unsigned char *u = (unsigned char *) ptr;
-  const unsigned char *eu =  u + sz;
+  const unsigned char *eu = u + sz;
   for (; u != eu; ++u) {
     unsigned char uu = *u;
     *(c++) = hex[(uu & 0xf0) >> 4];
@@ -642,7 +672,7 @@ SWIG_PackData(char *c, void *ptr, size_t sz) {
 
 /*
    Unpack binary data from a string
-*/
+ */
 SWIGRUNTIME const char *
 SWIG_UnpackData(const char *c, void *ptr, size_t sz) {
   unsigned char *u = (unsigned char *) ptr;
@@ -653,14 +683,14 @@ SWIG_UnpackData(const char *c, void *ptr, size_t sz) {
     if ((d >= '0') && (d <= '9'))
       uu = ((d - '0') << 4);
     else if ((d >= 'a') && (d <= 'f'))
-      uu = ((d - ('a'-10)) << 4);
+      uu = ((d - ('a' - 10)) << 4);
     else
       return (char *) 0;
     d = *(c++);
     if ((d >= '0') && (d <= '9'))
       uu |= (d - '0');
     else if ((d >= 'a') && (d <= 'f'))
-      uu |= (d - ('a'-10));
+      uu |= (d - ('a' - 10));
     else
       return (char *) 0;
     *u = uu;
@@ -670,40 +700,40 @@ SWIG_UnpackData(const char *c, void *ptr, size_t sz) {
 
 /*
    Pack 'void *' into a string buffer.
-*/
+ */
 SWIGRUNTIME char *
 SWIG_PackVoidPtr(char *buff, void *ptr, const char *name, size_t bsz) {
   char *r = buff;
-  if ((2*sizeof(void *) + 2) > bsz) return 0;
+  if ((2 * sizeof (void *) + 2) > bsz) return 0;
   *(r++) = '_';
-  r = SWIG_PackData(r,&ptr,sizeof(void *));
+  r = SWIG_PackData(r, &ptr, sizeof (void *));
   if (strlen(name) + 1 > (bsz - (r - buff))) return 0;
-  strcpy(r,name);
+  strcpy(r, name);
   return buff;
 }
 
 SWIGRUNTIME const char *
 SWIG_UnpackVoidPtr(const char *c, void **ptr, const char *name) {
   if (*c != '_') {
-    if (strcmp(c,"NULL") == 0) {
+    if (strcmp(c, "NULL") == 0) {
       *ptr = (void *) 0;
       return name;
     } else {
       return 0;
     }
   }
-  return SWIG_UnpackData(++c,ptr,sizeof(void *));
+  return SWIG_UnpackData(++c, ptr, sizeof (void *));
 }
 
 SWIGRUNTIME char *
 SWIG_PackDataName(char *buff, void *ptr, size_t sz, const char *name, size_t bsz) {
   char *r = buff;
   size_t lname = (name ? strlen(name) : 0);
-  if ((2*sz + 2 + lname) > bsz) return 0;
+  if ((2 * sz + 2 + lname) > bsz) return 0;
   *(r++) = '_';
-  r = SWIG_PackData(r,ptr,sz);
+  r = SWIG_PackData(r, ptr, sz);
   if (lname) {
-    strncpy(r,name,lname+1);
+    strncpy(r, name, lname + 1);
   } else {
     *r = 0;
   }
@@ -713,14 +743,14 @@ SWIG_PackDataName(char *buff, void *ptr, size_t sz, const char *name, size_t bsz
 SWIGRUNTIME const char *
 SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {
   if (*c != '_') {
-    if (strcmp(c,"NULL") == 0) {
-      memset(ptr,0,sz);
+    if (strcmp(c, "NULL") == 0) {
+      memset(ptr, 0, sz);
       return name;
     } else {
       return 0;
     }
   }
-  return SWIG_UnpackData(++c,ptr,sz);
+  return SWIG_UnpackData(++c, ptr, sz);
 }
 
 #ifdef __cplusplus
@@ -728,18 +758,18 @@ SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {
 #endif
 
 /*  Errors in SWIG */
-#define  SWIG_UnknownError    	   -1
-#define  SWIG_IOError        	   -2
-#define  SWIG_RuntimeError   	   -3
-#define  SWIG_IndexError     	   -4
-#define  SWIG_TypeError      	   -5
-#define  SWIG_DivisionByZero 	   -6
-#define  SWIG_OverflowError  	   -7
-#define  SWIG_SyntaxError    	   -8
-#define  SWIG_ValueError     	   -9
-#define  SWIG_SystemError    	   -10
-#define  SWIG_AttributeError 	   -11
-#define  SWIG_MemoryError    	   -12
+#define  SWIG_UnknownError        -1
+#define  SWIG_IOError            -2
+#define  SWIG_RuntimeError       -3
+#define  SWIG_IndexError         -4
+#define  SWIG_TypeError          -5
+#define  SWIG_DivisionByZero     -6
+#define  SWIG_OverflowError      -7
+#define  SWIG_SyntaxError        -8
+#define  SWIG_ValueError         -9
+#define  SWIG_SystemError        -10
+#define  SWIG_AttributeError     -11
+#define  SWIG_MemoryError        -12
 #define  SWIG_NullReferenceError   -13
 
 
@@ -756,7 +786,7 @@ SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {
 #define PyString_FromString(x) PyUnicode_FromString(x)
 #define PyString_Format(fmt, args)  PyUnicode_Format(fmt, args)
 #define PyString_AsString(str) PyBytes_AsString(str)
-#define PyString_Size(str) PyBytes_Size(str)	
+#define PyString_Size(str) PyBytes_Size(str) 
 #define PyString_InternFromString(key) PyUnicode_InternFromString(key)
 #define Py_TPFLAGS_HAVE_CLASS Py_TPFLAGS_BASETYPE
 #define PyString_AS_STRING(x) PyUnicode_AS_STRING(x)
@@ -765,32 +795,30 @@ SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {
 #endif
 
 #ifndef Py_TYPE
-#  define Py_TYPE(op) ((op)->ob_type)
+#define Py_TYPE(op) ((op)->ob_type)
 #endif
 
 /* SWIG APIs for compatibility of both Python 2 & 3 */
 
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_Python_str_FromFormat PyUnicode_FromFormat
+#define SWIG_Python_str_FromFormat PyUnicode_FromFormat
 #else
-#  define SWIG_Python_str_FromFormat PyString_FromFormat
+#define SWIG_Python_str_FromFormat PyString_FromFormat
 #endif
-
 
 /* Warning: This function will allocate a new string in Python 3,
  * so please call SWIG_Python_str_DelForPy3(x) to free the space.
  */
 SWIGINTERN char*
-SWIG_Python_str_AsChar(PyObject *str)
-{
+SWIG_Python_str_AsChar(PyObject *str) {
 #if PY_VERSION_HEX >= 0x03000000
   char *cstr;
   char *newstr;
   Py_ssize_t len;
   str = PyUnicode_AsUTF8String(str);
   PyBytes_AsStringAndSize(str, &cstr, &len);
-  newstr = (char *) malloc(len+1);
-  memcpy(newstr, cstr, len+1);
+  newstr = (char *) malloc(len + 1);
+  memcpy(newstr, cstr, len + 1);
   Py_XDECREF(str);
   return newstr;
 #else
@@ -799,17 +827,15 @@ SWIG_Python_str_AsChar(PyObject *str)
 }
 
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_Python_str_DelForPy3(x) free( (void*) (x) )
+#define SWIG_Python_str_DelForPy3(x) free( (void*) (x) )
 #else
-#  define SWIG_Python_str_DelForPy3(x) 
+#define SWIG_Python_str_DelForPy3(x) 
 #endif
 
-
 SWIGINTERN PyObject*
-SWIG_Python_str_FromChar(const char *c)
-{
+SWIG_Python_str_FromChar(const char *c) {
 #if PY_VERSION_HEX >= 0x03000000
-  return PyUnicode_FromString(c); 
+  return PyUnicode_FromString(c);
 #else
   return PyString_FromString(c);
 #endif
@@ -817,18 +843,18 @@ SWIG_Python_str_FromChar(const char *c)
 
 /* Add PyOS_snprintf for old Pythons */
 #if PY_VERSION_HEX < 0x02020000
-# if defined(_MSC_VER) || defined(__BORLANDC__) || defined(_WATCOM)
-#  define PyOS_snprintf _snprintf
-# else
-#  define PyOS_snprintf snprintf
-# endif
+#if defined(_MSC_VER) || defined(__BORLANDC__) || defined(_WATCOM)
+#define PyOS_snprintf _snprintf
+#else
+#define PyOS_snprintf snprintf
+#endif
 #endif
 
 /* A crude PyString_FromFormat implementation for old Pythons */
 #if PY_VERSION_HEX < 0x02020000
 
 #ifndef SWIG_PYBUFFER_SIZE
-# define SWIG_PYBUFFER_SIZE 1024
+#define SWIG_PYBUFFER_SIZE 1024
 #endif
 
 static PyObject *
@@ -837,56 +863,56 @@ PyString_FromFormat(const char *fmt, ...) {
   char buf[SWIG_PYBUFFER_SIZE * 2];
   int res;
   va_start(ap, fmt);
-  res = vsnprintf(buf, sizeof(buf), fmt, ap);
+  res = vsnprintf(buf, sizeof (buf), fmt, ap);
   va_end(ap);
-  return (res < 0 || res >= (int)sizeof(buf)) ? 0 : PyString_FromString(buf);
+  return (res < 0 || res >= (int) sizeof (buf)) ? 0 : PyString_FromString(buf);
 }
 #endif
 
 /* Add PyObject_Del for old Pythons */
 #if PY_VERSION_HEX < 0x01060000
-# define PyObject_Del(op) PyMem_DEL((op))
+#define PyObject_Del(op) PyMem_DEL((op))
 #endif
 #ifndef PyObject_DEL
-# define PyObject_DEL PyObject_Del
+#define PyObject_DEL PyObject_Del
 #endif
 
 /* A crude PyExc_StopIteration exception for old Pythons */
 #if PY_VERSION_HEX < 0x02020000
-# ifndef PyExc_StopIteration
-#  define PyExc_StopIteration PyExc_RuntimeError
-# endif
-# ifndef PyObject_GenericGetAttr
-#  define PyObject_GenericGetAttr 0
-# endif
+#ifndef PyExc_StopIteration
+#define PyExc_StopIteration PyExc_RuntimeError
+#endif
+#ifndef PyObject_GenericGetAttr
+#define PyObject_GenericGetAttr 0
+#endif
 #endif
 
 /* Py_NotImplemented is defined in 2.1 and up. */
 #if PY_VERSION_HEX < 0x02010000
-# ifndef Py_NotImplemented
-#  define Py_NotImplemented PyExc_RuntimeError
-# endif
+#ifndef Py_NotImplemented
+#define Py_NotImplemented PyExc_RuntimeError
+#endif
 #endif
 
 /* A crude PyString_AsStringAndSize implementation for old Pythons */
 #if PY_VERSION_HEX < 0x02010000
-# ifndef PyString_AsStringAndSize
-#  define PyString_AsStringAndSize(obj, s, len) {*s = PyString_AsString(obj); *len = *s ? strlen(*s) : 0;}
-# endif
+#ifndef PyString_AsStringAndSize
+#define PyString_AsStringAndSize(obj, s, len) {*s = PyString_AsString(obj); *len = *s ? strlen(*s) : 0;}
+#endif
 #endif
 
 /* PySequence_Size for old Pythons */
 #if PY_VERSION_HEX < 0x02000000
-# ifndef PySequence_Size
-#  define PySequence_Size PySequence_Length
-# endif
+#ifndef PySequence_Size
+#define PySequence_Size PySequence_Length
+#endif
 #endif
 
 /* PyBool_FromLong for old Pythons */
 #if PY_VERSION_HEX < 0x02030000
+
 static
-PyObject *PyBool_FromLong(long ok)
-{
+PyObject *PyBool_FromLong(long ok) {
   PyObject *result = ok ? Py_True : Py_False;
   Py_INCREF(result);
   return result;
@@ -898,8 +924,8 @@ PyObject *PyBool_FromLong(long ok)
 /* http://www.python.org/dev/peps/pep-0353/#conversion-guidelines */
 #if PY_VERSION_HEX < 0x02050000 && !defined(PY_SSIZE_T_MIN)
 typedef int Py_ssize_t;
-# define PY_SSIZE_T_MAX INT_MAX
-# define PY_SSIZE_T_MIN INT_MIN
+#define PY_SSIZE_T_MAX INT_MAX
+#define PY_SSIZE_T_MIN INT_MIN
 typedef inquiry lenfunc;
 typedef intargfunc ssizeargfunc;
 typedef intintargfunc ssizessizeargfunc;
@@ -909,8 +935,8 @@ typedef getreadbufferproc readbufferproc;
 typedef getwritebufferproc writebufferproc;
 typedef getsegcountproc segcountproc;
 typedef getcharbufferproc charbufferproc;
-static long PyNumber_AsSsize_t (PyObject *x, void *SWIGUNUSEDPARM(exc))
-{
+
+static long PyNumber_AsSsize_t(PyObject *x, void *SWIGUNUSEDPARM(exc)) {
   long result = 0;
   PyObject *i = PyNumber_Int(x);
   if (i) {
@@ -926,17 +952,18 @@ static long PyNumber_AsSsize_t (PyObject *x, void *SWIGUNUSEDPARM(exc))
 #endif
 
 #if PY_VERSION_HEX < 0x02040000
-#define Py_VISIT(op)				\
-  do { 						\
-    if (op) {					\
-      int vret = visit((op), arg);		\
-      if (vret)					\
-        return vret;				\
-    }						\
+#define Py_VISIT(op)    \
+  do {       \
+    if (op) {     \
+      int vret = visit((op), arg);  \
+      if (vret)     \
+        return vret;    \
+    }      \
   } while (0)
 #endif
 
 #if PY_VERSION_HEX < 0x02030000
+
 typedef struct {
   PyTypeObject type;
   PyNumberMethods as_number;
@@ -954,8 +981,8 @@ typedef destructor freefunc;
 #if ((PY_MAJOR_VERSION == 2 && PY_MINOR_VERSION > 6) || \
      (PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION > 0) || \
      (PY_MAJOR_VERSION > 3))
-# define SWIGPY_USE_CAPSULE
-# define SWIGPY_CAPSULE_NAME ((char*)"swig_runtime_data" SWIG_RUNTIME_VERSION ".type_pointer_capsule" SWIG_TYPE_TABLE_NAME)
+#define SWIGPY_USE_CAPSULE
+#define SWIGPY_CAPSULE_NAME ((char*)"swig_runtime_data" SWIG_RUNTIME_VERSION ".type_pointer_capsule" SWIG_TYPE_TABLE_NAME)
 #endif
 
 #if PY_VERSION_HEX < 0x03020000
@@ -970,50 +997,48 @@ typedef destructor freefunc;
 SWIGRUNTIME PyObject*
 SWIG_Python_ErrorType(int code) {
   PyObject* type = 0;
-  switch(code) {
-  case SWIG_MemoryError:
-    type = PyExc_MemoryError;
-    break;
-  case SWIG_IOError:
-    type = PyExc_IOError;
-    break;
-  case SWIG_RuntimeError:
-    type = PyExc_RuntimeError;
-    break;
-  case SWIG_IndexError:
-    type = PyExc_IndexError;
-    break;
-  case SWIG_TypeError:
-    type = PyExc_TypeError;
-    break;
-  case SWIG_DivisionByZero:
-    type = PyExc_ZeroDivisionError;
-    break;
-  case SWIG_OverflowError:
-    type = PyExc_OverflowError;
-    break;
-  case SWIG_SyntaxError:
-    type = PyExc_SyntaxError;
-    break;
-  case SWIG_ValueError:
-    type = PyExc_ValueError;
-    break;
-  case SWIG_SystemError:
-    type = PyExc_SystemError;
-    break;
-  case SWIG_AttributeError:
-    type = PyExc_AttributeError;
-    break;
-  default:
-    type = PyExc_RuntimeError;
+  switch (code) {
+    case SWIG_MemoryError:
+      type = PyExc_MemoryError;
+      break;
+    case SWIG_IOError:
+      type = PyExc_IOError;
+      break;
+    case SWIG_RuntimeError:
+      type = PyExc_RuntimeError;
+      break;
+    case SWIG_IndexError:
+      type = PyExc_IndexError;
+      break;
+    case SWIG_TypeError:
+      type = PyExc_TypeError;
+      break;
+    case SWIG_DivisionByZero:
+      type = PyExc_ZeroDivisionError;
+      break;
+    case SWIG_OverflowError:
+      type = PyExc_OverflowError;
+      break;
+    case SWIG_SyntaxError:
+      type = PyExc_SyntaxError;
+      break;
+    case SWIG_ValueError:
+      type = PyExc_ValueError;
+      break;
+    case SWIG_SystemError:
+      type = PyExc_SystemError;
+      break;
+    case SWIG_AttributeError:
+      type = PyExc_AttributeError;
+      break;
+    default:
+      type = PyExc_RuntimeError;
   }
   return type;
 }
 
-
 SWIGRUNTIME void
-SWIG_Python_AddErrorMsg(const char* mesg)
-{
+SWIG_Python_AddErrorMsg(const char* mesg) {
   PyObject *type = 0;
   PyObject *value = 0;
   PyObject *traceback = 0;
@@ -1035,70 +1060,94 @@ SWIG_Python_AddErrorMsg(const char* mesg)
 }
 
 #if defined(SWIG_PYTHON_NO_THREADS)
-#  if defined(SWIG_PYTHON_THREADS)
-#    undef SWIG_PYTHON_THREADS
-#  endif
+#if defined(SWIG_PYTHON_THREADS)
+#undef SWIG_PYTHON_THREADS
+#endif
 #endif
 #if defined(SWIG_PYTHON_THREADS) /* Threading support is enabled */
-#  if !defined(SWIG_PYTHON_USE_GIL) && !defined(SWIG_PYTHON_NO_USE_GIL)
-#    if (PY_VERSION_HEX >= 0x02030000) /* For 2.3 or later, use the PyGILState calls */
-#      define SWIG_PYTHON_USE_GIL
-#    endif
-#  endif
-#  if defined(SWIG_PYTHON_USE_GIL) /* Use PyGILState threads calls */
-#    ifndef SWIG_PYTHON_INITIALIZE_THREADS
-#     define SWIG_PYTHON_INITIALIZE_THREADS  PyEval_InitThreads() 
-#    endif
-#    ifdef __cplusplus /* C++ code */
-       class SWIG_Python_Thread_Block {
-         bool status;
-         PyGILState_STATE state;
-       public:
-         void end() { if (status) { PyGILState_Release(state); status = false;} }
-         SWIG_Python_Thread_Block() : status(true), state(PyGILState_Ensure()) {}
-         ~SWIG_Python_Thread_Block() { end(); }
-       };
-       class SWIG_Python_Thread_Allow {
-         bool status;
-         PyThreadState *save;
-       public:
-         void end() { if (status) { PyEval_RestoreThread(save); status = false; }}
-         SWIG_Python_Thread_Allow() : status(true), save(PyEval_SaveThread()) {}
-         ~SWIG_Python_Thread_Allow() { end(); }
-       };
-#      define SWIG_PYTHON_THREAD_BEGIN_BLOCK   SWIG_Python_Thread_Block _swig_thread_block
-#      define SWIG_PYTHON_THREAD_END_BLOCK     _swig_thread_block.end()
-#      define SWIG_PYTHON_THREAD_BEGIN_ALLOW   SWIG_Python_Thread_Allow _swig_thread_allow
-#      define SWIG_PYTHON_THREAD_END_ALLOW     _swig_thread_allow.end()
-#    else /* C code */
-#      define SWIG_PYTHON_THREAD_BEGIN_BLOCK   PyGILState_STATE _swig_thread_block = PyGILState_Ensure()
-#      define SWIG_PYTHON_THREAD_END_BLOCK     PyGILState_Release(_swig_thread_block)
-#      define SWIG_PYTHON_THREAD_BEGIN_ALLOW   PyThreadState *_swig_thread_allow = PyEval_SaveThread()
-#      define SWIG_PYTHON_THREAD_END_ALLOW     PyEval_RestoreThread(_swig_thread_allow)
-#    endif
-#  else /* Old thread way, not implemented, user must provide it */
-#    if !defined(SWIG_PYTHON_INITIALIZE_THREADS)
-#      define SWIG_PYTHON_INITIALIZE_THREADS
-#    endif
-#    if !defined(SWIG_PYTHON_THREAD_BEGIN_BLOCK)
-#      define SWIG_PYTHON_THREAD_BEGIN_BLOCK
-#    endif
-#    if !defined(SWIG_PYTHON_THREAD_END_BLOCK)
-#      define SWIG_PYTHON_THREAD_END_BLOCK
-#    endif
-#    if !defined(SWIG_PYTHON_THREAD_BEGIN_ALLOW)
-#      define SWIG_PYTHON_THREAD_BEGIN_ALLOW
-#    endif
-#    if !defined(SWIG_PYTHON_THREAD_END_ALLOW)
-#      define SWIG_PYTHON_THREAD_END_ALLOW
-#    endif
-#  endif
+#if !defined(SWIG_PYTHON_USE_GIL) && !defined(SWIG_PYTHON_NO_USE_GIL)
+#if (PY_VERSION_HEX >= 0x02030000) /* For 2.3 or later, use the PyGILState calls */
+#define SWIG_PYTHON_USE_GIL
+#endif
+#endif
+#if defined(SWIG_PYTHON_USE_GIL) /* Use PyGILState threads calls */
+#ifndef SWIG_PYTHON_INITIALIZE_THREADS
+#define SWIG_PYTHON_INITIALIZE_THREADS  PyEval_InitThreads() 
+#endif
+#ifdef __cplusplus /* C++ code */
+
+class SWIG_Python_Thread_Block {
+  bool status;
+  PyGILState_STATE state;
+public:
+
+  void end() {
+    if (status) {
+      PyGILState_Release(state);
+      status = false;
+    }
+  }
+
+  SWIG_Python_Thread_Block() : status(true), state(PyGILState_Ensure()) {
+  }
+
+  ~SWIG_Python_Thread_Block() {
+    end();
+  }
+};
+
+class SWIG_Python_Thread_Allow {
+  bool status;
+  PyThreadState *save;
+public:
+
+  void end() {
+    if (status) {
+      PyEval_RestoreThread(save);
+      status = false;
+    }
+  }
+
+  SWIG_Python_Thread_Allow() : status(true), save(PyEval_SaveThread()) {
+  }
+
+  ~SWIG_Python_Thread_Allow() {
+    end();
+  }
+};
+#define SWIG_PYTHON_THREAD_BEGIN_BLOCK   SWIG_Python_Thread_Block _swig_thread_block
+#define SWIG_PYTHON_THREAD_END_BLOCK     _swig_thread_block.end()
+#define SWIG_PYTHON_THREAD_BEGIN_ALLOW   SWIG_Python_Thread_Allow _swig_thread_allow
+#define SWIG_PYTHON_THREAD_END_ALLOW     _swig_thread_allow.end()
+#else /* C code */
+#define SWIG_PYTHON_THREAD_BEGIN_BLOCK   PyGILState_STATE _swig_thread_block = PyGILState_Ensure()
+#define SWIG_PYTHON_THREAD_END_BLOCK     PyGILState_Release(_swig_thread_block)
+#define SWIG_PYTHON_THREAD_BEGIN_ALLOW   PyThreadState *_swig_thread_allow = PyEval_SaveThread()
+#define SWIG_PYTHON_THREAD_END_ALLOW     PyEval_RestoreThread(_swig_thread_allow)
+#endif
+#else /* Old thread way, not implemented, user must provide it */
+#if !defined(SWIG_PYTHON_INITIALIZE_THREADS)
+#define SWIG_PYTHON_INITIALIZE_THREADS
+#endif
+#if !defined(SWIG_PYTHON_THREAD_BEGIN_BLOCK)
+#define SWIG_PYTHON_THREAD_BEGIN_BLOCK
+#endif
+#if !defined(SWIG_PYTHON_THREAD_END_BLOCK)
+#define SWIG_PYTHON_THREAD_END_BLOCK
+#endif
+#if !defined(SWIG_PYTHON_THREAD_BEGIN_ALLOW)
+#define SWIG_PYTHON_THREAD_BEGIN_ALLOW
+#endif
+#if !defined(SWIG_PYTHON_THREAD_END_ALLOW)
+#define SWIG_PYTHON_THREAD_END_ALLOW
+#endif
+#endif
 #else /* No thread support */
-#  define SWIG_PYTHON_INITIALIZE_THREADS
-#  define SWIG_PYTHON_THREAD_BEGIN_BLOCK
-#  define SWIG_PYTHON_THREAD_END_BLOCK
-#  define SWIG_PYTHON_THREAD_BEGIN_ALLOW
-#  define SWIG_PYTHON_THREAD_END_ALLOW
+#define SWIG_PYTHON_INITIALIZE_THREADS
+#define SWIG_PYTHON_THREAD_BEGIN_BLOCK
+#define SWIG_PYTHON_THREAD_END_BLOCK
+#define SWIG_PYTHON_THREAD_BEGIN_ALLOW
+#define SWIG_PYTHON_THREAD_END_ALLOW
 #endif
 
 /* -----------------------------------------------------------------------------
@@ -1123,7 +1172,7 @@ typedef struct swig_const_info {
   char *name;
   long lvalue;
   double dvalue;
-  void   *pvalue;
+  void *pvalue;
   swig_type_info **ptype;
 } swig_const_info;
 
@@ -1133,13 +1182,13 @@ typedef struct swig_const_info {
  * It is exported to the generated module, used for -fastproxy
  * ----------------------------------------------------------------------------- */
 #if PY_VERSION_HEX >= 0x03000000
-SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *func)
-{
+
+SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *func) {
   return PyInstanceMethod_New(func);
 }
 #else
-SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *SWIGUNUSEDPARM(func))
-{
+
+SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *SWIGUNUSEDPARM(func)) {
   return NULL;
 }
 #endif
@@ -1171,7 +1220,7 @@ SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), 
 #define SWIG_NewPointerObj(ptr, type, flags)            SWIG_Python_NewPointerObj(NULL, ptr, type, flags)
 #endif
 
-#define SWIG_InternalNewPointerObj(ptr, type, flags)	SWIG_Python_NewPointerObj(NULL, ptr, type, flags)
+#define SWIG_InternalNewPointerObj(ptr, type, flags) SWIG_Python_NewPointerObj(NULL, ptr, type, flags)
 
 #define SWIG_CheckImplicit(ty)                          SWIG_Python_CheckImplicit(ty) 
 #define SWIG_AcquirePtr(ptr, src)                       SWIG_Python_AcquirePtr(ptr, src)
@@ -1201,25 +1250,25 @@ SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), 
 #define SWIG_NewClientData(obj)                         SwigPyClientData_New(obj)
 
 #define SWIG_SetErrorObj                                SWIG_Python_SetErrorObj                            
-#define SWIG_SetErrorMsg                        	SWIG_Python_SetErrorMsg				   
-#define SWIG_ErrorType(code)                    	SWIG_Python_ErrorType(code)                        
-#define SWIG_Error(code, msg)            		SWIG_Python_SetErrorMsg(SWIG_ErrorType(code), msg) 
-#define SWIG_fail                        		goto fail					   
+#define SWIG_SetErrorMsg                         SWIG_Python_SetErrorMsg       
+#define SWIG_ErrorType(code)                     SWIG_Python_ErrorType(code)                        
+#define SWIG_Error(code, msg)              SWIG_Python_SetErrorMsg(SWIG_ErrorType(code), msg) 
+#define SWIG_fail                          goto fail        
 
 
 /* Runtime API implementation */
 
 /* Error manipulation */
 
-SWIGINTERN void 
+SWIGINTERN void
 SWIG_Python_SetErrorObj(PyObject *errtype, PyObject *obj) {
-  SWIG_PYTHON_THREAD_BEGIN_BLOCK; 
+  SWIG_PYTHON_THREAD_BEGIN_BLOCK;
   PyErr_SetObject(errtype, obj);
   Py_DECREF(obj);
   SWIG_PYTHON_THREAD_END_BLOCK;
 }
 
-SWIGINTERN void 
+SWIGINTERN void
 SWIG_Python_SetErrorMsg(PyObject *errtype, const char *msg) {
   SWIG_PYTHON_THREAD_BEGIN_BLOCK;
   PyErr_SetString(errtype, msg);
@@ -1240,9 +1289,9 @@ SwigPyBuiltin_AddPublicSymbol(PyObject *seq, const char *key) {
 }
 
 SWIGINTERN void
-SWIG_Python_SetConstant(PyObject *d, PyObject *public_interface, const char *name, PyObject *obj) {   
+SWIG_Python_SetConstant(PyObject *d, PyObject *public_interface, const char *name, PyObject *obj) {
 #if PY_VERSION_HEX < 0x02030000
-  PyDict_SetItemString(d, (char *)name, obj);
+  PyDict_SetItemString(d, (char *) name, obj);
 #else
   PyDict_SetItemString(d, name, obj);
 #endif
@@ -1254,13 +1303,13 @@ SWIG_Python_SetConstant(PyObject *d, PyObject *public_interface, const char *nam
 #else
 
 SWIGINTERN void
-SWIG_Python_SetConstant(PyObject *d, const char *name, PyObject *obj) {   
+SWIG_Python_SetConstant(PyObject *d, const char *name, PyObject *obj) {
 #if PY_VERSION_HEX < 0x02030000
-  PyDict_SetItemString(d, (char *)name, obj);
+  PyDict_SetItemString(d, (char *) name, obj);
 #else
   PyDict_SetItemString(d, name, obj);
 #endif
-  Py_DECREF(obj);                            
+  Py_DECREF(obj);
 }
 
 #endif
@@ -1281,13 +1330,13 @@ SWIG_Python_AppendOutput(PyObject* result, PyObject* obj) {
       result = PyList_New(1);
       PyList_SetItem(result, 0, o2);
     }
-    PyList_Append(result,obj);
+    PyList_Append(result, obj);
     Py_DECREF(obj);
   }
   return result;
 #else
-  PyObject*   o2;
-  PyObject*   o3;
+  PyObject* o2;
+  PyObject* o3;
   if (!result) {
     result = obj;
   } else if (result == Py_None) {
@@ -1313,23 +1362,22 @@ SWIG_Python_AppendOutput(PyObject* result, PyObject* obj) {
 /* Unpack the argument tuple */
 
 SWIGINTERN int
-SWIG_Python_UnpackTuple(PyObject *args, const char *name, Py_ssize_t min, Py_ssize_t max, PyObject **objs)
-{
+SWIG_Python_UnpackTuple(PyObject *args, const char *name, Py_ssize_t min, Py_ssize_t max, PyObject **objs) {
   if (!args) {
     if (!min && !max) {
       return 1;
     } else {
-      PyErr_Format(PyExc_TypeError, "%s expected %s%d arguments, got none", 
-		   name, (min == max ? "" : "at least "), (int)min);
+      PyErr_Format(PyExc_TypeError, "%s expected %s%d arguments, got none",
+              name, (min == max ? "" : "at least "), (int) min);
       return 0;
     }
-  }  
+  }
   if (!PyTuple_Check(args)) {
     if (min <= 1 && max >= 1) {
       int i;
       objs[0] = args;
       for (i = 1; i < max; ++i) {
-	objs[i] = 0;
+        objs[i] = 0;
       }
       return 2;
     }
@@ -1338,37 +1386,37 @@ SWIG_Python_UnpackTuple(PyObject *args, const char *name, Py_ssize_t min, Py_ssi
   } else {
     Py_ssize_t l = PyTuple_GET_SIZE(args);
     if (l < min) {
-      PyErr_Format(PyExc_TypeError, "%s expected %s%d arguments, got %d", 
-		   name, (min == max ? "" : "at least "), (int)min, (int)l);
+      PyErr_Format(PyExc_TypeError, "%s expected %s%d arguments, got %d",
+              name, (min == max ? "" : "at least "), (int) min, (int) l);
       return 0;
     } else if (l > max) {
-      PyErr_Format(PyExc_TypeError, "%s expected %s%d arguments, got %d", 
-		   name, (min == max ? "" : "at most "), (int)max, (int)l);
+      PyErr_Format(PyExc_TypeError, "%s expected %s%d arguments, got %d",
+              name, (min == max ? "" : "at most "), (int) max, (int) l);
       return 0;
     } else {
       int i;
       for (i = 0; i < l; ++i) {
-	objs[i] = PyTuple_GET_ITEM(args, i);
+        objs[i] = PyTuple_GET_ITEM(args, i);
       }
       for (; l < max; ++l) {
-	objs[l] = 0;
+        objs[l] = 0;
       }
       return i + 1;
-    }    
+    }
   }
 }
 
 /* A functor is a function object with one single object argument */
 #if PY_VERSION_HEX >= 0x02020000
-#define SWIG_Python_CallFunctor(functor, obj)	        PyObject_CallFunctionObjArgs(functor, obj, NULL);
+#define SWIG_Python_CallFunctor(functor, obj)         PyObject_CallFunctionObjArgs(functor, obj, NULL);
 #else
-#define SWIG_Python_CallFunctor(functor, obj)	        PyObject_CallFunction(functor, "O", obj);
+#define SWIG_Python_CallFunctor(functor, obj)         PyObject_CallFunction(functor, "O", obj);
 #endif
 
 /*
   Helper for static pointer initialization for both C and C++ code, for example
   static PyObject *SWIG_STATIC_POINTER(MyVar) = NewSomething(...);
-*/
+ */
 #ifdef __cplusplus
 #define SWIG_STATIC_POINTER(var)  var
 #else
@@ -1385,8 +1433,8 @@ SWIG_Python_UnpackTuple(PyObject *args, const char *name, Py_ssize_t min, Py_ssi
 
 #define SWIG_POINTER_IMPLICIT_CONV  (SWIG_POINTER_DISOWN   << 1)
 
-#define SWIG_BUILTIN_TP_INIT	    (SWIG_POINTER_OWN << 2)
-#define SWIG_BUILTIN_INIT	    (SWIG_BUILTIN_TP_INIT | SWIG_POINTER_OWN)
+#define SWIG_BUILTIN_TP_INIT     (SWIG_POINTER_OWN << 2)
+#define SWIG_BUILTIN_INIT     (SWIG_BUILTIN_TP_INIT | SWIG_POINTER_OWN)
 
 #ifdef __cplusplus
 extern "C" {
@@ -1394,38 +1442,37 @@ extern "C" {
 
 /*  How to access Py_None */
 #if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#  ifndef SWIG_PYTHON_NO_BUILD_NONE
-#    ifndef SWIG_PYTHON_BUILD_NONE
-#      define SWIG_PYTHON_BUILD_NONE
-#    endif
-#  endif
+#ifndef SWIG_PYTHON_NO_BUILD_NONE
+#ifndef SWIG_PYTHON_BUILD_NONE
+#define SWIG_PYTHON_BUILD_NONE
+#endif
+#endif
 #endif
 
 #ifdef SWIG_PYTHON_BUILD_NONE
-#  ifdef Py_None
-#   undef Py_None
-#   define Py_None SWIG_Py_None()
-#  endif
-SWIGRUNTIMEINLINE PyObject * 
-_SWIG_Py_None(void)
-{
-  PyObject *none = Py_BuildValue((char*)"");
+#ifdef Py_None
+#undef Py_None
+#define Py_None SWIG_Py_None()
+#endif
+
+SWIGRUNTIMEINLINE PyObject *
+_SWIG_Py_None(void) {
+  PyObject *none = Py_BuildValue((char*) "");
   Py_DECREF(none);
   return none;
 }
-SWIGRUNTIME PyObject * 
-SWIG_Py_None(void)
-{
-  static PyObject *SWIG_STATIC_POINTER(none) = _SWIG_Py_None();
+
+SWIGRUNTIME PyObject *
+SWIG_Py_None(void) {
+  static PyObject * SWIG_STATIC_POINTER(none) = _SWIG_Py_None();
   return none;
 }
 #endif
 
 /* The python void return value */
 
-SWIGRUNTIMEINLINE PyObject * 
-SWIG_Py_Void(void)
-{
+SWIGRUNTIMEINLINE PyObject *
+SWIG_Py_Void(void) {
   PyObject *none = Py_None;
   Py_INCREF(none);
   return none;
@@ -1443,10 +1490,9 @@ typedef struct {
   PyTypeObject *pytype;
 } SwigPyClientData;
 
-SWIGRUNTIMEINLINE int 
-SWIG_Python_CheckImplicit(swig_type_info *ty)
-{
-  SwigPyClientData *data = (SwigPyClientData *)ty->clientdata;
+SWIGRUNTIMEINLINE int
+SWIG_Python_CheckImplicit(swig_type_info *ty) {
+  SwigPyClientData *data = (SwigPyClientData *) ty->clientdata;
   return data ? data->implicitconv : 0;
 }
 
@@ -1457,14 +1503,12 @@ SWIG_Python_ExceptionType(swig_type_info *desc) {
   return (klass ? klass : PyExc_RuntimeError);
 }
 
-
-SWIGRUNTIME SwigPyClientData * 
-SwigPyClientData_New(PyObject* obj)
-{
+SWIGRUNTIME SwigPyClientData *
+SwigPyClientData_New(PyObject* obj) {
   if (!obj) {
     return 0;
   } else {
-    SwigPyClientData *data = (SwigPyClientData *)malloc(sizeof(SwigPyClientData));
+    SwigPyClientData *data = (SwigPyClientData *) malloc(sizeof (SwigPyClientData));
     /* the klass element */
     data->klass = obj;
     Py_INCREF(data->klass);
@@ -1477,19 +1521,19 @@ SwigPyClientData_New(PyObject* obj)
 #if (PY_VERSION_HEX < 0x02020000)
       data->newraw = 0;
 #else
-      data->newraw = PyObject_GetAttrString(data->klass, (char *)"__new__");
+      data->newraw = PyObject_GetAttrString(data->klass, (char *) "__new__");
 #endif
       if (data->newraw) {
-	Py_INCREF(data->newraw);
-	data->newargs = PyTuple_New(1);
-	PyTuple_SetItem(data->newargs, 0, obj);
+        Py_INCREF(data->newraw);
+        data->newargs = PyTuple_New(1);
+        PyTuple_SetItem(data->newargs, 0, obj);
       } else {
-	data->newargs = obj;
+        data->newargs = obj;
       }
       Py_INCREF(data->newargs);
     }
     /* the destroy method, aka as the C++ delete method */
-    data->destroy = PyObject_GetAttrString(data->klass, (char *)"__swig_destroy__");
+    data->destroy = PyObject_GetAttrString(data->klass, (char *) "__swig_destroy__");
     if (PyErr_Occurred()) {
       PyErr_Clear();
       data->destroy = 0;
@@ -1512,7 +1556,7 @@ SwigPyClientData_New(PyObject* obj)
   }
 }
 
-SWIGRUNTIME void 
+SWIGRUNTIME void
 SwigPyClientData_Del(SwigPyClientData *data) {
   Py_XDECREF(data->newraw);
   Py_XDECREF(data->newargs);
@@ -1533,14 +1577,12 @@ typedef struct {
 } SwigPyObject;
 
 SWIGRUNTIME PyObject *
-SwigPyObject_long(SwigPyObject *v)
-{
+SwigPyObject_long(SwigPyObject *v) {
   return PyLong_FromVoidPtr(v->ptr);
 }
 
 SWIGRUNTIME PyObject *
-SwigPyObject_format(const char* fmt, SwigPyObject *v)
-{
+SwigPyObject_format(const char* fmt, SwigPyObject *v) {
   PyObject *res = NULL;
   PyObject *args = PyTuple_New(1);
   if (args) {
@@ -1548,11 +1590,11 @@ SwigPyObject_format(const char* fmt, SwigPyObject *v)
       PyObject *ofmt = SWIG_Python_str_FromChar(fmt);
       if (ofmt) {
 #if PY_VERSION_HEX >= 0x03000000
-	res = PyUnicode_Format(ofmt,args);
+        res = PyUnicode_Format(ofmt, args);
 #else
-	res = PyString_Format(ofmt,args);
+        res = PyString_Format(ofmt, args);
 #endif
-	Py_DECREF(ofmt);
+        Py_DECREF(ofmt);
       }
       Py_DECREF(args);
     }
@@ -1561,15 +1603,13 @@ SwigPyObject_format(const char* fmt, SwigPyObject *v)
 }
 
 SWIGRUNTIME PyObject *
-SwigPyObject_oct(SwigPyObject *v)
-{
-  return SwigPyObject_format("%o",v);
+SwigPyObject_oct(SwigPyObject *v) {
+  return SwigPyObject_format("%o", v);
 }
 
 SWIGRUNTIME PyObject *
-SwigPyObject_hex(SwigPyObject *v)
-{
-  return SwigPyObject_format("%x",v);
+SwigPyObject_hex(SwigPyObject *v) {
+  return SwigPyObject_format("%x", v);
 }
 
 SWIGRUNTIME PyObject *
@@ -1580,28 +1620,27 @@ SwigPyObject_repr(SwigPyObject *v, PyObject *args)
 #endif
 {
   const char *name = SWIG_TypePrettyName(v->ty);
-  PyObject *repr = SWIG_Python_str_FromFormat("<Swig Object of type '%s' at %p>", (name ? name : "unknown"), (void *)v);
+  PyObject *repr = SWIG_Python_str_FromFormat("<Swig Object of type '%s' at %p>", (name ? name : "unknown"), (void *) v);
   if (v->next) {
-# ifdef METH_NOARGS
-    PyObject *nrep = SwigPyObject_repr((SwigPyObject *)v->next);
-# else
-    PyObject *nrep = SwigPyObject_repr((SwigPyObject *)v->next, args);
-# endif
-# if PY_VERSION_HEX >= 0x03000000
+#ifdef METH_NOARGS
+    PyObject *nrep = SwigPyObject_repr((SwigPyObject *) v->next);
+#else
+    PyObject *nrep = SwigPyObject_repr((SwigPyObject *) v->next, args);
+#endif
+#if PY_VERSION_HEX >= 0x03000000
     PyObject *joined = PyUnicode_Concat(repr, nrep);
     Py_DecRef(repr);
     Py_DecRef(nrep);
     repr = joined;
-# else
-    PyString_ConcatAndDel(&repr,nrep);
-# endif
+#else
+    PyString_ConcatAndDel(&repr, nrep);
+#endif
   }
-  return repr;  
+  return repr;
 }
 
 SWIGRUNTIME int
-SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)
-{
+SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w) {
   void *i = v->ptr;
   void *j = w->ptr;
   return (i < j) ? -1 : ((i > j) ? 1 : 0);
@@ -1609,15 +1648,14 @@ SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)
 
 /* Added for Python 3.x, would it also be useful for Python 2.x? */
 SWIGRUNTIME PyObject*
-SwigPyObject_richcompare(SwigPyObject *v, SwigPyObject *w, int op)
-{
+SwigPyObject_richcompare(SwigPyObject *v, SwigPyObject *w, int op) {
   PyObject* res;
-  if( op != Py_EQ && op != Py_NE ) {
+  if (op != Py_EQ && op != Py_NE) {
     Py_INCREF(Py_NotImplemented);
     return Py_NotImplemented;
   }
-  res = PyBool_FromLong( (SwigPyObject_compare(v, w)==0) == (op == Py_EQ) ? 1 : 0);
-  return res;  
+  res = PyBool_FromLong((SwigPyObject_compare(v, w) == 0) == (op == Py_EQ) ? 1 : 0);
+  return res;
 }
 
 
@@ -1625,19 +1663,21 @@ SWIGRUNTIME PyTypeObject* SwigPyObject_TypeOnce(void);
 
 #ifdef SWIGPYTHON_BUILTIN
 static swig_type_info *SwigPyObject_stype = 0;
+
 SWIGRUNTIME PyTypeObject*
 SwigPyObject_type(void) {
-    SwigPyClientData *cd;
-    assert(SwigPyObject_stype);
-    cd = (SwigPyClientData*) SwigPyObject_stype->clientdata;
-    assert(cd);
-    assert(cd->pytype);
-    return cd->pytype;
+  SwigPyClientData *cd;
+  assert(SwigPyObject_stype);
+  cd = (SwigPyClientData*) SwigPyObject_stype->clientdata;
+  assert(cd);
+  assert(cd->pytype);
+  return cd->pytype;
 }
 #else
+
 SWIGRUNTIME PyTypeObject*
 SwigPyObject_type(void) {
-  static PyTypeObject *SWIG_STATIC_POINTER(type) = SwigPyObject_TypeOnce();
+  static PyTypeObject * SWIG_STATIC_POINTER(type) = SwigPyObject_TypeOnce();
   return type;
 }
 #endif
@@ -1651,7 +1691,7 @@ SwigPyObject_Check(PyObject *op) {
   return (strcmp(op->ob_type->tp_name, "SwigPyObject") == 0);
 #else
   return (Py_TYPE(op) == SwigPyObject_type())
-    || (strcmp(Py_TYPE(op)->tp_name,"SwigPyObject") == 0);
+          || (strcmp(Py_TYPE(op)->tp_name, "SwigPyObject") == 0);
 #endif
 }
 
@@ -1659,8 +1699,7 @@ SWIGRUNTIME PyObject *
 SwigPyObject_New(void *ptr, swig_type_info *ty, int own);
 
 SWIGRUNTIME void
-SwigPyObject_dealloc(PyObject *v)
-{
+SwigPyObject_dealloc(PyObject *v) {
   SwigPyObject *sobj = (SwigPyObject *) v;
   PyObject *next = sobj->next;
   if (sobj->own == SWIG_POINTER_OWN) {
@@ -1671,35 +1710,34 @@ SwigPyObject_dealloc(PyObject *v)
       /* destroy is always a VARARGS method */
       PyObject *res;
       if (data->delargs) {
-	/* we need to create a temporary object to carry the destroy operation */
-	PyObject *tmp = SwigPyObject_New(sobj->ptr, ty, 0);
-	res = SWIG_Python_CallFunctor(destroy, tmp);
-	Py_DECREF(tmp);
+        /* we need to create a temporary object to carry the destroy operation */
+        PyObject *tmp = SwigPyObject_New(sobj->ptr, ty, 0);
+        res = SWIG_Python_CallFunctor(destroy, tmp);
+        Py_DECREF(tmp);
       } else {
-	PyCFunction meth = PyCFunction_GET_FUNCTION(destroy);
-	PyObject *mself = PyCFunction_GET_SELF(destroy);
-	res = ((*meth)(mself, v));
+        PyCFunction meth = PyCFunction_GET_FUNCTION(destroy);
+        PyObject *mself = PyCFunction_GET_SELF(destroy);
+        res = ((*meth)(mself, v));
       }
       Py_XDECREF(res);
-    } 
+    }
 #if !defined(SWIG_PYTHON_SILENT_MEMLEAK)
     else {
       const char *name = SWIG_TypePrettyName(ty);
       printf("swig/python detected a memory leak of type '%s', no destructor found.\n", (name ? name : "unknown"));
     }
 #endif
-  } 
+  }
   Py_XDECREF(next);
   PyObject_DEL(v);
 }
 
-SWIGRUNTIME PyObject* 
-SwigPyObject_append(PyObject* v, PyObject* next)
-{
+SWIGRUNTIME PyObject*
+SwigPyObject_append(PyObject* v, PyObject* next) {
   SwigPyObject *sobj = (SwigPyObject *) v;
 #ifndef METH_O
   PyObject *tmp = 0;
-  if (!PyArg_ParseTuple(next,(char *)"O:append", &tmp)) return NULL;
+  if (!PyArg_ParseTuple(next, (char *) "O:append", &tmp)) return NULL;
   next = tmp;
 #endif
   if (!SwigPyObject_Check(next)) {
@@ -1710,7 +1748,7 @@ SwigPyObject_append(PyObject* v, PyObject* next)
   return SWIG_Py_Void();
 }
 
-SWIGRUNTIME PyObject* 
+SWIGRUNTIME PyObject*
 #ifdef METH_NOARGS
 SwigPyObject_next(PyObject* v)
 #else
@@ -1718,7 +1756,7 @@ SwigPyObject_next(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
 #endif
 {
   SwigPyObject *sobj = (SwigPyObject *) v;
-  if (sobj->next) {    
+  if (sobj->next) {
     Py_INCREF(sobj->next);
     return sobj->next;
   } else {
@@ -1733,7 +1771,7 @@ SwigPyObject_disown(PyObject *v)
 SwigPyObject_disown(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
 #endif
 {
-  SwigPyObject *sobj = (SwigPyObject *)v;
+  SwigPyObject *sobj = (SwigPyObject *) v;
   sobj->own = 0;
   return SWIG_Py_Void();
 }
@@ -1745,77 +1783,75 @@ SwigPyObject_acquire(PyObject *v)
 SwigPyObject_acquire(PyObject* v, PyObject *SWIGUNUSEDPARM(args))
 #endif
 {
-  SwigPyObject *sobj = (SwigPyObject *)v;
+  SwigPyObject *sobj = (SwigPyObject *) v;
   sobj->own = SWIG_POINTER_OWN;
   return SWIG_Py_Void();
 }
 
 SWIGINTERN PyObject*
-SwigPyObject_own(PyObject *v, PyObject *args)
-{
+SwigPyObject_own(PyObject *v, PyObject *args) {
   PyObject *val = 0;
 #if (PY_VERSION_HEX < 0x02020000)
-  if (!PyArg_ParseTuple(args,(char *)"|O:own",&val))
+  if (!PyArg_ParseTuple(args, (char *) "|O:own", &val))
 #elif (PY_VERSION_HEX < 0x02050000)
-  if (!PyArg_UnpackTuple(args, (char *)"own", 0, 1, &val)) 
+  if (!PyArg_UnpackTuple(args, (char *) "own", 0, 1, &val))
 #else
-  if (!PyArg_UnpackTuple(args, "own", 0, 1, &val)) 
+  if (!PyArg_UnpackTuple(args, "own", 0, 1, &val))
 #endif
-    {
-      return NULL;
-    } 
-  else
-    {
-      SwigPyObject *sobj = (SwigPyObject *)v;
-      PyObject *obj = PyBool_FromLong(sobj->own);
-      if (val) {
+  {
+    return NULL;
+  }
+  else {
+    SwigPyObject *sobj = (SwigPyObject *) v;
+    PyObject *obj = PyBool_FromLong(sobj->own);
+    if (val) {
 #ifdef METH_NOARGS
-	if (PyObject_IsTrue(val)) {
-	  SwigPyObject_acquire(v);
-	} else {
-	  SwigPyObject_disown(v);
-	}
+      if (PyObject_IsTrue(val)) {
+        SwigPyObject_acquire(v);
+      } else {
+        SwigPyObject_disown(v);
+      }
 #else
-	if (PyObject_IsTrue(val)) {
-	  SwigPyObject_acquire(v,args);
-	} else {
-	  SwigPyObject_disown(v,args);
-	}
+      if (PyObject_IsTrue(val)) {
+        SwigPyObject_acquire(v, args);
+      } else {
+        SwigPyObject_disown(v, args);
+      }
 #endif
-      } 
-      return obj;
     }
+    return obj;
+  }
 }
 
 #ifdef METH_O
 static PyMethodDef
 swigobject_methods[] = {
-  {(char *)"disown",  (PyCFunction)SwigPyObject_disown,  METH_NOARGS,  (char *)"releases ownership of the pointer"},
-  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire, METH_NOARGS,  (char *)"acquires ownership of the pointer"},
-  {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS, (char *)"returns/sets ownership of the pointer"},
-  {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_O,       (char *)"appends another 'this' object"},
-  {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_NOARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,    METH_NOARGS,  (char *)"returns object representation"},
-  {0, 0, 0, 0}  
+  {(char *) "disown", (PyCFunction) SwigPyObject_disown, METH_NOARGS, (char *) "releases ownership of the pointer"},
+  {(char *) "acquire", (PyCFunction) SwigPyObject_acquire, METH_NOARGS, (char *) "acquires ownership of the pointer"},
+  {(char *) "own", (PyCFunction) SwigPyObject_own, METH_VARARGS, (char *) "returns/sets ownership of the pointer"},
+  {(char *) "append", (PyCFunction) SwigPyObject_append, METH_O, (char *) "appends another 'this' object"},
+  {(char *) "next", (PyCFunction) SwigPyObject_next, METH_NOARGS, (char *) "returns the next 'this' object"},
+  {(char *) "__repr__", (PyCFunction) SwigPyObject_repr, METH_NOARGS, (char *) "returns object representation"},
+  {0, 0, 0, 0}
 };
 #else
 static PyMethodDef
 swigobject_methods[] = {
-  {(char *)"disown",  (PyCFunction)SwigPyObject_disown,  METH_VARARGS,  (char *)"releases ownership of the pointer"},
-  {(char *)"acquire", (PyCFunction)SwigPyObject_acquire, METH_VARARGS,  (char *)"aquires ownership of the pointer"},
-  {(char *)"own",     (PyCFunction)SwigPyObject_own,     METH_VARARGS,  (char *)"returns/sets ownership of the pointer"},
-  {(char *)"append",  (PyCFunction)SwigPyObject_append,  METH_VARARGS,  (char *)"appends another 'this' object"},
-  {(char *)"next",    (PyCFunction)SwigPyObject_next,    METH_VARARGS,  (char *)"returns the next 'this' object"},
-  {(char *)"__repr__",(PyCFunction)SwigPyObject_repr,   METH_VARARGS,  (char *)"returns object representation"},
-  {0, 0, 0, 0}  
+  {(char *) "disown", (PyCFunction) SwigPyObject_disown, METH_VARARGS, (char *) "releases ownership of the pointer"},
+  {(char *) "acquire", (PyCFunction) SwigPyObject_acquire, METH_VARARGS, (char *) "aquires ownership of the pointer"},
+  {(char *) "own", (PyCFunction) SwigPyObject_own, METH_VARARGS, (char *) "returns/sets ownership of the pointer"},
+  {(char *) "append", (PyCFunction) SwigPyObject_append, METH_VARARGS, (char *) "appends another 'this' object"},
+  {(char *) "next", (PyCFunction) SwigPyObject_next, METH_VARARGS, (char *) "returns the next 'this' object"},
+  {(char *) "__repr__", (PyCFunction) SwigPyObject_repr, METH_VARARGS, (char *) "returns object representation"},
+  {0, 0, 0, 0}
 };
 #endif
 
 #if PY_VERSION_HEX < 0x02020000
+
 SWIGINTERN PyObject *
-SwigPyObject_getattr(SwigPyObject *sobj,char *name)
-{
-  return Py_FindMethod(swigobject_methods, (PyObject *)sobj, name);
+SwigPyObject_getattr(SwigPyObject *sobj, char *name) {
+  return Py_FindMethod(swigobject_methods, (PyObject *) sobj, name);
 }
 #endif
 
@@ -1824,48 +1860,48 @@ SwigPyObject_TypeOnce(void) {
   static char swigobject_doc[] = "Swig object carries a C/C++ instance pointer";
 
   static PyNumberMethods SwigPyObject_as_number = {
-    (binaryfunc)0, /*nb_add*/
-    (binaryfunc)0, /*nb_subtract*/
-    (binaryfunc)0, /*nb_multiply*/
+    (binaryfunc) 0, /*nb_add*/
+    (binaryfunc) 0, /*nb_subtract*/
+    (binaryfunc) 0, /*nb_multiply*/
     /* nb_divide removed in Python 3 */
 #if PY_VERSION_HEX < 0x03000000
-    (binaryfunc)0, /*nb_divide*/
+    (binaryfunc) 0, /*nb_divide*/
 #endif
-    (binaryfunc)0, /*nb_remainder*/
-    (binaryfunc)0, /*nb_divmod*/
-    (ternaryfunc)0,/*nb_power*/
-    (unaryfunc)0,  /*nb_negative*/
-    (unaryfunc)0,  /*nb_positive*/
-    (unaryfunc)0,  /*nb_absolute*/
-    (inquiry)0,    /*nb_nonzero*/
-    0,		   /*nb_invert*/
-    0,		   /*nb_lshift*/
-    0,		   /*nb_rshift*/
-    0,		   /*nb_and*/
-    0,		   /*nb_xor*/
-    0,		   /*nb_or*/
+    (binaryfunc) 0, /*nb_remainder*/
+    (binaryfunc) 0, /*nb_divmod*/
+    (ternaryfunc) 0, /*nb_power*/
+    (unaryfunc) 0, /*nb_negative*/
+    (unaryfunc) 0, /*nb_positive*/
+    (unaryfunc) 0, /*nb_absolute*/
+    (inquiry) 0, /*nb_nonzero*/
+    0, /*nb_invert*/
+    0, /*nb_lshift*/
+    0, /*nb_rshift*/
+    0, /*nb_and*/
+    0, /*nb_xor*/
+    0, /*nb_or*/
 #if PY_VERSION_HEX < 0x03000000
-    0,   /*nb_coerce*/
+    0, /*nb_coerce*/
 #endif
-    (unaryfunc)SwigPyObject_long, /*nb_int*/
+    (unaryfunc) SwigPyObject_long, /*nb_int*/
 #if PY_VERSION_HEX < 0x03000000
-    (unaryfunc)SwigPyObject_long, /*nb_long*/
+    (unaryfunc) SwigPyObject_long, /*nb_long*/
 #else
     0, /*nb_reserved*/
 #endif
-    (unaryfunc)0,                 /*nb_float*/
+    (unaryfunc) 0, /*nb_float*/
 #if PY_VERSION_HEX < 0x03000000
-    (unaryfunc)SwigPyObject_oct,  /*nb_oct*/
-    (unaryfunc)SwigPyObject_hex,  /*nb_hex*/
+    (unaryfunc) SwigPyObject_oct, /*nb_oct*/
+    (unaryfunc) SwigPyObject_hex, /*nb_hex*/
 #endif
 #if PY_VERSION_HEX >= 0x03000000 /* 3.0 */
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 /* nb_inplace_add -> nb_index, nb_inplace_divide removed */
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 /* nb_inplace_add -> nb_index, nb_inplace_divide removed */
 #elif PY_VERSION_HEX >= 0x02050000 /* 2.5.0 */
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 /* nb_inplace_add -> nb_index */
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 /* nb_inplace_add -> nb_index */
 #elif PY_VERSION_HEX >= 0x02020000 /* 2.2.0 */
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 /* nb_inplace_add -> nb_inplace_true_divide */
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 /* nb_inplace_add -> nb_inplace_true_divide */
 #elif PY_VERSION_HEX >= 0x02000000 /* 2.0.0 */
-    0,0,0,0,0,0,0,0,0,0,0 /* nb_inplace_add -> nb_inplace_or */
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 /* nb_inplace_add -> nb_inplace_or */
 #endif
   };
 
@@ -1878,70 +1914,70 @@ SwigPyObject_TypeOnce(void) {
       PyVarObject_HEAD_INIT(NULL, 0)
 #else
       PyObject_HEAD_INIT(NULL)
-      0,                                    /* ob_size */
+      0, /* ob_size */
 #endif
-      (char *)"SwigPyObject",               /* tp_name */
-      sizeof(SwigPyObject),                 /* tp_basicsize */
-      0,                                    /* tp_itemsize */
-      (destructor)SwigPyObject_dealloc,     /* tp_dealloc */
-      0,				    /* tp_print */
+      (char *) "SwigPyObject", /* tp_name */
+      sizeof (SwigPyObject), /* tp_basicsize */
+      0, /* tp_itemsize */
+      (destructor) SwigPyObject_dealloc, /* tp_dealloc */
+      0, /* tp_print */
 #if PY_VERSION_HEX < 0x02020000
-      (getattrfunc)SwigPyObject_getattr,    /* tp_getattr */
+      (getattrfunc) SwigPyObject_getattr, /* tp_getattr */
 #else
-      (getattrfunc)0,                       /* tp_getattr */
+      (getattrfunc) 0, /* tp_getattr */
 #endif
-      (setattrfunc)0,                       /* tp_setattr */
+      (setattrfunc) 0, /* tp_setattr */
 #if PY_VERSION_HEX >= 0x03000000
-    0, /* tp_reserved in 3.0.1, tp_compare in 3.0.0 but not used */
+      0, /* tp_reserved in 3.0.1, tp_compare in 3.0.0 but not used */
 #else
-      (cmpfunc)SwigPyObject_compare,        /* tp_compare */
+      (cmpfunc) SwigPyObject_compare, /* tp_compare */
 #endif
-      (reprfunc)SwigPyObject_repr,          /* tp_repr */
-      &SwigPyObject_as_number,              /* tp_as_number */
-      0,                                    /* tp_as_sequence */
-      0,                                    /* tp_as_mapping */
-      (hashfunc)0,                          /* tp_hash */
-      (ternaryfunc)0,                       /* tp_call */
-      0,				    /* tp_str */
-      PyObject_GenericGetAttr,              /* tp_getattro */
-      0,                                    /* tp_setattro */
-      0,                                    /* tp_as_buffer */
-      Py_TPFLAGS_DEFAULT,                   /* tp_flags */
-      swigobject_doc,                       /* tp_doc */
-      0,                                    /* tp_traverse */
-      0,                                    /* tp_clear */
-      (richcmpfunc)SwigPyObject_richcompare,/* tp_richcompare */
-      0,                                    /* tp_weaklistoffset */
+      (reprfunc) SwigPyObject_repr, /* tp_repr */
+      &SwigPyObject_as_number, /* tp_as_number */
+      0, /* tp_as_sequence */
+      0, /* tp_as_mapping */
+      (hashfunc) 0, /* tp_hash */
+      (ternaryfunc) 0, /* tp_call */
+      0, /* tp_str */
+      PyObject_GenericGetAttr, /* tp_getattro */
+      0, /* tp_setattro */
+      0, /* tp_as_buffer */
+      Py_TPFLAGS_DEFAULT, /* tp_flags */
+      swigobject_doc, /* tp_doc */
+      0, /* tp_traverse */
+      0, /* tp_clear */
+      (richcmpfunc) SwigPyObject_richcompare, /* tp_richcompare */
+      0, /* tp_weaklistoffset */
 #if PY_VERSION_HEX >= 0x02020000
-      0,                                    /* tp_iter */
-      0,                                    /* tp_iternext */
-      swigobject_methods,                   /* tp_methods */
-      0,                                    /* tp_members */
-      0,                                    /* tp_getset */
-      0,                                    /* tp_base */
-      0,                                    /* tp_dict */
-      0,                                    /* tp_descr_get */
-      0,                                    /* tp_descr_set */
-      0,                                    /* tp_dictoffset */
-      0,                                    /* tp_init */
-      0,                                    /* tp_alloc */
-      0,                                    /* tp_new */
-      0,                                    /* tp_free */
-      0,                                    /* tp_is_gc */
-      0,                                    /* tp_bases */
-      0,                                    /* tp_mro */
-      0,                                    /* tp_cache */
-      0,                                    /* tp_subclasses */
-      0,                                    /* tp_weaklist */
+      0, /* tp_iter */
+      0, /* tp_iternext */
+      swigobject_methods, /* tp_methods */
+      0, /* tp_members */
+      0, /* tp_getset */
+      0, /* tp_base */
+      0, /* tp_dict */
+      0, /* tp_descr_get */
+      0, /* tp_descr_set */
+      0, /* tp_dictoffset */
+      0, /* tp_init */
+      0, /* tp_alloc */
+      0, /* tp_new */
+      0, /* tp_free */
+      0, /* tp_is_gc */
+      0, /* tp_bases */
+      0, /* tp_mro */
+      0, /* tp_cache */
+      0, /* tp_subclasses */
+      0, /* tp_weaklist */
 #endif
 #if PY_VERSION_HEX >= 0x02030000
-      0,                                    /* tp_del */
+      0, /* tp_del */
 #endif
 #if PY_VERSION_HEX >= 0x02060000
-      0,                                    /* tp_version */
+      0, /* tp_version */
 #endif
 #ifdef COUNT_ALLOCS
-      0,0,0,0                               /* tp_alloc -> tp_next */
+      0, 0, 0, 0 /* tp_alloc -> tp_next */
 #endif
     };
     swigpyobject_type = tmp;
@@ -1957,16 +1993,15 @@ SwigPyObject_TypeOnce(void) {
 }
 
 SWIGRUNTIME PyObject *
-SwigPyObject_New(void *ptr, swig_type_info *ty, int own)
-{
+SwigPyObject_New(void *ptr, swig_type_info *ty, int own) {
   SwigPyObject *sobj = PyObject_NEW(SwigPyObject, SwigPyObject_type());
   if (sobj) {
-    sobj->ptr  = ptr;
-    sobj->ty   = ty;
-    sobj->own  = own;
+    sobj->ptr = ptr;
+    sobj->ty = ty;
+    sobj->own = own;
     sobj->next = 0;
   }
-  return (PyObject *)sobj;
+  return (PyObject *) sobj;
 }
 
 /* -----------------------------------------------------------------------------
@@ -1981,67 +2016,62 @@ typedef struct {
 } SwigPyPacked;
 
 SWIGRUNTIME int
-SwigPyPacked_print(SwigPyPacked *v, FILE *fp, int SWIGUNUSEDPARM(flags))
-{
+SwigPyPacked_print(SwigPyPacked *v, FILE *fp, int SWIGUNUSEDPARM(flags)) {
   char result[SWIG_BUFFER_SIZE];
-  fputs("<Swig Packed ", fp); 
-  if (SWIG_PackDataName(result, v->pack, v->size, 0, sizeof(result))) {
-    fputs("at ", fp); 
-    fputs(result, fp); 
+  fputs("<Swig Packed ", fp);
+  if (SWIG_PackDataName(result, v->pack, v->size, 0, sizeof (result))) {
+    fputs("at ", fp);
+    fputs(result, fp);
   }
-  fputs(v->ty->name,fp); 
+  fputs(v->ty->name, fp);
   fputs(">", fp);
-  return 0; 
+  return 0;
 }
-  
+
 SWIGRUNTIME PyObject *
-SwigPyPacked_repr(SwigPyPacked *v)
-{
+SwigPyPacked_repr(SwigPyPacked *v) {
   char result[SWIG_BUFFER_SIZE];
-  if (SWIG_PackDataName(result, v->pack, v->size, 0, sizeof(result))) {
+  if (SWIG_PackDataName(result, v->pack, v->size, 0, sizeof (result))) {
     return SWIG_Python_str_FromFormat("<Swig Packed at %s%s>", result, v->ty->name);
   } else {
     return SWIG_Python_str_FromFormat("<Swig Packed %s>", v->ty->name);
-  }  
+  }
 }
 
 SWIGRUNTIME PyObject *
-SwigPyPacked_str(SwigPyPacked *v)
-{
+SwigPyPacked_str(SwigPyPacked *v) {
   char result[SWIG_BUFFER_SIZE];
-  if (SWIG_PackDataName(result, v->pack, v->size, 0, sizeof(result))){
+  if (SWIG_PackDataName(result, v->pack, v->size, 0, sizeof (result))) {
     return SWIG_Python_str_FromFormat("%s%s", result, v->ty->name);
   } else {
     return SWIG_Python_str_FromChar(v->ty->name);
-  }  
+  }
 }
 
 SWIGRUNTIME int
-SwigPyPacked_compare(SwigPyPacked *v, SwigPyPacked *w)
-{
+SwigPyPacked_compare(SwigPyPacked *v, SwigPyPacked *w) {
   size_t i = v->size;
   size_t j = w->size;
   int s = (i < j) ? -1 : ((i > j) ? 1 : 0);
-  return s ? s : strncmp((char *)v->pack, (char *)w->pack, 2*v->size);
+  return s ? s : strncmp((char *) v->pack, (char *) w->pack, 2 * v->size);
 }
 
 SWIGRUNTIME PyTypeObject* SwigPyPacked_TypeOnce(void);
 
 SWIGRUNTIME PyTypeObject*
 SwigPyPacked_type(void) {
-  static PyTypeObject *SWIG_STATIC_POINTER(type) = SwigPyPacked_TypeOnce();
+  static PyTypeObject * SWIG_STATIC_POINTER(type) = SwigPyPacked_TypeOnce();
   return type;
 }
 
 SWIGRUNTIMEINLINE int
 SwigPyPacked_Check(PyObject *op) {
-  return ((op)->ob_type == SwigPyPacked_TypeOnce()) 
-    || (strcmp((op)->ob_type->tp_name,"SwigPyPacked") == 0);
+  return ((op)->ob_type == SwigPyPacked_TypeOnce())
+          || (strcmp((op)->ob_type->tp_name, "SwigPyPacked") == 0);
 }
 
 SWIGRUNTIME void
-SwigPyPacked_dealloc(PyObject *v)
-{
+SwigPyPacked_dealloc(PyObject *v) {
   if (SwigPyPacked_Check(v)) {
     SwigPyPacked *sobj = (SwigPyPacked *) v;
     free(sobj->pack);
@@ -2061,66 +2091,66 @@ SwigPyPacked_TypeOnce(void) {
       PyVarObject_HEAD_INIT(NULL, 0)
 #else
       PyObject_HEAD_INIT(NULL)
-      0,                                    /* ob_size */
+      0, /* ob_size */
 #endif
-      (char *)"SwigPyPacked",               /* tp_name */
-      sizeof(SwigPyPacked),                 /* tp_basicsize */
-      0,                                    /* tp_itemsize */
-      (destructor)SwigPyPacked_dealloc,     /* tp_dealloc */
-      (printfunc)SwigPyPacked_print,        /* tp_print */
-      (getattrfunc)0,                       /* tp_getattr */
-      (setattrfunc)0,                       /* tp_setattr */
+      (char *) "SwigPyPacked", /* tp_name */
+      sizeof (SwigPyPacked), /* tp_basicsize */
+      0, /* tp_itemsize */
+      (destructor) SwigPyPacked_dealloc, /* tp_dealloc */
+      (printfunc) SwigPyPacked_print, /* tp_print */
+      (getattrfunc) 0, /* tp_getattr */
+      (setattrfunc) 0, /* tp_setattr */
 #if PY_VERSION_HEX>=0x03000000
       0, /* tp_reserved in 3.0.1 */
 #else
-      (cmpfunc)SwigPyPacked_compare,        /* tp_compare */
+      (cmpfunc) SwigPyPacked_compare, /* tp_compare */
 #endif
-      (reprfunc)SwigPyPacked_repr,          /* tp_repr */
-      0,                                    /* tp_as_number */
-      0,                                    /* tp_as_sequence */
-      0,                                    /* tp_as_mapping */
-      (hashfunc)0,                          /* tp_hash */
-      (ternaryfunc)0,                       /* tp_call */
-      (reprfunc)SwigPyPacked_str,           /* tp_str */
-      PyObject_GenericGetAttr,              /* tp_getattro */
-      0,                                    /* tp_setattro */
-      0,                                    /* tp_as_buffer */
-      Py_TPFLAGS_DEFAULT,                   /* tp_flags */
-      swigpacked_doc,                       /* tp_doc */
-      0,                                    /* tp_traverse */
-      0,                                    /* tp_clear */
-      0,                                    /* tp_richcompare */
-      0,                                    /* tp_weaklistoffset */
+      (reprfunc) SwigPyPacked_repr, /* tp_repr */
+      0, /* tp_as_number */
+      0, /* tp_as_sequence */
+      0, /* tp_as_mapping */
+      (hashfunc) 0, /* tp_hash */
+      (ternaryfunc) 0, /* tp_call */
+      (reprfunc) SwigPyPacked_str, /* tp_str */
+      PyObject_GenericGetAttr, /* tp_getattro */
+      0, /* tp_setattro */
+      0, /* tp_as_buffer */
+      Py_TPFLAGS_DEFAULT, /* tp_flags */
+      swigpacked_doc, /* tp_doc */
+      0, /* tp_traverse */
+      0, /* tp_clear */
+      0, /* tp_richcompare */
+      0, /* tp_weaklistoffset */
 #if PY_VERSION_HEX >= 0x02020000
-      0,                                    /* tp_iter */
-      0,                                    /* tp_iternext */
-      0,                                    /* tp_methods */
-      0,                                    /* tp_members */
-      0,                                    /* tp_getset */
-      0,                                    /* tp_base */
-      0,                                    /* tp_dict */
-      0,                                    /* tp_descr_get */
-      0,                                    /* tp_descr_set */
-      0,                                    /* tp_dictoffset */
-      0,                                    /* tp_init */
-      0,                                    /* tp_alloc */
-      0,                                    /* tp_new */
-      0,                                    /* tp_free */
-      0,                                    /* tp_is_gc */
-      0,                                    /* tp_bases */
-      0,                                    /* tp_mro */
-      0,                                    /* tp_cache */
-      0,                                    /* tp_subclasses */
-      0,                                    /* tp_weaklist */
+      0, /* tp_iter */
+      0, /* tp_iternext */
+      0, /* tp_methods */
+      0, /* tp_members */
+      0, /* tp_getset */
+      0, /* tp_base */
+      0, /* tp_dict */
+      0, /* tp_descr_get */
+      0, /* tp_descr_set */
+      0, /* tp_dictoffset */
+      0, /* tp_init */
+      0, /* tp_alloc */
+      0, /* tp_new */
+      0, /* tp_free */
+      0, /* tp_is_gc */
+      0, /* tp_bases */
+      0, /* tp_mro */
+      0, /* tp_cache */
+      0, /* tp_subclasses */
+      0, /* tp_weaklist */
 #endif
 #if PY_VERSION_HEX >= 0x02030000
-      0,                                    /* tp_del */
+      0, /* tp_del */
 #endif
 #if PY_VERSION_HEX >= 0x02060000
-      0,                                    /* tp_version */
+      0, /* tp_version */
 #endif
 #ifdef COUNT_ALLOCS
-      0,0,0,0                               /* tp_alloc -> tp_next */
+      0, 0, 0, 0 /* tp_alloc -> tp_next */
 #endif
     };
     swigpypacked_type = tmp;
@@ -2136,15 +2166,14 @@ SwigPyPacked_TypeOnce(void) {
 }
 
 SWIGRUNTIME PyObject *
-SwigPyPacked_New(void *ptr, size_t size, swig_type_info *ty)
-{
+SwigPyPacked_New(void *ptr, size_t size, swig_type_info *ty) {
   SwigPyPacked *sobj = PyObject_NEW(SwigPyPacked, SwigPyPacked_type());
   if (sobj) {
     void *pack = malloc(size);
     if (pack) {
       memcpy(pack, ptr, size);
       sobj->pack = pack;
-      sobj->ty   = ty;
+      sobj->ty = ty;
       sobj->size = size;
     } else {
       PyObject_DEL((PyObject *) sobj);
@@ -2155,10 +2184,9 @@ SwigPyPacked_New(void *ptr, size_t size, swig_type_info *ty)
 }
 
 SWIGRUNTIME swig_type_info *
-SwigPyPacked_UnpackData(PyObject *obj, void *ptr, size_t size)
-{
+SwigPyPacked_UnpackData(PyObject *obj, void *ptr, size_t size) {
   if (SwigPyPacked_Check(obj)) {
-    SwigPyPacked *sobj = (SwigPyPacked *)obj;
+    SwigPyPacked *sobj = (SwigPyPacked *) obj;
     if (sobj->size != size) return 0;
     memcpy(ptr, sobj->pack, size);
     return sobj->ty;
@@ -2172,16 +2200,14 @@ SwigPyPacked_UnpackData(PyObject *obj, void *ptr, size_t size)
  * ----------------------------------------------------------------------------- */
 
 SWIGRUNTIMEINLINE PyObject *
-_SWIG_This(void)
-{
-    return SWIG_Python_str_FromChar("this");
+_SWIG_This(void) {
+  return SWIG_Python_str_FromChar("this");
 }
 
 static PyObject *swig_this = NULL;
 
 SWIGRUNTIME PyObject *
-SWIG_This(void)
-{
+SWIG_This(void) {
   if (swig_this == NULL)
     swig_this = _SWIG_This();
   return swig_this;
@@ -2195,22 +2221,21 @@ SWIG_This(void)
 #endif
 
 SWIGRUNTIME SwigPyObject *
-SWIG_Python_GetSwigThis(PyObject *pyobj) 
-{
+SWIG_Python_GetSwigThis(PyObject *pyobj) {
   PyObject *obj;
 
   if (SwigPyObject_Check(pyobj))
     return (SwigPyObject *) pyobj;
 
 #ifdef SWIGPYTHON_BUILTIN
-  (void)obj;
-# ifdef PyWeakref_CheckProxy
+  (void) obj;
+#ifdef PyWeakref_CheckProxy
   if (PyWeakref_CheckProxy(pyobj)) {
     pyobj = PyWeakref_GET_OBJECT(pyobj);
     if (pyobj && SwigPyObject_Check(pyobj))
       return (SwigPyObject*) pyobj;
   }
-# endif
+#endif
   return NULL;
 #else
 
@@ -2218,7 +2243,7 @@ SWIG_Python_GetSwigThis(PyObject *pyobj)
 
 #if (!defined(SWIG_PYTHON_SLOW_GETSET_THIS) && (PY_VERSION_HEX >= 0x02030000))
   if (PyInstance_Check(pyobj)) {
-    obj = _PyInstance_Lookup(pyobj, SWIG_This());      
+    obj = _PyInstance_Lookup(pyobj, SWIG_This());
   } else {
     PyObject **dictptr = _PyObject_GetDictPtr(pyobj);
     if (dictptr != NULL) {
@@ -2227,21 +2252,21 @@ SWIG_Python_GetSwigThis(PyObject *pyobj)
     } else {
 #ifdef PyWeakref_CheckProxy
       if (PyWeakref_CheckProxy(pyobj)) {
-	PyObject *wobj = PyWeakref_GET_OBJECT(pyobj);
-	return wobj ? SWIG_Python_GetSwigThis(wobj) : 0;
+        PyObject *wobj = PyWeakref_GET_OBJECT(pyobj);
+        return wobj ? SWIG_Python_GetSwigThis(wobj) : 0;
       }
 #endif
-      obj = PyObject_GetAttr(pyobj,SWIG_This());
+      obj = PyObject_GetAttr(pyobj, SWIG_This());
       if (obj) {
-	Py_DECREF(obj);
+        Py_DECREF(obj);
       } else {
-	if (PyErr_Occurred()) PyErr_Clear();
-	return 0;
+        if (PyErr_Occurred()) PyErr_Clear();
+        return 0;
       }
     }
   }
 #else
-  obj = PyObject_GetAttr(pyobj,SWIG_This());
+  obj = PyObject_GetAttr(pyobj, SWIG_This());
   if (obj) {
     Py_DECREF(obj);
   } else {
@@ -2251,10 +2276,10 @@ SWIG_Python_GetSwigThis(PyObject *pyobj)
 #endif
   if (obj && !SwigPyObject_Check(obj)) {
     /* a PyObject is called 'this', try to get the 'real this'
-       SwigPyObject from it */ 
+       SwigPyObject from it */
     return SWIG_Python_GetSwigThis(obj);
   }
-  return (SwigPyObject *)obj;
+  return (SwigPyObject *) obj;
 #endif
 }
 
@@ -2303,13 +2328,13 @@ SWIG_Python_ConvertPtrAndOwn(PyObject *obj, void **ptr, swig_type_info *ty, int 
         if (ptr) *ptr = vptr;
         break;
       } else {
-        swig_cast_info *tc = SWIG_TypeCheck(to->name,ty);
+        swig_cast_info *tc = SWIG_TypeCheck(to->name, ty);
         if (!tc) {
-          sobj = (SwigPyObject *)sobj->next;
+          sobj = (SwigPyObject *) sobj->next;
         } else {
           if (ptr) {
             int newmemory = 0;
-            *ptr = SWIG_TypeCast(tc,vptr,&newmemory);
+            *ptr = SWIG_TypeCast(tc, vptr, &newmemory);
             if (newmemory == SWIG_CAST_NEW_MEMORY) {
               assert(own); /* badly formed typemap which will lead to a memory leak - it must set and use own to delete *ptr */
               if (own)
@@ -2349,7 +2374,7 @@ SWIG_Python_ConvertPtrAndOwn(PyObject *obj, void **ptr, swig_type_info *ty, int 
             SwigPyObject *iobj = SWIG_Python_GetSwigThis(impconv);
             if (iobj) {
               void *vptr;
-              res = SWIG_Python_ConvertPtrAndOwn((PyObject*)iobj, &vptr, ty, 0, 0);
+              res = SWIG_Python_ConvertPtrAndOwn((PyObject*) iobj, &vptr, ty, 0, 0);
               if (SWIG_IsOK(res)) {
                 if (ptr) {
                   *ptr = vptr;
@@ -2358,7 +2383,7 @@ SWIG_Python_ConvertPtrAndOwn(PyObject *obj, void **ptr, swig_type_info *ty, int 
                   res = SWIG_AddCast(res);
                   res = SWIG_AddNewMask(res);
                 } else {
-                  res = SWIG_AddCast(res);		    
+                  res = SWIG_AddCast(res);
                 }
               }
             }
@@ -2386,19 +2411,19 @@ SWIG_Python_ConvertFunctionPtr(PyObject *obj, void **ptr, swig_type_info *ty) {
     return SWIG_ConvertPtr(obj, ptr, ty, 0);
   } else {
     void *vptr = 0;
-    
+
     /* here we get the method pointer for callbacks */
-    const char *doc = (((PyCFunctionObject *)obj) -> m_ml -> ml_doc);
+    const char *doc = (((PyCFunctionObject *) obj) -> m_ml -> ml_doc);
     const char *desc = doc ? strstr(doc, "swig_ptr: ") : 0;
     if (desc)
       desc = ty ? SWIG_UnpackVoidPtr(desc + 10, &vptr, ty->name) : 0;
-    if (!desc) 
+    if (!desc)
       return SWIG_ERROR;
     if (ty) {
-      swig_cast_info *tc = SWIG_TypeCheck(desc,ty);
+      swig_cast_info *tc = SWIG_TypeCheck(desc, ty);
       if (tc) {
         int newmemory = 0;
-        *ptr = SWIG_TypeCast(tc,vptr,&newmemory);
+        *ptr = SWIG_TypeCast(tc, vptr, &newmemory);
         assert(!newmemory); /* newmemory handling not yet implemented */
       } else {
         return SWIG_ERROR;
@@ -2419,12 +2444,12 @@ SWIG_Python_ConvertPacked(PyObject *obj, void *ptr, size_t sz, swig_type_info *t
   if (ty) {
     if (to != ty) {
       /* check type cast? */
-      swig_cast_info *tc = SWIG_TypeCheck(to->name,ty);
+      swig_cast_info *tc = SWIG_TypeCheck(to->name, ty);
       if (!tc) return SWIG_ERROR;
     }
   }
   return SWIG_OK;
-}  
+}
 
 /* -----------------------------------------------------------------------------
  * Create a new pointer object
@@ -2433,11 +2458,10 @@ SWIG_Python_ConvertPacked(PyObject *obj, void *ptr, size_t sz, swig_type_info *t
 /*
   Create a new instance object, without calling __init__, and set the
   'this' attribute.
-*/
+ */
 
-SWIGRUNTIME PyObject* 
-SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this)
-{
+SWIGRUNTIME PyObject*
+SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this) {
 #if (PY_VERSION_HEX >= 0x02020000)
   PyObject *inst = 0;
   PyObject *newraw = data->newraw;
@@ -2447,12 +2471,12 @@ SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this)
 #if !defined(SWIG_PYTHON_SLOW_GETSET_THIS)
       PyObject **dictptr = _PyObject_GetDictPtr(inst);
       if (dictptr != NULL) {
-	PyObject *dict = *dictptr;
-	if (dict == NULL) {
-	  dict = PyDict_New();
-	  *dictptr = dict;
-	  PyDict_SetItem(dict, SWIG_This(), swig_this);
-	}
+        PyObject *dict = *dictptr;
+        if (dict == NULL) {
+          dict = PyDict_New();
+          *dictptr = dict;
+          PyDict_SetItem(dict, SWIG_This(), swig_this);
+        }
       }
 #else
       PyObject *key = SWIG_This();
@@ -2491,7 +2515,7 @@ SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this)
   if (inst == NULL) {
     return NULL;
   }
-  inst->in_class = (PyClassObject *)data->newargs;
+  inst->in_class = (PyClassObject *) data->newargs;
   Py_INCREF(inst->in_class);
   inst->in_dict = PyDict_New();
   if (inst->in_dict == NULL) {
@@ -2511,30 +2535,28 @@ SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this)
 }
 
 SWIGRUNTIME void
-SWIG_Python_SetSwigThis(PyObject *inst, PyObject *swig_this)
-{
- PyObject *dict;
+SWIG_Python_SetSwigThis(PyObject *inst, PyObject *swig_this) {
+  PyObject *dict;
 #if (PY_VERSION_HEX >= 0x02020000) && !defined(SWIG_PYTHON_SLOW_GETSET_THIS)
- PyObject **dictptr = _PyObject_GetDictPtr(inst);
- if (dictptr != NULL) {
-   dict = *dictptr;
-   if (dict == NULL) {
-     dict = PyDict_New();
-     *dictptr = dict;
-   }
-   PyDict_SetItem(dict, SWIG_This(), swig_this);
-   return;
- }
+  PyObject **dictptr = _PyObject_GetDictPtr(inst);
+  if (dictptr != NULL) {
+    dict = *dictptr;
+    if (dict == NULL) {
+      dict = PyDict_New();
+      *dictptr = dict;
+    }
+    PyDict_SetItem(dict, SWIG_This(), swig_this);
+    return;
+  }
 #endif
- dict = PyObject_GetAttrString(inst, (char*)"__dict__");
- PyDict_SetItem(dict, SWIG_This(), swig_this);
- Py_DECREF(dict);
-} 
-
+  dict = PyObject_GetAttrString(inst, (char*) "__dict__");
+  PyDict_SetItem(dict, SWIG_This(), swig_this);
+  Py_DECREF(dict);
+}
 
 SWIGINTERN PyObject *
 SWIG_Python_InitShadowInstance(PyObject *args) {
-  PyObject *obj[2];
+  PyObject * obj[2];
   if (!SWIG_Python_UnpackTuple(args, "swiginit", 2, 2, obj)) {
     return NULL;
   } else {
@@ -2559,7 +2581,7 @@ SWIG_Python_NewPointerObj(PyObject *self, void *ptr, swig_type_info *type, int f
   if (!ptr)
     return SWIG_Py_Void();
 
-  clientdata = type ? (SwigPyClientData *)(type->clientdata) : 0;
+  clientdata = type ? (SwigPyClientData *) (type->clientdata) : 0;
   own = (flags & SWIG_POINTER_OWN) ? SWIG_POINTER_OWN : 0;
   if (clientdata && clientdata->pytype) {
     SwigPyObject *newobj;
@@ -2568,9 +2590,9 @@ SWIG_Python_NewPointerObj(PyObject *self, void *ptr, swig_type_info *type, int f
       if (newobj->ptr) {
         PyObject *next_self = clientdata->pytype->tp_alloc(clientdata->pytype, 0);
         while (newobj->next)
-	  newobj = (SwigPyObject *) newobj->next;
+          newobj = (SwigPyObject *) newobj->next;
         newobj->next = next_self;
-        newobj = (SwigPyObject *)next_self;
+        newobj = (SwigPyObject *) next_self;
       }
     } else {
       newobj = PyObject_New(SwigPyObject, clientdata->pytype);
@@ -2616,21 +2638,21 @@ void *SWIG_ReturnGlobalTypeList(void *);
 
 SWIGRUNTIME swig_module_info *
 SWIG_Python_GetModule(void *SWIGUNUSEDPARM(clientdata)) {
-  static void *type_pointer = (void *)0;
+  static void *type_pointer = (void *) 0;
   /* first check if module already created */
   if (!type_pointer) {
 #ifdef SWIG_LINK_RUNTIME
-    type_pointer = SWIG_ReturnGlobalTypeList((void *)0);
+    type_pointer = SWIG_ReturnGlobalTypeList((void *) 0);
 #else
-# ifdef SWIGPY_USE_CAPSULE
+#ifdef SWIGPY_USE_CAPSULE
     type_pointer = PyCapsule_Import(SWIGPY_CAPSULE_NAME, 0);
-# else
-    type_pointer = PyCObject_Import((char*)"swig_runtime_data" SWIG_RUNTIME_VERSION,
-				    (char*)"type_pointer" SWIG_TYPE_TABLE_NAME);
-# endif
+#else
+    type_pointer = PyCObject_Import((char*) "swig_runtime_data" SWIG_RUNTIME_VERSION,
+            (char*) "type_pointer" SWIG_TYPE_TABLE_NAME);
+#endif
     if (PyErr_Occurred()) {
       PyErr_Clear();
-      type_pointer = (void *)0;
+      type_pointer = (void *) 0;
     }
 #endif
   }
@@ -2638,28 +2660,28 @@ SWIG_Python_GetModule(void *SWIGUNUSEDPARM(clientdata)) {
 }
 
 #if PY_MAJOR_VERSION < 2
+
 /* PyModule_AddObject function was introduced in Python 2.0.  The following function
    is copied out of Python/modsupport.c in python version 2.3.4 */
 SWIGINTERN int
-PyModule_AddObject(PyObject *m, char *name, PyObject *o)
-{
+PyModule_AddObject(PyObject *m, char *name, PyObject *o) {
   PyObject *dict;
   if (!PyModule_Check(m)) {
     PyErr_SetString(PyExc_TypeError,
-		    "PyModule_AddObject() needs module as first arg");
+            "PyModule_AddObject() needs module as first arg");
     return SWIG_ERROR;
   }
   if (!o) {
     PyErr_SetString(PyExc_TypeError,
-		    "PyModule_AddObject() needs non-NULL value");
+            "PyModule_AddObject() needs non-NULL value");
     return SWIG_ERROR;
   }
-  
+
   dict = PyModule_GetDict(m);
   if (dict == NULL) {
     /* Internal error -- modules must have a dict! */
     PyErr_Format(PyExc_SystemError, "module '%s' has no __dict__",
-		 PyModule_GetName(m));
+            PyModule_GetName(m));
     return SWIG_ERROR;
   }
   if (PyDict_SetItemString(dict, name, o))
@@ -2683,7 +2705,7 @@ SWIG_Python_DestroyModule(void *vptr)
 #endif
   swig_type_info **types = swig_module->types;
   size_t i;
-  for (i =0; i < swig_module->size; ++i) {
+  for (i = 0; i < swig_module->size; ++i) {
     swig_type_info *ty = types[i];
     if (ty->owndata) {
       SwigPyClientData *data = (SwigPyClientData *) ty->clientdata;
@@ -2697,23 +2719,25 @@ SWIG_Python_DestroyModule(void *vptr)
 SWIGRUNTIME void
 SWIG_Python_SetModule(swig_module_info *swig_module) {
 #if PY_VERSION_HEX >= 0x03000000
- /* Add a dummy module object into sys.modules */
-  PyObject *module = PyImport_AddModule((char*)"swig_runtime_data" SWIG_RUNTIME_VERSION);
+  /* Add a dummy module object into sys.modules */
+  PyObject *module = PyImport_AddModule((char*) "swig_runtime_data" SWIG_RUNTIME_VERSION);
 #else
-  static PyMethodDef swig_empty_runtime_method_table[] = { {NULL, NULL, 0, NULL} }; /* Sentinel */
-  PyObject *module = Py_InitModule((char*)"swig_runtime_data" SWIG_RUNTIME_VERSION, swig_empty_runtime_method_table);
+  static PyMethodDef swig_empty_runtime_method_table[] = {
+    {NULL, NULL, 0, NULL}
+  }; /* Sentinel */
+  PyObject *module = Py_InitModule((char*) "swig_runtime_data" SWIG_RUNTIME_VERSION, swig_empty_runtime_method_table);
 #endif
 #ifdef SWIGPY_USE_CAPSULE
   PyObject *pointer = PyCapsule_New((void *) swig_module, SWIGPY_CAPSULE_NAME, SWIG_Python_DestroyModule);
   if (pointer && module) {
-    PyModule_AddObject(module, (char*)"type_pointer_capsule" SWIG_TYPE_TABLE_NAME, pointer);
+    PyModule_AddObject(module, (char*) "type_pointer_capsule" SWIG_TYPE_TABLE_NAME, pointer);
   } else {
     Py_XDECREF(pointer);
   }
 #else
   PyObject *pointer = PyCObject_FromVoidPtr((void *) swig_module, SWIG_Python_DestroyModule);
   if (pointer && module) {
-    PyModule_AddObject(module, (char*)"type_pointer" SWIG_TYPE_TABLE_NAME, pointer);
+    PyModule_AddObject(module, (char*) "type_pointer" SWIG_TYPE_TABLE_NAME, pointer);
   } else {
     Py_XDECREF(pointer);
   }
@@ -2723,15 +2747,14 @@ SWIG_Python_SetModule(swig_module_info *swig_module) {
 /* The python cached type query */
 SWIGRUNTIME PyObject *
 SWIG_Python_TypeCache(void) {
-  static PyObject *SWIG_STATIC_POINTER(cache) = PyDict_New();
+  static PyObject * SWIG_STATIC_POINTER(cache) = PyDict_New();
   return cache;
 }
 
 SWIGRUNTIME swig_type_info *
-SWIG_Python_TypeQuery(const char *type)
-{
+SWIG_Python_TypeQuery(const char *type) {
   PyObject *cache = SWIG_Python_TypeCache();
-  PyObject *key = SWIG_Python_str_FromChar(type); 
+  PyObject *key = SWIG_Python_str_FromChar(type);
   PyObject *obj = PyDict_GetItem(cache, key);
   swig_type_info *descriptor;
   if (obj) {
@@ -2759,14 +2782,13 @@ SWIG_Python_TypeQuery(const char *type)
 
 /* 
    For backward compatibility only
-*/
+ */
 #define SWIG_POINTER_EXCEPTION  0
 #define SWIG_arg_fail(arg)      SWIG_Python_ArgFail(arg)
 #define SWIG_MustGetPtr(p, type, argnum, flags)  SWIG_Python_MustGetPtr(p, type, argnum, flags)
 
 SWIGRUNTIME int
-SWIG_Python_AddErrMesg(const char* mesg, int infront)
-{  
+SWIG_Python_AddErrMesg(const char* mesg, int infront) {
   if (PyErr_Occurred()) {
     PyObject *type = 0;
     PyObject *value = 0;
@@ -2778,9 +2800,9 @@ SWIG_Python_AddErrMesg(const char* mesg, int infront)
       Py_XINCREF(type);
       PyErr_Clear();
       if (infront) {
-	PyErr_Format(type, "%s %s", mesg, tmp = SWIG_Python_str_AsChar(old_str));
+        PyErr_Format(type, "%s %s", mesg, tmp = SWIG_Python_str_AsChar(old_str));
       } else {
-	PyErr_Format(type, "%s %s", tmp = SWIG_Python_str_AsChar(old_str), mesg);
+        PyErr_Format(type, "%s %s", tmp = SWIG_Python_str_AsChar(old_str), mesg);
       }
       SWIG_Python_str_DelForPy3(tmp);
       Py_DECREF(old_str);
@@ -2790,14 +2812,13 @@ SWIG_Python_AddErrMesg(const char* mesg, int infront)
     return 0;
   }
 }
-  
+
 SWIGRUNTIME int
-SWIG_Python_ArgFail(int argnum)
-{
+SWIG_Python_ArgFail(int argnum) {
   if (PyErr_Occurred()) {
     /* add information about failing argument */
     char mesg[256];
-    PyOS_snprintf(mesg, sizeof(mesg), "argument number %d:", argnum);
+    PyOS_snprintf(mesg, sizeof (mesg), "argument number %d:", argnum);
     return SWIG_Python_AddErrMesg(mesg, 1);
   } else {
     return 0;
@@ -2805,50 +2826,47 @@ SWIG_Python_ArgFail(int argnum)
 }
 
 SWIGRUNTIMEINLINE const char *
-SwigPyObject_GetDesc(PyObject *self)
-{
-  SwigPyObject *v = (SwigPyObject *)self;
+SwigPyObject_GetDesc(PyObject *self) {
+  SwigPyObject *v = (SwigPyObject *) self;
   swig_type_info *ty = v ? v->ty : 0;
   return ty ? ty->str : "";
 }
 
 SWIGRUNTIME void
-SWIG_Python_TypeError(const char *type, PyObject *obj)
-{
+SWIG_Python_TypeError(const char *type, PyObject *obj) {
   if (type) {
 #if defined(SWIG_COBJECT_TYPES)
     if (obj && SwigPyObject_Check(obj)) {
       const char *otype = (const char *) SwigPyObject_GetDesc(obj);
       if (otype) {
-	PyErr_Format(PyExc_TypeError, "a '%s' is expected, 'SwigPyObject(%s)' is received",
-		     type, otype);
-	return;
+        PyErr_Format(PyExc_TypeError, "a '%s' is expected, 'SwigPyObject(%s)' is received",
+                type, otype);
+        return;
       }
-    } else 
+    } else
 #endif      
     {
-      const char *otype = (obj ? obj->ob_type->tp_name : 0); 
+      const char *otype = (obj ? obj->ob_type->tp_name : 0);
       if (otype) {
-	PyObject *str = PyObject_Str(obj);
-	const char *cstr = str ? SWIG_Python_str_AsChar(str) : 0;
-	if (cstr) {
-	  PyErr_Format(PyExc_TypeError, "a '%s' is expected, '%s(%s)' is received",
-		       type, otype, cstr);
+        PyObject *str = PyObject_Str(obj);
+        const char *cstr = str ? SWIG_Python_str_AsChar(str) : 0;
+        if (cstr) {
+          PyErr_Format(PyExc_TypeError, "a '%s' is expected, '%s(%s)' is received",
+                  type, otype, cstr);
           SWIG_Python_str_DelForPy3(cstr);
-	} else {
-	  PyErr_Format(PyExc_TypeError, "a '%s' is expected, '%s' is received",
-		       type, otype);
-	}
-	Py_XDECREF(str);
-	return;
+        } else {
+          PyErr_Format(PyExc_TypeError, "a '%s' is expected, '%s' is received",
+                  type, otype);
+        }
+        Py_XDECREF(str);
+        return;
       }
-    }   
+    }
     PyErr_Format(PyExc_TypeError, "a '%s' is expected", type);
   } else {
     PyErr_Format(PyExc_TypeError, "unexpected type is received");
   }
 }
-
 
 /* Convert a pointer value, signal an exception on a type mismatch */
 SWIGRUNTIME void *
@@ -2867,6 +2885,7 @@ SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int SWIGUNUSEDPARM(arg
 }
 
 #ifdef SWIGPYTHON_BUILTIN
+
 SWIGRUNTIME int
 SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
   PyTypeObject *tp = obj->ob_type;
@@ -2875,15 +2894,15 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
   descrsetfunc f;
   int res = -1;
 
-# ifdef Py_USING_UNICODE
+#ifdef Py_USING_UNICODE
   if (PyString_Check(name)) {
     name = PyUnicode_Decode(PyString_AsString(name), PyString_Size(name), NULL, NULL);
     if (!name)
       return -1;
   } else if (!PyUnicode_Check(name))
-# else
+#else
   if (!PyString_Check(name))
-# endif
+#endif
   {
     PyErr_Format(PyExc_TypeError, "attribute name must be string, not '%.200s'", name->ob_type->tp_name);
     return -1;
@@ -2912,8 +2931,8 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
   } else {
     res = f(descr, obj, value);
   }
-  
-  done:
+
+done:
   Py_DECREF(name);
   return res;
 }
@@ -2945,19 +2964,19 @@ static swig_module_info swig_module = {swig_types, 3, 0, 0, 0, 0};
 /* -------- TYPES TABLE (END) -------- */
 
 #if (PY_VERSION_HEX <= 0x02000000)
-# if !defined(SWIG_PYTHON_CLASSIC)
-#  error "This python version requires swig to be run with the '-classic' option"
-# endif
+#if !defined(SWIG_PYTHON_CLASSIC)
+#error "This python version requires swig to be run with the '-classic' option"
+#endif
 #endif
 
 /*-----------------------------------------------
               @(target):= _docxfactory.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__docxfactory
+#define SWIG_init    PyInit__docxfactory
 
 #else
-#  define SWIG_init    init_docxfactory
+#define SWIG_init    init_docxfactory
 
 #endif
 #define SWIG_name    "_docxfactory"
@@ -2974,72 +2993,69 @@ static swig_module_info swig_module = {swig_types, 3, 0, 0, 0, 0};
 
 
 namespace swig {
-  class SwigPtr_PyObject {
-  protected:
-    PyObject *_obj;
 
-  public:
-    SwigPtr_PyObject() :_obj(0)
-    {
-    }
+class SwigPtr_PyObject {
+protected:
+  PyObject *_obj;
 
-    SwigPtr_PyObject(const SwigPtr_PyObject& item) : _obj(item._obj)
-    {
+public:
+
+  SwigPtr_PyObject() : _obj(0) {
+  }
+
+  SwigPtr_PyObject(const SwigPtr_PyObject& item) : _obj(item._obj) {
+    SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+    Py_XINCREF(_obj);
+    SWIG_PYTHON_THREAD_END_BLOCK;
+  }
+
+  SwigPtr_PyObject(PyObject *obj, bool initial_ref = true) : _obj(obj) {
+    if (initial_ref) {
       SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XINCREF(_obj);      
+      Py_XINCREF(_obj);
       SWIG_PYTHON_THREAD_END_BLOCK;
     }
-    
-    SwigPtr_PyObject(PyObject *obj, bool initial_ref = true) :_obj(obj)
-    {
-      if (initial_ref) {
-        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-        Py_XINCREF(_obj);
-        SWIG_PYTHON_THREAD_END_BLOCK;
-      }
-    }
-    
-    SwigPtr_PyObject & operator=(const SwigPtr_PyObject& item) 
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XINCREF(item._obj);
-      Py_XDECREF(_obj);
-      _obj = item._obj;
-      SWIG_PYTHON_THREAD_END_BLOCK;
-      return *this;      
-    }
-    
-    ~SwigPtr_PyObject() 
-    {
-      SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-      Py_XDECREF(_obj);
-      SWIG_PYTHON_THREAD_END_BLOCK;
-    }
-    
-    operator PyObject *() const
-    {
-      return _obj;
-    }
+  }
 
-    PyObject *operator->() const
-    {
-      return _obj;
-    }
-  };
+  SwigPtr_PyObject & operator=(const SwigPtr_PyObject& item) {
+    SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+    Py_XINCREF(item._obj);
+    Py_XDECREF(_obj);
+    _obj = item._obj;
+    SWIG_PYTHON_THREAD_END_BLOCK;
+    return *this;
+  }
+
+  ~SwigPtr_PyObject() {
+    SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+    Py_XDECREF(_obj);
+    SWIG_PYTHON_THREAD_END_BLOCK;
+  }
+
+  operator PyObject *() const {
+    return _obj;
+  }
+
+  PyObject *operator->() const {
+    return _obj;
+  }
+};
 }
 
 
 namespace swig {
-  struct SwigVar_PyObject : SwigPtr_PyObject {
-    SwigVar_PyObject(PyObject* obj = 0) : SwigPtr_PyObject(obj, false) { }
-    
-    SwigVar_PyObject & operator = (PyObject* obj)
-    {
-      Py_XDECREF(_obj);
-      _obj = obj;
-      return *this;      
-    }
-  };
+
+struct SwigVar_PyObject : SwigPtr_PyObject {
+
+  SwigVar_PyObject(PyObject* obj = 0) : SwigPtr_PyObject(obj, false) {
+  }
+
+  SwigVar_PyObject & operator=(PyObject* obj) {
+    Py_XDECREF(_obj);
+    _obj = obj;
+    return *this;
+  }
+};
 }
 
 
@@ -3050,10 +3066,8 @@ namespace swig {
 
 #include <string>
 
-
 SWIGINTERN swig_type_info*
-SWIG_pchar_descriptor(void)
-{
+SWIG_pchar_descriptor(void) {
   static int init = 0;
   static swig_type_info* info = 0;
   if (!init) {
@@ -3063,60 +3077,58 @@ SWIG_pchar_descriptor(void)
   return info;
 }
 
-
 SWIGINTERN int
-SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
-{
+SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc) {
 #if PY_VERSION_HEX>=0x03000000
   if (PyUnicode_Check(obj))
 #else  
   if (PyString_Check(obj))
 #endif
   {
-    char *cstr; Py_ssize_t len;
+    char *cstr;
+    Py_ssize_t len;
 #if PY_VERSION_HEX>=0x03000000
     if (!alloc && cptr) {
-        /* We can't allow converting without allocation, since the internal
-           representation of string in Python 3 is UCS-2/UCS-4 but we require
-           a UTF-8 representation.
-           TODO(bhy) More detailed explanation */
-        return SWIG_RuntimeError;
+      /* We can't allow converting without allocation, since the internal
+         representation of string in Python 3 is UCS-2/UCS-4 but we require
+         a UTF-8 representation.
+         TODO(bhy) More detailed explanation */
+      return SWIG_RuntimeError;
     }
     obj = PyUnicode_AsUTF8String(obj);
     PyBytes_AsStringAndSize(obj, &cstr, &len);
-    if(alloc) *alloc = SWIG_NEWOBJ;
+    if (alloc) *alloc = SWIG_NEWOBJ;
 #else
     PyString_AsStringAndSize(obj, &cstr, &len);
 #endif
     if (cptr) {
       if (alloc) {
-	/* 
-	   In python the user should not be able to modify the inner
-	   string representation. To warranty that, if you define
-	   SWIG_PYTHON_SAFE_CSTRINGS, a new/copy of the python string
-	   buffer is always returned.
+        /* 
+           In python the user should not be able to modify the inner
+           string representation. To warranty that, if you define
+           SWIG_PYTHON_SAFE_CSTRINGS, a new/copy of the python string
+           buffer is always returned.
 
-	   The default behavior is just to return the pointer value,
-	   so, be careful.
-	*/ 
+           The default behavior is just to return the pointer value,
+           so, be careful.
+         */
 #if defined(SWIG_PYTHON_SAFE_CSTRINGS)
-	if (*alloc != SWIG_OLDOBJ) 
+        if (*alloc != SWIG_OLDOBJ)
 #else
-	if (*alloc == SWIG_NEWOBJ) 
+        if (*alloc == SWIG_NEWOBJ)
 #endif
-	  {
-	    *cptr = reinterpret_cast< char* >(memcpy((new char[len + 1]), cstr, sizeof(char)*(len + 1)));
-	    *alloc = SWIG_NEWOBJ;
-	  }
-	else {
-	  *cptr = cstr;
-	  *alloc = SWIG_OLDOBJ;
-	}
+        {
+          *cptr = reinterpret_cast<char*> (memcpy((new char[len + 1]), cstr, sizeof (char)*(len + 1)));
+          *alloc = SWIG_NEWOBJ;
+        } else {
+          *cptr = cstr;
+          *alloc = SWIG_OLDOBJ;
+        }
       } else {
-        #if PY_VERSION_HEX>=0x03000000
+#if PY_VERSION_HEX>=0x03000000
         assert(0); /* Should never reach here in Python 3 */
-        #endif
-	*cptr = SWIG_Python_str_AsChar(obj);
+#endif
+        *cptr = SWIG_Python_str_AsChar(obj);
       }
     }
     if (psize) *psize = len + 1;
@@ -3129,21 +3141,21 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
     if (pchar_descriptor) {
       void* vptr = 0;
       if (SWIG_ConvertPtr(obj, &vptr, pchar_descriptor, 0) == SWIG_OK) {
-	if (cptr) *cptr = (char *) vptr;
-	if (psize) *psize = vptr ? (strlen((char *)vptr) + 1) : 0;
-	if (alloc) *alloc = SWIG_OLDOBJ;
-	return SWIG_OK;
+        if (cptr) *cptr = (char *) vptr;
+        if (psize) *psize = vptr ? (strlen((char *) vptr) + 1) : 0;
+        if (alloc) *alloc = SWIG_OLDOBJ;
+        return SWIG_OK;
       }
     }
   }
   return SWIG_TypeError;
 }
 
-
 SWIGINTERN int
-SWIG_AsPtr_std_string (PyObject * obj, std::string **val) 
-{
-  char* buf = 0 ; size_t size = 0; int alloc = SWIG_OLDOBJ;
+SWIG_AsPtr_std_string(PyObject * obj, std::string **val) {
+  char* buf = 0;
+  size_t size = 0;
+  int alloc = SWIG_OLDOBJ;
   if (SWIG_IsOK((SWIG_AsCharPtrAndSize(obj, &buf, &size, &alloc)))) {
     if (buf) {
       if (val) *val = new std::string(buf, size - 1);
@@ -3162,7 +3174,7 @@ SWIG_AsPtr_std_string (PyObject * obj, std::string **val)
     }
     if (descriptor) {
       std::string *vptr;
-      int res = SWIG_ConvertPtr(obj, (void**)&vptr, descriptor, 0);
+      int res = SWIG_ConvertPtr(obj, (void**) &vptr, descriptor, 0);
       if (SWIG_IsOK(res) && val) *val = vptr;
       return res;
     }
@@ -3170,24 +3182,22 @@ SWIG_AsPtr_std_string (PyObject * obj, std::string **val)
   return SWIG_ERROR;
 }
 
-
 SWIGINTERNINLINE PyObject *
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
+SWIG_FromCharPtrAndSize(const char* carray, size_t size) {
   if (carray) {
     if (size > INT_MAX) {
       swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+      return pchar_descriptor ?
+              SWIG_InternalNewPointerObj(const_cast<char *> (carray), pchar_descriptor, 0) : SWIG_Py_Void();
     } else {
 #if PY_VERSION_HEX >= 0x03000000
 #if PY_VERSION_HEX >= 0x03010000
-      return PyUnicode_DecodeUTF8(carray, static_cast< int >(size), "surrogateescape");
+      return PyUnicode_DecodeUTF8(carray, static_cast<int> (size), "surrogateescape");
 #else
-      return PyUnicode_FromStringAndSize(carray, static_cast< int >(size));
+      return PyUnicode_FromStringAndSize(carray, static_cast<int> (size));
 #endif
 #else
-      return PyString_FromStringAndSize(carray, static_cast< int >(size));
+      return PyString_FromStringAndSize(carray, static_cast<int> (size));
 #endif
     }
   } else {
@@ -3195,27 +3205,23 @@ SWIG_FromCharPtrAndSize(const char* carray, size_t size)
   }
 }
 
-
 SWIGINTERNINLINE PyObject *
-SWIG_From_std_string  (const std::string& s)
-{
+SWIG_From_std_string(const std::string& s) {
   return SWIG_FromCharPtrAndSize(s.data(), s.size());
 }
 
 
 #include <limits.h>
 #if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
+#if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
+#define LLONG_MAX __LONG_LONG_MAX__
+#define LLONG_MIN (-LLONG_MAX - 1LL)
+#define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
+#endif
 #endif
 
-
 SWIGINTERN int
-SWIG_AsVal_double (PyObject *obj, double *val)
-{
+SWIG_AsVal_double(PyObject *obj, double *val) {
   int res = SWIG_TypeError;
   if (PyFloat_Check(obj)) {
     if (val) *val = PyFloat_AsDouble(obj);
@@ -3245,10 +3251,10 @@ SWIG_AsVal_double (PyObject *obj, double *val)
     if (!dispatch) {
       long v = PyLong_AsLong(obj);
       if (!PyErr_Occurred()) {
-	if (val) *val = v;
-	return SWIG_AddCast(SWIG_AddCast(SWIG_OK));
+        if (val) *val = v;
+        return SWIG_AddCast(SWIG_AddCast(SWIG_OK));
       } else {
-	PyErr_Clear();
+        PyErr_Clear();
       }
     }
   }
@@ -3262,40 +3268,37 @@ SWIG_AsVal_double (PyObject *obj, double *val)
 
 #include <math.h>
 
-
 SWIGINTERNINLINE int
 SWIG_CanCastAsInteger(double *d, double min, double max) {
   double x = *d;
   if ((min <= x && x <= max)) {
-   double fx = floor(x);
-   double cx = ceil(x);
-   double rd =  ((x - fx) < 0.5) ? fx : cx; /* simple rint */
-   if ((errno == EDOM) || (errno == ERANGE)) {
-     errno = 0;
-   } else {
-     double summ, reps, diff;
-     if (rd < x) {
-       diff = x - rd;
-     } else if (rd > x) {
-       diff = rd - x;
-     } else {
-       return 1;
-     }
-     summ = rd + x;
-     reps = diff/summ;
-     if (reps < 8*DBL_EPSILON) {
-       *d = rd;
-       return 1;
-     }
-   }
+    double fx = floor(x);
+    double cx = ceil(x);
+    double rd = ((x - fx) < 0.5) ? fx : cx; /* simple rint */
+    if ((errno == EDOM) || (errno == ERANGE)) {
+      errno = 0;
+    } else {
+      double summ, reps, diff;
+      if (rd < x) {
+        diff = x - rd;
+      } else if (rd > x) {
+        diff = rd - x;
+      } else {
+        return 1;
+      }
+      summ = rd + x;
+      reps = diff / summ;
+      if (reps < 8 * DBL_EPSILON) {
+        *d = rd;
+        return 1;
+      }
+    }
   }
   return 0;
 }
 
-
 SWIGINTERN int
-SWIG_AsVal_unsigned_SS_long (PyObject *obj, unsigned long *val) 
-{
+SWIG_AsVal_unsigned_SS_long(PyObject *obj, unsigned long *val) {
 #if PY_VERSION_HEX < 0x03000000
   if (PyInt_Check(obj)) {
     long v = PyInt_AsLong(obj);
@@ -3307,7 +3310,7 @@ SWIG_AsVal_unsigned_SS_long (PyObject *obj, unsigned long *val)
     }
   } else
 #endif
-  if (PyLong_Check(obj)) {
+    if (PyLong_Check(obj)) {
     unsigned long v = PyLong_AsUnsignedLong(obj);
     if (!PyErr_Occurred()) {
       if (val) *val = v;
@@ -3340,10 +3343,10 @@ SWIG_AsVal_unsigned_SS_long (PyObject *obj, unsigned long *val)
     }
     if (!dispatch) {
       double d;
-      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
+      int res = SWIG_AddCast(SWIG_AsVal_double(obj, &d));
       if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, 0, ULONG_MAX)) {
-	if (val) *val = (unsigned long)(d);
-	return res;
+        if (val) *val = (unsigned long) (d);
+        return res;
       }
     }
   }
@@ -3351,74 +3354,66 @@ SWIG_AsVal_unsigned_SS_long (PyObject *obj, unsigned long *val)
   return SWIG_TypeError;
 }
 
-
 SWIGINTERN int
-SWIG_AsVal_unsigned_SS_short (PyObject * obj, unsigned short *val)
-{
+SWIG_AsVal_unsigned_SS_short(PyObject * obj, unsigned short *val) {
   unsigned long v;
-  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  int res = SWIG_AsVal_unsigned_SS_long(obj, &v);
   if (SWIG_IsOK(res)) {
     if ((v > USHRT_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< unsigned short >(v);
+      if (val) *val = static_cast<unsigned short> (v);
     }
-  }  
+  }
   return res;
 }
 
-
 SWIGINTERN int
-SWIG_AsVal_unsigned_SS_char (PyObject * obj, unsigned char *val)
-{
+SWIG_AsVal_unsigned_SS_char(PyObject * obj, unsigned char *val) {
   unsigned long v;
-  int res = SWIG_AsVal_unsigned_SS_long (obj, &v);
+  int res = SWIG_AsVal_unsigned_SS_long(obj, &v);
   if (SWIG_IsOK(res)) {
     if ((v > UCHAR_MAX)) {
       return SWIG_OverflowError;
     } else {
-      if (val) *val = static_cast< unsigned char >(v);
+      if (val) *val = static_cast<unsigned char> (v);
     }
-  }  
+  }
   return res;
 }
 
 
-  #define SWIG_From_long   PyLong_FromLong 
+#define SWIG_From_long   PyLong_FromLong 
 
-
-SWIGINTERNINLINE PyObject* 
-SWIG_From_unsigned_SS_long  (unsigned long value)
-{
+SWIGINTERNINLINE PyObject*
+SWIG_From_unsigned_SS_long(unsigned long value) {
   return (value > LONG_MAX) ?
-    PyLong_FromUnsignedLong(value) : PyLong_FromLong(static_cast< long >(value)); 
+          PyLong_FromUnsignedLong(value) : PyLong_FromLong(static_cast<long> (value));
 }
-
 
 SWIGINTERNINLINE PyObject *
-SWIG_From_unsigned_SS_char  (unsigned char value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
+SWIG_From_unsigned_SS_char(unsigned char value) {
+  return SWIG_From_unsigned_SS_long(value);
 }
 
-
 SWIGINTERN int
-SWIG_AsCharArray(PyObject * obj, char *val, size_t size)
-{ 
-  char* cptr = 0; size_t csize = 0; int alloc = SWIG_OLDOBJ;
+SWIG_AsCharArray(PyObject * obj, char *val, size_t size) {
+  char* cptr = 0;
+  size_t csize = 0;
+  int alloc = SWIG_OLDOBJ;
   int res = SWIG_AsCharPtrAndSize(obj, &cptr, &csize, &alloc);
   if (SWIG_IsOK(res)) {
     /* special case of single char conversion when we don't need space for NUL */
     if (size == 1 && csize == 2 && cptr && !cptr[1]) --csize;
     if (csize <= size) {
       if (val) {
-	if (csize) memcpy(val, cptr, csize*sizeof(char));
-	if (csize < size) memset(val + csize, 0, (size - csize)*sizeof(char));
+        if (csize) memcpy(val, cptr, csize * sizeof (char));
+        if (csize < size) memset(val + csize, 0, (size - csize) * sizeof (char));
       }
       if (alloc == SWIG_NEWOBJ) {
-	delete[] cptr;
-	res = SWIG_DelNewMask(res);
-      }      
+        delete[] cptr;
+        res = SWIG_DelNewMask(res);
+      }
       return res;
     }
     if (alloc == SWIG_NEWOBJ) delete[] cptr;
@@ -3426,10 +3421,8 @@ SWIG_AsCharArray(PyObject * obj, char *val, size_t size)
   return SWIG_TypeError;
 }
 
-
 SWIGINTERN int
-SWIG_AsVal_long (PyObject *obj, long* val)
-{
+SWIG_AsVal_long(PyObject *obj, long* val) {
   if (PyInt_Check(obj)) {
     if (val) *val = PyInt_AsLong(obj);
     return SWIG_OK;
@@ -3454,10 +3447,10 @@ SWIG_AsVal_long (PyObject *obj, long* val)
     }
     if (!dispatch) {
       double d;
-      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
+      int res = SWIG_AddCast(SWIG_AsVal_double(obj, &d));
       if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, LONG_MIN, LONG_MAX)) {
-	if (val) *val = (long)(d);
-	return res;
+        if (val) *val = (long) (d);
+        return res;
       }
     }
   }
@@ -3465,80 +3458,74 @@ SWIG_AsVal_long (PyObject *obj, long* val)
   return SWIG_TypeError;
 }
 
-
 SWIGINTERN int
-SWIG_AsVal_char (PyObject * obj, char *val)
-{    
+SWIG_AsVal_char(PyObject * obj, char *val) {
   int res = SWIG_AsCharArray(obj, val, 1);
   if (!SWIG_IsOK(res)) {
     long v;
-    res = SWIG_AddCast(SWIG_AsVal_long (obj, &v));
+    res = SWIG_AddCast(SWIG_AsVal_long(obj, &v));
     if (SWIG_IsOK(res)) {
       if ((CHAR_MIN <= v) && (v <= CHAR_MAX)) {
-	if (val) *val = static_cast< char >(v);
+        if (val) *val = static_cast<char> (v);
       } else {
-	res = SWIG_OverflowError;
+        res = SWIG_OverflowError;
       }
     }
   }
   return res;
 }
 
-
 SWIGINTERNINLINE PyObject *
-SWIG_From_char  (char c) 
-{ 
-  return SWIG_FromCharPtrAndSize(&c,1);
+SWIG_From_char(char c) {
+  return SWIG_FromCharPtrAndSize(&c, 1);
 }
 
-
 SWIGINTERNINLINE PyObject *
-SWIG_From_unsigned_SS_short  (unsigned short value)
-{    
-  return SWIG_From_unsigned_SS_long  (value);
+SWIG_From_unsigned_SS_short(unsigned short value) {
+  return SWIG_From_unsigned_SS_long(value);
 }
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_get_instance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":WordProcessingCompiler_get_instance")) SWIG_fail;
+  DocxFactory::WordProcessingCompiler *result = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) ":WordProcessingCompiler_get_instance")) SWIG_fail;
   {
     try {
-      result = (DocxFactory::WordProcessingCompiler *) &DocxFactory::WordProcessingCompiler::getInstance();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (DocxFactory::WordProcessingCompiler *) & DocxFactory::WordProcessingCompiler::getInstance();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 | 0);
   return resultobj;
 fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_delete_WordProcessingCompiler(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_WordProcessingCompiler",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingCompiler, SWIG_POINTER_DISOWN |  0 );
+  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:delete_WordProcessingCompiler", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingCompiler, SWIG_POINTER_DISOWN | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_WordProcessingCompiler" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_WordProcessingCompiler" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingCompiler * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingCompiler *> (argp1);
   {
     try {
       delete arg1;
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3548,34 +3535,33 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_compile(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:WordProcessingCompiler_compile",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 |  0 );
+  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOO:WordProcessingCompiler_compile", &obj0, &obj1, &obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_compile" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_compile" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingCompiler * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingCompiler *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingCompiler_compile" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingCompiler_compile" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingCompiler_compile" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingCompiler_compile" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -3583,18 +3569,18 @@ SWIGINTERN PyObject *_wrap_WordProcessingCompiler_compile(PyObject *SWIGUNUSEDPA
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingCompiler_compile" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingCompiler_compile" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingCompiler_compile" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingCompiler_compile" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
   {
     try {
-      (arg1)->compile((std::string const &)*arg2,(std::string const &)*arg3);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->compile((std::string const &) *arg2, (std::string const &) *arg3);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3607,26 +3593,25 @@ fail:
   if (SWIG_IsNewObj(res3)) delete arg3;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_set_temp_dir__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingCompiler_set_temp_dir",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 |  0 );
+  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingCompiler_set_temp_dir", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingCompiler * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingCompiler *> (argp1);
   {
     try {
       (arg1)->setTempDir();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3636,39 +3621,38 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_set_temp_dir__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingCompiler_set_temp_dir",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 |  0 );
+  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingCompiler_set_temp_dir", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingCompiler * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingCompiler *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingCompiler_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->setTempDir((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setTempDir((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3680,16 +3664,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_set_temp_dir(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -3713,119 +3696,115 @@ SWIGINTERN PyObject *_wrap_WordProcessingCompiler_set_temp_dir(PyObject *self, P
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingCompiler_set_temp_dir'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingCompiler::setTempDir()\n"
-    "    DocxFactory::WordProcessingCompiler::setTempDir(std::string const &)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingCompiler_set_temp_dir'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingCompiler::setTempDir()\n"
+          "    DocxFactory::WordProcessingCompiler::setTempDir(std::string const &)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_get_work_dir(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingCompiler_get_work_dir",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingCompiler_get_work_dir", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_get_work_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_get_work_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingCompiler * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingCompiler *> (argp1);
   {
     try {
-      result = ((DocxFactory::WordProcessingCompiler const *)arg1)->getWorkDir();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingCompiler const *) arg1)->getWorkDir();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingCompiler_get_temp_dir(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingCompiler *arg1 = (DocxFactory::WordProcessingCompiler *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingCompiler_get_temp_dir",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingCompiler_get_temp_dir", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingCompiler, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_get_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingCompiler_get_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingCompiler const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingCompiler * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingCompiler *> (argp1);
   {
     try {
-      result = ((DocxFactory::WordProcessingCompiler const *)arg1)->getTempDir();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingCompiler const *) arg1)->getTempDir();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *WordProcessingCompiler_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  if (!PyArg_ParseTuple(args, (char*) "O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_DocxFactory__WordProcessingCompiler, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_instance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":WordProcessingMerger_get_instance")) SWIG_fail;
+  DocxFactory::WordProcessingMerger *result = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) ":WordProcessingMerger_get_instance")) SWIG_fail;
   {
     try {
-      result = (DocxFactory::WordProcessingMerger *) &DocxFactory::WordProcessingMerger::getInstance();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (DocxFactory::WordProcessingMerger *) & DocxFactory::WordProcessingMerger::getInstance();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_delete_WordProcessingMerger(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_WordProcessingMerger",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, SWIG_POINTER_DISOWN |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:delete_WordProcessingMerger", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, SWIG_POINTER_DISOWN | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_WordProcessingMerger" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_WordProcessingMerger" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       delete arg1;
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3834,40 +3813,39 @@ SWIGINTERN PyObject *_wrap_delete_WordProcessingMerger(PyObject *SWIGUNUSEDPARM(
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_load(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_load",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_load", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_load" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_load" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_load" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_load" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_load" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_load" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->load((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->load((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3878,40 +3856,39 @@ fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_save__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_save",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_save", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_save" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_save" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_save" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_save" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_save" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_save" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->save((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->save((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3922,26 +3899,25 @@ fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_save__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_save",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_save", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_save" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_save" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->save();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -3951,16 +3927,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_save(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -3984,57 +3959,56 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_save(PyObject *self, PyObject *a
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_save'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::save(std::string const &)\n"
-    "    DocxFactory::WordProcessingMerger::save()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_save'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::save(std::string const &)\n"
+          "    DocxFactory::WordProcessingMerger::save()\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_print_doc__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  unsigned short arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  unsigned short val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:WordProcessingMerger_print_doc",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  unsigned short arg3;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  unsigned short val3;
+  int ecode3 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOO:WordProcessingMerger_print_doc", &obj0, &obj1, &obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_print_doc" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_print_doc" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   ecode3 = SWIG_AsVal_unsigned_SS_short(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "WordProcessingMerger_print_doc" "', argument " "3"" of type '" "unsigned short""'");
-  } 
-  arg3 = static_cast< unsigned short >(val3);
+  }
+  arg3 = static_cast<unsigned short> (val3);
   {
     try {
-      (arg1)->print((std::string const &)*arg2,arg3);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->print((std::string const &) *arg2, arg3);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4046,39 +4020,38 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_print_doc__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_print_doc",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_print_doc", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_print_doc" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_print_doc" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_print_doc" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->print((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->print((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4090,16 +4063,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_print_doc(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[4];
+  PyObject * argv[4];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 3) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 2) {
     int _v;
@@ -4133,34 +4105,33 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_print_doc(PyObject *self, PyObje
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_print_doc'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::print(std::string const &,unsigned short)\n"
-    "    DocxFactory::WordProcessingMerger::print(std::string const &)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_print_doc'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::print(std::string const &,unsigned short)\n"
+          "    DocxFactory::WordProcessingMerger::print(std::string const &)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_close(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_close",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_close", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_close" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_close" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->close();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4170,39 +4141,38 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_merge(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_merge",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_merge", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_merge" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_merge" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_merge" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_merge" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_merge" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_merge" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->merge((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->merge((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4214,44 +4184,43 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  double arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  double val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:WordProcessingMerger_setChartValue",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  std::string *arg5 = 0;
+  double arg6;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  int res5 = SWIG_OLDOBJ;
+  double val6;
+  int ecode6 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOO:WordProcessingMerger_setChartValue", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setChartValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setChartValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -4259,10 +4228,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_0(PyObject *
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -4270,10 +4239,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_0(PyObject *
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
@@ -4281,23 +4250,23 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_0(PyObject *
     std::string *ptr = (std::string *)0;
     res5 = SWIG_AsPtr_std_string(obj4, &ptr);
     if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_setChartValue" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_setChartValue" "', argument " "5"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "5"" of type '" "std::string const &""'");
     }
     arg5 = ptr;
   }
   ecode6 = SWIG_AsVal_double(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "WordProcessingMerger_setChartValue" "', argument " "6"" of type '" "double""'");
-  } 
-  arg6 = static_cast< double >(val6);
+  }
+  arg6 = static_cast<double> (val6);
   {
     try {
-      (arg1)->setChartValue((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,arg6);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setChartValue((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4, (std::string const &) *arg5, arg6);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4315,45 +4284,44 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  double arg5 ;
-  double arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  double val5 ;
-  int ecode5 = 0 ;
-  double val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:WordProcessingMerger_setChartValue",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  double arg5;
+  double arg6;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  double val5;
+  int ecode5 = 0;
+  double val6;
+  int ecode6 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOO:WordProcessingMerger_setChartValue", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setChartValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setChartValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -4361,10 +4329,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_1(PyObject *
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -4372,28 +4340,28 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_1(PyObject *
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
   ecode5 = SWIG_AsVal_double(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "WordProcessingMerger_setChartValue" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
+  }
+  arg5 = static_cast<double> (val5);
   ecode6 = SWIG_AsVal_double(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "WordProcessingMerger_setChartValue" "', argument " "6"" of type '" "double""'");
-  } 
-  arg6 = static_cast< double >(val6);
+  }
+  arg6 = static_cast<double> (val6);
   {
     try {
-      (arg1)->setChartValue((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,arg6);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setChartValue((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4, arg5, arg6);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4409,46 +4377,45 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  double arg4 ;
-  double arg5 ;
-  double arg6 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  double val4 ;
-  int ecode4 = 0 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  double val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:WordProcessingMerger_setChartValue",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  double arg4;
+  double arg5;
+  double arg6;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  double val4;
+  int ecode4 = 0;
+  double val5;
+  int ecode5 = 0;
+  double val6;
+  int ecode6 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOO:WordProcessingMerger_setChartValue", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setChartValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setChartValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -4456,33 +4423,33 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue__SWIG_2(PyObject *
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setChartValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
   ecode4 = SWIG_AsVal_double(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "WordProcessingMerger_setChartValue" "', argument " "4"" of type '" "double""'");
-  } 
-  arg4 = static_cast< double >(val4);
+  }
+  arg4 = static_cast<double> (val4);
   ecode5 = SWIG_AsVal_double(obj4, &val5);
   if (!SWIG_IsOK(ecode5)) {
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "WordProcessingMerger_setChartValue" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
+  }
+  arg5 = static_cast<double> (val5);
   ecode6 = SWIG_AsVal_double(obj5, &val6);
   if (!SWIG_IsOK(ecode6)) {
     SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "WordProcessingMerger_setChartValue" "', argument " "6"" of type '" "double""'");
-  } 
-  arg6 = static_cast< double >(val6);
+  }
+  arg6 = static_cast<double> (val6);
   {
     try {
-      (arg1)->setChartValue((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setChartValue((std::string const &) *arg2, (std::string const &) *arg3, arg4, arg5, arg6);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4496,16 +4463,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[7];
+  PyObject * argv[7];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 6) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 6) {
     int _v;
@@ -4606,47 +4572,46 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setChartValue(PyObject *self, Py
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_setChartValue'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setChartValue(std::string const &,std::string const &,std::string const &,std::string const &,double)\n"
-    "    DocxFactory::WordProcessingMerger::setChartValue(std::string const &,std::string const &,std::string const &,double,double)\n"
-    "    DocxFactory::WordProcessingMerger::setChartValue(std::string const &,std::string const &,double,double,double)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_setChartValue'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setChartValue(std::string const &,std::string const &,std::string const &,std::string const &,double)\n"
+          "    DocxFactory::WordProcessingMerger::setChartValue(std::string const &,std::string const &,std::string const &,double,double)\n"
+          "    DocxFactory::WordProcessingMerger::setChartValue(std::string const &,std::string const &,double,double,double)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:WordProcessingMerger_setClipboardValue",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOO:WordProcessingMerger_setClipboardValue", &obj0, &obj1, &obj2, &obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -4654,10 +4619,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue__SWIG_0(PyObje
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -4665,18 +4630,18 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue__SWIG_0(PyObje
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
   {
     try {
-      (arg1)->setClipboardValue((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setClipboardValue((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4692,38 +4657,37 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  double arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  double val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:WordProcessingMerger_setClipboardValue",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  double arg4;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  double val4;
+  int ecode4 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOO:WordProcessingMerger_setClipboardValue", &obj0, &obj1, &obj2, &obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -4731,23 +4695,23 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue__SWIG_1(PyObje
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
   ecode4 = SWIG_AsVal_double(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "WordProcessingMerger_setClipboardValue" "', argument " "4"" of type '" "double""'");
-  } 
-  arg4 = static_cast< double >(val4);
+  }
+  arg4 = static_cast<double> (val4);
   {
     try {
-      (arg1)->setClipboardValue((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setClipboardValue((std::string const &) *arg2, (std::string const &) *arg3, arg4);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4761,16 +4725,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[5];
+  PyObject * argv[5];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 4) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 4) {
     int _v;
@@ -4816,48 +4779,47 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_setClipboardValue(PyObject *self
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_setClipboardValue'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setClipboardValue(std::string const &,std::string const &,std::string const &)\n"
-    "    DocxFactory::WordProcessingMerger::setClipboardValue(std::string const &,std::string const &,double)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_setClipboardValue'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setClipboardValue(std::string const &,std::string const &,std::string const &)\n"
+          "    DocxFactory::WordProcessingMerger::setClipboardValue(std::string const &,std::string const &,double)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_paste__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_paste",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_paste", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_paste" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_paste" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_paste" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_paste" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_paste" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_paste" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->paste((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->paste((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4868,26 +4830,25 @@ fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_paste__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_paste",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_paste", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_paste" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_paste" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->paste();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4897,16 +4858,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_paste(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -4930,43 +4890,42 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_paste(PyObject *self, PyObject *
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_paste'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::paste(std::string const &)\n"
-    "    DocxFactory::WordProcessingMerger::paste()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_paste'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::paste(std::string const &)\n"
+          "    DocxFactory::WordProcessingMerger::paste()\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_update_toc_method(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  unsigned char arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned char val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_update_toc_method",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  unsigned char arg2;
+  void *argp1 = 0;
+  int res1 = 0;
+  unsigned char val2;
+  int ecode2 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_update_toc_method", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_update_toc_method" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_update_toc_method" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WordProcessingMerger_set_update_toc_method" "', argument " "2"" of type '" "unsigned char""'");
-  } 
-  arg2 = static_cast< unsigned char >(val2);
+  }
+  arg2 = static_cast<unsigned char> (val2);
   {
     try {
       (arg1)->setUpdateTocMethod(arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -4975,203 +4934,197 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_update_toc_method(PyObject *
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_update_toc_method(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   unsigned char result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_update_toc_method",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_update_toc_method", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_update_toc_method" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_update_toc_method" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = (unsigned char)((DocxFactory::WordProcessingMerger const *)arg1)->getUpdateTocMethod();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (unsigned char) ((DocxFactory::WordProcessingMerger const *) arg1)->getUpdateTocMethod();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_unsigned_SS_char(static_cast< unsigned char >(result));
+  resultobj = SWIG_From_unsigned_SS_char(static_cast<unsigned char> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_fields(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_fields",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_fields", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_fields" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_fields" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = ((DocxFactory::WordProcessingMerger const *)arg1)->getFields();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingMerger const *) arg1)->getFields();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_items(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_items",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_items", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_items" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_items" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = ((DocxFactory::WordProcessingMerger const *)arg1)->getItems();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingMerger const *) arg1)->getItems();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_item_parent(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_get_item_parent",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_get_item_parent", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_item_parent" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_item_parent" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_get_item_parent" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_get_item_parent" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_get_item_parent" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_get_item_parent" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      result = ((DocxFactory::WordProcessingMerger const *)arg1)->getItemParent((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingMerger const *) arg1)->getItemParent((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   if (SWIG_IsNewObj(res2)) delete arg2;
   return resultobj;
 fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_item_fields(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_get_item_fields",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_get_item_fields", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_item_fields" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_item_fields" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_get_item_fields" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_get_item_fields" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_get_item_fields" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_get_item_fields" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      result = ((DocxFactory::WordProcessingMerger const *)arg1)->getItemFields((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingMerger const *) arg1)->getItemFields((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   if (SWIG_IsNewObj(res2)) delete arg2;
   return resultobj;
 fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_code_page__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_code_page",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_code_page", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_code_page" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_code_page" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setCodePage();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5181,39 +5134,38 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_code_page__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_code_page",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_code_page", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_code_page" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_code_page" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_code_page" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_code_page" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_code_page" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_code_page" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->setCodePage((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setCodePage((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5225,16 +5177,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_code_page(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -5258,43 +5209,42 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_code_page(PyObject *self, Py
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_code_page'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setCodePage()\n"
-    "    DocxFactory::WordProcessingMerger::setCodePage(std::string const &)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_code_page'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setCodePage()\n"
+          "    DocxFactory::WordProcessingMerger::setCodePage(std::string const &)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_frac_sep__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  char arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  char val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_num_frac_sep",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  char arg2;
+  void *argp1 = 0;
+  int res1 = 0;
+  char val2;
+  int ecode2 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_num_frac_sep", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_frac_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_frac_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   ecode2 = SWIG_AsVal_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WordProcessingMerger_set_num_frac_sep" "', argument " "2"" of type '" "char""'");
-  } 
-  arg2 = static_cast< char >(val2);
+  }
+  arg2 = static_cast<char> (val2);
   {
     try {
       (arg1)->setNumFracSep(arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5303,26 +5253,25 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_frac_sep__SWIG_0(PyObjec
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_frac_sep__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_num_frac_sep",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_num_frac_sep", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_frac_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_frac_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setNumFracSep();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5332,16 +5281,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_frac_sep(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -5367,43 +5315,42 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_frac_sep(PyObject *self,
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_num_frac_sep'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setNumFracSep(char)\n"
-    "    DocxFactory::WordProcessingMerger::setNumFracSep()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_num_frac_sep'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setNumFracSep(char)\n"
+          "    DocxFactory::WordProcessingMerger::setNumFracSep()\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_th_sep__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  char arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  char val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_num_th_sep",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  char arg2;
+  void *argp1 = 0;
+  int res1 = 0;
+  char val2;
+  int ecode2 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_num_th_sep", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_th_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_th_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   ecode2 = SWIG_AsVal_char(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WordProcessingMerger_set_num_th_sep" "', argument " "2"" of type '" "char""'");
-  } 
-  arg2 = static_cast< char >(val2);
+  }
+  arg2 = static_cast<char> (val2);
   {
     try {
       (arg1)->setNumThSep(arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5412,26 +5359,25 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_th_sep__SWIG_0(PyObject 
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_th_sep__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_num_th_sep",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_num_th_sep", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_th_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_num_th_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setNumThSep();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5441,16 +5387,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_th_sep(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -5476,48 +5421,47 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_num_th_sep(PyObject *self, P
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_num_th_sep'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setNumThSep(char)\n"
-    "    DocxFactory::WordProcessingMerger::setNumThSep()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_num_th_sep'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setNumThSep(char)\n"
+          "    DocxFactory::WordProcessingMerger::setNumThSep()\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_date_format__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_date_format",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_date_format", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_date_format" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_date_format" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_date_format" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_date_format" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_date_format" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_date_format" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->setDateFormat((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setDateFormat((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5528,26 +5472,25 @@ fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_date_format__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_date_format",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_date_format", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_date_format" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_date_format" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setDateFormat();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5557,16 +5500,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_date_format(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -5590,43 +5532,42 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_date_format(PyObject *self, 
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_date_format'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setDateFormat(std::string const &)\n"
-    "    DocxFactory::WordProcessingMerger::setDateFormat()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_date_format'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setDateFormat(std::string const &)\n"
+          "    DocxFactory::WordProcessingMerger::setDateFormat()\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_year_offset__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  unsigned short arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned short val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_year_offset",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  unsigned short arg2;
+  void *argp1 = 0;
+  int res1 = 0;
+  unsigned short val2;
+  int ecode2 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_year_offset", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_year_offset" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_year_offset" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WordProcessingMerger_set_year_offset" "', argument " "2"" of type '" "unsigned short""'");
-  } 
-  arg2 = static_cast< unsigned short >(val2);
+  }
+  arg2 = static_cast<unsigned short> (val2);
   {
     try {
       (arg1)->setYearOffset(arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5635,26 +5576,25 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_year_offset__SWIG_0(PyObject
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_year_offset__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_year_offset",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_year_offset", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_year_offset" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_year_offset" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setYearOffset();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5664,16 +5604,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_year_offset(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -5699,34 +5638,33 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_year_offset(PyObject *self, 
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_year_offset'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setYearOffset(unsigned short)\n"
-    "    DocxFactory::WordProcessingMerger::setYearOffset()\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_year_offset'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setYearOffset(unsigned short)\n"
+          "    DocxFactory::WordProcessingMerger::setYearOffset()\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_first_week_day__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_first_week_day",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_first_week_day", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_first_week_day" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_first_week_day" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setFirstWeekDay();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5735,35 +5673,34 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_first_week_day__SWIG_0(PyObj
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_first_week_day__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  unsigned short arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  unsigned short val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_first_week_day",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  unsigned short arg2;
+  void *argp1 = 0;
+  int res1 = 0;
+  unsigned short val2;
+  int ecode2 = 0;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_first_week_day", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_first_week_day" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_first_week_day" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   ecode2 = SWIG_AsVal_unsigned_SS_short(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WordProcessingMerger_set_first_week_day" "', argument " "2"" of type '" "unsigned short""'");
-  } 
-  arg2 = static_cast< unsigned short >(val2);
+  }
+  arg2 = static_cast<unsigned short> (val2);
   {
     try {
       (arg1)->setFirstWeekDay(arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5773,16 +5710,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_first_week_day(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -5808,34 +5744,33 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_first_week_day(PyObject *sel
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_first_week_day'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setFirstWeekDay()\n"
-    "    DocxFactory::WordProcessingMerger::setFirstWeekDay(unsigned short)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_first_week_day'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setFirstWeekDay()\n"
+          "    DocxFactory::WordProcessingMerger::setFirstWeekDay(unsigned short)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_week_day_names",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_week_day_names", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setWeekDayNames();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5845,49 +5780,48 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string *arg8 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int res6 = SWIG_OLDOBJ ;
-  int res7 = SWIG_OLDOBJ ;
-  int res8 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOO:WordProcessingMerger_set_week_day_names",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  std::string *arg5 = 0;
+  std::string *arg6 = 0;
+  std::string *arg7 = 0;
+  std::string *arg8 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  int res5 = SWIG_OLDOBJ;
+  int res6 = SWIG_OLDOBJ;
+  int res7 = SWIG_OLDOBJ;
+  int res8 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+  PyObject * obj6 = 0;
+  PyObject * obj7 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOOOO:WordProcessingMerger_set_week_day_names", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5, &obj6, &obj7)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -5895,10 +5829,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObj
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -5906,10 +5840,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObj
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
@@ -5917,10 +5851,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObj
     std::string *ptr = (std::string *)0;
     res5 = SWIG_AsPtr_std_string(obj4, &ptr);
     if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     arg5 = ptr;
   }
@@ -5928,10 +5862,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObj
     std::string *ptr = (std::string *)0;
     res6 = SWIG_AsPtr_std_string(obj5, &ptr);
     if (!SWIG_IsOK(res6)) {
-      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     arg6 = ptr;
   }
@@ -5939,10 +5873,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObj
     std::string *ptr = (std::string *)0;
     res7 = SWIG_AsPtr_std_string(obj6, &ptr);
     if (!SWIG_IsOK(res7)) {
-      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     arg7 = ptr;
   }
@@ -5950,18 +5884,18 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_1(PyObj
     std::string *ptr = (std::string *)0;
     res8 = SWIG_AsPtr_std_string(obj7, &ptr);
     if (!SWIG_IsOK(res8)) {
-      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     arg8 = ptr;
   }
   {
     try {
-      (arg1)->setWeekDayNames((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setWeekDayNames((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4, (std::string const &) *arg5, (std::string const &) *arg6, (std::string const &) *arg7, (std::string const &) *arg8);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -5985,70 +5919,69 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string *arg8 = 0 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
-  std::string *arg12 = 0 ;
-  std::string *arg13 = 0 ;
-  std::string *arg14 = 0 ;
-  std::string *arg15 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int res6 = SWIG_OLDOBJ ;
-  int res7 = SWIG_OLDOBJ ;
-  int res8 = SWIG_OLDOBJ ;
-  int res9 = SWIG_OLDOBJ ;
-  int res10 = SWIG_OLDOBJ ;
-  int res11 = SWIG_OLDOBJ ;
-  int res12 = SWIG_OLDOBJ ;
-  int res13 = SWIG_OLDOBJ ;
-  int res14 = SWIG_OLDOBJ ;
-  int res15 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  PyObject * obj8 = 0 ;
-  PyObject * obj9 = 0 ;
-  PyObject * obj10 = 0 ;
-  PyObject * obj11 = 0 ;
-  PyObject * obj12 = 0 ;
-  PyObject * obj13 = 0 ;
-  PyObject * obj14 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOOOOOOOO:WordProcessingMerger_set_week_day_names",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8,&obj9,&obj10,&obj11,&obj12,&obj13,&obj14)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  std::string *arg5 = 0;
+  std::string *arg6 = 0;
+  std::string *arg7 = 0;
+  std::string *arg8 = 0;
+  std::string *arg9 = 0;
+  std::string *arg10 = 0;
+  std::string *arg11 = 0;
+  std::string *arg12 = 0;
+  std::string *arg13 = 0;
+  std::string *arg14 = 0;
+  std::string *arg15 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  int res5 = SWIG_OLDOBJ;
+  int res6 = SWIG_OLDOBJ;
+  int res7 = SWIG_OLDOBJ;
+  int res8 = SWIG_OLDOBJ;
+  int res9 = SWIG_OLDOBJ;
+  int res10 = SWIG_OLDOBJ;
+  int res11 = SWIG_OLDOBJ;
+  int res12 = SWIG_OLDOBJ;
+  int res13 = SWIG_OLDOBJ;
+  int res14 = SWIG_OLDOBJ;
+  int res15 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+  PyObject * obj6 = 0;
+  PyObject * obj7 = 0;
+  PyObject * obj8 = 0;
+  PyObject * obj9 = 0;
+  PyObject * obj10 = 0;
+  PyObject * obj11 = 0;
+  PyObject * obj12 = 0;
+  PyObject * obj13 = 0;
+  PyObject * obj14 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOOOOOOOOOOO:WordProcessingMerger_set_week_day_names", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5, &obj6, &obj7, &obj8, &obj9, &obj10, &obj11, &obj12, &obj13, &obj14)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -6056,10 +5989,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -6067,10 +6000,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
@@ -6078,10 +6011,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res5 = SWIG_AsPtr_std_string(obj4, &ptr);
     if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     arg5 = ptr;
   }
@@ -6089,10 +6022,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res6 = SWIG_AsPtr_std_string(obj5, &ptr);
     if (!SWIG_IsOK(res6)) {
-      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     arg6 = ptr;
   }
@@ -6100,10 +6033,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res7 = SWIG_AsPtr_std_string(obj6, &ptr);
     if (!SWIG_IsOK(res7)) {
-      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     arg7 = ptr;
   }
@@ -6111,10 +6044,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res8 = SWIG_AsPtr_std_string(obj7, &ptr);
     if (!SWIG_IsOK(res8)) {
-      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     arg8 = ptr;
   }
@@ -6122,10 +6055,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res9 = SWIG_AsPtr_std_string(obj8, &ptr);
     if (!SWIG_IsOK(res9)) {
-      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "9"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "9"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "9"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "9"" of type '" "std::string const &""'");
     }
     arg9 = ptr;
   }
@@ -6133,10 +6066,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res10 = SWIG_AsPtr_std_string(obj9, &ptr);
     if (!SWIG_IsOK(res10)) {
-      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "10"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "10"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "10"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "10"" of type '" "std::string const &""'");
     }
     arg10 = ptr;
   }
@@ -6144,10 +6077,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res11 = SWIG_AsPtr_std_string(obj10, &ptr);
     if (!SWIG_IsOK(res11)) {
-      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "11"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "11"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "11"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "11"" of type '" "std::string const &""'");
     }
     arg11 = ptr;
   }
@@ -6155,10 +6088,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res12 = SWIG_AsPtr_std_string(obj11, &ptr);
     if (!SWIG_IsOK(res12)) {
-      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "12"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "12"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "12"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "12"" of type '" "std::string const &""'");
     }
     arg12 = ptr;
   }
@@ -6166,10 +6099,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res13 = SWIG_AsPtr_std_string(obj12, &ptr);
     if (!SWIG_IsOK(res13)) {
-      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "13"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "13"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "13"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "13"" of type '" "std::string const &""'");
     }
     arg13 = ptr;
   }
@@ -6177,10 +6110,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res14 = SWIG_AsPtr_std_string(obj13, &ptr);
     if (!SWIG_IsOK(res14)) {
-      SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "14"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "14"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "14"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "14"" of type '" "std::string const &""'");
     }
     arg14 = ptr;
   }
@@ -6188,18 +6121,18 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names__SWIG_2(PyObj
     std::string *ptr = (std::string *)0;
     res15 = SWIG_AsPtr_std_string(obj14, &ptr);
     if (!SWIG_IsOK(res15)) {
-      SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "15"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "15"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "15"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_week_day_names" "', argument " "15"" of type '" "std::string const &""'");
     }
     arg15 = ptr;
   }
   {
     try {
-      (arg1)->setWeekDayNames((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11,(std::string const &)*arg12,(std::string const &)*arg13,(std::string const &)*arg14,(std::string const &)*arg15);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setWeekDayNames((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4, (std::string const &) *arg5, (std::string const &) *arg6, (std::string const &) *arg7, (std::string const &) *arg8, (std::string const &) *arg9, (std::string const &) *arg10, (std::string const &) *arg11, (std::string const &) *arg12, (std::string const &) *arg13, (std::string const &) *arg14, (std::string const &) *arg15);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -6237,16 +6170,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[16];
+  PyObject * argv[16];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 15) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -6359,35 +6291,34 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_week_day_names(PyObject *sel
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_week_day_names'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setWeekDayNames()\n"
-    "    DocxFactory::WordProcessingMerger::setWeekDayNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n"
-    "    DocxFactory::WordProcessingMerger::setWeekDayNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_week_day_names'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setWeekDayNames()\n"
+          "    DocxFactory::WordProcessingMerger::setWeekDayNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n"
+          "    DocxFactory::WordProcessingMerger::setWeekDayNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_month_names",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_month_names", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_month_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_month_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setMonthNames();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -6397,64 +6328,63 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string *arg8 = 0 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
-  std::string *arg12 = 0 ;
-  std::string *arg13 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int res6 = SWIG_OLDOBJ ;
-  int res7 = SWIG_OLDOBJ ;
-  int res8 = SWIG_OLDOBJ ;
-  int res9 = SWIG_OLDOBJ ;
-  int res10 = SWIG_OLDOBJ ;
-  int res11 = SWIG_OLDOBJ ;
-  int res12 = SWIG_OLDOBJ ;
-  int res13 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  PyObject * obj8 = 0 ;
-  PyObject * obj9 = 0 ;
-  PyObject * obj10 = 0 ;
-  PyObject * obj11 = 0 ;
-  PyObject * obj12 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOOOOOO:WordProcessingMerger_set_month_names",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8,&obj9,&obj10,&obj11,&obj12)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  std::string *arg5 = 0;
+  std::string *arg6 = 0;
+  std::string *arg7 = 0;
+  std::string *arg8 = 0;
+  std::string *arg9 = 0;
+  std::string *arg10 = 0;
+  std::string *arg11 = 0;
+  std::string *arg12 = 0;
+  std::string *arg13 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  int res5 = SWIG_OLDOBJ;
+  int res6 = SWIG_OLDOBJ;
+  int res7 = SWIG_OLDOBJ;
+  int res8 = SWIG_OLDOBJ;
+  int res9 = SWIG_OLDOBJ;
+  int res10 = SWIG_OLDOBJ;
+  int res11 = SWIG_OLDOBJ;
+  int res12 = SWIG_OLDOBJ;
+  int res13 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+  PyObject * obj6 = 0;
+  PyObject * obj7 = 0;
+  PyObject * obj8 = 0;
+  PyObject * obj9 = 0;
+  PyObject * obj10 = 0;
+  PyObject * obj11 = 0;
+  PyObject * obj12 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOOOOOOOOO:WordProcessingMerger_set_month_names", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5, &obj6, &obj7, &obj8, &obj9, &obj10, &obj11, &obj12)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_month_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_month_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -6462,10 +6392,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -6473,10 +6403,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
@@ -6484,10 +6414,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res5 = SWIG_AsPtr_std_string(obj4, &ptr);
     if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     arg5 = ptr;
   }
@@ -6495,10 +6425,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res6 = SWIG_AsPtr_std_string(obj5, &ptr);
     if (!SWIG_IsOK(res6)) {
-      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     arg6 = ptr;
   }
@@ -6506,10 +6436,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res7 = SWIG_AsPtr_std_string(obj6, &ptr);
     if (!SWIG_IsOK(res7)) {
-      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     arg7 = ptr;
   }
@@ -6517,10 +6447,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res8 = SWIG_AsPtr_std_string(obj7, &ptr);
     if (!SWIG_IsOK(res8)) {
-      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     arg8 = ptr;
   }
@@ -6528,10 +6458,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res9 = SWIG_AsPtr_std_string(obj8, &ptr);
     if (!SWIG_IsOK(res9)) {
-      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'");
     }
     arg9 = ptr;
   }
@@ -6539,10 +6469,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res10 = SWIG_AsPtr_std_string(obj9, &ptr);
     if (!SWIG_IsOK(res10)) {
-      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'");
     }
     arg10 = ptr;
   }
@@ -6550,10 +6480,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res11 = SWIG_AsPtr_std_string(obj10, &ptr);
     if (!SWIG_IsOK(res11)) {
-      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'");
     }
     arg11 = ptr;
   }
@@ -6561,10 +6491,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res12 = SWIG_AsPtr_std_string(obj11, &ptr);
     if (!SWIG_IsOK(res12)) {
-      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'");
     }
     arg12 = ptr;
   }
@@ -6572,18 +6502,18 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_1(PyObject
     std::string *ptr = (std::string *)0;
     res13 = SWIG_AsPtr_std_string(obj12, &ptr);
     if (!SWIG_IsOK(res13)) {
-      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'");
     }
     arg13 = ptr;
   }
   {
     try {
-      (arg1)->setMonthNames((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11,(std::string const &)*arg12,(std::string const &)*arg13);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setMonthNames((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4, (std::string const &) *arg5, (std::string const &) *arg6, (std::string const &) *arg7, (std::string const &) *arg8, (std::string const &) *arg9, (std::string const &) *arg10, (std::string const &) *arg11, (std::string const &) *arg12, (std::string const &) *arg13);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -6617,100 +6547,99 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string *arg8 = 0 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
-  std::string *arg12 = 0 ;
-  std::string *arg13 = 0 ;
-  std::string *arg14 = 0 ;
-  std::string *arg15 = 0 ;
-  std::string *arg16 = 0 ;
-  std::string *arg17 = 0 ;
-  std::string *arg18 = 0 ;
-  std::string *arg19 = 0 ;
-  std::string *arg20 = 0 ;
-  std::string *arg21 = 0 ;
-  std::string *arg22 = 0 ;
-  std::string *arg23 = 0 ;
-  std::string *arg24 = 0 ;
-  std::string *arg25 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int res6 = SWIG_OLDOBJ ;
-  int res7 = SWIG_OLDOBJ ;
-  int res8 = SWIG_OLDOBJ ;
-  int res9 = SWIG_OLDOBJ ;
-  int res10 = SWIG_OLDOBJ ;
-  int res11 = SWIG_OLDOBJ ;
-  int res12 = SWIG_OLDOBJ ;
-  int res13 = SWIG_OLDOBJ ;
-  int res14 = SWIG_OLDOBJ ;
-  int res15 = SWIG_OLDOBJ ;
-  int res16 = SWIG_OLDOBJ ;
-  int res17 = SWIG_OLDOBJ ;
-  int res18 = SWIG_OLDOBJ ;
-  int res19 = SWIG_OLDOBJ ;
-  int res20 = SWIG_OLDOBJ ;
-  int res21 = SWIG_OLDOBJ ;
-  int res22 = SWIG_OLDOBJ ;
-  int res23 = SWIG_OLDOBJ ;
-  int res24 = SWIG_OLDOBJ ;
-  int res25 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  PyObject * obj8 = 0 ;
-  PyObject * obj9 = 0 ;
-  PyObject * obj10 = 0 ;
-  PyObject * obj11 = 0 ;
-  PyObject * obj12 = 0 ;
-  PyObject * obj13 = 0 ;
-  PyObject * obj14 = 0 ;
-  PyObject * obj15 = 0 ;
-  PyObject * obj16 = 0 ;
-  PyObject * obj17 = 0 ;
-  PyObject * obj18 = 0 ;
-  PyObject * obj19 = 0 ;
-  PyObject * obj20 = 0 ;
-  PyObject * obj21 = 0 ;
-  PyObject * obj22 = 0 ;
-  PyObject * obj23 = 0 ;
-  PyObject * obj24 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOOOOOOOOOOOOOOOOOO:WordProcessingMerger_set_month_names",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8,&obj9,&obj10,&obj11,&obj12,&obj13,&obj14,&obj15,&obj16,&obj17,&obj18,&obj19,&obj20,&obj21,&obj22,&obj23,&obj24)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  std::string *arg3 = 0;
+  std::string *arg4 = 0;
+  std::string *arg5 = 0;
+  std::string *arg6 = 0;
+  std::string *arg7 = 0;
+  std::string *arg8 = 0;
+  std::string *arg9 = 0;
+  std::string *arg10 = 0;
+  std::string *arg11 = 0;
+  std::string *arg12 = 0;
+  std::string *arg13 = 0;
+  std::string *arg14 = 0;
+  std::string *arg15 = 0;
+  std::string *arg16 = 0;
+  std::string *arg17 = 0;
+  std::string *arg18 = 0;
+  std::string *arg19 = 0;
+  std::string *arg20 = 0;
+  std::string *arg21 = 0;
+  std::string *arg22 = 0;
+  std::string *arg23 = 0;
+  std::string *arg24 = 0;
+  std::string *arg25 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  int res3 = SWIG_OLDOBJ;
+  int res4 = SWIG_OLDOBJ;
+  int res5 = SWIG_OLDOBJ;
+  int res6 = SWIG_OLDOBJ;
+  int res7 = SWIG_OLDOBJ;
+  int res8 = SWIG_OLDOBJ;
+  int res9 = SWIG_OLDOBJ;
+  int res10 = SWIG_OLDOBJ;
+  int res11 = SWIG_OLDOBJ;
+  int res12 = SWIG_OLDOBJ;
+  int res13 = SWIG_OLDOBJ;
+  int res14 = SWIG_OLDOBJ;
+  int res15 = SWIG_OLDOBJ;
+  int res16 = SWIG_OLDOBJ;
+  int res17 = SWIG_OLDOBJ;
+  int res18 = SWIG_OLDOBJ;
+  int res19 = SWIG_OLDOBJ;
+  int res20 = SWIG_OLDOBJ;
+  int res21 = SWIG_OLDOBJ;
+  int res22 = SWIG_OLDOBJ;
+  int res23 = SWIG_OLDOBJ;
+  int res24 = SWIG_OLDOBJ;
+  int res25 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+  PyObject * obj2 = 0;
+  PyObject * obj3 = 0;
+  PyObject * obj4 = 0;
+  PyObject * obj5 = 0;
+  PyObject * obj6 = 0;
+  PyObject * obj7 = 0;
+  PyObject * obj8 = 0;
+  PyObject * obj9 = 0;
+  PyObject * obj10 = 0;
+  PyObject * obj11 = 0;
+  PyObject * obj12 = 0;
+  PyObject * obj13 = 0;
+  PyObject * obj14 = 0;
+  PyObject * obj15 = 0;
+  PyObject * obj16 = 0;
+  PyObject * obj17 = 0;
+  PyObject * obj18 = 0;
+  PyObject * obj19 = 0;
+  PyObject * obj20 = 0;
+  PyObject * obj21 = 0;
+  PyObject * obj22 = 0;
+  PyObject * obj23 = 0;
+  PyObject * obj24 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OOOOOOOOOOOOOOOOOOOOOOOOO:WordProcessingMerger_set_month_names", &obj0, &obj1, &obj2, &obj3, &obj4, &obj5, &obj6, &obj7, &obj8, &obj9, &obj10, &obj11, &obj12, &obj13, &obj14, &obj15, &obj16, &obj17, &obj18, &obj19, &obj20, &obj21, &obj22, &obj23, &obj24)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_month_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_month_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
@@ -6718,10 +6647,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res3 = SWIG_AsPtr_std_string(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "3"" of type '" "std::string const &""'");
     }
     arg3 = ptr;
   }
@@ -6729,10 +6658,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "4"" of type '" "std::string const &""'");
     }
     arg4 = ptr;
   }
@@ -6740,10 +6669,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res5 = SWIG_AsPtr_std_string(obj4, &ptr);
     if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "5"" of type '" "std::string const &""'");
     }
     arg5 = ptr;
   }
@@ -6751,10 +6680,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res6 = SWIG_AsPtr_std_string(obj5, &ptr);
     if (!SWIG_IsOK(res6)) {
-      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "6"" of type '" "std::string const &""'");
     }
     arg6 = ptr;
   }
@@ -6762,10 +6691,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res7 = SWIG_AsPtr_std_string(obj6, &ptr);
     if (!SWIG_IsOK(res7)) {
-      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "7"" of type '" "std::string const &""'");
     }
     arg7 = ptr;
   }
@@ -6773,10 +6702,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res8 = SWIG_AsPtr_std_string(obj7, &ptr);
     if (!SWIG_IsOK(res8)) {
-      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "8"" of type '" "std::string const &""'");
     }
     arg8 = ptr;
   }
@@ -6784,10 +6713,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res9 = SWIG_AsPtr_std_string(obj8, &ptr);
     if (!SWIG_IsOK(res9)) {
-      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "9"" of type '" "std::string const &""'");
     }
     arg9 = ptr;
   }
@@ -6795,10 +6724,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res10 = SWIG_AsPtr_std_string(obj9, &ptr);
     if (!SWIG_IsOK(res10)) {
-      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "10"" of type '" "std::string const &""'");
     }
     arg10 = ptr;
   }
@@ -6806,10 +6735,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res11 = SWIG_AsPtr_std_string(obj10, &ptr);
     if (!SWIG_IsOK(res11)) {
-      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "11"" of type '" "std::string const &""'");
     }
     arg11 = ptr;
   }
@@ -6817,10 +6746,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res12 = SWIG_AsPtr_std_string(obj11, &ptr);
     if (!SWIG_IsOK(res12)) {
-      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "12"" of type '" "std::string const &""'");
     }
     arg12 = ptr;
   }
@@ -6828,10 +6757,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res13 = SWIG_AsPtr_std_string(obj12, &ptr);
     if (!SWIG_IsOK(res13)) {
-      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "13"" of type '" "std::string const &""'");
     }
     arg13 = ptr;
   }
@@ -6839,10 +6768,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res14 = SWIG_AsPtr_std_string(obj13, &ptr);
     if (!SWIG_IsOK(res14)) {
-      SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "WordProcessingMerger_set_month_names" "', argument " "14"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "WordProcessingMerger_set_month_names" "', argument " "14"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "14"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "14"" of type '" "std::string const &""'");
     }
     arg14 = ptr;
   }
@@ -6850,10 +6779,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res15 = SWIG_AsPtr_std_string(obj14, &ptr);
     if (!SWIG_IsOK(res15)) {
-      SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "WordProcessingMerger_set_month_names" "', argument " "15"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "WordProcessingMerger_set_month_names" "', argument " "15"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "15"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "15"" of type '" "std::string const &""'");
     }
     arg15 = ptr;
   }
@@ -6861,10 +6790,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res16 = SWIG_AsPtr_std_string(obj15, &ptr);
     if (!SWIG_IsOK(res16)) {
-      SWIG_exception_fail(SWIG_ArgError(res16), "in method '" "WordProcessingMerger_set_month_names" "', argument " "16"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res16), "in method '" "WordProcessingMerger_set_month_names" "', argument " "16"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "16"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "16"" of type '" "std::string const &""'");
     }
     arg16 = ptr;
   }
@@ -6872,10 +6801,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res17 = SWIG_AsPtr_std_string(obj16, &ptr);
     if (!SWIG_IsOK(res17)) {
-      SWIG_exception_fail(SWIG_ArgError(res17), "in method '" "WordProcessingMerger_set_month_names" "', argument " "17"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res17), "in method '" "WordProcessingMerger_set_month_names" "', argument " "17"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "17"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "17"" of type '" "std::string const &""'");
     }
     arg17 = ptr;
   }
@@ -6883,10 +6812,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res18 = SWIG_AsPtr_std_string(obj17, &ptr);
     if (!SWIG_IsOK(res18)) {
-      SWIG_exception_fail(SWIG_ArgError(res18), "in method '" "WordProcessingMerger_set_month_names" "', argument " "18"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res18), "in method '" "WordProcessingMerger_set_month_names" "', argument " "18"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "18"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "18"" of type '" "std::string const &""'");
     }
     arg18 = ptr;
   }
@@ -6894,10 +6823,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res19 = SWIG_AsPtr_std_string(obj18, &ptr);
     if (!SWIG_IsOK(res19)) {
-      SWIG_exception_fail(SWIG_ArgError(res19), "in method '" "WordProcessingMerger_set_month_names" "', argument " "19"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res19), "in method '" "WordProcessingMerger_set_month_names" "', argument " "19"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "19"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "19"" of type '" "std::string const &""'");
     }
     arg19 = ptr;
   }
@@ -6905,10 +6834,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res20 = SWIG_AsPtr_std_string(obj19, &ptr);
     if (!SWIG_IsOK(res20)) {
-      SWIG_exception_fail(SWIG_ArgError(res20), "in method '" "WordProcessingMerger_set_month_names" "', argument " "20"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res20), "in method '" "WordProcessingMerger_set_month_names" "', argument " "20"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "20"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "20"" of type '" "std::string const &""'");
     }
     arg20 = ptr;
   }
@@ -6916,10 +6845,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res21 = SWIG_AsPtr_std_string(obj20, &ptr);
     if (!SWIG_IsOK(res21)) {
-      SWIG_exception_fail(SWIG_ArgError(res21), "in method '" "WordProcessingMerger_set_month_names" "', argument " "21"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res21), "in method '" "WordProcessingMerger_set_month_names" "', argument " "21"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "21"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "21"" of type '" "std::string const &""'");
     }
     arg21 = ptr;
   }
@@ -6927,10 +6856,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res22 = SWIG_AsPtr_std_string(obj21, &ptr);
     if (!SWIG_IsOK(res22)) {
-      SWIG_exception_fail(SWIG_ArgError(res22), "in method '" "WordProcessingMerger_set_month_names" "', argument " "22"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res22), "in method '" "WordProcessingMerger_set_month_names" "', argument " "22"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "22"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "22"" of type '" "std::string const &""'");
     }
     arg22 = ptr;
   }
@@ -6938,10 +6867,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res23 = SWIG_AsPtr_std_string(obj22, &ptr);
     if (!SWIG_IsOK(res23)) {
-      SWIG_exception_fail(SWIG_ArgError(res23), "in method '" "WordProcessingMerger_set_month_names" "', argument " "23"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res23), "in method '" "WordProcessingMerger_set_month_names" "', argument " "23"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "23"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "23"" of type '" "std::string const &""'");
     }
     arg23 = ptr;
   }
@@ -6949,10 +6878,10 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res24 = SWIG_AsPtr_std_string(obj23, &ptr);
     if (!SWIG_IsOK(res24)) {
-      SWIG_exception_fail(SWIG_ArgError(res24), "in method '" "WordProcessingMerger_set_month_names" "', argument " "24"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res24), "in method '" "WordProcessingMerger_set_month_names" "', argument " "24"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "24"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "24"" of type '" "std::string const &""'");
     }
     arg24 = ptr;
   }
@@ -6960,18 +6889,18 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names__SWIG_2(PyObject
     std::string *ptr = (std::string *)0;
     res25 = SWIG_AsPtr_std_string(obj24, &ptr);
     if (!SWIG_IsOK(res25)) {
-      SWIG_exception_fail(SWIG_ArgError(res25), "in method '" "WordProcessingMerger_set_month_names" "', argument " "25"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res25), "in method '" "WordProcessingMerger_set_month_names" "', argument " "25"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "25"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_month_names" "', argument " "25"" of type '" "std::string const &""'");
     }
     arg25 = ptr;
   }
   {
     try {
-      (arg1)->setMonthNames((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11,(std::string const &)*arg12,(std::string const &)*arg13,(std::string const &)*arg14,(std::string const &)*arg15,(std::string const &)*arg16,(std::string const &)*arg17,(std::string const &)*arg18,(std::string const &)*arg19,(std::string const &)*arg20,(std::string const &)*arg21,(std::string const &)*arg22,(std::string const &)*arg23,(std::string const &)*arg24,(std::string const &)*arg25);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setMonthNames((std::string const &) *arg2, (std::string const &) *arg3, (std::string const &) *arg4, (std::string const &) *arg5, (std::string const &) *arg6, (std::string const &) *arg7, (std::string const &) *arg8, (std::string const &) *arg9, (std::string const &) *arg10, (std::string const &) *arg11, (std::string const &) *arg12, (std::string const &) *arg13, (std::string const &) *arg14, (std::string const &) *arg15, (std::string const &) *arg16, (std::string const &) *arg17, (std::string const &) *arg18, (std::string const &) *arg19, (std::string const &) *arg20, (std::string const &) *arg21, (std::string const &) *arg22, (std::string const &) *arg23, (std::string const &) *arg24, (std::string const &) *arg25);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -7029,16 +6958,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[26];
+  PyObject * argv[26];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 25) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -7211,325 +7139,314 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_month_names(PyObject *self, 
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_month_names'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setMonthNames()\n"
-    "    DocxFactory::WordProcessingMerger::setMonthNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n"
-    "    DocxFactory::WordProcessingMerger::setMonthNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_month_names'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setMonthNames()\n"
+          "    DocxFactory::WordProcessingMerger::setMonthNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n"
+          "    DocxFactory::WordProcessingMerger::setMonthNames(std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_code_page(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_code_page",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_code_page", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_code_page" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_code_page" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       result = (arg1)->getCodePage();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_num_frac_sep(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   char result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_num_frac_sep",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_num_frac_sep", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_num_frac_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_num_frac_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = (char)(arg1)->getNumFracSep();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (char) (arg1)->getNumFracSep();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_char(static_cast< char >(result));
+  resultobj = SWIG_From_char(static_cast<char> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_num_th_sep(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   char result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_num_th_sep",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_num_th_sep", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_num_th_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_num_th_sep" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = (char)(arg1)->getNumThSep();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (char) (arg1)->getNumThSep();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_char(static_cast< char >(result));
+  resultobj = SWIG_From_char(static_cast<char> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_date_format(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_date_format",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_date_format", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_date_format" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_date_format" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       result = (arg1)->getDateFormat();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_year_offset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   unsigned short result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_year_offset",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_year_offset", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_year_offset" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_year_offset" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = (unsigned short)(arg1)->getYearOffset();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (unsigned short) (arg1)->getYearOffset();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_unsigned_SS_short(static_cast< unsigned short >(result));
+  resultobj = SWIG_From_unsigned_SS_short(static_cast<unsigned short> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_first_week_day(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   unsigned short result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_first_week_day",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_first_week_day", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_first_week_day" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_first_week_day" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = (unsigned short)(arg1)->getFirstWeekDay();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = (unsigned short) (arg1)->getFirstWeekDay();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_unsigned_SS_short(static_cast< unsigned short >(result));
+  resultobj = SWIG_From_unsigned_SS_short(static_cast<unsigned short> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_week_day_full_names(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_week_day_full_names",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_week_day_full_names", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_week_day_full_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_week_day_full_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       result = (arg1)->getWeekDayFullNames();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_week_day_short_names(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_week_day_short_names",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_week_day_short_names", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_week_day_short_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_week_day_short_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       result = (arg1)->getWeekDayShortNames();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_month_full_names(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_month_full_names",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_month_full_names", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_month_full_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_month_full_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       result = (arg1)->getMonthFullNames();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_month_short_names(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_month_short_names",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_month_short_names", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_month_short_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_month_short_names" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       result = (arg1)->getMonthShortNames();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_temp_dir__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_set_temp_dir",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_set_temp_dir", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
       (arg1)->setTempDir();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -7539,39 +7456,38 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_temp_dir__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WordProcessingMerger_set_temp_dir",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  std::string *arg2 = 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  int res2 = SWIG_OLDOBJ;
+  PyObject * obj0 = 0;
+  PyObject * obj1 = 0;
+
+  if (!PyArg_ParseTuple(args, (char *) "OO:WordProcessingMerger_set_temp_dir", &obj0, &obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     std::string *ptr = (std::string *)0;
     res2 = SWIG_AsPtr_std_string(obj1, &ptr);
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'");
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "WordProcessingMerger_set_temp_dir" "', argument " "2"" of type '" "std::string const &""'");
     }
     arg2 = ptr;
   }
   {
     try {
-      (arg1)->setTempDir((std::string const &)*arg2);
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      (arg1)->setTempDir((std::string const &) *arg2);
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
@@ -7583,16 +7499,15 @@ fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_temp_dir(PyObject *self, PyObject *args) {
   int argc;
-  PyObject *argv[3];
+  PyObject * argv[3];
   int ii;
-  
+
   if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
+  argc = args ? (int) PyObject_Length(args) : 0;
   for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
+    argv[ii] = PyTuple_GET_ITEM(args, ii);
   }
   if (argc == 1) {
     int _v;
@@ -7616,137 +7531,134 @@ SWIGINTERN PyObject *_wrap_WordProcessingMerger_set_temp_dir(PyObject *self, PyO
       }
     }
   }
-  
+
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_temp_dir'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DocxFactory::WordProcessingMerger::setTempDir()\n"
-    "    DocxFactory::WordProcessingMerger::setTempDir(std::string const &)\n");
+  SWIG_SetErrorMsg(PyExc_NotImplementedError, "Wrong number or type of arguments for overloaded function 'WordProcessingMerger_set_temp_dir'.\n"
+          "  Possible C/C++ prototypes are:\n"
+          "    DocxFactory::WordProcessingMerger::setTempDir()\n"
+          "    DocxFactory::WordProcessingMerger::setTempDir(std::string const &)\n");
   return 0;
 }
 
-
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_work_dir(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_work_dir",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_work_dir", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_work_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_work_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = ((DocxFactory::WordProcessingMerger const *)arg1)->getWorkDir();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingMerger const *) arg1)->getWorkDir();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
-
 
 SWIGINTERN PyObject *_wrap_WordProcessingMerger_get_temp_dir(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
+  DocxFactory::WordProcessingMerger *arg1 = (DocxFactory::WordProcessingMerger *) 0;
+  void *argp1 = 0;
+  int res1 = 0;
+  PyObject * obj0 = 0;
   std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WordProcessingMerger_get_temp_dir",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 |  0 );
+
+  if (!PyArg_ParseTuple(args, (char *) "O:WordProcessingMerger_get_temp_dir", &obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DocxFactory__WordProcessingMerger, 0 | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WordProcessingMerger_get_temp_dir" "', argument " "1"" of type '" "DocxFactory::WordProcessingMerger const *""'");
   }
-  arg1 = reinterpret_cast< DocxFactory::WordProcessingMerger * >(argp1);
+  arg1 = reinterpret_cast<DocxFactory::WordProcessingMerger *> (argp1);
   {
     try {
-      result = ((DocxFactory::WordProcessingMerger const *)arg1)->getTempDir();
-    } catch ( std::exception &_e ) {
-      PyErr_SetString( PyExc_Exception, const_cast<char*>( _e.what() ) );
+      result = ((DocxFactory::WordProcessingMerger const *) arg1)->getTempDir();
+    } catch (std::exception &_e) {
+      PyErr_SetString(PyExc_Exception, const_cast<char*> (_e.what()));
       return NULL;
     }
   }
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  resultobj = SWIG_From_std_string(static_cast<std::string> (result));
   return resultobj;
 fail:
   return NULL;
 }
 
-
 SWIGINTERN PyObject *WordProcessingMerger_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  if (!PyArg_ParseTuple(args, (char*) "O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_DocxFactory__WordProcessingMerger, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
 static PyMethodDef SwigMethods[] = {
-	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
-	 { (char *)"WordProcessingCompiler_get_instance", _wrap_WordProcessingCompiler_get_instance, METH_VARARGS, NULL},
-	 { (char *)"delete_WordProcessingCompiler", _wrap_delete_WordProcessingCompiler, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingCompiler_compile", _wrap_WordProcessingCompiler_compile, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingCompiler_set_temp_dir", _wrap_WordProcessingCompiler_set_temp_dir, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingCompiler_get_work_dir", _wrap_WordProcessingCompiler_get_work_dir, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingCompiler_get_temp_dir", _wrap_WordProcessingCompiler_get_temp_dir, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingCompiler_swigregister", WordProcessingCompiler_swigregister, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_instance", _wrap_WordProcessingMerger_get_instance, METH_VARARGS, NULL},
-	 { (char *)"delete_WordProcessingMerger", _wrap_delete_WordProcessingMerger, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_load", _wrap_WordProcessingMerger_load, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_save", _wrap_WordProcessingMerger_save, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_print_doc", _wrap_WordProcessingMerger_print_doc, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_close", _wrap_WordProcessingMerger_close, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_merge", _wrap_WordProcessingMerger_merge, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_setChartValue", _wrap_WordProcessingMerger_setChartValue, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_setClipboardValue", _wrap_WordProcessingMerger_setClipboardValue, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_paste", _wrap_WordProcessingMerger_paste, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_update_toc_method", _wrap_WordProcessingMerger_set_update_toc_method, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_update_toc_method", _wrap_WordProcessingMerger_get_update_toc_method, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_fields", _wrap_WordProcessingMerger_get_fields, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_items", _wrap_WordProcessingMerger_get_items, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_item_parent", _wrap_WordProcessingMerger_get_item_parent, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_item_fields", _wrap_WordProcessingMerger_get_item_fields, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_code_page", _wrap_WordProcessingMerger_set_code_page, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_num_frac_sep", _wrap_WordProcessingMerger_set_num_frac_sep, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_num_th_sep", _wrap_WordProcessingMerger_set_num_th_sep, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_date_format", _wrap_WordProcessingMerger_set_date_format, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_year_offset", _wrap_WordProcessingMerger_set_year_offset, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_first_week_day", _wrap_WordProcessingMerger_set_first_week_day, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_week_day_names", _wrap_WordProcessingMerger_set_week_day_names, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_month_names", _wrap_WordProcessingMerger_set_month_names, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_code_page", _wrap_WordProcessingMerger_get_code_page, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_num_frac_sep", _wrap_WordProcessingMerger_get_num_frac_sep, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_num_th_sep", _wrap_WordProcessingMerger_get_num_th_sep, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_date_format", _wrap_WordProcessingMerger_get_date_format, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_year_offset", _wrap_WordProcessingMerger_get_year_offset, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_first_week_day", _wrap_WordProcessingMerger_get_first_week_day, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_week_day_full_names", _wrap_WordProcessingMerger_get_week_day_full_names, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_week_day_short_names", _wrap_WordProcessingMerger_get_week_day_short_names, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_month_full_names", _wrap_WordProcessingMerger_get_month_full_names, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_month_short_names", _wrap_WordProcessingMerger_get_month_short_names, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_set_temp_dir", _wrap_WordProcessingMerger_set_temp_dir, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_work_dir", _wrap_WordProcessingMerger_get_work_dir, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_get_temp_dir", _wrap_WordProcessingMerger_get_temp_dir, METH_VARARGS, NULL},
-	 { (char *)"WordProcessingMerger_swigregister", WordProcessingMerger_swigregister, METH_VARARGS, NULL},
-	 { NULL, NULL, 0, NULL }
+  { (char *) "SWIG_PyInstanceMethod_New", (PyCFunction) SWIG_PyInstanceMethod_New, METH_O, NULL},
+  { (char *) "WordProcessingCompiler_get_instance", _wrap_WordProcessingCompiler_get_instance, METH_VARARGS, NULL},
+  { (char *) "delete_WordProcessingCompiler", _wrap_delete_WordProcessingCompiler, METH_VARARGS, NULL},
+  { (char *) "WordProcessingCompiler_compile", _wrap_WordProcessingCompiler_compile, METH_VARARGS, NULL},
+  { (char *) "WordProcessingCompiler_set_temp_dir", _wrap_WordProcessingCompiler_set_temp_dir, METH_VARARGS, NULL},
+  { (char *) "WordProcessingCompiler_get_work_dir", _wrap_WordProcessingCompiler_get_work_dir, METH_VARARGS, NULL},
+  { (char *) "WordProcessingCompiler_get_temp_dir", _wrap_WordProcessingCompiler_get_temp_dir, METH_VARARGS, NULL},
+  { (char *) "WordProcessingCompiler_swigregister", WordProcessingCompiler_swigregister, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_instance", _wrap_WordProcessingMerger_get_instance, METH_VARARGS, NULL},
+  { (char *) "delete_WordProcessingMerger", _wrap_delete_WordProcessingMerger, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_load", _wrap_WordProcessingMerger_load, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_save", _wrap_WordProcessingMerger_save, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_print_doc", _wrap_WordProcessingMerger_print_doc, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_close", _wrap_WordProcessingMerger_close, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_merge", _wrap_WordProcessingMerger_merge, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_setChartValue", _wrap_WordProcessingMerger_setChartValue, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_setClipboardValue", _wrap_WordProcessingMerger_setClipboardValue, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_paste", _wrap_WordProcessingMerger_paste, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_update_toc_method", _wrap_WordProcessingMerger_set_update_toc_method, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_update_toc_method", _wrap_WordProcessingMerger_get_update_toc_method, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_fields", _wrap_WordProcessingMerger_get_fields, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_items", _wrap_WordProcessingMerger_get_items, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_item_parent", _wrap_WordProcessingMerger_get_item_parent, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_item_fields", _wrap_WordProcessingMerger_get_item_fields, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_code_page", _wrap_WordProcessingMerger_set_code_page, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_num_frac_sep", _wrap_WordProcessingMerger_set_num_frac_sep, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_num_th_sep", _wrap_WordProcessingMerger_set_num_th_sep, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_date_format", _wrap_WordProcessingMerger_set_date_format, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_year_offset", _wrap_WordProcessingMerger_set_year_offset, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_first_week_day", _wrap_WordProcessingMerger_set_first_week_day, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_week_day_names", _wrap_WordProcessingMerger_set_week_day_names, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_month_names", _wrap_WordProcessingMerger_set_month_names, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_code_page", _wrap_WordProcessingMerger_get_code_page, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_num_frac_sep", _wrap_WordProcessingMerger_get_num_frac_sep, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_num_th_sep", _wrap_WordProcessingMerger_get_num_th_sep, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_date_format", _wrap_WordProcessingMerger_get_date_format, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_year_offset", _wrap_WordProcessingMerger_get_year_offset, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_first_week_day", _wrap_WordProcessingMerger_get_first_week_day, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_week_day_full_names", _wrap_WordProcessingMerger_get_week_day_full_names, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_week_day_short_names", _wrap_WordProcessingMerger_get_week_day_short_names, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_month_full_names", _wrap_WordProcessingMerger_get_month_full_names, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_month_short_names", _wrap_WordProcessingMerger_get_month_short_names, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_set_temp_dir", _wrap_WordProcessingMerger_set_temp_dir, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_work_dir", _wrap_WordProcessingMerger_get_work_dir, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_get_temp_dir", _wrap_WordProcessingMerger_get_temp_dir, METH_VARARGS, NULL},
+  { (char *) "WordProcessingMerger_swigregister", WordProcessingMerger_swigregister, METH_VARARGS, NULL},
+  { NULL, NULL, 0, NULL}
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static swig_type_info _swigt__p_DocxFactory__WordProcessingCompiler = {"_p_DocxFactory__WordProcessingCompiler", "DocxFactory::WordProcessingCompiler *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_DocxFactory__WordProcessingMerger = {"_p_DocxFactory__WordProcessingMerger", "DocxFactory::WordProcessingMerger *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_DocxFactory__WordProcessingCompiler = {"_p_DocxFactory__WordProcessingCompiler", "DocxFactory::WordProcessingCompiler *", 0, 0, (void*) 0, 0};
+static swig_type_info _swigt__p_DocxFactory__WordProcessingMerger = {"_p_DocxFactory__WordProcessingMerger", "DocxFactory::WordProcessingMerger *", 0, 0, (void*) 0, 0};
+static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*) 0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_DocxFactory__WordProcessingCompiler,
@@ -7754,9 +7666,18 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_char,
 };
 
-static swig_cast_info _swigc__p_DocxFactory__WordProcessingCompiler[] = {  {&_swigt__p_DocxFactory__WordProcessingCompiler, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_DocxFactory__WordProcessingMerger[] = {  {&_swigt__p_DocxFactory__WordProcessingMerger, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_DocxFactory__WordProcessingCompiler[] = {
+  {&_swigt__p_DocxFactory__WordProcessingCompiler, 0, 0, 0},
+  {0, 0, 0, 0}
+};
+static swig_cast_info _swigc__p_DocxFactory__WordProcessingMerger[] = {
+  {&_swigt__p_DocxFactory__WordProcessingMerger, 0, 0, 0},
+  {0, 0, 0, 0}
+};
+static swig_cast_info _swigc__p_char[] = {
+  {&_swigt__p_char, 0, 0, 0},
+  {0, 0, 0, 0}
+};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_DocxFactory__WordProcessingCompiler,
@@ -7768,7 +7689,8 @@ static swig_cast_info *swig_cast_initial[] = {
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (END) -------- */
 
 static swig_const_info swig_const_table[] = {
-{0, 0, 0, 0.0, 0, 0}};
+  {0, 0, 0, 0.0, 0, 0}
+};
 
 #ifdef __cplusplus
 }
@@ -7825,15 +7747,14 @@ extern "C" {
 #define SWIGRUNTIME_DEBUG
 #endif
 
-
 SWIGRUNTIME void
 SWIG_InitializeModule(void *clientdata) {
   size_t i;
   swig_module_info *module_head, *iter;
   int init;
-  
+
   /* check to see if the circular list has been setup, if not, set it up */
-  if (swig_module.next==0) {
+  if (swig_module.next == 0) {
     /* Initialize the swig_module */
     swig_module.type_initial = swig_type_initial;
     swig_module.cast_initial = swig_cast_initial;
@@ -7842,7 +7763,7 @@ SWIG_InitializeModule(void *clientdata) {
   } else {
     init = 0;
   }
-  
+
   /* Try and load any already created modules */
   module_head = SWIG_GetModule(clientdata);
   if (!module_head) {
@@ -7851,26 +7772,26 @@ SWIG_InitializeModule(void *clientdata) {
     SWIG_SetModule(clientdata, &swig_module);
   } else {
     /* the interpreter has loaded a SWIG module, but has it loaded this one? */
-    iter=module_head;
+    iter = module_head;
     do {
-      if (iter==&swig_module) {
+      if (iter == &swig_module) {
         /* Our module is already in the list, so there's nothing more to do. */
         return;
       }
-      iter=iter->next;
-    } while (iter!= module_head);
-    
+      iter = iter->next;
+    } while (iter != module_head);
+
     /* otherwise we must add our module into the list */
     swig_module.next = module_head->next;
     module_head->next = &swig_module;
   }
-  
+
   /* When multiple interpreters are used, a module could have already been initialized in
        a different interpreter, but not yet have a pointer in this interpreter.
        In this case, we do not want to continue adding types... everything should be
        set up already */
   if (init == 0) return;
-  
+
   /* Now work on filling in swig_module.types */
 #ifdef SWIGRUNTIME_DEBUG
   printf("SWIG_InitializeModule: size %d\n", swig_module.size);
@@ -7879,11 +7800,11 @@ SWIG_InitializeModule(void *clientdata) {
     swig_type_info *type = 0;
     swig_type_info *ret;
     swig_cast_info *cast;
-    
+
 #ifdef SWIGRUNTIME_DEBUG
     printf("SWIG_InitializeModule: type %d %s\n", i, swig_module.type_initial[i]->name);
 #endif
-    
+
     /* if there is another module already loaded */
     if (swig_module.next != &swig_module) {
       type = SWIG_MangledTypeQueryModule(swig_module.next, &swig_module, swig_module.type_initial[i]->name);
@@ -7902,7 +7823,7 @@ SWIG_InitializeModule(void *clientdata) {
     } else {
       type = swig_module.type_initial[i];
     }
-    
+
     /* Insert casting types */
     cast = swig_module.cast_initial[i];
     while (cast->type) {
@@ -7933,7 +7854,7 @@ SWIG_InitializeModule(void *clientdata) {
           if (!ocast) ret = 0;
         }
       }
-      
+
       if (!ret) {
 #ifdef SWIGRUNTIME_DEBUG
         printf("SWIG_InitializeModule: adding cast %s\n", cast->type->name);
@@ -7950,7 +7871,7 @@ SWIG_InitializeModule(void *clientdata) {
     swig_module.types[i] = type;
   }
   swig_module.types[i] = 0;
-  
+
 #ifdef SWIGRUNTIME_DEBUG
   printf("**** SWIG_InitializeModule: Cast List ******\n");
   for (i = 0; i < swig_module.size; ++i) {
@@ -7962,33 +7883,33 @@ SWIG_InitializeModule(void *clientdata) {
       cast++;
       ++j;
     }
-    printf("---- Total casts: %d\n",j);
+    printf("---- Total casts: %d\n", j);
   }
   printf("**** SWIG_InitializeModule: Cast List ******\n");
 #endif
 }
 
 /* This function will propagate the clientdata field of type to
-* any new swig_type_info structures that have been added into the list
-* of equivalent types.  It is like calling
-* SWIG_TypeClientData(type, clientdata) a second time.
-*/
+ * any new swig_type_info structures that have been added into the list
+ * of equivalent types.  It is like calling
+ * SWIG_TypeClientData(type, clientdata) a second time.
+ */
 SWIGRUNTIME void
 SWIG_PropagateClientData(void) {
   size_t i;
   swig_cast_info *equiv;
   static int init_run = 0;
-  
+
   if (init_run) return;
   init_run = 1;
-  
+
   for (i = 0; i < swig_module.size; i++) {
     if (swig_module.types[i]->clientdata) {
       equiv = swig_module.types[i]->cast;
       while (equiv) {
         if (!equiv->converter) {
           if (equiv->type && !equiv->type->clientdata)
-          SWIG_TypeClientData(equiv->type, swig_module.types[i]->clientdata);
+            SWIG_TypeClientData(equiv->type, swig_module.types[i]->clientdata);
         }
         equiv = equiv->next;
       }
@@ -8009,241 +7930,241 @@ SWIG_PropagateClientData(void) {
 #ifdef __cplusplus
 extern "C" {
 #endif
-  
-  /* Python-specific SWIG API */
+
+/* Python-specific SWIG API */
 #define SWIG_newvarlink()                             SWIG_Python_newvarlink()
 #define SWIG_addvarlink(p, name, get_attr, set_attr)  SWIG_Python_addvarlink(p, name, get_attr, set_attr)
 #define SWIG_InstallConstants(d, constants)           SWIG_Python_InstallConstants(d, constants)
-  
-  /* -----------------------------------------------------------------------------
-   * global variable support code.
-   * ----------------------------------------------------------------------------- */
-  
-  typedef struct swig_globalvar {
-    char       *name;                  /* Name of global variable */
-    PyObject *(*get_attr)(void);       /* Return the current value */
-    int       (*set_attr)(PyObject *); /* Set the value */
-    struct swig_globalvar *next;
-  } swig_globalvar;
-  
-  typedef struct swig_varlinkobject {
-    PyObject_HEAD
-    swig_globalvar *vars;
-  } swig_varlinkobject;
-  
-  SWIGINTERN PyObject *
-  swig_varlink_repr(swig_varlinkobject *SWIGUNUSEDPARM(v)) {
+
+/* -----------------------------------------------------------------------------
+ * global variable support code.
+ * ----------------------------------------------------------------------------- */
+
+typedef struct swig_globalvar {
+  char *name; /* Name of global variable */
+  PyObject *(*get_attr)(void); /* Return the current value */
+  int (*set_attr)(PyObject *); /* Set the value */
+  struct swig_globalvar *next;
+} swig_globalvar;
+
+typedef struct swig_varlinkobject {
+  PyObject_HEAD
+  swig_globalvar *vars;
+} swig_varlinkobject;
+
+SWIGINTERN PyObject *
+swig_varlink_repr(swig_varlinkobject *SWIGUNUSEDPARM(v)) {
 #if PY_VERSION_HEX >= 0x03000000
-    return PyUnicode_InternFromString("<Swig global variables>");
+  return PyUnicode_InternFromString("<Swig global variables>");
 #else
-    return PyString_FromString("<Swig global variables>");
+  return PyString_FromString("<Swig global variables>");
 #endif
-  }
-  
-  SWIGINTERN PyObject *
-  swig_varlink_str(swig_varlinkobject *v) {
+}
+
+SWIGINTERN PyObject *
+swig_varlink_str(swig_varlinkobject *v) {
 #if PY_VERSION_HEX >= 0x03000000
-    PyObject *str = PyUnicode_InternFromString("(");
-    PyObject *tail;
-    PyObject *joined;
-    swig_globalvar *var;
-    for (var = v->vars; var; var=var->next) {
-      tail = PyUnicode_FromString(var->name);
-      joined = PyUnicode_Concat(str, tail);
-      Py_DecRef(str);
-      Py_DecRef(tail);
-      str = joined;
-      if (var->next) {
-        tail = PyUnicode_InternFromString(", ");
-        joined = PyUnicode_Concat(str, tail);
-        Py_DecRef(str);
-        Py_DecRef(tail);
-        str = joined;
-      }
-    }
-    tail = PyUnicode_InternFromString(")");
+  PyObject *str = PyUnicode_InternFromString("(");
+  PyObject *tail;
+  PyObject *joined;
+  swig_globalvar *var;
+  for (var = v->vars; var; var = var->next) {
+    tail = PyUnicode_FromString(var->name);
     joined = PyUnicode_Concat(str, tail);
     Py_DecRef(str);
     Py_DecRef(tail);
     str = joined;
+    if (var->next) {
+      tail = PyUnicode_InternFromString(", ");
+      joined = PyUnicode_Concat(str, tail);
+      Py_DecRef(str);
+      Py_DecRef(tail);
+      str = joined;
+    }
+  }
+  tail = PyUnicode_InternFromString(")");
+  joined = PyUnicode_Concat(str, tail);
+  Py_DecRef(str);
+  Py_DecRef(tail);
+  str = joined;
 #else
-    PyObject *str = PyString_FromString("(");
-    swig_globalvar *var;
-    for (var = v->vars; var; var=var->next) {
-      PyString_ConcatAndDel(&str,PyString_FromString(var->name));
-      if (var->next) PyString_ConcatAndDel(&str,PyString_FromString(", "));
-    }
-    PyString_ConcatAndDel(&str,PyString_FromString(")"));
+  PyObject *str = PyString_FromString("(");
+  swig_globalvar *var;
+  for (var = v->vars; var; var = var->next) {
+    PyString_ConcatAndDel(&str, PyString_FromString(var->name));
+    if (var->next) PyString_ConcatAndDel(&str, PyString_FromString(", "));
+  }
+  PyString_ConcatAndDel(&str, PyString_FromString(")"));
 #endif
-    return str;
+  return str;
+}
+
+SWIGINTERN int
+swig_varlink_print(swig_varlinkobject *v, FILE *fp, int SWIGUNUSEDPARM(flags)) {
+  char *tmp;
+  PyObject *str = swig_varlink_str(v);
+  fprintf(fp, "Swig global variables ");
+  fprintf(fp, "%s\n", tmp = SWIG_Python_str_AsChar(str));
+  SWIG_Python_str_DelForPy3(tmp);
+  Py_DECREF(str);
+  return 0;
+}
+
+SWIGINTERN void
+swig_varlink_dealloc(swig_varlinkobject *v) {
+  swig_globalvar *var = v->vars;
+  while (var) {
+    swig_globalvar *n = var->next;
+    free(var->name);
+    free(var);
+    var = n;
   }
-  
-  SWIGINTERN int
-  swig_varlink_print(swig_varlinkobject *v, FILE *fp, int SWIGUNUSEDPARM(flags)) {
-    char *tmp;
-    PyObject *str = swig_varlink_str(v);
-    fprintf(fp,"Swig global variables ");
-    fprintf(fp,"%s\n", tmp = SWIG_Python_str_AsChar(str));
-    SWIG_Python_str_DelForPy3(tmp);
-    Py_DECREF(str);
-    return 0;
+}
+
+SWIGINTERN PyObject *
+swig_varlink_getattr(swig_varlinkobject *v, char *n) {
+  PyObject *res = NULL;
+  swig_globalvar *var = v->vars;
+  while (var) {
+    if (strcmp(var->name, n) == 0) {
+      res = (*var->get_attr)();
+      break;
+    }
+    var = var->next;
   }
-  
-  SWIGINTERN void
-  swig_varlink_dealloc(swig_varlinkobject *v) {
-    swig_globalvar *var = v->vars;
-    while (var) {
-      swig_globalvar *n = var->next;
-      free(var->name);
-      free(var);
-      var = n;
-    }
+  if (res == NULL && !PyErr_Occurred()) {
+    PyErr_Format(PyExc_AttributeError, "Unknown C global variable '%s'", n);
   }
-  
-  SWIGINTERN PyObject *
-  swig_varlink_getattr(swig_varlinkobject *v, char *n) {
-    PyObject *res = NULL;
-    swig_globalvar *var = v->vars;
-    while (var) {
-      if (strcmp(var->name,n) == 0) {
-        res = (*var->get_attr)();
-        break;
-      }
-      var = var->next;
+  return res;
+}
+
+SWIGINTERN int
+swig_varlink_setattr(swig_varlinkobject *v, char *n, PyObject *p) {
+  int res = 1;
+  swig_globalvar *var = v->vars;
+  while (var) {
+    if (strcmp(var->name, n) == 0) {
+      res = (*var->set_attr)(p);
+      break;
     }
-    if (res == NULL && !PyErr_Occurred()) {
-      PyErr_Format(PyExc_AttributeError, "Unknown C global variable '%s'", n);
-    }
-    return res;
+    var = var->next;
   }
-  
-  SWIGINTERN int
-  swig_varlink_setattr(swig_varlinkobject *v, char *n, PyObject *p) {
-    int res = 1;
-    swig_globalvar *var = v->vars;
-    while (var) {
-      if (strcmp(var->name,n) == 0) {
-        res = (*var->set_attr)(p);
-        break;
-      }
-      var = var->next;
-    }
-    if (res == 1 && !PyErr_Occurred()) {
-      PyErr_Format(PyExc_AttributeError, "Unknown C global variable '%s'", n);
-    }
-    return res;
+  if (res == 1 && !PyErr_Occurred()) {
+    PyErr_Format(PyExc_AttributeError, "Unknown C global variable '%s'", n);
   }
-  
-  SWIGINTERN PyTypeObject*
-  swig_varlink_type(void) {
-    static char varlink__doc__[] = "Swig var link object";
-    static PyTypeObject varlink_type;
-    static int type_init = 0;
-    if (!type_init) {
-      const PyTypeObject tmp = {
-        /* PyObject header changed in Python 3 */
+  return res;
+}
+
+SWIGINTERN PyTypeObject*
+swig_varlink_type(void) {
+  static char varlink__doc__[] = "Swig var link object";
+  static PyTypeObject varlink_type;
+  static int type_init = 0;
+  if (!type_init) {
+    const PyTypeObject tmp = {
+      /* PyObject header changed in Python 3 */
 #if PY_VERSION_HEX >= 0x03000000
-        PyVarObject_HEAD_INIT(NULL, 0)
+      PyVarObject_HEAD_INIT(NULL, 0)
 #else
-        PyObject_HEAD_INIT(NULL)
-        0,                                  /* ob_size */
+      PyObject_HEAD_INIT(NULL)
+      0, /* ob_size */
 #endif
-        (char *)"swigvarlink",              /* tp_name */
-        sizeof(swig_varlinkobject),         /* tp_basicsize */
-        0,                                  /* tp_itemsize */
-        (destructor) swig_varlink_dealloc,  /* tp_dealloc */
-        (printfunc) swig_varlink_print,     /* tp_print */
-        (getattrfunc) swig_varlink_getattr, /* tp_getattr */
-        (setattrfunc) swig_varlink_setattr, /* tp_setattr */
-        0,                                  /* tp_compare */
-        (reprfunc) swig_varlink_repr,       /* tp_repr */
-        0,                                  /* tp_as_number */
-        0,                                  /* tp_as_sequence */
-        0,                                  /* tp_as_mapping */
-        0,                                  /* tp_hash */
-        0,                                  /* tp_call */
-        (reprfunc) swig_varlink_str,        /* tp_str */
-        0,                                  /* tp_getattro */
-        0,                                  /* tp_setattro */
-        0,                                  /* tp_as_buffer */
-        0,                                  /* tp_flags */
-        varlink__doc__,                     /* tp_doc */
-        0,                                  /* tp_traverse */
-        0,                                  /* tp_clear */
-        0,                                  /* tp_richcompare */
-        0,                                  /* tp_weaklistoffset */
+      (char *) "swigvarlink", /* tp_name */
+      sizeof (swig_varlinkobject), /* tp_basicsize */
+      0, /* tp_itemsize */
+      (destructor) swig_varlink_dealloc, /* tp_dealloc */
+      (printfunc) swig_varlink_print, /* tp_print */
+      (getattrfunc) swig_varlink_getattr, /* tp_getattr */
+      (setattrfunc) swig_varlink_setattr, /* tp_setattr */
+      0, /* tp_compare */
+      (reprfunc) swig_varlink_repr, /* tp_repr */
+      0, /* tp_as_number */
+      0, /* tp_as_sequence */
+      0, /* tp_as_mapping */
+      0, /* tp_hash */
+      0, /* tp_call */
+      (reprfunc) swig_varlink_str, /* tp_str */
+      0, /* tp_getattro */
+      0, /* tp_setattro */
+      0, /* tp_as_buffer */
+      0, /* tp_flags */
+      varlink__doc__, /* tp_doc */
+      0, /* tp_traverse */
+      0, /* tp_clear */
+      0, /* tp_richcompare */
+      0, /* tp_weaklistoffset */
 #if PY_VERSION_HEX >= 0x02020000
-        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, /* tp_iter -> tp_weaklist */
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, /* tp_iter -> tp_weaklist */
 #endif
 #if PY_VERSION_HEX >= 0x02030000
-        0,                                  /* tp_del */
+      0, /* tp_del */
 #endif
 #if PY_VERSION_HEX >= 0x02060000
-        0,                                  /* tp_version */
+      0, /* tp_version */
 #endif
 #ifdef COUNT_ALLOCS
-        0,0,0,0                             /* tp_alloc -> tp_next */
+      0, 0, 0, 0 /* tp_alloc -> tp_next */
 #endif
-      };
-      varlink_type = tmp;
-      type_init = 1;
+    };
+    varlink_type = tmp;
+    type_init = 1;
 #if PY_VERSION_HEX < 0x02020000
-      varlink_type.ob_type = &PyType_Type;
+    varlink_type.ob_type = &PyType_Type;
 #else
-      if (PyType_Ready(&varlink_type) < 0)
+    if (PyType_Ready(&varlink_type) < 0)
       return NULL;
 #endif
+  }
+  return &varlink_type;
+}
+
+/* Create a variable linking object for use later */
+SWIGINTERN PyObject *
+SWIG_Python_newvarlink(void) {
+  swig_varlinkobject *result = PyObject_NEW(swig_varlinkobject, swig_varlink_type());
+  if (result) {
+    result->vars = 0;
+  }
+  return ((PyObject*) result);
+}
+
+SWIGINTERN void
+SWIG_Python_addvarlink(PyObject *p, char *name, PyObject *(*get_attr)(void), int (*set_attr)(PyObject *p)) {
+  swig_varlinkobject *v = (swig_varlinkobject *) p;
+  swig_globalvar *gv = (swig_globalvar *) malloc(sizeof (swig_globalvar));
+  if (gv) {
+    size_t size = strlen(name) + 1;
+    gv->name = (char *) malloc(size);
+    if (gv->name) {
+      strncpy(gv->name, name, size);
+      gv->get_attr = get_attr;
+      gv->set_attr = set_attr;
+      gv->next = v->vars;
     }
-    return &varlink_type;
   }
-  
-  /* Create a variable linking object for use later */
-  SWIGINTERN PyObject *
-  SWIG_Python_newvarlink(void) {
-    swig_varlinkobject *result = PyObject_NEW(swig_varlinkobject, swig_varlink_type());
-    if (result) {
-      result->vars = 0;
-    }
-    return ((PyObject*) result);
-  }
-  
-  SWIGINTERN void 
-  SWIG_Python_addvarlink(PyObject *p, char *name, PyObject *(*get_attr)(void), int (*set_attr)(PyObject *p)) {
-    swig_varlinkobject *v = (swig_varlinkobject *) p;
-    swig_globalvar *gv = (swig_globalvar *) malloc(sizeof(swig_globalvar));
-    if (gv) {
-      size_t size = strlen(name)+1;
-      gv->name = (char *)malloc(size);
-      if (gv->name) {
-        strncpy(gv->name,name,size);
-        gv->get_attr = get_attr;
-        gv->set_attr = set_attr;
-        gv->next = v->vars;
-      }
-    }
-    v->vars = gv;
-  }
-  
-  SWIGINTERN PyObject *
-  SWIG_globals(void) {
-    static PyObject *_SWIG_globals = 0; 
-    if (!_SWIG_globals) _SWIG_globals = SWIG_newvarlink();  
-    return _SWIG_globals;
-  }
-  
-  /* -----------------------------------------------------------------------------
-   * constants/methods manipulation
-   * ----------------------------------------------------------------------------- */
-  
-  /* Install Constants */
-  SWIGINTERN void
-  SWIG_Python_InstallConstants(PyObject *d, swig_const_info constants[]) {
-    PyObject *obj = 0;
-    size_t i;
-    for (i = 0; constants[i].type; ++i) {
-      switch(constants[i].type) {
+  v->vars = gv;
+}
+
+SWIGINTERN PyObject *
+SWIG_globals(void) {
+  static PyObject *_SWIG_globals = 0;
+  if (!_SWIG_globals) _SWIG_globals = SWIG_newvarlink();
+  return _SWIG_globals;
+}
+
+/* -----------------------------------------------------------------------------
+ * constants/methods manipulation
+ * ----------------------------------------------------------------------------- */
+
+/* Install Constants */
+SWIGINTERN void
+SWIG_Python_InstallConstants(PyObject *d, swig_const_info constants[]) {
+  PyObject *obj = 0;
+  size_t i;
+  for (i = 0; constants[i].type; ++i) {
+    switch (constants[i].type) {
       case SWIG_PY_POINTER:
-        obj = SWIG_InternalNewPointerObj(constants[i].pvalue, *(constants[i]).ptype,0);
+        obj = SWIG_InternalNewPointerObj(constants[i].pvalue, *(constants[i]).ptype, 0);
         break;
       case SWIG_PY_BINARY:
         obj = SWIG_NewPackedObj(constants[i].pvalue, constants[i].lvalue, *(constants[i].ptype));
@@ -8251,60 +8172,61 @@ extern "C" {
       default:
         obj = 0;
         break;
+    }
+    if (obj) {
+      PyDict_SetItemString(d, constants[i].name, obj);
+      Py_DECREF(obj);
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------*/
+/* Fix SwigMethods to carry the callback ptrs when needed */
+
+/* -----------------------------------------------------------------------------*/
+
+SWIGINTERN void
+SWIG_Python_FixMethods(PyMethodDef *methods,
+        swig_const_info *const_table,
+        swig_type_info **types,
+        swig_type_info **types_initial) {
+  size_t i;
+  for (i = 0; methods[i].ml_name; ++i) {
+    const char *c = methods[i].ml_doc;
+    if (c && (c = strstr(c, "swig_ptr: "))) {
+      int j;
+      swig_const_info *ci = 0;
+      const char *name = c + 10;
+      for (j = 0; const_table[j].type; ++j) {
+        if (strncmp(const_table[j].name, name,
+                strlen(const_table[j].name)) == 0) {
+          ci = &(const_table[j]);
+          break;
+        }
       }
-      if (obj) {
-        PyDict_SetItemString(d, constants[i].name, obj);
-        Py_DECREF(obj);
+      if (ci) {
+        void *ptr = (ci->type == SWIG_PY_POINTER) ? ci->pvalue : 0;
+        if (ptr) {
+          size_t shift = (ci->ptype) - types;
+          swig_type_info *ty = types_initial[shift];
+          size_t ldoc = (c - methods[i].ml_doc);
+          size_t lptr = strlen(ty->name) + 2 * sizeof (void*) + 2;
+          char *ndoc = (char*) malloc(ldoc + lptr + 10);
+          if (ndoc) {
+            char *buff = ndoc;
+            strncpy(buff, methods[i].ml_doc, ldoc);
+            buff += ldoc;
+            strncpy(buff, "swig_ptr: ", 10);
+            buff += 10;
+            SWIG_PackVoidPtr(buff, ptr, ty->name, lptr);
+            methods[i].ml_doc = ndoc;
+          }
+        }
       }
     }
   }
-  
-  /* -----------------------------------------------------------------------------*/
-  /* Fix SwigMethods to carry the callback ptrs when needed */
-  /* -----------------------------------------------------------------------------*/
-  
-  SWIGINTERN void
-  SWIG_Python_FixMethods(PyMethodDef *methods,
-    swig_const_info *const_table,
-    swig_type_info **types,
-    swig_type_info **types_initial) {
-    size_t i;
-    for (i = 0; methods[i].ml_name; ++i) {
-      const char *c = methods[i].ml_doc;
-      if (c && (c = strstr(c, "swig_ptr: "))) {
-        int j;
-        swig_const_info *ci = 0;
-        const char *name = c + 10;
-        for (j = 0; const_table[j].type; ++j) {
-          if (strncmp(const_table[j].name, name, 
-              strlen(const_table[j].name)) == 0) {
-            ci = &(const_table[j]);
-            break;
-          }
-        }
-        if (ci) {
-          void *ptr = (ci->type == SWIG_PY_POINTER) ? ci->pvalue : 0;
-          if (ptr) {
-            size_t shift = (ci->ptype) - types;
-            swig_type_info *ty = types_initial[shift];
-            size_t ldoc = (c - methods[i].ml_doc);
-            size_t lptr = strlen(ty->name)+2*sizeof(void*)+2;
-            char *ndoc = (char*)malloc(ldoc + lptr + 10);
-            if (ndoc) {
-              char *buff = ndoc;
-              strncpy(buff, methods[i].ml_doc, ldoc);
-              buff += ldoc;
-              strncpy(buff, "swig_ptr: ", 10);
-              buff += 10;
-              SWIG_PackVoidPtr(buff, ptr, ty->name, lptr);
-              methods[i].ml_doc = ndoc;
-            }
-          }
-        }
-      }
-    }
-  } 
-  
+}
+
 #ifdef __cplusplus
 }
 #endif
@@ -8314,12 +8236,13 @@ extern "C" {
  * -----------------------------------------------------------------------------*/
 
 #ifdef __cplusplus
+
 extern "C"
 #endif
 
-SWIGEXPORT 
+SWIGEXPORT
 #if PY_VERSION_HEX >= 0x03000000
-PyObject*
+PyObject *
 #else
 void
 #endif
@@ -8327,16 +8250,15 @@ SWIG_init(void) {
   PyObject *m, *d, *md;
 #if PY_VERSION_HEX >= 0x03000000
   static struct PyModuleDef SWIG_module = {
-# if PY_VERSION_HEX >= 0x03020000
+#if PY_VERSION_HEX >= 0x03020000
     PyModuleDef_HEAD_INIT,
-# else
+#else
     {
       PyObject_HEAD_INIT(NULL)
       NULL, /* m_init */
-      0,    /* m_index */
-      NULL, /* m_copy */
-    },
-# endif
+      0, /* m_index */
+      NULL, /* m_copy */},
+#endif
     (char *) SWIG_name,
     NULL,
     -1,
@@ -8347,20 +8269,20 @@ SWIG_init(void) {
     NULL
   };
 #endif
-  
+
 #if defined(SWIGPYTHON_BUILTIN)
   static SwigPyClientData SwigPyObject_clientdata = {
     0, 0, 0, 0, 0, 0, 0
   };
   static PyGetSetDef this_getset_def = {
-    (char *)"this", &SwigPyBuiltin_ThisClosure, NULL, NULL, NULL
+    (char *) "this", &SwigPyBuiltin_ThisClosure, NULL, NULL, NULL
   };
   static SwigPyGetSet thisown_getset_closure = {
     (PyCFunction) SwigPyObject_own,
     (PyCFunction) SwigPyObject_own
   };
   static PyGetSetDef thisown_getset_def = {
-    (char *)"thisown", SwigPyBuiltin_GetterClosure, SwigPyBuiltin_SetterClosure, NULL, &thisown_getset_closure
+    (char *) "thisown", SwigPyBuiltin_GetterClosure, SwigPyBuiltin_SetterClosure, NULL, &thisown_getset_closure
   };
   PyObject *metatype_args;
   PyTypeObject *builtin_pytype;
@@ -8375,38 +8297,38 @@ SWIG_init(void) {
   PyObject *thisown_descr;
   PyObject *self = 0;
   int i;
-  
-  (void)builtin_pytype;
-  (void)builtin_base_count;
-  (void)builtin_basetype;
-  (void)tuple;
-  (void)static_getset;
-  (void)self;
-  
+
+  (void) builtin_pytype;
+  (void) builtin_base_count;
+  (void) builtin_basetype;
+  (void) tuple;
+  (void) static_getset;
+  (void) self;
+
   /* metatype is used to implement static member variables. */
   metatype_args = Py_BuildValue("(s(O){})", "SwigPyObjectType", &PyType_Type);
   assert(metatype_args);
-  metatype = (PyTypeObject *) PyType_Type.tp_call((PyObject *) &PyType_Type, metatype_args, NULL);
+  metatype = (PyTypeObject *) PyType_Type.tp_call((PyObject *) & PyType_Type, metatype_args, NULL);
   assert(metatype);
   Py_DECREF(metatype_args);
-  metatype->tp_setattro = (setattrofunc) &SwigPyObjectType_setattro;
+  metatype->tp_setattro = (setattrofunc) & SwigPyObjectType_setattro;
   assert(PyType_Ready(metatype) >= 0);
 #endif
-  
+
   /* Fix SwigMethods to carry the callback ptrs when needed */
   SWIG_Python_FixMethods(SwigMethods, swig_const_table, swig_types, swig_type_initial);
-  
+
 #if PY_VERSION_HEX >= 0x03000000
   m = PyModule_Create(&SWIG_module);
 #else
   m = Py_InitModule((char *) SWIG_name, SwigMethods);
 #endif
-  
+
   md = d = PyModule_GetDict(m);
-  (void)md;
-  
+  (void) md;
+
   SWIG_InitializeModule(0);
-  
+
 #ifdef SWIGPYTHON_BUILTIN
   SwigPyObject_stype = SWIG_MangledTypeQuery("_p_SwigPyObject");
   assert(SwigPyObject_stype);
@@ -8416,35 +8338,35 @@ SWIG_init(void) {
     SwigPyObject_clientdata.pytype = SwigPyObject_TypeOnce();
   } else if (SwigPyObject_TypeOnce()->tp_basicsize != cd->pytype->tp_basicsize) {
     PyErr_SetString(PyExc_RuntimeError, "Import error: attempted to load two incompatible swig-generated modules.");
-# if PY_VERSION_HEX >= 0x03000000
+#if PY_VERSION_HEX >= 0x03000000
     return NULL;
-# else
+#else
     return;
-# endif
+#endif
   }
-  
+
   /* All objects have a 'this' attribute */
   this_descr = PyDescr_NewGetSet(SwigPyObject_type(), &this_getset_def);
-  (void)this_descr;
-  
+  (void) this_descr;
+
   /* All objects have a 'thisown' attribute */
   thisown_descr = PyDescr_NewGetSet(SwigPyObject_type(), &thisown_getset_def);
-  (void)thisown_descr;
-  
+  (void) thisown_descr;
+
   public_interface = PyList_New(0);
   public_symbol = 0;
-  (void)public_symbol;
-  
+  (void) public_symbol;
+
   PyDict_SetItemString(md, "__all__", public_interface);
   Py_DECREF(public_interface);
   for (i = 0; SwigMethods[i].ml_name != NULL; ++i)
-  SwigPyBuiltin_AddPublicSymbol(public_interface, SwigMethods[i].ml_name);
+    SwigPyBuiltin_AddPublicSymbol(public_interface, SwigMethods[i].ml_name);
   for (i = 0; swig_const_table[i].name != 0; ++i)
-  SwigPyBuiltin_AddPublicSymbol(public_interface, swig_const_table[i].name);
+    SwigPyBuiltin_AddPublicSymbol(public_interface, swig_const_table[i].name);
 #endif
-  
-  SWIG_InstallConstants(d,swig_const_table);
-  
+
+  SWIG_InstallConstants(d, swig_const_table);
+
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

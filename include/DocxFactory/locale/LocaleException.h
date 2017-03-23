@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class LocaleException : public DocxFactoryException
-	{
-	public:
-		virtual ~LocaleException() throw();
+    class LocaleException : public DocxFactoryException {
+    public:
+        virtual ~LocaleException() throw ();
 
-	protected:
-		LocaleException( const string& p_file, int p_line );
+    protected:
+        LocaleException(const string& p_file, int p_line);
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

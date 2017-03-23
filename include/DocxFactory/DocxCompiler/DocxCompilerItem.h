@@ -19,125 +19,124 @@ class DOMNode;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
+    class ZipFile;
 
-	class DocxCompilerItemFile;
-	class DocxCompilerItemGroup;
-	class DocxCompilerItemLayout;
-	class DocxCompilerField;
-	class DocxCompilerXmlString;
-	class DocxCompilerItem
-	{
-	public:
-		static void getItemOptions(
-			string&					p_name,
-			double&					p_size,
-			double&					p_pageSize,
-			bool&					p_keepTogether,
-			bool&					p_keepWithPrev,
-			bool&					p_filler,
-			bool&					p_spacer,
-			bool&					p_alternate );
+    class DocxCompilerItemFile;
+    class DocxCompilerItemGroup;
+    class DocxCompilerItemLayout;
+    class DocxCompilerField;
+    class DocxCompilerXmlString;
 
-		DocxCompilerItem(	
-			DocxCompilerItemFile*	p_itemFile,
-			DocxCompilerItemGroup*	p_itemGroup,
-			string					p_itemName,
-			double					p_size,
-			double					p_pageSize,
-			bool					p_keepTogether,
-			bool					p_keepWithPrev,
-			bool					p_filler,
-			bool					p_spacer,
-			bool					p_alternate );
-			 
-		virtual ~DocxCompilerItem();
+    class DocxCompilerItem {
+    public:
+        static void getItemOptions(
+                string& p_name,
+                double& p_size,
+                double& p_pageSize,
+                bool& p_keepTogether,
+                bool& p_keepWithPrev,
+                bool& p_filler,
+                bool& p_spacer,
+                bool& p_alternate);
 
-		void loadItemLayout();
-		void loadXmlStrings();
+        DocxCompilerItem(
+                DocxCompilerItemFile* p_itemFile,
+                DocxCompilerItemGroup* p_itemGroup,
+                string p_itemName,
+                double p_size,
+                double p_pageSize,
+                bool p_keepTogether,
+                bool p_keepWithPrev,
+                bool p_filler,
+                bool p_spacer,
+                bool p_alternate);
 
-		void serialize( ZipFile* p_zipFile );
+        virtual ~DocxCompilerItem();
 
-		void removeChildItemGroup	( DocxCompilerItemGroup* p_itemGroup );
-		void insertChildItemGroup	( DocxCompilerItemGroup* p_itemGroup );
-		void insertField			( DocxCompilerField* p_field );
+        void loadItemLayout();
+        void loadXmlStrings();
 
-		void setPath();
-		void setTopLevel			( bool p_topLevel );
-		void setFillItem			( DocxCompilerItem* p_fillItem );
+        void serialize(ZipFile* p_zipFile);
 
-		void setSize				( double p_size );
-		void setPageSize			( double p_pageSize );
-		void setPageBottom			( bool p_pageBottom );
-		void setKeepTogether		( bool p_keepTogether );
-		void setKeepWithPrev		( bool p_keepWithPrev );
-		void setFiller				( bool p_filler );
-		void setSpacer				( bool p_spacer );
-		void setAlternate			( bool p_alternate );
+        void removeChildItemGroup(DocxCompilerItemGroup* p_itemGroup);
+        void insertChildItemGroup(DocxCompilerItemGroup* p_itemGroup);
+        void insertField(DocxCompilerField* p_field);
 
-		DocxCompilerItemFile*						getItemFile() const;
-		DocxCompilerItemGroup*						getItemGroup() const;
-		string										getName() const;
+        void setPath();
+        void setTopLevel(bool p_topLevel);
+        void setFillItem(DocxCompilerItem* p_fillItem);
 
-		const list<DocxCompilerItem*>*				getPath() const;
-		const set<DocxCompilerItemGroup*>*			getChildItemGroups() const;
-		const multimap<string, DocxCompilerField*>*	getFieldsByName() const;
+        void setSize(double p_size);
+        void setPageSize(double p_pageSize);
+        void setPageBottom(bool p_pageBottom);
+        void setKeepTogether(bool p_keepTogether);
+        void setKeepWithPrev(bool p_keepWithPrev);
+        void setFiller(bool p_filler);
+        void setSpacer(bool p_spacer);
+        void setAlternate(bool p_alternate);
 
-		xercesc::DOMDocument*						getDoc() const;
-		xercesc::DOMElement*						getBodyNode() const;
-		const list<DocxCompilerXmlString*>*			getXmlStrings() const;
+        DocxCompilerItemFile* getItemFile() const;
+        DocxCompilerItemGroup* getItemGroup() const;
+        string getName() const;
 
-		bool										isTopLevel() const;
-		DocxCompilerItem*							getFillItemParent() const;
-		DocxCompilerItemGroup*						getFillItemGroup() const;
+        const list<DocxCompilerItem*>* getPath() const;
+        const set<DocxCompilerItemGroup*>* getChildItemGroups() const;
+        const multimap<string, DocxCompilerField*>* getFieldsByName() const;
 
-		DocxCompilerItemLayout*						getItemLayout() const;
-		double										getSize() const;
-		double										getPageSize() const;
-		bool										isPageBottom() const;
-		bool										isKeepTogether() const;
-		bool										isKeepWithPrev() const;
-		bool										isFiller() const;
-		bool										isSpacer() const;
-		bool										isAlternate() const;
+        xercesc::DOMDocument* getDoc() const;
+        xercesc::DOMElement* getBodyNode() const;
+        const list<DocxCompilerXmlString*>* getXmlStrings() const;
 
-	protected:
+        bool isTopLevel() const;
+        DocxCompilerItem* getFillItemParent() const;
+        DocxCompilerItemGroup* getFillItemGroup() const;
 
-	private:
-		DocxCompilerItem( const DocxCompilerItem& p_other );
-		DocxCompilerItem& operator = ( const DocxCompilerItem& p_other );
+        DocxCompilerItemLayout* getItemLayout() const;
+        double getSize() const;
+        double getPageSize() const;
+        bool isPageBottom() const;
+        bool isKeepTogether() const;
+        bool isKeepWithPrev() const;
+        bool isFiller() const;
+        bool isSpacer() const;
+        bool isAlternate() const;
 
-		DocxCompilerItemFile*					m_itemFile;
-		DocxCompilerItemGroup*					m_itemGroup;
-		string									m_name;
+    protected:
 
-		list<DocxCompilerItem*>					m_path;
-		set<DocxCompilerItemGroup*>				m_childItemGroups;
-		multimap<string, DocxCompilerField*>	m_fieldsByName;
+    private:
+        DocxCompilerItem(const DocxCompilerItem& p_other);
+        DocxCompilerItem& operator=(const DocxCompilerItem& p_other);
 
-		xercesc::DOMDocument*					m_doc;
-		xercesc::DOMElement*					m_bodyNode;
-		list<DocxCompilerXmlString*>			m_xmlStrings;
+        DocxCompilerItemFile* m_itemFile;
+        DocxCompilerItemGroup* m_itemGroup;
+        string m_name;
 
-		bool									m_topLevel;
-		DocxCompilerItem*						m_fillItemParent;
-		DocxCompilerItemGroup*					m_fillItemGroup;
+        list<DocxCompilerItem*> m_path;
+        set<DocxCompilerItemGroup*> m_childItemGroups;
+        multimap<string, DocxCompilerField*> m_fieldsByName;
 
-		DocxCompilerItemLayout*					m_itemLayout;
-		double									m_size;
-		double									m_pageSize;
-		bool									m_pageBottom;
-		bool									m_keepTogether;
-		bool									m_keepWithPrev;
-		bool									m_filler;
-		bool									m_spacer;
-		bool									m_alternate;
+        xercesc::DOMDocument* m_doc;
+        xercesc::DOMElement* m_bodyNode;
+        list<DocxCompilerXmlString*> m_xmlStrings;
 
-	};
+        bool m_topLevel;
+        DocxCompilerItem* m_fillItemParent;
+        DocxCompilerItemGroup* m_fillItemGroup;
+
+        DocxCompilerItemLayout* m_itemLayout;
+        double m_size;
+        double m_pageSize;
+        bool m_pageBottom;
+        bool m_keepTogether;
+        bool m_keepWithPrev;
+        bool m_filler;
+        bool m_spacer;
+        bool m_alternate;
+
+    };
 };
 
 #endif

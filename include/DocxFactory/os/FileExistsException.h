@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class FileExistsException : public OsException
-	{
-	public:
-		FileExistsException(
-			const string&	p_fileName,
-			const string&	p_file,
-			const int		p_line );
+    class FileExistsException : public OsException {
+    public:
+        FileExistsException(
+                const string& p_fileName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~FileExistsException() throw();
+        virtual ~FileExistsException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

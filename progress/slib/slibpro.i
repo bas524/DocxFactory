@@ -24,14 +24,17 @@
 
 
 
-&if defined( xSLibPro ) = 0 &then
+&if defined(xSLibPro) = 0 & then
+{slib / start - slib.i "'slib/slibpro.p'"}
 
-    {slib/start-slib.i "'slib/slibpro.p'"}
+    {
+        slib / slibprofrwd.i "in super"
+    }
 
-    {slib/slibprofrwd.i "in super"}
+{
+    slib / slibproprop.i
+}
 
-    {slib/slibproprop.i}
+&global xSLibPro defined
 
-    &global xSLibPro defined
-
-&endif /* defined = 0 */
+        &endif /* defined = 0 */

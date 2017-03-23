@@ -6,31 +6,29 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class MinizipException : public ZipException
-	{
-	public:
-		MinizipException(
-			const string&	p_funcName,
-			const int		p_errorCode,
-			const string&	p_file,
-			const int		p_line );
+    class MinizipException : public ZipException {
+    public:
+        MinizipException(
+                const string& p_funcName,
+                const int p_errorCode,
+                const string& p_file,
+                const int p_line);
 
-		MinizipException(
-			const string&	p_funcName,
-			const string&	p_file,
-			const int		p_line );
+        MinizipException(
+                const string& p_funcName,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~MinizipException() throw();
+        virtual ~MinizipException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

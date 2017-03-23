@@ -6,24 +6,22 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipStreamNotOpenException : public ZipException
-	{
-	public:
-		ZipStreamNotOpenException(
-			const string&	p_file,
-			const int		p_line );
+    class ZipStreamNotOpenException : public ZipException {
+    public:
+        ZipStreamNotOpenException(
+                const string& p_file,
+                const int p_line);
 
-		virtual ~ZipStreamNotOpenException() throw();
+        virtual ~ZipStreamNotOpenException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

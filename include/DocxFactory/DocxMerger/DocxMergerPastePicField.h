@@ -8,40 +8,39 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPastePicField : public DocxMergerPasteField
-	{
-	public:
-		DocxMergerPastePicField(
-			DocxMergerField*			p_field,
-			OpcImageFile::TargetMode	p_targetMode,
-			const string&				p_fileName,
-			const string&				p_fileExt,
-			const string&				p_fileUrl );
+    class DocxMergerField;
 
-		virtual ~DocxMergerPastePicField();
+    class DocxMergerPastePicField : public DocxMergerPasteField {
+    public:
+        DocxMergerPastePicField(
+                DocxMergerField* p_field,
+                OpcImageFile::TargetMode p_targetMode,
+                const string& p_fileName,
+                const string& p_fileExt,
+                const string& p_fileUrl);
 
-		OpcImageFile::TargetMode	getTargetMode() const;
-		const string*				getFileName() const;
-		const string*				getFileExt() const;
-		const string*				getFileUrl() const;
+        virtual ~DocxMergerPastePicField();
 
-	protected:
+        OpcImageFile::TargetMode getTargetMode() const;
+        const string* getFileName() const;
+        const string* getFileExt() const;
+        const string* getFileUrl() const;
 
-	private:
-		DocxMergerPastePicField( const DocxMergerPastePicField& p_other );
-		DocxMergerPastePicField operator = ( const DocxMergerPastePicField& p_other );
+    protected:
 
-		OpcImageFile::TargetMode	m_targetMode;
-		string						m_fileName;
-		string						m_fileExt;
-		string						m_fileUrl;
+    private:
+        DocxMergerPastePicField(const DocxMergerPastePicField& p_other);
+        DocxMergerPastePicField operator=(const DocxMergerPastePicField& p_other);
 
-	};
+        OpcImageFile::TargetMode m_targetMode;
+        string m_fileName;
+        string m_fileExt;
+        string m_fileUrl;
+
+    };
 };
 
 #endif

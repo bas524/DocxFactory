@@ -24,36 +24,36 @@
 
 
 
-&if "{&opsys}" begins "win" &then
+&if "{&opsys}" begins "win" & then
 
-    &global infozip_xUtilZip    'slib~\bin~\zip.exe'
-    &global infozip_xUtilUnZip  'slib~\bin~\unzip.exe'
+        & global infozip_xUtilZip 'slib~\bin~\zip.exe'
+        & global infozip_xUtilUnZip 'slib~\bin~\unzip.exe'
 
-    &global infozip_xCmdAdd     '"%zip%" -S -r -D %archive% %files%'
-    &global infozip_xCmdDel     '"%zip%" -d %archive% %files%'
-    &global infozip_xCmdList    '"%unzip%" -Z -T %archive% %files%'
-    &global infozip_xCmdExtract '"%unzip%" -o %archive% %files% -d %outdir%'
+        & global infozip_xCmdAdd '"%zip%" -S -r -D %archive% %files%'
+        & global infozip_xCmdDel '"%zip%" -d %archive% %files%'
+        & global infozip_xCmdList '"%unzip%" -Z -T %archive% %files%'
+        & global infozip_xCmdExtract '"%unzip%" -o %archive% %files% -d %outdir%'
 
-&else
+        & else
 
-    &global infozip_xUtilZip    '/usr/bin/zip'
-    &global infozip_xUtilUnZip  '/usr/bin/unzip'
+    &global infozip_xUtilZip '/usr/bin/zip'
+        & global infozip_xUtilUnZip '/usr/bin/unzip'
 
-    &global infozip_xCmdAdd     '"%zip%" -r -D %archive% %files%'
-    &global infozip_xCmdDel     '"%zip%" -d %archive% %files%'
-    &global infozip_xCmdList    '"%unzip%" -Z -T %archive% %files%'
-    &global infozip_xCmdExtract '"%unzip%" -o %archive% %files% -d %outdir%'
+        & global infozip_xCmdAdd '"%zip%" -r -D %archive% %files%'
+        & global infozip_xCmdDel '"%zip%" -d %archive% %files%'
+        & global infozip_xCmdList '"%unzip%" -Z -T %archive% %files%'
+        & global infozip_xCmdExtract '"%unzip%" -o %archive% %files% -d %outdir%'
 
-&endif
+        & endif
 
 
 
-define temp-table infozip_ttFile no-undo
+        define temp - table infozip_ttFile no - undo
 
-    field cPath     as char
-    field tDate     as date
-    field iTime     as int
-    field dLength   as dec
+        field cPath as char
+        field tDate as date
+        field iTime as int
+        field dLength as dec
 
-    index cPath is primary unique
-          cPath.
+        index cPath is primary unique
+        cPath.

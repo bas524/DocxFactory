@@ -6,26 +6,24 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ConversionNotSupportedException : public ConverterPrinterException
-	{
-	public:
-		ConversionNotSupportedException(
-			const string&	p_importExt,
-			const string&	p_exportExt,
-			const string&	p_file,
-			int				p_line );
+    class ConversionNotSupportedException : public ConverterPrinterException {
+    public:
+        ConversionNotSupportedException(
+                const string& p_importExt,
+                const string& p_exportExt,
+                const string& p_file,
+                int p_line);
 
-		virtual ~ConversionNotSupportedException() throw();
+        virtual ~ConversionNotSupportedException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

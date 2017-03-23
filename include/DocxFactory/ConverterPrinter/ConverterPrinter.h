@@ -7,39 +7,38 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ConverterPrinterUtil;
-	class ConverterPrinter
-	{
-	public:
-		static void	setUpdateToc( bool p_update );
-		static bool	getUpdateToc();
+    class ConverterPrinterUtil;
 
-		static ConverterPrinter& getInstance();
-		virtual ~ConverterPrinter();
+    class ConverterPrinter {
+    public:
+        static void setUpdateToc(bool p_update);
+        static bool getUpdateToc();
 
-		void saveAs	( const string& p_importFile,	const string& p_exportFile );
-		void print	( const string& p_fileName,		const string& p_printerName, int p_copyCnt );
+        static ConverterPrinter& getInstance();
+        virtual ~ConverterPrinter();
 
-	protected:
+        void saveAs(const string& p_importFile, const string& p_exportFile);
+        void print(const string& p_fileName, const string& p_printerName, int p_copyCnt);
 
-	private:
-		static bool m_updateToc;
+    protected:
 
-		ConverterPrinter();
-		ConverterPrinter( const ConverterPrinter& p_other );
-		ConverterPrinter& operator = ( const ConverterPrinter& p_other );
+    private:
+        static bool m_updateToc;
 
-	#ifndef SWIG
-		void initializeUtils();
+        ConverterPrinter();
+        ConverterPrinter(const ConverterPrinter& p_other);
+        ConverterPrinter& operator=(const ConverterPrinter& p_other);
 
-		list<ConverterPrinterUtil*> m_utils;
-	#endif
+#ifndef SWIG
+        void initializeUtils();
 
-	};
+        list<ConverterPrinterUtil*> m_utils;
+#endif
+
+    };
 };
 
 #ifdef DOCXFACTORY_DLL

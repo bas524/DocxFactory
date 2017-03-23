@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidYearOffsetException : public LocaleException
-	{
-	public:
-		InvalidYearOffsetException(
-			const unsigned short	p_yearOffset,
-			const string&			p_file,
-			const int				p_line );
+    class InvalidYearOffsetException : public LocaleException {
+    public:
+        InvalidYearOffsetException(
+                const unsigned short p_yearOffset,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidYearOffsetException() throw();
+        virtual ~InvalidYearOffsetException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

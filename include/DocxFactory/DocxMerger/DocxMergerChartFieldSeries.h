@@ -8,55 +8,54 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerChartAxis;
-	class DocxMergerChartAxisText;
-	class DocxMergerChartValues;
-	class DocxMergerChartFieldSeries : public DocxMergerChartField
-	{
-	public:
-		DocxMergerChartFieldSeries();
-		virtual ~DocxMergerChartFieldSeries();
+    class DocxMergerPasteFieldGroup;
+    class DocxMergerChartAxis;
+    class DocxMergerChartAxisText;
+    class DocxMergerChartValues;
 
-		virtual void setChartValue( const string&	p_series, const string&	p_category, double p_value );
-		virtual void setChartValue( const string&	p_series, double		p_category, double p_value );
-		virtual void setChartValue( double			p_series, double		p_category, double p_value );
+    class DocxMergerChartFieldSeries : public DocxMergerChartField {
+    public:
+        DocxMergerChartFieldSeries();
+        virtual ~DocxMergerChartFieldSeries();
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void setChartValue(const string& p_series, const string& p_category, double p_value);
+        virtual void setChartValue(const string& p_series, double p_category, double p_value);
+        virtual void setChartValue(double p_series, double p_category, double p_value);
 
-		const list<pair<string, char>>*			getChartStrings() const;
-		const vector<list<pair<string, char>>>*	getSeriesStrings() const;
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-		const DocxMergerChartAxisText*			getSerAxis() const;
-		const DocxMergerChartAxis*				getCatAxis() const;
-		DocxMergerField::FieldType				getCatType() const;
-		const DocxMergerChartValues*			getVal() const;
+        const list<pair<string, char>>*getChartStrings() const;
+        const vector<list<pair<string, char>>>* getSeriesStrings() const;
 
-	protected:
+        const DocxMergerChartAxisText* getSerAxis() const;
+        const DocxMergerChartAxis* getCatAxis() const;
+        DocxMergerField::FieldType getCatType() const;
+        const DocxMergerChartValues* getVal() const;
 
-	private:
-		DocxMergerChartFieldSeries( const DocxMergerChartFieldSeries& p_other );
-		DocxMergerChartFieldSeries& operator = ( const DocxMergerChartFieldSeries& p_other );
+    protected:
 
-		template <class Series_T, class Category_T>
-		void setPasteChartValue( Series_T p_series, Category_T p_category, double p_value );
+    private:
+        DocxMergerChartFieldSeries(const DocxMergerChartFieldSeries& p_other);
+        DocxMergerChartFieldSeries& operator=(const DocxMergerChartFieldSeries& p_other);
 
-		list<pair<string, char>>			m_chartStrings;
-		vector<list<pair<string, char>>>	m_seriesStrings;
+        template <class Series_T, class Category_T>
+        void setPasteChartValue(Series_T p_series, Category_T p_category, double p_value);
 
-		DocxMergerChartAxisText*			m_serAxis;
-		DocxMergerChartAxis*				m_catAxis;
-		DocxMergerField::FieldType			m_catType;
-		DocxMergerChartValues*				m_val;
+        list<pair<string, char>> m_chartStrings;
+        vector<list<pair<string, char>>> m_seriesStrings;
 
-	};
+        DocxMergerChartAxisText* m_serAxis;
+        DocxMergerChartAxis* m_catAxis;
+        DocxMergerField::FieldType m_catType;
+        DocxMergerChartValues* m_val;
+
+    };
 };
 
 #endif

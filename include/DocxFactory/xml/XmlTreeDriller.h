@@ -15,61 +15,59 @@ class DOMNode;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class XmlTreeDriller
-	{
-	public:
-		enum CursorPos
-		{
-			CURSOR_NODE,
-			CURSOR_AFTER,
-			CURSOR_BEFORE
-		};
+    class XmlTreeDriller {
+    public:
 
-		XmlTreeDriller( xercesc::DOMNode* p_rootNode,
+        enum CursorPos {
+            CURSOR_NODE,
+            CURSOR_AFTER,
+            CURSOR_BEFORE
+        };
 
-			const string& p_drillTagNsList,		const string& p_drillTagList,
-			const string& p_tagNsList,			const string& p_tagList,
-			const string& p_attrNsList = "",	const string& p_attrList = "", const string& p_attrValueList = "" );
+        XmlTreeDriller(xercesc::DOMNode* p_rootNode,
 
-		virtual ~XmlTreeDriller();
+                const string& p_drillTagNsList, const string& p_drillTagList,
+                const string& p_tagNsList, const string& p_tagList,
+                const string& p_attrNsList = "", const string& p_attrList = "", const string& p_attrValueList = "");
 
-		xercesc::DOMNode* nextNode();
+        virtual ~XmlTreeDriller();
 
-		void deleteNode();
-		void setCurrentNode( xercesc::DOMNode* p_cursorNode, CursorPos p_cursorPos = CURSOR_NODE );
+        xercesc::DOMNode* nextNode();
 
-		xercesc::DOMNode* getRoot() const;
-		xercesc::DOMNode* getCurrentNode() const;
+        void deleteNode();
+        void setCurrentNode(xercesc::DOMNode* p_cursorNode, CursorPos p_cursorPos = CURSOR_NODE);
 
-	protected:
+        xercesc::DOMNode* getRoot() const;
+        xercesc::DOMNode* getCurrentNode() const;
 
-	private:
-		xercesc::DOMNode*	drillNode();
+    protected:
 
-		xercesc::DOMNode*	m_rootNode;
-		xercesc::DOMNode*	m_cursorNode;
-		CursorPos			m_cursorPos;
+    private:
+        xercesc::DOMNode* drillNode();
 
-		set<string>	m_drillTagNsList;
-		set<string>	m_drillTagList;
-		set<string>	m_tagNsList;
-		set<string>	m_tagList;
-		set<string>	m_attrNsList;
-		set<string>	m_attrList;
-		set<string>	m_attrValueList;
+        xercesc::DOMNode* m_rootNode;
+        xercesc::DOMNode* m_cursorNode;
+        CursorPos m_cursorPos;
 
-		bool		m_drillTagNsAll;
-		bool		m_drillTagAll;
-		bool		m_tagNsAll;
-		bool		m_tagAll;
-		bool		m_attrNsAll;
-		bool		m_attrAll;
-		bool		m_attrValueAll;
-	};
+        set<string> m_drillTagNsList;
+        set<string> m_drillTagList;
+        set<string> m_tagNsList;
+        set<string> m_tagList;
+        set<string> m_attrNsList;
+        set<string> m_attrList;
+        set<string> m_attrValueList;
+
+        bool m_drillTagNsAll;
+        bool m_drillTagAll;
+        bool m_tagNsAll;
+        bool m_tagAll;
+        bool m_attrNsAll;
+        bool m_attrAll;
+        bool m_attrValueAll;
+    };
 };
 
 #endif

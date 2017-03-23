@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class PartNotFoundException : public OpcException
-	{
-	public:
-		PartNotFoundException(
-			const string&	p_fullPath,
-			const string&	p_file,
-			const int		p_line );
+    class PartNotFoundException : public OpcException {
+    public:
+        PartNotFoundException(
+                const string& p_fullPath,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~PartNotFoundException() throw();
+        virtual ~PartNotFoundException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

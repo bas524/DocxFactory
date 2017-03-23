@@ -6,35 +6,34 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class OpcPart;
-	class DocxCompilerChartFieldXYSize : public DocxCompilerChartField
-	{
-	public:
-		DocxCompilerChartFieldXYSize(
-			DocxCompilerItem*		p_item,
-			const string&			p_name,
-			xercesc::DOMElement*	p_placeHolderNode,
-			xercesc::DOMElement*	p_drawingNode,
-			OpcPart*				p_chartPart );
+    class ZipFile;
+    class OpcPart;
 
-		virtual ~DocxCompilerChartFieldXYSize();
+    class DocxCompilerChartFieldXYSize : public DocxCompilerChartField {
+    public:
+        DocxCompilerChartFieldXYSize(
+                DocxCompilerItem* p_item,
+                const string& p_name,
+                xercesc::DOMElement* p_placeHolderNode,
+                xercesc::DOMElement* p_drawingNode,
+                OpcPart* p_chartPart);
 
-		virtual void serialize( ZipFile* p_zipFile );
+        virtual ~DocxCompilerChartFieldXYSize();
 
-	protected:
+        virtual void serialize(ZipFile* p_zipFile);
 
-	private:
-		DocxCompilerChartFieldXYSize( const DocxCompilerChartFieldXYSize& p_other );
-		DocxCompilerChartFieldXYSize& operator = ( const DocxCompilerChartFieldXYSize& p_other );
+    protected:
 
-		list<pair<string, char>> m_chartStrings;
+    private:
+        DocxCompilerChartFieldXYSize(const DocxCompilerChartFieldXYSize& p_other);
+        DocxCompilerChartFieldXYSize& operator=(const DocxCompilerChartFieldXYSize& p_other);
 
-	};
+        list<pair<string, char>> m_chartStrings;
+
+    };
 };
 
 #endif

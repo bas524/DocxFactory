@@ -4,14 +4,10 @@
 using namespace DocxFactory;
 using namespace std;
 
-
-
-ParserException::ParserException( const string& p_file, int p_line ) : DocxFactoryException( p_file, p_line )
-{
+ParserException::ParserException(const string& p_file, int p_line) : DocxFactoryException(p_file, p_line) {
 
 } // c'tor
 
-ParserException::~ParserException() throw()
-{
+ParserException::~ParserException() throw () {
 
 } // d'tor

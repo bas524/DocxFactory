@@ -24,14 +24,17 @@
 
 
 
-&if defined( xSLibUnix ) = 0 &then
+&if defined(xSLibUnix) = 0 & then
+{slib / start - slib.i "'slib/slibunix.p'"}
 
-    {slib/start-slib.i "'slib/slibunix.p'"}
+    {
+        slib / slibunixfrwd.i "in super"
+    }
 
-    {slib/slibunixfrwd.i "in super"}
+{
+    slib / slibunixprop.i
+}
 
-    {slib/slibunixprop.i}
-    
-    &glob xSLibUnix defined
+&glob xSLibUnix defined
 
-&endif /* defined */
+        &endif /* defined */

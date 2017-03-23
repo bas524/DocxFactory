@@ -8,25 +8,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidArgException : public ConsoleException
-	{
-	public:
-		InvalidArgException(
-			const string&	p_arg,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidArgException : public ConsoleException {
+    public:
+        InvalidArgException(
+                const string& p_arg,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidArgException() throw();
+        virtual ~InvalidArgException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UnexpectedBracketException : public ParserException
-	{
-	public:
-		UnexpectedBracketException(
-			const string&	p_str,
-			const string&	p_file,
-			const int		p_line );
+    class UnexpectedBracketException : public ParserException {
+    public:
+        UnexpectedBracketException(
+                const string& p_str,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~UnexpectedBracketException() throw();
+        virtual ~UnexpectedBracketException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

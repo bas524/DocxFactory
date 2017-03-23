@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class InvalidDateFormatException : public LocaleException
-	{
-	public:
-		InvalidDateFormatException(
-			const string&	p_dateFormat,
-			const string&	p_file,
-			const int		p_line );
+    class InvalidDateFormatException : public LocaleException {
+    public:
+        InvalidDateFormatException(
+                const string& p_dateFormat,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~InvalidDateFormatException() throw();
+        virtual ~InvalidDateFormatException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

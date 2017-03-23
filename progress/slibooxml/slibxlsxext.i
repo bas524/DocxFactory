@@ -11,12 +11,13 @@
 
 
 
-&if defined( xSLibXlsxExt ) = 0 &then
+&if defined(xSLibXlsxExt) = 0 & then
+{slib / start - slib.i "'slibooxml/slibxlsxext.p'"}
 
-    {slib/start-slib.i "'slibooxml/slibxlsxext.p'"}
+    {
+        slibooxml / slibxlsxextfrwd.i
+    }
 
-    {slibooxml/slibxlsxextfrwd.i}
+&global xSLibXlsxExt defined
 
-    &global xSLibXlsxExt defined
-
-&endif /* defined = 0 */
+        &endif /* defined = 0 */

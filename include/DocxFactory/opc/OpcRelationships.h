@@ -9,61 +9,60 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class OpcPackage;
-	class OpcPart;
-	class OpcRelationships
-	{
-	public:
-		OpcRelationships( OpcPackage* p_package );
-		OpcRelationships( OpcPart* p_part );
-		virtual ~OpcRelationships();
+    class OpcPackage;
+    class OpcPart;
 
-		void load();
-		void save();
+    class OpcRelationships {
+    public:
+        OpcRelationships(OpcPackage* p_package);
+        OpcRelationships(OpcPart* p_part);
+        virtual ~OpcRelationships();
 
-		// insert an internal relationship
-		OpcRelationship* insertRelationship(
-			const string&	p_type,
-			OpcPart*		p_part );
+        void load();
+        void save();
 
-		// insert an external relationship
-		OpcRelationship* insertRelationship(
-			const string&	p_type,
-			const string&	p_externalPath );
+        // insert an internal relationship
+        OpcRelationship* insertRelationship(
+                const string& p_type,
+                OpcPart* p_part);
 
-		// insert raw relationship. can be used to recreate a relationships file with the same id's
-		OpcRelationship* insertRelationship(
-			const string&				p_id,
-			const string&				p_type,
-			OpcPart*					p_part,
-			const string&				p_externalPath,
-			OpcRelationship::TargetMode	p_targetMode );
+        // insert an external relationship
+        OpcRelationship* insertRelationship(
+                const string& p_type,
+                const string& p_externalPath);
 
-		void deleteRelationship( OpcRelationship* p_relationship );
+        // insert raw relationship. can be used to recreate a relationships file with the same id's
+        OpcRelationship* insertRelationship(
+                const string& p_id,
+                const string& p_type,
+                OpcPart* p_part,
+                const string& p_externalPath,
+                OpcRelationship::TargetMode p_targetMode);
 
-		OpcPackage*								getPackage() const;
-		OpcPart*								getPart() const;
-		const map<string, OpcRelationship*>*	getRelationshipsById() const;
+        void deleteRelationship(OpcRelationship* p_relationship);
 
-	protected:
+        OpcPackage* getPackage() const;
+        OpcPart* getPart() const;
+        const map<string, OpcRelationship*>* getRelationshipsById() const;
 
-	private:
-		OpcRelationships( const OpcRelationships& p_other );
-		OpcRelationships operator = ( const OpcRelationships& p_other );
+    protected:
 
-		OpcPackage*						m_package;
-		OpcPart*						m_part;
-		string							m_fullPath;
-		string							m_relativeDir; // the part dir is used to get the relative dir to the part
-		map<string, OpcRelationship*>	m_relationshipsById;
-		unsigned int					m_idSeq;
-		bool							m_changed;
+    private:
+        OpcRelationships(const OpcRelationships& p_other);
+        OpcRelationships operator=(const OpcRelationships& p_other);
 
-	};
+        OpcPackage* m_package;
+        OpcPart* m_part;
+        string m_fullPath;
+        string m_relativeDir; // the part dir is used to get the relative dir to the part
+        map<string, OpcRelationship*> m_relationshipsById;
+        unsigned int m_idSeq;
+        bool m_changed;
+
+    };
 };
 
 #endif

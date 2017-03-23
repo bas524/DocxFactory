@@ -6,21 +6,19 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class UtilNotFoundException : public ConverterPrinterException
-	{
-	public:
-		UtilNotFoundException( const string& p_file, int p_line );
-		virtual ~UtilNotFoundException() throw();
+    class UtilNotFoundException : public ConverterPrinterException {
+    public:
+        UtilNotFoundException(const string& p_file, int p_line);
+        virtual ~UtilNotFoundException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

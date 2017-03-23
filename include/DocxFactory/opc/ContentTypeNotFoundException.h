@@ -6,25 +6,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ContentTypeNotFoundException : public OpcException
-	{
-	public:
-		ContentTypeNotFoundException(
-			const string&	p_contentType,
-			const string&	p_file,
-			const int		p_line );
+    class ContentTypeNotFoundException : public OpcException {
+    public:
+        ContentTypeNotFoundException(
+                const string& p_contentType,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~ContentTypeNotFoundException() throw();
+        virtual ~ContentTypeNotFoundException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

@@ -8,25 +8,23 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class MissingArgException : public ConsoleUsageException
-	{
-	public:
-		MissingArgException(
-			const string&	p_arg,
-			const string&	p_file,
-			const int		p_line );
+    class MissingArgException : public ConsoleUsageException {
+    public:
+        MissingArgException(
+                const string& p_arg,
+                const string& p_file,
+                const int p_line);
 
-		virtual ~MissingArgException() throw();
+        virtual ~MissingArgException() throw ();
 
-	protected:
+    protected:
 
-	private:
+    private:
 
-	};
+    };
 };
 
 #endif

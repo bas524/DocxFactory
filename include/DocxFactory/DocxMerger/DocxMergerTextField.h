@@ -6,38 +6,37 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class ZipFile;
-	class UnzipFile;
+    class ZipFile;
+    class UnzipFile;
 
-	class DocxMergerPasteFieldGroup;
-	class DocxMergerTextField : public DocxMergerField
-	{
-	public:
-		DocxMergerTextField();
-		virtual ~DocxMergerTextField();
+    class DocxMergerPasteFieldGroup;
 
-		virtual void save( DocxMergerPasteFieldGroup* p_pasteFieldGroup );
+    class DocxMergerTextField : public DocxMergerField {
+    public:
+        DocxMergerTextField();
+        virtual ~DocxMergerTextField();
 
-		virtual void setClipboardValue( const string& p_value );
-		virtual void setClipboardValue( double p_value );
+        virtual void save(DocxMergerPasteFieldGroup* p_pasteFieldGroup);
 
-		virtual void deserialize( UnzipFile* p_unzipFile );
+        virtual void setClipboardValue(const string& p_value);
+        virtual void setClipboardValue(double p_value);
 
-	protected:
+        virtual void deserialize(UnzipFile* p_unzipFile);
 
-	private:
-		DocxMergerTextField( const DocxMergerTextField& p_other );
-		DocxMergerTextField operator = ( const DocxMergerTextField );
+    protected:
 
-		string encodeT(
-			const string& p_str,
-			const string& p_wordMlPrefix );
+    private:
+        DocxMergerTextField(const DocxMergerTextField& p_other);
+        DocxMergerTextField operator=(const DocxMergerTextField);
 
-	};
+        string encodeT(
+                const string& p_str,
+                const string& p_wordMlPrefix);
+
+    };
 };
 
 #endif

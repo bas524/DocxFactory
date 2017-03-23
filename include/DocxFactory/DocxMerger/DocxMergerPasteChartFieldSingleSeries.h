@@ -7,34 +7,33 @@
 
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class DocxMergerField;
-	class DocxMergerPasteChartAxis;
-	class DocxMergerPasteChartValues;
-	class DocxMergerPasteChartFieldSingleSeries : public DocxMergerPasteChartField
-	{
-	public:
-		DocxMergerPasteChartFieldSingleSeries( DocxMergerField* p_field );
-		virtual ~DocxMergerPasteChartFieldSingleSeries();
+    class DocxMergerField;
+    class DocxMergerPasteChartAxis;
+    class DocxMergerPasteChartValues;
 
-		virtual string* getValue();
+    class DocxMergerPasteChartFieldSingleSeries : public DocxMergerPasteChartField {
+    public:
+        DocxMergerPasteChartFieldSingleSeries(DocxMergerField* p_field);
+        virtual ~DocxMergerPasteChartFieldSingleSeries();
 
-		const DocxMergerPasteChartAxis*		getPasteCatAxis() const;
-		const DocxMergerPasteChartValues*	getPasteVal() const;
+        virtual string* getValue();
 
-	protected:
+        const DocxMergerPasteChartAxis* getPasteCatAxis() const;
+        const DocxMergerPasteChartValues* getPasteVal() const;
 
-	private:
-		DocxMergerPasteChartFieldSingleSeries( const DocxMergerPasteChartFieldSingleSeries& p_other );
-		DocxMergerPasteChartFieldSingleSeries& operator = ( const DocxMergerPasteChartFieldSingleSeries& p_other );
+    protected:
 
-		DocxMergerPasteChartAxis*		m_pasteCatAxis;
-		DocxMergerPasteChartValues*		m_pasteVal;
+    private:
+        DocxMergerPasteChartFieldSingleSeries(const DocxMergerPasteChartFieldSingleSeries& p_other);
+        DocxMergerPasteChartFieldSingleSeries& operator=(const DocxMergerPasteChartFieldSingleSeries& p_other);
 
-	};
+        DocxMergerPasteChartAxis* m_pasteCatAxis;
+        DocxMergerPasteChartValues* m_pasteVal;
+
+    };
 };
 
 #endif

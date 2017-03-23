@@ -24,5 +24,5 @@
 
 
 
-&global xml_xNsXsi  'http://www.w3.org/2001/XMLSchema-instance'
-&global xml_xNsXml  'http://www.w3.org/XML/1998/namespace'
+&global xml_xNsXsi 'http://www.w3.org/2001/XMLSchema-instance'
+        & global xml_xNsXml 'http://www.w3.org/XML/1998/namespace'

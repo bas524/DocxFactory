@@ -24,14 +24,17 @@
 
 
 
-&if defined( xSLibWin ) = 0 &then
+&if defined(xSLibWin) = 0 & then
+{slib / start - slib.i "'slib/slibwin.p'"}
 
-    {slib/start-slib.i "'slib/slibwin.p'"}
+    {
+        slib / slibwinfrwd.i "in super"
+    }
 
-    {slib/slibwinfrwd.i "in super"}
+{
+    slib / slibwinprop.i
+}
 
-    {slib/slibwinprop.i}
+&glob xSLibWin defined
 
-    &glob xSLibWin defined
-
-&endif /* defined */
+        &endif /* defined */

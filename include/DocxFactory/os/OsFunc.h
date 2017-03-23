@@ -8,77 +8,75 @@
 #include <vector>
 
 
-namespace DocxFactory
-{
-	using namespace std;
+namespace DocxFactory {
+    using namespace std;
 
-	class OsFunc
-	{
-	public:
-		enum SubPathPos
-		{
-			SUBPATH_DIR,
-			SUBPATH_FILE,
-			SUBPATH_EXT
-		};
+    class OsFunc {
+    public:
 
-		static void breakPath(
-			const string&		p_path,
-			string&				p_dir,
-			string&				p_file,
-			string&				p_ext );
+        enum SubPathPos {
+            SUBPATH_DIR,
+            SUBPATH_FILE,
+            SUBPATH_EXT
+        };
 
-		static string getSubPath(
-			const string&		p_path,
-			const SubPathPos&	p_from,
-			const SubPathPos&	p_to );
+        static void breakPath(
+                const string& p_path,
+                string& p_dir,
+                string& p_file,
+                string& p_ext);
 
-		static string	getRelativePath	( const string& p_sourceDir, const string& p_path );
-		static string	getFullPath		( const string& p_path );
-		static string	normalizePath	( const string& p_path );
-		static string	searchPath		( const string& p_fileName );
+        static string getSubPath(
+                const string& p_path,
+                const SubPathPos& p_from,
+                const SubPathPos& p_to);
 
-		static bool		isRelativePath	( const string& p_path );
-		static bool		isFileExists	( const string& p_fileName );
-		static bool		isDirExists		( const string& p_dir );
+        static string getRelativePath(const string& p_sourceDir, const string& p_path);
+        static string getFullPath(const string& p_path);
+        static string normalizePath(const string& p_path);
+        static string searchPath(const string& p_fileName);
 
-		static void breakFileUrl(
-			const string&	p_url,
-			string&			p_protocol,
-			string&			p_host,
-			string&			p_path );
+        static bool isRelativePath(const string& p_path);
+        static bool isFileExists(const string& p_fileName);
+        static bool isDirExists(const string& p_dir);
 
-		static string fileUrlToPath		( const string& p_url );
-		static string normalizeFileUrl	( const string& p_url );
+        static void breakFileUrl(
+                const string& p_url,
+                string& p_protocol,
+                string& p_host,
+                string& p_path);
 
-		static std::vector<byte> readFile(
-			const string&	p_fileName,
-			size_t&			p_bufSize );
+        static string fileUrlToPath(const string& p_url);
+        static string normalizeFileUrl(const string& p_url);
 
-		static void writeFile(
-			const string&	p_fileName,
-			const byte*		p_buf,
-			size_t			p_bufSize,
-			bool			p_append = false );
+        static std::vector<byte> readFile(
+                const string& p_fileName,
+                size_t& p_bufSize);
 
-		static void copy	( const string& p_srcFileName, const string& p_dstFileName );
-		static void remove	( const string& p_fileName );
+        static void writeFile(
+                const string& p_fileName,
+                const byte* p_buf,
+                size_t p_bufSize,
+                bool p_append = false);
 
-		static void		setTempDir();
-		static void		setTempDir( const string& p_dir );
+        static void copy(const string& p_srcFileName, const string& p_dstFileName);
+        static void remove(const string& p_fileName);
 
-		static string	getWorkDir();
-		static string	getTempDir();
-		static string	getTempFile( const string& p_ext );
+        static void setTempDir();
+        static void setTempDir(const string& p_dir);
 
-	protected:
+        static string getWorkDir();
+        static string getTempDir();
+        static string getTempFile(const string& p_ext);
 
-	private:
-		OsFunc();
-		OsFunc( const OsFunc& p_other );
-		OsFunc& operator = ( const OsFunc& p_other );
+    protected:
 
-	};
+    private:
+        OsFunc();
+        OsFunc(const OsFunc& p_other);
+        OsFunc& operator=(const OsFunc& p_other);
+
+    };
 };
 
 #endif

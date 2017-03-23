@@ -22,28 +22,70 @@
  *  Phone: +972-54-218-8086
  */
 
-{slib/slibpro.i}
+{
+    slib / slibpro.i
+}
+
+function math_getShortNum returns char ( pdNum as dec, pcFormat as char) {
+    1
+}
+.
+
+function math_calc returns dec(pcExpression as char) {
+    1
+}
+.
+
+function math_tan returns dec(dRadian as dec) {
+    1
+}
+.
+function math_atan returns dec(dRadian as dec) {
+    1
+}
+.
+function math_sin returns dec(dRadian as dec) {
+    1
+}
+.
+function math_sinh returns dec(dRadian as dec) {
+    1
+}
+.
+function math_asin returns dec(dRadian as dec) {
+    1
+}
+.
+function math_cos returns dec(dRadian as dec) {
+    1
+}
+.
+function math_cosh returns dec(dRadian as dec) {
+    1
+}
+.
+function math_acos returns dec(dRadian as dec) {
+    1
+}
+.
 
 
-
-function math_getShortNum   returns char            ( pdNum as dec, pcFormat as char ) {1}.
-
-function math_calc          returns dec             ( pcExpression as char ) {1}.
-
-function math_tan           returns dec             ( dRadian as dec ) {1}.
-function math_atan          returns dec             ( dRadian as dec ) {1}.
-function math_sin           returns dec             ( dRadian as dec ) {1}.
-function math_sinh          returns dec             ( dRadian as dec ) {1}.
-function math_asin          returns dec             ( dRadian as dec ) {1}.
-function math_cos           returns dec             ( dRadian as dec ) {1}.
-function math_cosh          returns dec             ( dRadian as dec ) {1}.
-function math_acos          returns dec             ( dRadian as dec ) {1}.
-
-
-function math_tan           returns dec             ( pdRadian as dec ) {1}.
-function math_sin           returns dec             ( pdRadian as dec ) {1}.
-function math_cos           returns dec             ( pdRadian as dec ) {1}.
-function math_deg2rad       returns dec             ( pdDegree as dec ) {1}.
+function math_tan returns dec(pdRadian as dec) {
+    1
+}
+.
+function math_sin returns dec(pdRadian as dec) {
+    1
+}
+.
+function math_cos returns dec(pdRadian as dec) {
+    1
+}
+.
+function math_deg2rad returns dec(pdDegree as dec) {
+    1
+}
+.
 
 /***
 function math_tanByDeg      returns dec             ( dDegree as dec ) {1}.
@@ -54,35 +96,112 @@ function math_asinByDeg     returns dec             ( dDegree as dec ) {1}.
 function math_cosByDeg      returns dec             ( dDegree as dec ) {1}.
 function math_coshByDeg     returns dec             ( dDegree as dec ) {1}.
 function math_acosByDeg     returns dec             ( dDegree as dec ) {1}.
-***/
+ ***/
 
-function math_ceil          returns int             ( pdValue as dec ) {1}.
-function math_floor         returns int             ( pdValue as dec ) {1}.
+function math_ceil returns int ( pdValue as dec) {
+    1
+}
+.
+function math_floor returns int ( pdValue as dec) {
+    1
+}
+.
 
-function math_and           returns {&pro_xBigInt}  ( piValue1 as {&pro_xBigInt}, piValue2 as {&pro_xBigInt} ) {1}.
-function math_or            returns {&pro_xBigInt}  ( piValue1 as {&pro_xBigInt}, piValue2 as {&pro_xBigInt} ) {1}.
-function math_xor           returns {&pro_xBigInt}  ( piValue1 as {&pro_xBigInt}, piValue2 as {&pro_xBigInt} ) {1}.
-function math_not           returns {&pro_xBigInt}  ( piValue  as {&pro_xBigInt} ) {1}.
+function math_and returns{&pro_xBigInt} (
 
-function math_Hex2Int       returns {&pro_xBigInt}  ( pcHex as char ) {1}.
-function math_Int2Hex       returns char            ( piInt as {&pro_xBigInt} ) {1}.
-function math_Int642Dec     returns dec             ( ppInt64 as memptr ) {1}.
+                                         piValue1 as{&pro_xBigInt}, piValue2 as{&pro_xBigInt}) {
+    1
+}
+.
+function math_or returns{&pro_xBigInt} (
 
-function math_isNaN         returns log             ( pcValue as char ) {1}.
-function math_isNum         returns log             ( pcValue as char ) {1}.
-function math_isDec         returns log             ( pcValue as char ) {1}.
-function math_isInt         returns log             ( pcValue as char ) {1}.
-function math_isAllNumChars returns log             ( pcValue as char ) {1}.
-function math_isLog         returns log             ( pcValue as char ) {1}.
+                                        piValue1 as{&pro_xBigInt}, piValue2 as{&pro_xBigInt}) {
+    1
+}
+.
+function math_xor returns{&pro_xBigInt} (
 
-function math_HiInt         returns int             ( piValue as int ) {1}.
-function math_LoInt         returns int             ( piValue as int ) {1}.
-function math_HiDec         returns dec             ( pdValue as dec ) {1}.
-function math_LoDec         returns dec             ( pdValue as dec ) {1}.
+                                         piValue1 as{&pro_xBigInt}, piValue2 as{&pro_xBigInt}) {
+    1
+}
+.
+function math_not returns{&pro_xBigInt} (
 
-&if {&pro_xProversion} >= "10.1b" &then
+                                         piValue as{&pro_xBigInt}) {
+    1
+}
+.
 
-function math_HiInt64       returns int64           ( piValue as int64 ) {1}.
-function math_LoInt64       returns int64           ( piValue as int64 ) {1}.
+function math_Hex2Int returns{&pro_xBigInt} (
+
+                                             pcHex as char) {
+    1
+}
+.
+function math_Int2Hex returns char ( piInt as{&pro_xBigInt}) {
+    1
+}
+.
+function math_Int642Dec returns dec(ppInt64 as memptr) {
+    1
+}
+.
+
+function math_isNaN returns log(pcValue as char) {
+    1
+}
+.
+function math_isNum returns log(pcValue as char) {
+    1
+}
+.
+function math_isDec returns log(pcValue as char) {
+    1
+}
+.
+function math_isInt returns log(pcValue as char) {
+    1
+}
+.
+function math_isAllNumChars returns log(pcValue as char) {
+    1
+}
+.
+function math_isLog returns log(pcValue as char) {
+    1
+}
+.
+
+function math_HiInt returns int ( piValue as int) {
+    1
+}
+.
+function math_LoInt returns int ( piValue as int) {
+    1
+}
+.
+function math_HiDec returns dec(pdValue as dec) {
+    1
+}
+.
+function math_LoDec returns dec(pdValue as dec) {
+    1
+}
+.
+
+&if {
+    &pro_xProversion
+}
+
+>= "10.1b" & then
+
+function math_HiInt64 returns int64(piValue as int64) {
+    1
+}
+.
+function math_LoInt64 returns int64(piValue as int64) {
+    1
+}
+.
 
 &endif

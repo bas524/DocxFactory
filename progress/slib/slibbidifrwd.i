@@ -24,12 +24,36 @@
 
 
 
-function bidi_Log2VisLtr    returns char ( pcStr as char ) {1}.
-function bidi_Log2VisRtl    returns char ( pcStr as char ) {1}.
-function bidi_VisLtr2Log    returns char ( pcStr as char ) {1}.
-function bidi_VisRtl2Log    returns char ( pcStr as char ) {1}.
+function bidi_Log2VisLtr returns char ( pcStr as char) {
+    1
+}
+.
+function bidi_Log2VisRtl returns char ( pcStr as char) {
+    1
+}
+.
+function bidi_VisLtr2Log returns char ( pcStr as char) {
+    1
+}
+.
+function bidi_VisRtl2Log returns char ( pcStr as char) {
+    1
+}
+.
 
-function bidi_Log2VisLtrCur returns char ( pcStr as char, piCur as int, output piRetCur as int ) {1}.
-function bidi_Log2VisRtlCur returns char ( pcStr as char, piCur as int, output piRetCur as int ) {1}.
-function bidi_VisLtr2LogCur returns char ( pcStr as char, piCur as int, output piRetCur as int ) {1}.
-function bidi_VisRtl2LogCur returns char ( pcStr as char, piCur as int, output piRetCur as int ) {1}.
+function bidi_Log2VisLtrCur returns char ( pcStr as char, piCur as int, output piRetCur as int) {
+    1
+}
+.
+function bidi_Log2VisRtlCur returns char ( pcStr as char, piCur as int, output piRetCur as int) {
+    1
+}
+.
+function bidi_VisLtr2LogCur returns char ( pcStr as char, piCur as int, output piRetCur as int) {
+    1
+}
+.
+function bidi_VisRtl2LogCur returns char ( pcStr as char, piCur as int, output piRetCur as int) {
+    1
+}
+.

@@ -14,47 +14,46 @@ class DOMElement;
 
 XERCES_CPP_NAMESPACE_END
 
-namespace DocxFactory
-{
-	using namespace std;
+        namespace DocxFactory {
+    using namespace std;
 
-	class DocxCompilerStyleFile;
-	class DocxCompilerStyle
-	{
-	public:
-		enum StyleType
-		{
-			UNDEFINED_STYLE,
-			CHARACTER_STYLE,
-			NUMBERING_STYLE,
-			PARAGRAPH_STYLE,
-			TABLE_STYLE
-		};
+    class DocxCompilerStyleFile;
 
-		DocxCompilerStyle(
-			StyleType				p_type,
-			xercesc::DOMElement*	p_styleNode,
-			string					p_styleId,
-			string					p_basedOn );
+    class DocxCompilerStyle {
+    public:
 
-		virtual ~DocxCompilerStyle();
+        enum StyleType {
+            UNDEFINED_STYLE,
+            CHARACTER_STYLE,
+            NUMBERING_STYLE,
+            PARAGRAPH_STYLE,
+            TABLE_STYLE
+        };
 
-		StyleType				getType() const;
-		xercesc::DOMElement*	getStyleNode() const;
-		string					getStyleId() const;
-		string					getBasedOn() const;
+        DocxCompilerStyle(
+                StyleType p_type,
+                xercesc::DOMElement* p_styleNode,
+                string p_styleId,
+                string p_basedOn);
 
-	protected:
-		StyleType				m_type;
-		xercesc::DOMElement*	m_styleNode;
-		string					m_styleId;
-		string					m_basedOn;
+        virtual ~DocxCompilerStyle();
 
-	private:
-		DocxCompilerStyle( const DocxCompilerStyle& p_other );
-		DocxCompilerStyle& operator = ( const DocxCompilerStyle& p_other );
+        StyleType getType() const;
+        xercesc::DOMElement* getStyleNode() const;
+        string getStyleId() const;
+        string getBasedOn() const;
 
-	};
+    protected:
+        StyleType m_type;
+        xercesc::DOMElement* m_styleNode;
+        string m_styleId;
+        string m_basedOn;
+
+    private:
+        DocxCompilerStyle(const DocxCompilerStyle& p_other);
+        DocxCompilerStyle& operator=(const DocxCompilerStyle& p_other);
+
+    };
 };
 
 #endif
