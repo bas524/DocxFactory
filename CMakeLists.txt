@@ -47,6 +47,7 @@ else (WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC")
   endif (CYGWIN)
   add_compile_options("-Wno-deprecated-declarations")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,../lib -Wl,-rpath,.")
 endif (WIN32)
 
 ########### TODO : replace with find
