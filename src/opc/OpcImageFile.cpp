@@ -18,7 +18,11 @@
 //#endif
 
 #include "Magick++.h"
+#ifdef _WIN32
 #include "Magick++/Image.h"
+#else
+#include "magick/image.h"
+#endif
 
 #include <cstring>
 
