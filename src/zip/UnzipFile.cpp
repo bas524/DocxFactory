@@ -222,7 +222,7 @@ void UnzipFile::read(char* p_buf, size_t p_bufSize) {
 } // read
 
 string UnzipFile::readStr() {
-  uint32 l_bufSize = readNum<uint32>();
+  size_t l_bufSize = readNum<size_t>();
   std::vector<char> l_buf(l_bufSize + 1);
 
   read(l_buf.data(), l_bufSize);
@@ -311,11 +311,11 @@ void UnzipFile::clearEntryList() {
   m_entryList.clear();
 } // clearEntryList
 
-void UnzipFile::insertPtrBySeq(uint32 p_key, void* p_ptr) {
+void UnzipFile::insertPtrBySeq(size_t p_key, void* p_ptr) {
   m_ptrsBySeq.insert(make_pair(p_key, p_ptr));
 } // insertPtrBySeq
 
-const map<uint32, void*>* UnzipFile::getPtrsBySeq() const {
+const map<size_t, void*>* UnzipFile::getPtrsBySeq() const {
   return &m_ptrsBySeq;
 } // getPtrByKey
 

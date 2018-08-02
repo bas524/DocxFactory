@@ -3850,25 +3850,25 @@ void DocxCompilerItemFile::serialize(ZipFile* p_zipFile) {
 
   p_zipFile ->writePtr(m_rootItemGroup);
 
-  p_zipFile ->writeNum<uint32>((uint32) m_itemGroups.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_itemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_itemGroups) {
     p_zipFile ->writePtr(*l_itemGroupIterator);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_items.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_items.size());
 
   FOR_EACH(l_itemIterator, &m_items) {
     p_zipFile ->writePtr(*l_itemIterator);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_fields.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_fields.size());
 
   FOR_EACH(l_fieldIterator, &m_fields) {
     p_zipFile ->writePtr(*l_fieldIterator);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_sects.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_sects.size());
   for (i = 0; i < m_sects.size(); i++) {
     p_zipFile ->writePtr(m_sects[i]);
   }

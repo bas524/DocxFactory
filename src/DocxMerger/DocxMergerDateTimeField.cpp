@@ -83,12 +83,12 @@ void DocxMergerDateTimeField::createPasteField(double p_time, short p_timeZone) 
 
 void DocxMergerDateTimeField::deserialize(UnzipFile* p_unzipFile) {
   DateTimeFormat* l_dateTimeFormat;
-  uint32 l_size;
-  uint32 i;
+  size_t l_size;
+  size_t i;
 
   DocxMergerField::deserialize(p_unzipFile);
 
-  l_size = p_unzipFile ->readNum<uint32>();
+  l_size = p_unzipFile ->readNum<size_t>();
   for (i = 0; i < l_size; ++i) {
     l_dateTimeFormat = new DateTimeFormat();
     l_dateTimeFormat ->m_str = p_unzipFile ->readStr();

@@ -211,10 +211,10 @@ void DocxCompilerItemLayout::serialize(ZipFile* p_zipFile) {
   list<DocxCompilerItemGroup*>::iterator l_itemGroupIterator;
 
   p_zipFile ->writeNum<double>(m_fixedTrCnt);
-  p_zipFile ->writeNum<uint32>((uint32) m_trList.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_trList.size());
 
   FOR_EACH(l_trIterator, &m_trList) {
-    p_zipFile ->writeNum<uint32>((uint32) l_trIterator ->second.size());
+    p_zipFile ->writeNum<size_t>((size_t) l_trIterator ->second.size());
 
     FOR_EACH(l_tcIterator, &l_trIterator ->second) {
       p_zipFile ->writeNum<uint16>(l_tcIterator ->first);
@@ -222,7 +222,7 @@ void DocxCompilerItemLayout::serialize(ZipFile* p_zipFile) {
     }
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_childItemGroups.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_childItemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_childItemGroups) {
     p_zipFile ->writePtr(*l_itemGroupIterator);

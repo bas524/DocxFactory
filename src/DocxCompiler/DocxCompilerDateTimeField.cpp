@@ -42,7 +42,7 @@ void DocxCompilerDateTimeField::serialize(ZipFile* p_zipFile) {
 
   DocxCompilerField::serialize(p_zipFile);
 
-  p_zipFile ->writeNum<uint32>((uint32) m_dateTimeFormat.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_dateTimeFormat.size());
 
   FOR_EACH(l_dateTimeIterator, &m_dateTimeFormat) {
     l_dateTimeFormat = *l_dateTimeIterator;

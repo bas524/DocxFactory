@@ -4,11 +4,11 @@
 
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-#if defined (WIN32) | defined (_WIN32)
-#include "zlib/zip.h"
-#else
+//#if defined (WIN32) | defined (_WIN32)
+//#include "zlib/zip.h"
+//#else
 #include <minizip/zip.h>
-#endif
+//#endif
 #include <string>
 #include <ctime>
 

@@ -874,26 +874,26 @@ void DocxCompilerItem::serialize(ZipFile* p_zipFile) {
   p_zipFile ->writeNum<uint8> (m_keepTogether);
   p_zipFile ->writeNum<uint8> (m_keepWithPrev);
 
-  p_zipFile ->writeNum<uint32>((uint32) m_path.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_path.size());
 
   FOR_EACH(l_pathIterator, &m_path) {
     p_zipFile ->writePtr(*l_pathIterator);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_childItemGroups.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_childItemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_childItemGroups) {
     p_zipFile ->writePtr(*l_itemGroupIterator);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_fieldsByName.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_fieldsByName.size());
 
   FOR_EACH(l_fieldIterator, &m_fieldsByName) {
     p_zipFile ->writeStr(l_fieldIterator ->first);
     p_zipFile ->writePtr(l_fieldIterator ->second);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_xmlStrings.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_xmlStrings.size());
 
   FOR_EACH(l_xmlStringIterator, &m_xmlStrings) {
     p_zipFile ->writePtr(*l_xmlStringIterator);

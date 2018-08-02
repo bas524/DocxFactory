@@ -5,11 +5,11 @@
 #include "DocxFactory/zip/ZipFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-#if defined (WIN32) | defined (_WIN32)
-#include "zlib/unzip.h"
-#else
+//#if defined (WIN32) | defined (_WIN32)
+//#include "zlib/unzip.h"
+//#else
 #include <minizip/unzip.h>
-#endif
+//#endif
 
 #include <type_traits>
 #include <map>
@@ -65,8 +65,8 @@ namespace DocxFactory {
         string readStr();
         void read(char* p_buf, size_t p_bufSize);
 
-        void insertPtrBySeq(uint32 p_key, void* p_ptr);
-        const map<uint32, void*>* getPtrsBySeq() const;
+        void insertPtrBySeq(size_t p_key, void* p_ptr);
+        const map<size_t, void*>* getPtrsBySeq() const;
 
         bool isFileOpen() const;
         string getFileName() const;
@@ -90,7 +90,7 @@ namespace DocxFactory {
         size_t m_streamPos;
 
         map<string, FileInfo*> m_entryList;
-        map<uint32, void*> m_ptrsBySeq;
+        map<size_t, void*> m_ptrsBySeq;
 
     };
 

@@ -42,8 +42,8 @@ void DocxMergerPicField::save(DocxMergerPasteFieldGroup* p_pasteFieldGroup) {
   list<pair<string, char>>::const_iterator l_stringIterator;
 
   OpcImageFile* l_imageFile;
-  unsigned int l_emuWidth;
-  unsigned int l_emuHeight;
+  size_t l_emuWidth;
+  size_t l_emuHeight;
   string l_fileRId;
 
   l_pasteFieldIterator = l_pasteFields ->find(this);
@@ -70,7 +70,7 @@ void DocxMergerPicField::save(DocxMergerPasteFieldGroup* p_pasteFieldGroup) {
         l_emuWidth = l_imageFile ->getEmuWidth();
         l_emuHeight = l_imageFile ->getEmuHeight();
 
-        l_emuHeight = (unsigned int) (((double) l_emuHeight / l_emuWidth) * m_emuWidth);
+        l_emuHeight = (size_t) (((double) l_emuHeight / l_emuWidth) * m_emuWidth);
         l_emuWidth = m_emuWidth;
 
         break;
@@ -80,7 +80,7 @@ void DocxMergerPicField::save(DocxMergerPasteFieldGroup* p_pasteFieldGroup) {
         l_emuWidth = l_imageFile ->getEmuWidth();
         l_emuHeight = l_imageFile ->getEmuHeight();
 
-        l_emuWidth = (unsigned int) (((double) l_emuWidth / l_emuHeight) * m_emuHeight);
+        l_emuWidth = (size_t) (((double) l_emuWidth / l_emuHeight) * m_emuHeight);
         l_emuHeight = m_emuHeight;
 
         break;
@@ -174,17 +174,17 @@ void DocxMergerPicField::deserialize(UnzipFile* p_unzipFile) {
   string l_str;
   char l_ch;
 
-  uint32 l_size;
-  uint32 i;
+  size_t l_size;
+  size_t i;
 
   DocxMergerField::deserialize(p_unzipFile);
 
-  m_picId = p_unzipFile ->readNum<uint32>();
-  m_emuWidth = p_unzipFile ->readNum<uint32>();
-  m_emuHeight = p_unzipFile ->readNum<uint32>();
+  m_picId = p_unzipFile ->readNum<size_t>();
+  m_emuWidth = p_unzipFile ->readNum<size_t>();
+  m_emuHeight = p_unzipFile ->readNum<size_t>();
   m_useSize = (UseSize) p_unzipFile ->readNum<int16>();
 
-  l_size = p_unzipFile ->readNum<uint32>();
+  l_size = p_unzipFile ->readNum<size_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_ch = (char) p_unzipFile ->readNum<uint8>();

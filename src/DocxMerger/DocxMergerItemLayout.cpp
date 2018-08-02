@@ -46,23 +46,23 @@ void DocxMergerItemLayout::deserialize(UnzipFile* p_unzipFile) {
   list<pair<unsigned short, DocxMergerItemLayout*>>*l_tr;
   pair<unsigned short, DocxMergerItemLayout*>* l_tc;
 
-  uint32 l_trSize;
-  uint32 l_trPos;
+  size_t l_trSize;
+  size_t l_trPos;
 
-  uint32 l_tcSize;
-  uint32 l_tcPos;
+  size_t l_tcSize;
+  size_t l_tcPos;
 
-  uint32 l_ptrSeq;
-  uint32 l_size;
-  uint32 i;
+  size_t l_ptrSeq;
+  size_t l_size;
+  size_t i;
 
   m_fixedTrCnt = p_unzipFile ->readNum<double>();
-  l_trSize = p_unzipFile ->readNum<uint32>();
+  l_trSize = p_unzipFile ->readNum<size_t>();
   for (l_trPos = 0; l_trPos < l_trSize; ++l_trPos) {
     m_trList.push_back(list<pair<unsigned short, DocxMergerItemLayout*>>());
     l_tr = &m_trList.back();
 
-    l_tcSize = p_unzipFile ->readNum<uint32>();
+    l_tcSize = p_unzipFile ->readNum<size_t>();
     for (l_tcPos = 0; l_tcPos < l_tcSize; ++l_tcPos) {
       l_tr ->push_back(make_pair(0, (DocxMergerItemLayout*) NULL));
       l_tc = &l_tr ->back();
@@ -72,9 +72,9 @@ void DocxMergerItemLayout::deserialize(UnzipFile* p_unzipFile) {
     }
   }
 
-  l_size = p_unzipFile ->readNum<uint32>();
+  l_size = p_unzipFile ->readNum<size_t>();
   for (i = 0; i < l_size; ++i) {
-    l_ptrSeq = p_unzipFile ->readNum<uint32>();
+    l_ptrSeq = p_unzipFile ->readNum<size_t>();
     m_childItemGroups.push_back((DocxMergerItemGroup*) l_ptrSeq);
   }
 } // deserialize
@@ -84,8 +84,8 @@ void DocxMergerItemLayout::link(UnzipFile* p_unzipFile) {
   list<pair<unsigned short, DocxMergerItemLayout*>>::iterator l_tcIterator;
   list<DocxMergerItemGroup*>::iterator l_itemGroupIterator;
 
-  const map<uint32, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
-  uint32 l_ptrSeq;
+  const map<size_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
+  size_t l_ptrSeq;
 
   FOR_EACH(l_trIterator, &m_trList) {
 
@@ -95,7 +95,7 @@ void DocxMergerItemLayout::link(UnzipFile* p_unzipFile) {
   }
 
   FOR_EACH(l_itemGroupIterator, &m_childItemGroups) {
-    l_ptrSeq = (uint32) * l_itemGroupIterator;
+    l_ptrSeq = (size_t) * l_itemGroupIterator;
     *l_itemGroupIterator = (DocxMergerItemGroup*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
   }
 } // link

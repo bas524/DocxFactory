@@ -253,20 +253,20 @@ void ZipFile::write(const char* p_buf, size_t p_bufSize) {
 } // write
 
 void ZipFile::writePtr(void* p_ptr) {
-  writeNum((uint32) ptrToSeq(p_ptr));
+  writeNum((size_t) ptrToSeq(p_ptr));
 } // writePtr
 
 void ZipFile::writeStr(const string& p_str) {
   size_t l_len = p_str.length();
 
-  writeNum((uint32) l_len);
+  writeNum((size_t) l_len);
   write(p_str.c_str(), l_len);
 } // writeStr
 
 void ZipFile::writeStr(const char* p_str) {
   size_t l_len = strlen(p_str);
 
-  writeNum((uint32) l_len);
+  writeNum((size_t) l_len);
   write(p_str, l_len);
 } // writeStr
 
@@ -294,9 +294,9 @@ string ZipFile::getFileName() const {
   return m_fileName;
 } // getFileName
 
-uint32 ZipFile::ptrToSeq(void* p_ptr) {
-  map<void*, uint32>::iterator l_seqIterator = m_seqsByPtr.find(p_ptr);
-  uint32 l_ptrSeq;
+size_t ZipFile::ptrToSeq(void* p_ptr) {
+  map<void*, size_t>::iterator l_seqIterator = m_seqsByPtr.find(p_ptr);
+  size_t l_ptrSeq;
 
   if (l_seqIterator == m_seqsByPtr.end()) {
     l_ptrSeq = m_ptrSeq++;

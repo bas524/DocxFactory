@@ -5,13 +5,13 @@
 #include "DocxFactory/zip/ZipFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-#if defined (WIN32) | defined (_WIN32)
-#include "zlib/zip.h"
-#include "zlib/unzip.h"
-#else
+//#if defined (WIN32) | defined (_WIN32)
+//#include "zlib/zip.h"
+//#include "zlib/unzip.h"
+//#else
 #include <minizip/zip.h>
 #include <minizip/unzip.h>
-#endif
+//#endif
 
 #include <type_traits>
 #include <map>
@@ -113,7 +113,7 @@ namespace DocxFactory {
         ZipFile(ZipFile& p_other);
         ZipFile operator=(ZipFile& p_other);
 
-        uint32 ptrToSeq(void* p_ptr);
+        size_t ptrToSeq(void* p_ptr);
 
         zipFile m_zipFile;
         string m_fileName;
@@ -122,8 +122,8 @@ namespace DocxFactory {
         bool m_streamOpen;
         size_t m_streamPos;
 
-        map<void*, uint32> m_seqsByPtr;
-        uint32 m_ptrSeq;
+        map<void*, size_t> m_seqsByPtr;
+        size_t m_ptrSeq;
 
     };
 

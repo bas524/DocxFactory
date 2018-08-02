@@ -93,15 +93,15 @@ void DocxMergerChartFieldFixedSeries::deserialize(UnzipFile* p_unzipFile) {
   string l_str;
   char l_ch;
 
-  uint32 l_size;
-  uint32 i;
+  size_t l_size;
+  size_t i;
 
-  uint32 l_size2;
-  uint32 i2;
+  size_t l_size2;
+  size_t i2;
 
   DocxMergerChartField::deserialize(p_unzipFile);
 
-  l_size = p_unzipFile ->readNum<uint32>();
+  l_size = p_unzipFile ->readNum<size_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_ch = (char) p_unzipFile ->readNum<uint8>();
@@ -109,11 +109,11 @@ void DocxMergerChartFieldFixedSeries::deserialize(UnzipFile* p_unzipFile) {
     m_chartStrings.push_back(make_pair(l_str, l_ch));
   }
 
-  l_size = p_unzipFile ->readNum<uint32>();
+  l_size = p_unzipFile ->readNum<size_t>();
   for (i = 0; i < l_size; ++i) {
     m_seriesStrings.push_back(list<pair<string, char>>());
 
-    l_size2 = p_unzipFile ->readNum<uint32>();
+    l_size2 = p_unzipFile ->readNum<size_t>();
     for (i2 = 0; i2 < l_size2; ++i2) {
       l_str = p_unzipFile ->readStr();
       l_ch = (char) p_unzipFile ->readNum<uint8>();
@@ -122,7 +122,7 @@ void DocxMergerChartFieldFixedSeries::deserialize(UnzipFile* p_unzipFile) {
     }
   }
 
-  l_size = p_unzipFile ->readNum<uint32>();
+  l_size = p_unzipFile ->readNum<size_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_ch = (char) p_unzipFile ->readNum<uint8>();

@@ -91,17 +91,17 @@ void DocxCompilerChartFieldSeries::serialize(ZipFile* p_zipFile) {
 
   DocxCompilerChartField::serialize(p_zipFile);
 
-  p_zipFile ->writeNum<uint32>((uint32) m_chartStrings.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_chartStrings.size());
 
   FOR_EACH(l_stringIterator, &m_chartStrings) {
     p_zipFile ->writeStr(l_stringIterator ->first);
     p_zipFile ->writeNum<uint8> (l_stringIterator ->second);
   }
 
-  p_zipFile ->writeNum<uint32>((uint32) m_seriesStrings.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_seriesStrings.size());
 
   FOR_EACH(l_seriesIterator, &m_seriesStrings) {
-    p_zipFile ->writeNum<uint32>((uint32) l_seriesIterator ->size());
+    p_zipFile ->writeNum<size_t>((size_t) l_seriesIterator ->size());
 
     FOR_EACH(l_stringIterator, l_seriesIterator) {
       p_zipFile ->writeStr(l_stringIterator ->first);

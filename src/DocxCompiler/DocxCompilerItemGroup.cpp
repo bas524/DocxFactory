@@ -264,7 +264,7 @@ void DocxCompilerItemGroup::serialize(ZipFile* p_zipFile) {
   p_zipFile ->writeStr(m_shade1);
   p_zipFile ->writeStr(m_shade2);
 
-  p_zipFile ->writeNum<uint32>((uint32) m_childItemsByName.size());
+  p_zipFile ->writeNum<size_t>((size_t) m_childItemsByName.size());
 
   FOR_EACH(l_itemIterator, &m_childItemsByName) {
     p_zipFile ->writeStr(l_itemIterator ->first);
