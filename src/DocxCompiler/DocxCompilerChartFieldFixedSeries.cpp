@@ -92,7 +92,7 @@ void DocxCompilerChartFieldFixedSeries::serialize(ZipFile* p_zipFile) {
 
   DocxCompilerChartField::serialize(p_zipFile);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_chartStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_chartStrings.size());
 
   FOR_EACH(l_stringIterator, &m_chartStrings) {
     p_zipFile ->writeStr(l_stringIterator ->first);
@@ -100,10 +100,10 @@ void DocxCompilerChartFieldFixedSeries::serialize(ZipFile* p_zipFile) {
     p_zipFile ->writeNum<uint8> (num);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_seriesStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_seriesStrings.size());
 
   FOR_EACH(l_seriesIterator, &m_seriesStrings) {
-    p_zipFile ->writeNum<size_t>((size_t) l_seriesIterator ->size());
+    p_zipFile ->writeNum<uint64_t>((uint64_t) l_seriesIterator ->size());
 
     FOR_EACH(l_stringIterator, l_seriesIterator) {
       p_zipFile ->writeStr(l_stringIterator ->first);
@@ -112,7 +112,7 @@ void DocxCompilerChartFieldFixedSeries::serialize(ZipFile* p_zipFile) {
     }
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_seriesIdx.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_seriesIdx.size());
 
   FOR_EACH(l_idxIterator, &m_seriesIdx) {
     p_zipFile ->writeStr(l_idxIterator ->first);

@@ -15,7 +15,7 @@ void OpcFunc::breakPath(
         string& p_file,
         string& p_ext) {
   string l_path = p_path;
-  size_t i;
+  uint64_t i;
 
   p_dir = "";
   p_file = "";
@@ -67,12 +67,12 @@ string OpcFunc::getSubPath(
 } // getSubPath
 
 string OpcFunc::getRelativePath(const string& p_sourceDir, const string& p_path) {
-  size_t l_sourceLen;
-  size_t l_pathLen;
+  uint64_t l_sourceLen;
+  uint64_t l_pathLen;
 
   string l_retVal = "";
-  size_t i;
-  size_t j;
+  uint64_t i;
+  uint64_t j;
 
   // both cases are not valid and would cause errors.
   if (p_sourceDir.empty()) return p_path;
@@ -115,9 +115,9 @@ string OpcFunc::normalizePath(const string& p_path) {
   string l_retVal;
   string l_path;
   string l_dir;
-  size_t l_dirIndex;
-  size_t l_startIndex;
-  size_t i;
+  uint64_t l_dirIndex;
+  uint64_t l_startIndex;
+  uint64_t i;
 
   l_path = StrFunc::trim(p_path);
   l_path = StrFunc::replace(l_path, "\\", "/");

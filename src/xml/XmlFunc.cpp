@@ -38,7 +38,7 @@ xercesc::DOMDocument* XmlFunc::parseFileToDoc(xercesc::DOMLSParser* p_parser, co
   return l_doc;
 } // parseFileToDoc
 
-xercesc::DOMDocument* XmlFunc::parseBufToDoc(xercesc::DOMLSParser* p_parser, byte* p_buf, size_t p_bufSize) {
+xercesc::DOMDocument* XmlFunc::parseBufToDoc(xercesc::DOMLSParser* p_parser, byte* p_buf, uint64_t p_bufSize) {
   xercesc::DOMImplementation* l_impl = NULL;
   xercesc::DOMLSInput* l_input = NULL;
   xercesc::MemBufInputSource* l_memBuf = NULL;
@@ -95,7 +95,7 @@ void XmlFunc::saveDocToFile(const xercesc::DOMDocument* p_doc, const string& p_f
   }
 } // saveDocToFile
 
-std::vector<byte> XmlFunc::saveDocToBuf(const xercesc::DOMDocument* p_doc, size_t& p_bufSize) {
+std::vector<byte> XmlFunc::saveDocToBuf(const xercesc::DOMDocument* p_doc, uint64_t& p_bufSize) {
   std::vector<byte> l_buf;
   xercesc::DOMImplementationLS* l_impl = NULL;
   xercesc::DOMLSSerializer* l_serializer = NULL;
@@ -384,7 +384,7 @@ bool XmlFunc::getNextTag(
   return true;
 } // getNextTag
 
-size_t XmlFunc::getChildNum(xercesc::DOMNode* p_node) {
+uint64_t XmlFunc::getChildNum(xercesc::DOMNode* p_node) {
   xercesc::DOMNode* l_parentNode = p_node ->getParentNode();
 
   XMLSize_t l_len = l_parentNode ->getChildNodes() ->getLength();
@@ -398,8 +398,8 @@ size_t XmlFunc::getChildNum(xercesc::DOMNode* p_node) {
   return l_pos;
 } // getChildNum
 
-list<size_t> XmlFunc::getNodePath(xercesc::DOMNode* p_node) {
-  list<size_t> l_path;
+list<uint64_t> XmlFunc::getNodePath(xercesc::DOMNode* p_node) {
+  list<uint64_t> l_path;
   xercesc::DOMElement* l_rootNode = p_node ->getOwnerDocument() ->getDocumentElement();
 
   while (p_node != l_rootNode) {
@@ -410,9 +410,9 @@ list<size_t> XmlFunc::getNodePath(xercesc::DOMNode* p_node) {
   return l_path;
 } // getNodePath
 
-xercesc::DOMNode* XmlFunc::getNodeByPath(xercesc::DOMDocument* p_doc, list<size_t>* p_path) {
+xercesc::DOMNode* XmlFunc::getNodeByPath(xercesc::DOMDocument* p_doc, list<uint64_t>* p_path) {
   xercesc::DOMNode* l_node = p_doc ->getDocumentElement();
-  list<size_t>::iterator l_pathIterator;
+  list<uint64_t>::iterator l_pathIterator;
 
   FOR_EACH(l_pathIterator, p_path) {
     l_node = l_node ->getChildNodes() ->item(*l_pathIterator);
@@ -493,8 +493,8 @@ void XmlFunc::removeAttrByNamespace(
 
 void XmlFunc::importAttributes(xercesc::DOMElement* p_sourceNode, xercesc::DOMElement* p_targetNode) {
   xercesc::DOMAttr* l_attrNode;
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   l_len = p_sourceNode ->getAttributes() ->getLength();
 
@@ -568,10 +568,10 @@ string XmlFunc::normalizeNsPrefix(
 // ** encodeXml does not contain any protection against invalid utf8 chars
 
 string XmlFunc::encodeXml(const string& p_srcStr) {
-  size_t l_srcLen = p_srcStr.length();
-  size_t l_srcPos = 0;
+  uint64_t l_srcLen = p_srcStr.length();
+  uint64_t l_srcPos = 0;
 
-  size_t l_dstPos = 0;
+  uint64_t l_dstPos = 0;
   unsigned char l_ch;
 
   std::vector<char> l_dstStr(l_srcLen * 6 + 1);
@@ -640,7 +640,7 @@ string XmlFunc::XMLChToUtf8(const XMLCh* p_xstr) {
   if (p_xstr == NULL || *p_xstr == 0)
     return "";
 
-  size_t l_len = getXMLChLen(p_xstr);
+  uint64_t l_len = getXMLChLen(p_xstr);
   std::vector<UChar> l_ustr = XMLChToUChar(p_xstr, l_len);
   std::vector<char> l_str = LocaleFunc::ucharToUtf8(l_ustr.data(), l_len);
 
@@ -651,7 +651,7 @@ string XmlFunc::XMLChToStr(const XMLCh* p_xstr) {
   if (p_xstr == NULL || *p_xstr == 0)
     return "";
 
-  size_t l_len = getXMLChLen(p_xstr);
+  uint64_t l_len = getXMLChLen(p_xstr);
   std::vector<UChar> l_ustr = XMLChToUChar(p_xstr, l_len);
   std::vector<char> l_str = LocaleFunc::ucharToStr(l_ustr.data(), l_len);
 
@@ -674,7 +674,7 @@ bool XmlFunc::XMLChCmp(const XMLCh* p_xstr1, const XMLCh* p_xstr2) {
   if (p_xstr1 == NULL || p_xstr2 == NULL)
     return false;
 
-  size_t l_pos = 0;
+  uint64_t l_pos = 0;
 
   while (true) {
     if (p_xstr1[ l_pos ] != p_xstr2[ l_pos ])
@@ -687,9 +687,9 @@ bool XmlFunc::XMLChCmp(const XMLCh* p_xstr1, const XMLCh* p_xstr2) {
   }
 } // XMLChCmp
 
-XMLCh* XmlFunc::ucharToXMLCh(const UChar* p_ustr, size_t p_len) {
+XMLCh* XmlFunc::ucharToXMLCh(const UChar* p_ustr, uint64_t p_len) {
   XMLCh* l_xstr = new XMLCh[ UCNV_GET_MAX_BYTES_FOR_STRING(p_len, 2) ];
-  size_t l_pos = 0;
+  uint64_t l_pos = 0;
 
   // length is mostly used for buffer size and in this case for added safety. 
   // whether the position is null is what should terminate the loop.
@@ -704,9 +704,9 @@ XMLCh* XmlFunc::ucharToXMLCh(const UChar* p_ustr, size_t p_len) {
   return l_xstr;
 } // ucharToXMLCh
 
-std::vector<UChar> XmlFunc::XMLChToUChar(const XMLCh* p_xstr, size_t p_len) {
+std::vector<UChar> XmlFunc::XMLChToUChar(const XMLCh* p_xstr, uint64_t p_len) {
   std::vector<UChar> l_ustr(UCNV_GET_MAX_BYTES_FOR_STRING(p_len, 2));
-  size_t l_pos = 0;
+  uint64_t l_pos = 0;
 
   while (p_xstr[ l_pos ] && l_pos < p_len) {
     l_ustr[ l_pos ] = (UChar) p_xstr[ l_pos ];
@@ -718,8 +718,8 @@ std::vector<UChar> XmlFunc::XMLChToUChar(const XMLCh* p_xstr, size_t p_len) {
   return l_ustr;
 } // XMLChToUChar
 
-size_t XmlFunc::getXMLChLen(const XMLCh* p_xstr) {
-  size_t l_len = 0;
+uint64_t XmlFunc::getXMLChLen(const XMLCh* p_xstr) {
+  uint64_t l_len = 0;
 
   while (p_xstr[ l_len ]) l_len++;
 

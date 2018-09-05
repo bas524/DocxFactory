@@ -9,8 +9,8 @@ using namespace std;
 StrEntries::StrEntries(const string& p_str, const string& p_delim)
 : m_delim(p_delim) {
   string l_entry;
-  size_t l_start = 0;
-  size_t l_pos;
+  uint64_t l_start = 0;
+  uint64_t l_pos;
 
   m_entryVec.clear();
 
@@ -39,7 +39,7 @@ StrEntries::~StrEntries() {
 
 } // d'tor
 
-void StrEntries::setEntry(size_t p_index, const string& p_entry) {
+void StrEntries::setEntry(uint64_t p_index, const string& p_entry) {
   m_entryVec.at(p_index) = p_entry;
   // throws out_of_range on error
 } // setEntry
@@ -48,7 +48,7 @@ void StrEntries::addEntry(const string& p_entry) {
   m_entryVec.push_back(p_entry);
 }
 
-void StrEntries::deleteEntry(size_t p_index) {
+void StrEntries::deleteEntry(uint64_t p_index) {
   /*** i think this check is not needed for this type of low-level operations. the index needs to be checked before calling the function. ***
 
   m_entryVec.at( p_index );
@@ -59,9 +59,9 @@ void StrEntries::deleteEntry(size_t p_index) {
   m_entryVec.erase(m_entryVec.begin() + p_index);
 } // deleteEntry
 
-size_t StrEntries::lookup(const string& p_entry) const {
+uint64_t StrEntries::lookup(const string& p_entry) const {
   vector<string>::const_iterator i;
-  size_t l_index = 0;
+  uint64_t l_index = 0;
 
   FOR_EACH(i, &m_entryVec) {
     if (*i == p_entry)
@@ -74,11 +74,11 @@ size_t StrEntries::lookup(const string& p_entry) const {
   return npos;
 } // lookup
 
-size_t StrEntries::getNumEntries() const {
+uint64_t StrEntries::getNumEntries() const {
   return m_entryVec.size();
 } // getNumEntries
 
-string StrEntries::getEntry(size_t p_index) const {
+string StrEntries::getEntry(uint64_t p_index) const {
   return m_entryVec.at(p_index);
   // throws out_of_range on error
 } // getEntry

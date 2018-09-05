@@ -16,7 +16,7 @@ namespace DocxFactory {
 
     class DocxMergerPasteChartFieldFixedSeries : public DocxMergerPasteChartField {
     public:
-        DocxMergerPasteChartFieldFixedSeries(DocxMergerField* p_field, size_t p_serLength);
+        DocxMergerPasteChartFieldFixedSeries(DocxMergerField* p_field, uint64_t p_serLength);
         virtual ~DocxMergerPasteChartFieldFixedSeries();
 
         virtual string* getValue();

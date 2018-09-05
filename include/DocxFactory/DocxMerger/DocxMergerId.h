@@ -34,7 +34,7 @@ namespace DocxFactory {
         string m_tag;
         string m_id;
         string m_prefix;
-        size_t m_seq;
+        uint64_t m_seq;
         bool m_isNum;
 
     };

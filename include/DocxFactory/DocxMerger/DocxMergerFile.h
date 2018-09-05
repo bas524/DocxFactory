@@ -65,7 +65,7 @@ XERCES_CPP_NAMESPACE_END
         string getAltChunkDir() const;
         unsigned int nextChartSeq();
         string getChartDir() const;
-        size_t nextIdSeq();
+        uint64_t nextIdSeq();
         bool hasToc() const;
 
         const map<string, DocxMergerItem*>* getItemsByName() const;
@@ -116,7 +116,7 @@ XERCES_CPP_NAMESPACE_END
         unsigned int m_altChunkSeq;
         string m_chartDir;
         unsigned int m_chartSeq;
-        size_t m_idSeq;
+        uint64_t m_idSeq;
         bool m_hasToc;
 
         DocxMergerSettingsFile* m_settingsFile;

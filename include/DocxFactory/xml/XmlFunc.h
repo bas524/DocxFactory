@@ -46,12 +46,12 @@ XERCES_CPP_NAMESPACE_END
         // no validation is done on the file here (e.g. file exists).
         // all input should be validated in the top-level user function.
         static xercesc::DOMDocument* parseFileToDoc(xercesc::DOMLSParser* p_parser, const string& p_fileName);
-        static xercesc::DOMDocument* parseBufToDoc(xercesc::DOMLSParser* p_parser, byte* p_buf, size_t p_bufSize);
+        static xercesc::DOMDocument* parseBufToDoc(xercesc::DOMLSParser* p_parser, byte* p_buf, uint64_t p_bufSize);
 
         // no validation is done on the file here (e.g. dir exists).
         // all input should be validated in the top-level user function.
         static void saveDocToFile(const xercesc::DOMDocument* p_doc, const string& p_fileName);
-        static std::vector<byte> saveDocToBuf(const xercesc::DOMDocument* p_doc, size_t& p_bufSize);
+        static std::vector<byte> saveDocToBuf(const xercesc::DOMDocument* p_doc, uint64_t& p_bufSize);
 
         static xercesc::DOMElement* getChildByTagName(
                 xercesc::DOMNode* p_parentNode,
@@ -68,9 +68,9 @@ XERCES_CPP_NAMESPACE_END
                 TagPos& p_cursorPos,
                 string& p_stringValue);
 
-        static size_t getChildNum(xercesc::DOMNode* p_node);
-        static list<size_t> getNodePath(xercesc::DOMNode* p_node);
-        static xercesc::DOMNode* getNodeByPath(xercesc::DOMDocument* p_doc, list<size_t>* p_path);
+        static uint64_t getChildNum(xercesc::DOMNode* p_node);
+        static list<uint64_t> getNodePath(xercesc::DOMNode* p_node);
+        static xercesc::DOMNode* getNodeByPath(xercesc::DOMDocument* p_doc, list<uint64_t>* p_path);
 
         static void unindentDoc(xercesc::DOMDocument* p_doc);
         static void removeAttrByNamespace(
@@ -101,9 +101,9 @@ XERCES_CPP_NAMESPACE_END
         XmlFunc(const XmlFunc& p_other);
         XmlFunc& operator=(const XmlFunc& p_other);
 
-        static XMLCh* ucharToXMLCh(const UChar* p_ustr, size_t p_len);
-        static std::vector<UChar> XMLChToUChar(const XMLCh* p_xstr, size_t p_len);
-        static size_t getXMLChLen(const XMLCh* p_xstr);
+        static XMLCh* ucharToXMLCh(const UChar* p_ustr, uint64_t p_len);
+        static std::vector<UChar> XMLChToUChar(const XMLCh* p_xstr, uint64_t p_len);
+        static uint64_t getXMLChLen(const XMLCh* p_xstr);
 
         static void unindentDocRecurr(const xercesc::DOMElement* p_parentNode);
 

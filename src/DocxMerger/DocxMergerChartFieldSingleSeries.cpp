@@ -48,7 +48,7 @@ template <class Category_T>
 void DocxMergerChartFieldSingleSeries::setPasteChartValue(Category_T p_category, double p_value) {
   DocxMergerPasteChartFieldSingleSeries* l_pasteField = createPasteChartField<DocxMergerPasteChartFieldSingleSeries>();
 
-  size_t l_category = m_catAxis ->setValue(
+  uint64_t l_category = m_catAxis ->setValue(
           (DocxMergerPasteChartAxis*) l_pasteField ->getPasteCatAxis(),
           p_category);
 
@@ -63,12 +63,12 @@ void DocxMergerChartFieldSingleSeries::deserialize(UnzipFile* p_unzipFile) {
   string l_str;
   char l_ch;
 
-  size_t l_size;
-  size_t i;
+  uint64_t l_size;
+  uint64_t i;
 
   DocxMergerChartField::deserialize(p_unzipFile);
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_ch = (char) p_unzipFile ->readNum<uint8>();

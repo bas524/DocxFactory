@@ -58,7 +58,7 @@ namespace DocxFactory {
 
         static DoublePack pack(double p_num);
         static double unpack(const DoublePack p_dpack);
-        static void reverse(char* p_buf, size_t p_bufSize);
+        static void reverse(char* p_buf, uint64_t p_bufSize);
 
     protected:
 
@@ -92,7 +92,7 @@ namespace DocxFactory {
         char*	l_src = ( char* ) &p_val;
         char*	l_dst = ( char* ) &l_retVal;
 
-        for ( size_t i = 0; i < sizeof(T); ++i )
+        for ( uint64_t i = 0; i < sizeof(T); ++i )
         {
                 l_dst[ sizeof(T) - i - 1 ] = l_src[i];
         }

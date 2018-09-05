@@ -51,12 +51,12 @@ namespace DocxFactory {
 
         static std::vector<byte> readFile(
                 const string& p_fileName,
-                size_t& p_bufSize);
+                uint64_t& p_bufSize);
 
         static void writeFile(
                 const string& p_fileName,
                 const byte* p_buf,
-                size_t p_bufSize,
+                uint64_t p_bufSize,
                 bool p_append = false);
 
         static void copy(const string& p_srcFileName, const string& p_dstFileName);

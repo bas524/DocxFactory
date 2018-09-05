@@ -56,8 +56,8 @@ DocxMergerItemFile::~DocxMergerItemFile() {
 
 void DocxMergerItemFile::save(ZipFile* p_zipFile) {
   DocxMergerItem* l_item;
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   if (m_rootPasteItemGroup ->getChildPasteItems() ->empty()) {
     l_item = m_rootItemGroup ->getChildItemsByName() ->begin() ->second;
@@ -109,8 +109,8 @@ void DocxMergerItemFile::paste(DocxMergerItem* p_item) {
   DocxMergerItem* l_keepWithParentItem;
   DocxMergerPasteItem* l_keepWithParentPasteItem;
 
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   l_itemPath = p_item ->getPath();
   l_itemPathIterator = l_itemPath ->begin();
@@ -172,8 +172,8 @@ void DocxMergerItemFile::pasteItem(
   DocxMergerPasteItem* l_pasteItem;
   DocxMergerPasteItem* l_parentPasteItem;
 
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   l_itemGroup = p_item ->getItemGroup();
 
@@ -406,13 +406,13 @@ void DocxMergerItemFile::closeItem() {
 } // closeItem
 
 void DocxMergerItemFile::deserialize(UnzipFile* p_unzipFile) {
-  size_t l_ptrSeq;
-  size_t l_size;
-  size_t i;
+  uint64_t l_ptrSeq;
+  uint64_t l_size;
+  uint64_t i;
 
-  p_unzipFile ->insertPtrBySeq(p_unzipFile ->readNum<size_t>(), this);
+  p_unzipFile ->insertPtrBySeq(p_unzipFile ->readNum<uint64_t>(), this);
 
-  m_file = (DocxMergerFile*) p_unzipFile ->readNum<size_t>();
+  m_file = (DocxMergerFile*) p_unzipFile ->readNum<uint64_t>();
   m_part = (OpcPart*) new string(p_unzipFile ->readStr());
   m_type = (ItemFileType) p_unzipFile ->readNum<int16>();
 
@@ -422,29 +422,29 @@ void DocxMergerItemFile::deserialize(UnzipFile* p_unzipFile) {
   m_relMlPrefix = p_unzipFile ->readStr();
   m_vmlPrefix = p_unzipFile ->readStr();
 
-  m_rootItemGroup = (DocxMergerItemGroup*) p_unzipFile ->readNum<size_t>();
+  m_rootItemGroup = (DocxMergerItemGroup*) p_unzipFile ->readNum<uint64_t>();
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
-    l_ptrSeq = p_unzipFile ->readNum<size_t>();
+    l_ptrSeq = p_unzipFile ->readNum<uint64_t>();
     m_itemGroups.push_back((DocxMergerItemGroup*) l_ptrSeq);
   }
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
-    l_ptrSeq = p_unzipFile ->readNum<size_t>();
+    l_ptrSeq = p_unzipFile ->readNum<uint64_t>();
     m_items.push_back((DocxMergerItem*) l_ptrSeq);
   }
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
-    l_ptrSeq = p_unzipFile ->readNum<size_t>();
+    l_ptrSeq = p_unzipFile ->readNum<uint64_t>();
     m_fields.push_back((DocxMergerField*) l_ptrSeq);
   }
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
-    l_ptrSeq = p_unzipFile ->readNum<size_t>();
+    l_ptrSeq = p_unzipFile ->readNum<uint64_t>();
     m_sects.push_back((DocxMergerXmlString*) l_ptrSeq);
   }
 } // deserialize
@@ -455,11 +455,11 @@ void DocxMergerItemFile::link(UnzipFile* p_unzipFile) {
   list<DocxMergerField*>::iterator l_fieldIterator;
   list<DocxMergerXmlString*>::iterator l_xmlStringIterator;
 
-  const map<size_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
-  size_t l_ptrSeq;
+  const map<uint64_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
+  uint64_t l_ptrSeq;
   string* l_str;
 
-  l_ptrSeq = (size_t) m_file;
+  l_ptrSeq = (uint64_t) m_file;
   m_file = (DocxMergerFile*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
   l_str = (string*) m_part;
@@ -467,26 +467,26 @@ void DocxMergerItemFile::link(UnzipFile* p_unzipFile) {
   m_part ->loadDoc();
   delete l_str;
 
-  l_ptrSeq = (size_t) m_rootItemGroup;
+  l_ptrSeq = (uint64_t) m_rootItemGroup;
   m_rootItemGroup = (DocxMergerItemGroup*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
   FOR_EACH(l_itemGroupIterator, &m_itemGroups) {
-    l_ptrSeq = (size_t) * l_itemGroupIterator;
+    l_ptrSeq = (uint64_t) * l_itemGroupIterator;
     *l_itemGroupIterator = (DocxMergerItemGroup*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
   }
 
   FOR_EACH(l_itemIterator, &m_items) {
-    l_ptrSeq = (size_t) * l_itemIterator;
+    l_ptrSeq = (uint64_t) * l_itemIterator;
     *l_itemIterator = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
   }
 
   FOR_EACH(l_fieldIterator, &m_fields) {
-    l_ptrSeq = (size_t) * l_fieldIterator;
+    l_ptrSeq = (uint64_t) * l_fieldIterator;
     *l_fieldIterator = (DocxMergerField*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
   }
 
   FOR_EACH(l_xmlStringIterator, &m_sects) {
-    l_ptrSeq = (size_t) * l_xmlStringIterator;
+    l_ptrSeq = (uint64_t) * l_xmlStringIterator;
     *l_xmlStringIterator = (DocxMergerXmlString*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
   }
 } // link

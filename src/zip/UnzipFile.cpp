@@ -67,7 +67,7 @@ void UnzipFile::close() {
 
 std::vector<byte> UnzipFile::extractEntryToBuf(
         const string& p_path,
-        size_t& p_bufSize) const {
+        uint64_t& p_bufSize) const {
   FileInfo* l_fileInfo;
   std::vector<byte> l_buf;
   int l_err;
@@ -91,7 +91,7 @@ std::vector<byte> UnzipFile::extractEntryToBuf(
     if (l_err != UNZ_OK)
       throw MinizipException("unzOpenCurrentFile", l_err, __FILE__, __LINE__);
 
-    p_bufSize = (size_t) ((l_fileInfo ->getUnzFileInfo()) ->uncompressed_size);
+    p_bufSize = (uint64_t) ((l_fileInfo ->getUnzFileInfo()) ->uncompressed_size);
     l_buf.resize(p_bufSize);
 
     l_err = unzReadCurrentFile(m_unzipFile, &l_buf[0], p_bufSize);
@@ -116,7 +116,7 @@ std::vector<byte> UnzipFile::extractEntryToRaw(
         int& p_method,
         int& p_level,
         FileInfo*& p_fileInfo,
-        size_t& p_bufSize) const {
+        uint64_t& p_bufSize) const {
   std::vector<byte> l_buf;
   int l_err;
 
@@ -139,7 +139,7 @@ std::vector<byte> UnzipFile::extractEntryToRaw(
     if (l_err != UNZ_OK)
       throw MinizipException("unzOpenCurrentFile2", l_err, __FILE__, __LINE__);
 
-    p_bufSize = (size_t) ((p_fileInfo ->getUnzFileInfo()) ->compressed_size);
+    p_bufSize = (uint64_t) ((p_fileInfo ->getUnzFileInfo()) ->compressed_size);
     l_buf.resize(p_bufSize);
 
     l_err = unzReadCurrentFile(m_unzipFile, &l_buf[0], p_bufSize);
@@ -161,7 +161,7 @@ std::vector<byte> UnzipFile::extractEntryToRaw(
 void UnzipFile::extractEntryToFile(
         const string& p_fileName,
         const string& p_path) const {
-  size_t l_bufSize;
+  uint64_t l_bufSize;
 
   std::vector<byte> l_buf = extractEntryToBuf(p_path, l_bufSize);
 
@@ -206,7 +206,7 @@ void UnzipFile::closeStream() {
   m_streamOpen = false;
 } // closeStream
 
-void UnzipFile::read(char* p_buf, size_t p_bufSize) {
+void UnzipFile::read(char* p_buf, uint64_t p_bufSize) {
   if (!m_fileOpen)
     throw ZipFileNotOpenException(__FILE__, __LINE__);
 
@@ -222,7 +222,7 @@ void UnzipFile::read(char* p_buf, size_t p_bufSize) {
 } // read
 
 string UnzipFile::readStr() {
-  size_t l_bufSize = readNum<size_t>();
+  uint64_t l_bufSize = readNum<uint64_t>();
   std::vector<char> l_buf(l_bufSize + 1);
 
   read(l_buf.data(), l_bufSize);
@@ -311,11 +311,11 @@ void UnzipFile::clearEntryList() {
   m_entryList.clear();
 } // clearEntryList
 
-void UnzipFile::insertPtrBySeq(size_t p_key, void* p_ptr) {
+void UnzipFile::insertPtrBySeq(uint64_t p_key, void* p_ptr) {
   m_ptrsBySeq.insert(make_pair(p_key, p_ptr));
 } // insertPtrBySeq
 
-const map<size_t, void*>* UnzipFile::getPtrsBySeq() const {
+const map<uint64_t, void*>* UnzipFile::getPtrsBySeq() const {
   return &m_ptrsBySeq;
 } // getPtrByKey
 
@@ -323,7 +323,7 @@ bool UnzipFile::isFileOpen() const {
   return m_fileOpen;
 } // isFileOpen
 
-size_t UnzipFile::getStreamPos() const {
+uint64_t UnzipFile::getStreamPos() const {
   return m_streamPos;
 } // getStreamPos
 

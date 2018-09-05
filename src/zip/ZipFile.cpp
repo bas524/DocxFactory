@@ -94,7 +94,7 @@ void ZipFile::close() {
 void ZipFile::addEntryFromBuf(
         const string& p_path,
         const byte * const p_buf,
-        size_t p_bufSize,
+        uint64_t p_bufSize,
         int p_method, // = Z_DEFLATED
         int p_level) // = Z_DEFAULT_COMPRESSION
 {
@@ -139,7 +139,7 @@ void ZipFile::addEntryFromBuf(
 void ZipFile::addEntryFromRaw(
         const string& p_path,
         const byte* p_buf,
-        size_t p_bufSize,
+        uint64_t p_bufSize,
         int p_method,
         int p_level,
         FileInfo* p_fileInfo) {
@@ -183,7 +183,7 @@ void ZipFile::addEntryFromFile(
         int p_method, // = Z_DEFLATED
         int p_level) // = Z_DEFAULT_COMPRESSION
 {
-  size_t l_bufSize;
+  uint64_t l_bufSize;
 
   std::vector<byte>l_buf = OsFunc::readFile(p_fileName, l_bufSize);
 
@@ -237,7 +237,7 @@ void ZipFile::closeStream() {
   m_streamOpen = false;
 } // closeStream
 
-void ZipFile::write(const char* p_buf, size_t p_bufSize) {
+void ZipFile::write(const char* p_buf, uint64_t p_bufSize) {
   if (!m_fileOpen)
     throw ZipFileNotOpenException(__FILE__, __LINE__);
 
@@ -253,20 +253,20 @@ void ZipFile::write(const char* p_buf, size_t p_bufSize) {
 } // write
 
 void ZipFile::writePtr(void* p_ptr) {
-  writeNum((size_t) ptrToSeq(p_ptr));
+  writeNum((uint64_t) ptrToSeq(p_ptr));
 } // writePtr
 
 void ZipFile::writeStr(const string& p_str) {
-  size_t l_len = p_str.length();
+  uint64_t l_len = p_str.length();
 
-  writeNum((size_t) l_len);
+  writeNum((uint64_t) l_len);
   write(p_str.c_str(), l_len);
 } // writeStr
 
 void ZipFile::writeStr(const char* p_str) {
-  size_t l_len = strlen(p_str);
+  uint64_t l_len = strlen(p_str);
 
-  writeNum((size_t) l_len);
+  writeNum((uint64_t) l_len);
   write(p_str, l_len);
 } // writeStr
 
@@ -286,7 +286,7 @@ bool ZipFile::isFileOpen() const {
   return m_fileOpen;
 } // isFileOpen
 
-size_t ZipFile::getStreamPos() const {
+uint64_t ZipFile::getStreamPos() const {
   return m_streamPos;
 } // getStreamPos
 
@@ -294,9 +294,9 @@ string ZipFile::getFileName() const {
   return m_fileName;
 } // getFileName
 
-size_t ZipFile::ptrToSeq(void* p_ptr) {
-  map<void*, size_t>::iterator l_seqIterator = m_seqsByPtr.find(p_ptr);
-  size_t l_ptrSeq;
+uint64_t ZipFile::ptrToSeq(void* p_ptr) {
+  map<void*, uint64_t>::iterator l_seqIterator = m_seqsByPtr.find(p_ptr);
+  uint64_t l_ptrSeq;
 
   if (l_seqIterator == m_seqsByPtr.end()) {
     l_ptrSeq = m_ptrSeq++;

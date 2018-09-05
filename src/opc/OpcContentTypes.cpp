@@ -51,7 +51,7 @@ void OpcContentTypes::load() {
   string l_partFullPath;
   string l_ext;
 
-  size_t l_bufSize;
+  uint64_t l_bufSize;
   std::vector<byte> l_buf = m_package ->getUnzipFile() ->extractEntryToBuf(
           OpcFunc::opcToZipPath(m_fullPath), l_bufSize);
 
@@ -104,7 +104,7 @@ void OpcContentTypes::save() {
   int l_method;
   int l_level;
   FileInfo* l_fileInfo;
-  size_t l_bufSize;
+  uint64_t l_bufSize;
 
   if (m_changed) {
     l_zipFile = m_package ->getZipFile();

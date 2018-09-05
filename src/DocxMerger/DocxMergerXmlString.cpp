@@ -217,26 +217,26 @@ void DocxMergerXmlString::save(DocxMergerPasteFieldGroup* p_pasteFieldGroup) {
 } // save
 
 void DocxMergerXmlString::deserialize(UnzipFile* p_unzipFile) {
-  p_unzipFile ->insertPtrBySeq(p_unzipFile ->readNum<size_t>(), this);
+  p_unzipFile ->insertPtrBySeq(p_unzipFile ->readNum<uint64_t>(), this);
 
-  m_itemFile = (DocxMergerItemFile*) p_unzipFile ->readNum<size_t>();
-  m_item = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
+  m_itemFile = (DocxMergerItemFile*) p_unzipFile ->readNum<uint64_t>();
+  m_item = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
   m_type = (XmlStringType) p_unzipFile ->readNum<int16>();
   m_str = p_unzipFile ->readStr();
-  m_ptr = (void*) p_unzipFile ->readNum<size_t>();
+  m_ptr = (void*) p_unzipFile ->readNum<uint64_t>();
 } // deserialize
 
 void DocxMergerXmlString::link(UnzipFile* p_unzipFile) {
-  const map<size_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
-  size_t l_ptrSeq;
+  const map<uint64_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
+  uint64_t l_ptrSeq;
 
-  l_ptrSeq = (size_t) m_itemFile;
+  l_ptrSeq = (uint64_t) m_itemFile;
   m_itemFile = (DocxMergerItemFile*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_item;
+  l_ptrSeq = (uint64_t) m_item;
   m_item = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_ptr;
+  l_ptrSeq = (uint64_t) m_ptr;
   m_ptr = (void*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 } // link
 

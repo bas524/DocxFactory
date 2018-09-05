@@ -45,9 +45,9 @@ namespace DocxFactory {
         void createPasteField(const string& p_value, AltChunkType p_type);
 
         void getMultiPart(const string& p_str, string& m_multiPart);
-        bool getAttr(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_name, string& p_value);
-        bool getWord(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_keyword);
-        bool skipSpace(const string& p_str, const size_t& p_len, size_t& p_pos);
+        bool getAttr(const string& p_str, const uint64_t& p_len, uint64_t& p_pos, string& p_name, string& p_value);
+        bool getWord(const string& p_str, const uint64_t& p_len, uint64_t& p_pos, string& p_keyword);
+        bool skipSpace(const string& p_str, const uint64_t& p_len, uint64_t& p_pos);
 
         AltChunkType m_altChunkType;
         string m_altChunkString1;

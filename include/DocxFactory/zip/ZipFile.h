@@ -48,14 +48,14 @@ namespace DocxFactory {
         void addEntryFromBuf(
                 const string& p_path,
                 const byte* p_buf,
-                size_t p_bufSize,
+                uint64_t p_bufSize,
                 int p_method = Z_DEFLATED,
                 int p_level = Z_DEFAULT_COMPRESSION); // note that the default compression is not the fastest!
 
         void addEntryFromRaw(
                 const string& p_path,
                 const byte* p_buf,
-                size_t p_bufSize,
+                uint64_t p_bufSize,
                 int p_method,
                 int p_level,
                 FileInfo* p_fileInfo);
@@ -95,7 +95,7 @@ namespace DocxFactory {
         void writePtr(void* p_ptr);
         void writeStr(const string& p_str);
         void writeStr(const char* p_str);
-        void write(const char* p_buf, size_t p_bufSize);
+        void write(const char* p_buf, uint64_t p_bufSize);
 
         // i/o operators are designed for stream continuous data unlike write functions
         // e.g. for streaming xml files.
@@ -105,7 +105,7 @@ namespace DocxFactory {
 
         bool isFileOpen() const;
         string getFileName() const;
-        size_t getStreamPos() const;
+        uint64_t getStreamPos() const;
 
     protected:
 
@@ -113,17 +113,17 @@ namespace DocxFactory {
         ZipFile(ZipFile& p_other);
         ZipFile operator=(ZipFile& p_other);
 
-        size_t ptrToSeq(void* p_ptr);
+        uint64_t ptrToSeq(void* p_ptr);
 
         zipFile m_zipFile;
         string m_fileName;
 
         bool m_fileOpen;
         bool m_streamOpen;
-        size_t m_streamPos;
+        uint64_t m_streamPos;
 
-        map<void*, size_t> m_seqsByPtr;
-        size_t m_ptrSeq;
+        map<void*, uint64_t> m_seqsByPtr;
+        uint64_t m_ptrSeq;
 
     };
 

@@ -27,8 +27,8 @@ string* DocxMergerPasteChartFieldXY::getValue() {
   const list<pair<string, char>>*l_chartStrings = l_chartField ->getChartStrings();
 
   const vector<double>* l_pasteAxis;
-  size_t l_len;
-  size_t l_idx;
+  uint64_t l_len;
+  uint64_t l_idx;
 
   m_value = "";
 

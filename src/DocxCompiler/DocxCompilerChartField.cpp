@@ -190,14 +190,14 @@ void DocxCompilerChartField::serialize(ZipFile* p_zipFile) {
   p_zipFile ->writeStr(m_chartMlPrefix);
   p_zipFile ->writeStr(m_relMlPrefix);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_drawingStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_drawingStrings.size());
 
   FOR_EACH(l_stringIterator, &m_drawingStrings) {
     p_zipFile ->writeStr(l_stringIterator ->first);
     p_zipFile ->writeNum<uint8> (l_stringIterator ->second);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_chartRelationships.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_chartRelationships.size());
 
   FOR_EACH(l_relationshipIterator, &m_chartRelationships) {
     p_zipFile ->writeStr(get<0>(*l_relationshipIterator));

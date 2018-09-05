@@ -35,8 +35,8 @@ void DocxCompilerItem::getItemOptions(
         bool& p_spacer,
         bool& p_alternate) {
   string l_str;
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
   double x;
 
   p_size = 0.0f;
@@ -212,8 +212,8 @@ void DocxCompilerItem::loadXmlStrings() {
   std::unique_ptr<StrEntries> l_strEntries;
   string l_str;
   void* l_ptr;
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   while (XmlFunc::getNextTag(m_bodyNode, l_cursorNode, l_cursorPos, l_stringValue)) {
     if (l_cursorNode == m_bodyNode)
@@ -243,7 +243,7 @@ void DocxCompilerItem::loadXmlStrings() {
     if (l_isPlaceHolder
             && XmlFunc::XMLChCmp(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("type")), _X("item-group"))) {
       l_str = XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode)->getAttribute(_X("ptr")));
-      l_ptr = (void*) StrFunc::strToInt<size_t>(l_str);
+      l_ptr = (void*) StrFunc::strToInt<uint64_t>(l_str);
 
       l_xmlString = new DocxCompilerXmlString(
               this,
@@ -260,7 +260,7 @@ void DocxCompilerItem::loadXmlStrings() {
             && XmlFunc::XMLChCmp(l_cursorNode ->getNamespaceURI(), _X("http://schemas.openxmlformats.org/wordprocessingml/2006/main"))
             && XmlFunc::XMLChCmp(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(Utf8ToXMLCh(l_wordMlPrefix + ":type")), _X("page"))
             && ((xercesc::DOMElement*) l_cursorNode) ->hasAttribute(_X("sectId"))) {
-      l_pos = StrFunc::strToInt<size_t>(XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("sectId"))));
+      l_pos = StrFunc::strToInt<uint64_t>(XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("sectId"))));
       l_ptr = (void*) m_itemFile ->getSects() ->at(l_pos);
 
       l_stringValue =
@@ -301,7 +301,7 @@ void DocxCompilerItem::loadXmlStrings() {
       if (l_cursorNode ->getNodeType() == xercesc::DOMNode::ELEMENT_NODE
             && XmlFunc::XMLChCmp(l_cursorNode ->getLocalName(), _X("sectPr"))
             && XmlFunc::XMLChCmp(l_cursorNode ->getNamespaceURI(), _X("http://schemas.openxmlformats.org/wordprocessingml/2006/main"))) {
-      l_pos = StrFunc::strToInt<size_t>(XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode)->getAttribute(_X("sectId"))));
+      l_pos = StrFunc::strToInt<uint64_t>(XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode)->getAttribute(_X("sectId"))));
       l_xmlString = m_itemFile ->getSects() ->at(l_pos);
 
       ((xercesc::DOMElement*) l_cursorNode) ->removeAttribute(_X("sectId"));
@@ -366,7 +366,7 @@ void DocxCompilerItem::loadXmlStrings() {
             || XmlFunc::XMLChCmp(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("type")), _X("barcode"))
             || XmlFunc::XMLChCmp(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("type")), _X("chart")))) {
       l_str = XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("ptr")));
-      l_ptr = (void*) StrFunc::strToInt<size_t>(l_str);
+      l_ptr = (void*) StrFunc::strToInt<uint64_t>(l_str);
 
       if (XmlFunc::XMLChCmp(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("type")), _X("text"))) l_type = DocxCompilerXmlString::TYPE_TEXT_FIELD;
       else if (XmlFunc::XMLChCmp(((xercesc::DOMElement*) l_cursorNode) ->getAttribute(_X("type")), _X("number"))) l_type = DocxCompilerXmlString::TYPE_NUMBER_FIELD;
@@ -392,7 +392,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "text" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -409,7 +409,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "number" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -426,7 +426,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "datetime" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -443,7 +443,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "boolean" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -460,7 +460,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "altChunk" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -477,7 +477,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "pic" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -494,7 +494,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "barcode" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -511,7 +511,7 @@ void DocxCompilerItem::loadXmlStrings() {
         && XmlFunc::XMLChCmp( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "type" ) ), _X( "chart" ) ) )
       {
         l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_cursorNode ) ->getAttribute( _X( "ptr" ) ) );
-        l_ptr = ( void* ) StrFunc::strToInt<size_t>( l_str );
+        l_ptr = ( void* ) StrFunc::strToInt<uint64_t>( l_str );
 
         l_xmlString = new DocxCompilerXmlString(
           this,
@@ -560,7 +560,7 @@ void DocxCompilerItem::loadXmlStrings() {
         }
 
         l_str = XmlFunc::XMLChToUtf8(((xercesc::DOMElement*) l_cursorNode)->getAttribute(_X("ptr")));
-        l_ptr = (void*) StrFunc::strToInt<size_t>(l_str);
+        l_ptr = (void*) StrFunc::strToInt<uint64_t>(l_str);
 
         l_xmlString = new DocxCompilerXmlString(
                 this,
@@ -874,26 +874,26 @@ void DocxCompilerItem::serialize(ZipFile* p_zipFile) {
   p_zipFile ->writeNum<uint8> (m_keepTogether);
   p_zipFile ->writeNum<uint8> (m_keepWithPrev);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_path.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_path.size());
 
   FOR_EACH(l_pathIterator, &m_path) {
     p_zipFile ->writePtr(*l_pathIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_childItemGroups.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_childItemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_childItemGroups) {
     p_zipFile ->writePtr(*l_itemGroupIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_fieldsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_fieldsByName.size());
 
   FOR_EACH(l_fieldIterator, &m_fieldsByName) {
     p_zipFile ->writeStr(l_fieldIterator ->first);
     p_zipFile ->writePtr(l_fieldIterator ->second);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_xmlStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_xmlStrings.size());
 
   FOR_EACH(l_xmlStringIterator, &m_xmlStrings) {
     p_zipFile ->writePtr(*l_xmlStringIterator);

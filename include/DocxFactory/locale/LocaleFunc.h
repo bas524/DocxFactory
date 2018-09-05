@@ -209,8 +209,8 @@ namespace DocxFactory {
         static string dateTimeToStrUtf8(double p_time, short p_timeZone, const list<DateTimeFormat*>* p_dateTimeFormat);
         static void getDateTimeFormat(const string& p_format, list<DateTimeFormat*>* p_dateTimeFormat);
 
-        static string getSubStr(const string& p_str, size_t p_start, size_t p_len);
-        static string getSubStrUtf8(const string& p_str, size_t p_start, size_t p_len);
+        static string getSubStr(const string& p_str, uint64_t p_start, uint64_t p_len);
+        static string getSubStrUtf8(const string& p_str, uint64_t p_start, uint64_t p_len);
 
         static string convertToUtf8(const string& p_str);
         static string convertToUtf8(const wstring& p_wstr); // it is assumed that wstring is utf16 or utf32
@@ -252,14 +252,14 @@ namespace DocxFactory {
                 const string* p_monthShortNames);
 
         // used in strToDateTime
-        static void getNextMinSecTimeZone(const string& p_str, size_t& p_pos, size_t p_len, unsigned short& p_min, unsigned short& p_sec, double& p_secFrac, short& p_timeZone);
-        static void getNextNum(const string& p_str, size_t& p_pos, size_t p_len, unsigned short& p_val, unsigned short& p_digits, char& p_nextChar);
+        static void getNextMinSecTimeZone(const string& p_str, uint64_t& p_pos, uint64_t p_len, unsigned short& p_min, unsigned short& p_sec, double& p_secFrac, short& p_timeZone);
+        static void getNextNum(const string& p_str, uint64_t& p_pos, uint64_t p_len, unsigned short& p_val, unsigned short& p_digits, char& p_nextChar);
 
         // low-level conversion functions also used by other libraries like XmlFunc
-        static std::vector<UChar> utf8ToUChar(const char* p_str, size_t p_len);
-        static std::vector<UChar> strToUChar(const char* p_str, size_t p_len);
-        static std::vector<char> ucharToUtf8(const UChar* p_ustr, size_t p_len);
-        static std::vector<char> ucharToStr(const UChar* p_ustr, size_t p_len);
+        static std::vector<UChar> utf8ToUChar(const char* p_str, uint64_t p_len);
+        static std::vector<UChar> strToUChar(const char* p_str, uint64_t p_len);
+        static std::vector<char> ucharToUtf8(const UChar* p_ustr, uint64_t p_len);
+        static std::vector<char> ucharToStr(const UChar* p_ustr, uint64_t p_len);
 
         static bool m_initialized;
         static string m_codePage;

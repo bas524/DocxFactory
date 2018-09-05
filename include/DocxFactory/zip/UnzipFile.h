@@ -36,14 +36,14 @@ namespace DocxFactory {
 
         std::vector<byte> extractEntryToBuf(
                 const string& p_path,
-                size_t& p_bufSize) const;
+                uint64_t& p_bufSize) const;
 
         std::vector<byte> extractEntryToRaw(
                 const string& p_path,
                 int& p_method,
                 int& p_level,
                 FileInfo*& p_fileInfo,
-                size_t& p_bufSize) const;
+                uint64_t& p_bufSize) const;
 
         void extractEntryToFile(
                 const string& p_fileName,
@@ -63,14 +63,14 @@ namespace DocxFactory {
         typename std::enable_if<std::is_floating_point<T>::value, T>::type readNum();
 
         string readStr();
-        void read(char* p_buf, size_t p_bufSize);
+        void read(char* p_buf, uint64_t p_bufSize);
 
-        void insertPtrBySeq(size_t p_key, void* p_ptr);
-        const map<size_t, void*>* getPtrsBySeq() const;
+        void insertPtrBySeq(uint64_t p_key, void* p_ptr);
+        const map<uint64_t, void*>* getPtrsBySeq() const;
 
         bool isFileOpen() const;
         string getFileName() const;
-        size_t getStreamPos() const;
+        uint64_t getStreamPos() const;
         const map<string, FileInfo*>* getEntryList() const;
 
     protected:
@@ -87,10 +87,10 @@ namespace DocxFactory {
 
         bool m_fileOpen;
         bool m_streamOpen;
-        size_t m_streamPos;
+        uint64_t m_streamPos;
 
         map<string, FileInfo*> m_entryList;
-        map<size_t, void*> m_ptrsBySeq;
+        map<uint64_t, void*> m_ptrsBySeq;
 
     };
 

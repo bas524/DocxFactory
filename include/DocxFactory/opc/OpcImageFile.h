@@ -70,7 +70,7 @@ namespace DocxFactory {
 
         ImageSource m_imageSource;
         byte* m_imageBuf;
-        size_t m_imageBufSize;
+        uint64_t m_imageBufSize;
 
         unsigned int m_emuWidth;
         unsigned int m_emuHeight;

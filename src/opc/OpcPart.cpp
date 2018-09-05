@@ -45,7 +45,7 @@ void OpcPart::loadDoc() {
   if (m_doc)
     return;
 
-  size_t l_bufSize;
+  uint64_t l_bufSize;
   std::vector<byte> l_buf = m_package ->getUnzipFile() ->extractEntryToBuf(OpcFunc::opcToZipPath(m_fullPath), l_bufSize);
 
   // load/parse the doc using the package dom parser to keep it in scope for the life of the package
@@ -54,7 +54,7 @@ void OpcPart::loadDoc() {
 } // loadDoc
 
 void OpcPart::save() {
-  size_t l_bufSize;
+  uint64_t l_bufSize;
   std::vector<byte> l_buf;
 
   int l_method;
@@ -154,7 +154,7 @@ void OpcPart::setImageFile(OpcImageFile* p_imageFile) {
   m_imageFile = p_imageFile;
 } // setImageFile
 
-void OpcPart::setBuf(const char* p_buf, size_t p_bufSize) {
+void OpcPart::setBuf(const char* p_buf, uint64_t p_bufSize) {
   m_buf = p_buf;
   m_bufSize = p_bufSize;
 } // setBuf
@@ -211,7 +211,7 @@ OpcImageFile* OpcPart::getImageFile() const {
   return m_imageFile;
 } // getImageFile
 
-const char* OpcPart::getBuf(size_t& p_bufSize) const {
+const char* OpcPart::getBuf(uint64_t& p_bufSize) const {
   p_bufSize = m_bufSize;
 
   return m_buf;

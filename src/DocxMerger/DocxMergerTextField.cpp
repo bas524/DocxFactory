@@ -68,10 +68,10 @@ void DocxMergerTextField::deserialize(UnzipFile* p_unzipFile) {
 string DocxMergerTextField::encodeT(
         const string& p_srcStr,
         const string& p_wordMlPrefix) {
-  size_t l_srcLen = p_srcStr.length();
-  size_t l_srcPos = 0;
+  uint64_t l_srcLen = p_srcStr.length();
+  uint64_t l_srcPos = 0;
 
-  size_t l_dstPos = 0;
+  uint64_t l_dstPos = 0;
   bool l_newline = false;
   bool l_tab = false;
   unsigned char l_ch;

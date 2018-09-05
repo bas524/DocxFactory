@@ -445,7 +445,7 @@ void Merger::merge() {
 
   }
   else {
-    size_t l_bufSize;
+    uint64_t l_bufSize;
     std::vector<byte> l_buf = OsFunc::readFile(m_dataFile, l_bufSize);
 
     l_data.assign((char*) l_buf.data(), l_bufSize);
@@ -482,8 +482,8 @@ void Merger::list() {
   string l_parent;
   string l_fields;
 
-  size_t len = l_items.getNumEntries();
-  size_t pos;
+  uint64_t len = l_items.getNumEntries();
+  uint64_t pos;
 
   /*12345678901234567890 12345678901234567890*/
   cout << "Item                 Parent               Fields" << endl;

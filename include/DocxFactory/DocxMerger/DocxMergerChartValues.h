@@ -16,9 +16,9 @@ namespace DocxFactory {
         DocxMergerChartValues();
         virtual ~DocxMergerChartValues();
 
-        virtual void setValue(DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category, const string& p_value);
-        virtual void setValue(DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category, double p_value);
-        virtual string getValue(DocxMergerPasteChartValues* p_pasteValues, size_t p_series, size_t p_category) const;
+        virtual void setValue(DocxMergerPasteChartValues* p_pasteValues, uint64_t p_series, uint64_t p_category, const string& p_value);
+        virtual void setValue(DocxMergerPasteChartValues* p_pasteValues, uint64_t p_series, uint64_t p_category, double p_value);
+        virtual string getValue(DocxMergerPasteChartValues* p_pasteValues, uint64_t p_series, uint64_t p_category) const;
 
     protected:
 

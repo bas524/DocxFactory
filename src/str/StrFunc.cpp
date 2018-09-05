@@ -73,22 +73,22 @@ bool StrFunc::isHex(const string& p_str) {
 } // isHex
 
 bool StrFunc::begins(const string& p_str, const string& p_prefix) {
-  size_t l_lenStr = p_str.length();
-  size_t l_lenPrefix = p_prefix.length();
+  uint64_t l_lenStr = p_str.length();
+  uint64_t l_lenPrefix = p_prefix.length();
 
   return ( l_lenStr >= l_lenPrefix && p_str.substr(0, l_lenPrefix) == p_prefix);
 } // begins
 
 bool StrFunc::ends(const string& p_str, const string& p_suffix) {
-  size_t l_lenStr = p_str.length();
-  size_t l_lenSuffix = p_suffix.length();
+  uint64_t l_lenStr = p_str.length();
+  uint64_t l_lenSuffix = p_suffix.length();
 
   return ( l_lenStr >= l_lenSuffix && p_str.substr(l_lenStr - l_lenSuffix, l_lenSuffix) == p_suffix);
 } // ends
 
 string StrFunc::caps(const string& p_str) {
-  size_t l_len = p_str.length();
-  size_t l_pos;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos;
 
   std::vector<char> l_str(l_len + 1);
 
@@ -101,8 +101,8 @@ string StrFunc::caps(const string& p_str) {
 } // caps
 
 string StrFunc::lc(const string& p_str) {
-  size_t l_len = p_str.length();
-  size_t l_pos;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos;
 
   std::vector<char> l_str(l_len + 1);
 
@@ -115,8 +115,8 @@ string StrFunc::lc(const string& p_str) {
 } // lc
 
 string StrFunc::leftTrim(const string& p_str, const string& p_chars) {
-  size_t l_len = p_str.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos = 0;
 
   while (true) {
     if (l_pos >= l_len)
@@ -132,7 +132,7 @@ string StrFunc::leftTrim(const string& p_str, const string& p_chars) {
 } // leftTrim
 
 string StrFunc::rightTrim(const string& p_str, const string& p_chars) {
-  size_t l_pos = p_str.length() - 1;
+  uint64_t l_pos = p_str.length() - 1;
 
   while (true) {
     if (l_pos == -1)
@@ -148,9 +148,9 @@ string StrFunc::rightTrim(const string& p_str, const string& p_chars) {
 } // rightTrim
 
 string StrFunc::trim(const string& p_str, const string& p_chars) {
-  size_t l_len = p_str.length();
-  size_t l_pos1 = 0;
-  size_t l_pos2 = l_len - 1;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos1 = 0;
+  uint64_t l_pos2 = l_len - 1;
 
   while (true) {
     if (l_pos1 >= l_len)
@@ -176,11 +176,11 @@ string StrFunc::trim(const string& p_str, const string& p_chars) {
 } // trim
 
 string StrFunc::removeDuplicate(const string& p_str, const string& p_chars) {
-  size_t l_len = p_str.length();
-  size_t l_pos;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos;
 
   std::vector<char> l_str(l_len + 1);
-  size_t l_strLen = 0;
+  uint64_t l_strLen = 0;
 
   const char* l_chars = p_chars.c_str();
   char l_replace = p_chars[ p_chars.length() - 1];
@@ -202,9 +202,9 @@ string StrFunc::removeDuplicate(const string& p_str, const string& p_chars) {
 
 string StrFunc::replace(const string& p_str, const string& p_from, const string& p_to) {
   string l_str = p_str;
-  size_t l_fromLen = p_from.length();
-  size_t l_toLen = p_to.length();
-  size_t l_pos = 0;
+  uint64_t l_fromLen = p_from.length();
+  uint64_t l_toLen = p_to.length();
+  uint64_t l_pos = 0;
 
   while ((l_pos = l_str.find(p_from, l_pos)) != std::string::npos) {
     l_str.replace(l_pos, l_fromLen, p_to);
@@ -214,7 +214,7 @@ string StrFunc::replace(const string& p_str, const string& p_from, const string&
   return l_str;
 } // replace
 
-string StrFunc::padRight(const string& p_str, size_t p_len, char p_ch) {
+string StrFunc::padRight(const string& p_str, uint64_t p_len, char p_ch) {
   if (p_str.length() > p_len)
     return p_str.substr(0, p_len);
 
@@ -227,7 +227,7 @@ string StrFunc::padRight(const string& p_str, size_t p_len, char p_ch) {
   return p_str;
 } // padRight
 
-string StrFunc::padLeft(const string& p_str, size_t p_len, char p_ch) {
+string StrFunc::padLeft(const string& p_str, uint64_t p_len, char p_ch) {
   if (p_str.length() > p_len)
     return p_str.substr(0, p_len);
 
@@ -246,9 +246,9 @@ void StrFunc::strToSet(const string& p_str, set<string>& p_set, const string& p_
   if (p_str.empty())
     return;
 
-  size_t l_len = p_str.length();
-  size_t l_pos;
-  size_t l_start = 0;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos;
+  uint64_t l_start = 0;
 
   while (l_start < l_len) {
     l_pos = p_str.find(p_delim, l_start);
@@ -277,12 +277,12 @@ string StrFunc::setToStr(const set<string>& p_set, const string& p_delim) {
   return l_str;
 } // setToStr
 
-string StrFunc::encodeBase64(const char* p_data, size_t p_len) {
+string StrFunc::encodeBase64(const char* p_data, uint64_t p_len) {
   unsigned char l_block3[3];
   unsigned char l_block4[4];
 
   string l_str;
-  size_t l_pos;
+  uint64_t l_pos;
 
   int i = 0;
   int j = 0;
@@ -327,8 +327,8 @@ string StrFunc::decodeBase64(const string& p_data) {
   unsigned char l_block4[4];
 
   string l_str;
-  size_t l_len = p_data.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_data.length();
+  uint64_t l_pos = 0;
 
   int i = 0;
   int j = 0;

@@ -49,8 +49,8 @@ namespace DocxFactory {
                 const string& p_fileUrl);
 
         unsigned short m_picId;
-        size_t m_emuWidth;
-        size_t m_emuHeight;
+        uint64_t m_emuWidth;
+        uint64_t m_emuHeight;
         UseSize m_useSize;
 
         list<pair<string, char>> m_picStrings;

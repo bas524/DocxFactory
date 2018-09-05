@@ -40,8 +40,8 @@ void DocxCompilerField::getTypeAndFormat(
   vector<string> l_wordList;
   FieldParam l_param;
   string l_value;
-  size_t l_pos;
-  size_t l_len;
+  uint64_t l_pos;
+  uint64_t l_len;
 
   FieldParam l_case;
   bool l_trim;
@@ -70,7 +70,7 @@ void DocxCompilerField::getTypeAndFormat(
 
   string l_str;
   char l_ch;
-  size_t i;
+  uint64_t i;
 
   p_fieldType = TYPE_TEXT;
   p_valueByParam ->clear();

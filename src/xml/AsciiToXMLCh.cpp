@@ -7,8 +7,8 @@ using namespace DocxFactory;
 using namespace std;
 
 AsciiToXMLCh::AsciiToXMLCh(const string& p_str) {
-  size_t l_len = p_str.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos = 0;
 
   m_xmlCh = new XMLCh[ l_len + 1 ];
 
