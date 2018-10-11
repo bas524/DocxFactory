@@ -23,6 +23,8 @@ endif ()
 if (NOT WIN32)
   include_directories(SYSTEM /usr/include)
   include_directories(SYSTEM /usr/local/include)
+else(NOT WIN32)
+  add_definitions(-DDOCXFACTORY_DLL_EXPORT)
 endif (NOT WIN32)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
@@ -52,9 +54,15 @@ endif (WIN32)
 
 ########### TODO : replace with find
 set(SWF "/home/ivk/coding/swf")
+if (NOT WIN32)
 set(ZINT_INCLUDE_DIRS "${SWF}/base_alt64/x32/zint/include")
 set(ZINT_LIB_DIRS "${SWF}/base_alt64/x32/zint/lib")
 set(ZINT_LIBRARIES "-lzint")
+else()
+set(ZINT_INCLUDE_DIRS "C:/coding/misc/zint-package/include")
+set(ZINT_LIB_DIRS "C:/coding/misc/zint-package/lib")
+set(ZINT_LIBRARIES "zint.lib")
+endif()
 message(STATUS "ZINT => ${ZINT_LIB_DIRS} ${ZINT_LIBRARIES}")
 ###########
 
@@ -62,16 +70,26 @@ include_directories(${ZINT_INCLUDE_DIRS})
 link_directories(${ZINT_LIB_DIRS})
 
 ########### TODO : replace with find
+if (NOT WIN32)
 set(RAPIDJSON_INCLUDE_DIRS "${SWF}/base_alt64/x32/rapidjson/include")
+else()
+set(RAPIDJSON_INCLUDE_DIRS "C:/coding/misc/rapidjson-package/include")
+endif()
 message(STATUS "RAPIDJSON => ${RAPIDJSON_INCLUDE_DIRS}")
 ###########
 
 include_directories(${RAPIDJSON_INCLUDE_DIRS})
 
 ########### TODO : replace with find
+if (NOT WIN32)
 set(MINIZIP_INCLUDE_DIRS "/usr/include")
 set(MINIZIP_LIB_DIRS "/usr/lib")
 set(MINIZIP_LIBRARIES "-lminizip")
+else()
+set(MINIZIP_INCLUDE_DIRS "C:/coding/misc/minizip-package/include")
+set(MINIZIP_LIB_DIRS "C:/coding/misc/minizip-package/lib")
+#set(MINIZIP_LIBRARIES debug libminizipd.lib optimized libminizip.lib)
+endif()
 message(STATUS "MINIZIP => ${MINIZIP_LIB_DIRS} ${MINIZIP_LIBRARIES}")
 ###########
 
@@ -79,9 +97,19 @@ include_directories(${MINIZIP_INCLUDE_DIRS})
 link_directories(${MINIZIP_LIB_DIRS})
 
 ########### TODO : replace with find
+if (NOT WIN32)
 set(LIBREOFFICE_SDK_INCLUDE_DIRS "/opt/libreoffice5.3/sdk/include" "/opt/libreoffice5.3/sdk/include_generated")
 set(LIBREOFFICE_SDK_LIB_DIRS "/opt/libreoffice5.3/sdk/lib")
 set(LIBREOFFICE_SDK_LIBRARIES "-luno_cppu -luno_cppuhelpergcc3 -luno_sal -luno_salhelpergcc3")
+else()
+set(LIBREOFFICE_SDK_INCLUDE_DIRS "C:/Program Files/LibreOffice_6.0_SDK/sdk/include" "C:/Program Files/LibreOffice_6.0_SDK/sdk/include_generated")
+set(LIBREOFFICE_SDK_LIB_DIRS "C:/Program Files/LibreOffice_6.0_SDK/sdk/lib")
+set(LIBREOFFICE_SDK_LIBRARIES "C:/Program Files/LibreOffice_6.0_SDK/sdk/lib/icppu.lib" 
+"C:/Program Files/LibreOffice_6.0_SDK/sdk/lib/icppuhelper.lib"
+"C:/Program Files/LibreOffice_6.0_SDK/sdk/lib/isal.lib" 
+"C:/Program Files/LibreOffice_6.0_SDK/sdk/lib/isalhelper.lib"
+"Version.lib")
+endif()
 message(STATUS "LIBREOFFICE => ${LIBREOFFICE_SDK_LIB_DIRS} ${LIBREOFFICE_SDK_LIBRARIES}")
 ###########
 
@@ -89,11 +117,16 @@ include_directories(${LIBREOFFICE_SDK_INCLUDE_DIRS})
 link_directories(${LIBREOFFICE_SDK_LIB_DIRS})
 
 if (WIN32)
-  find_package(ICU COMPONENTS dt in io le lx tu uc REQUIRED)
+  set(ICU_ROOT C:/coding/misc/icu-package)
+  find_package(ICU COMPONENTS dt in io tu uc REQUIRED)
 else (WIN32)
   find_package(ICU COMPONENTS data i18n io le lx tu uc REQUIRED)
 endif (WIN32)
 include_directories(${ICU_INCLUDE_DIRS})
+
+if (WIN32)
+  set(ImageMagick_EXECUTABLE_DIR C:/coding/misc/ImageMagick-Windows/VisualMagick/bin)
+endif()
 
 find_package(ImageMagick COMPONENTS Magick++ REQUIRED)
 include_directories(${ImageMagick_Magick++_INCLUDE_DIRS})
@@ -112,7 +145,9 @@ endif (NOT WIN32)
 add_definitions( -DMAGICKCORE_QUANTUM_DEPTH=16 )
 add_definitions( -DMAGICKCORE_HDRI_ENABLE=0 )
 
-
+if (WIN32)
+  list(APPEND CMAKE_MODULE_PATH C:/coding/misc/xerces-c-package/cmake)
+endif()
 find_package(XercesC REQUIRED)
 include_directories(${XercesC_INCLUDE_DIR})
 
@@ -221,15 +256,8 @@ else(NOT WIN32)
 endif (NOT WIN32)
 
 
-add_library(DocxFactoryLib SHARED ${DOCXFACTORYLIB_SRC})
-target_link_libraries(DocxFactoryLib 
-${ZINT_LIBRARIES} 
-${ICU_LIBRARIES} 
-${ImageMagick_Magick++_LIBRARY} ${ImageMagick_MagickWand_LIBRARY} ${ImageMagick_MagickCore_LIBRARY} 
-${XercesC_LIBRARY} 
-${ZLIB_LIBRARIES}
-${MINIZIP_LIBRARIES}
-)
+add_library(DocxFactoryLib STATIC ${DOCXFACTORYLIB_SRC})
+
 
 link_directories(${CMAKE_CURRENT_BINARY_DIR})
 
@@ -239,13 +267,24 @@ set(UNOUTIL_SRC
     src/UnoUtil/UnoException.cpp
     src/UnoUtil/UnoUtilImpl.cpp
 )
-set_source_files_properties(src/UnoUtil/UnoUtilImpl.cpp PROPERTIES COMPILE_FLAGS "-DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3")
+if (NOT WIN32)
+  set_source_files_properties(src/UnoUtil/UnoUtilImpl.cpp PROPERTIES COMPILE_FLAGS "-DUNX -DGCC -DLINUX -DCPPU_ENV=gcc3")
+else()
+  set_source_files_properties(src/UnoUtil/UnoUtilImpl.cpp PROPERTIES COMPILE_FLAGS "")
+endif()
 
 add_library(UnoUtil SHARED ${UNOUTIL_SRC})
 target_link_libraries(UnoUtil
 ${LIBREOFFICE_SDK_LIBRARIES}
+${ZINT_LIBRARIES} 
+${ICU_LIBRARIES} 
+${ImageMagick_Magick++_LIBRARY} ${ImageMagick_MagickWand_LIBRARY} ${ImageMagick_MagickCore_LIBRARY} 
+${XercesC_LIBRARY} 
+${ZLIB_LIBRARIES}
+${MINIZIP_LIBRARIES}
 DocxFactoryLib
 )
+
 add_dependencies(UnoUtil DocxFactoryLib)
 # libDocxFactory
 set(DOCXFACTORY_SRC
@@ -373,6 +412,7 @@ add_library(DocxFactory SHARED ${DOCXFACTORY_SRC})
 target_link_libraries(DocxFactory 
 UnoUtil
 ${CMAKE_DL_LIBS}
+${ZLIB_LIBRARIES}
 )
 add_dependencies(DocxFactory UnoUtil)
 

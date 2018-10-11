@@ -10,11 +10,11 @@
 
 // intended for literal ascii values only
 
-#ifdef _NATIVE_WCHAR_T_DEFINED
-#define _X( str ) L ## str
-#else
+//#ifdef _NATIVE_WCHAR_T_DEFINED
+//#define _X( str ) L ## str
+//#else
 #define _X( str ) AsciiToXMLCh( str )
-#endif
+//#endif
 
 
 
