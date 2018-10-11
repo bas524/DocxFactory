@@ -117,7 +117,7 @@ string OsFunc::searchPath(const string& p_fileName) {
 
   string l_retVal = "";
   string l_fullPath;
-  size_t l_pos;
+  uint64_t l_pos;
 
   for (l_pos = 0; l_pos < l_pathEntries ->getNumEntries(); ++l_pos) {
     l_fullPath = normalizePath(l_pathEntries ->getEntry(l_pos) + '/' + p_fileName);
@@ -165,7 +165,7 @@ void OsFunc::breakFileUrl(
         string& p_host,
         string& p_path) {
   string l_url = p_url;
-  size_t i;
+  uint64_t i;
 
   p_protocol = "";
   p_host = "";
@@ -222,7 +222,7 @@ string OsFunc::fileUrlToPath(const string& p_url) {
 
 string OsFunc::normalizeFileUrl(const string& p_url) {
   string l_url = StrFunc::trim(p_url);
-  size_t i;
+  uint64_t i;
 
   if (l_url.empty())
     return l_url;
@@ -260,7 +260,7 @@ string OsFunc::normalizeFileUrl(const string& p_url) {
 
 std::vector<byte> OsFunc::readFile(
         const string& p_fileName,
-        size_t& p_bufSize) {
+        uint64_t& p_bufSize) {
   ifstream l_fileStream;
   std::vector<byte> l_buf;
 
@@ -270,7 +270,7 @@ std::vector<byte> OsFunc::readFile(
     if (l_fileStream.fail())
       throw FileNotFoundException(p_fileName, __FILE__, __LINE__);
 
-    p_bufSize = (size_t) l_fileStream.tellg();
+    p_bufSize = (uint64_t) l_fileStream.tellg();
     l_buf.resize(p_bufSize);
 
     l_fileStream.seekg(0, ios::beg);
@@ -289,7 +289,7 @@ std::vector<byte> OsFunc::readFile(
 void OsFunc::writeFile(
         const string& p_fileName,
         const byte* p_buf,
-        size_t p_bufSize,
+        uint64_t p_bufSize,
         bool p_append) {
   ofstream l_fileStream;
 
@@ -312,16 +312,16 @@ void OsFunc::writeFile(
 
 void OsFunc::copy(const string& p_srcFileName, const string& p_dstFileName) {
 #if defined( _WIN32 ) || defined( _WIN64 )
-  const size_t l_bufSize = 4096;
+  const uint64_t l_bufSize = 4096;
 #else
-  const size_t l_bufSize = 8192;
+  const uint64_t l_bufSize = 8192;
 #endif
 
   FILE* l_srcFile = NULL;
   FILE* l_dstFile = NULL;
 
   char l_buf[ l_bufSize ];
-  size_t l_size;
+  uint64_t l_size;
 
   try {
     l_srcFile = fopen(p_srcFileName.c_str(), "rb");

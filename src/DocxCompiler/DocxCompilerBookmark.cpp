@@ -18,7 +18,7 @@ DocxCompilerBookmark::DocxCompilerBookmark(
         DocxCompilerItemFile* p_itemFile,
         DocxCompilerBookmark* p_parent,
         const string& p_name,
-        size_t p_id,
+        uint64_t p_id,
         xercesc::DOMElement* p_startNode) {
   m_itemFile = p_itemFile;
   m_parent = p_parent;
@@ -51,9 +51,9 @@ void DocxCompilerBookmark::normalize() {
   xercesc::DOMNode* l_prNodeTemp2;
   xercesc::DOMNode* l_childNode;
 
-  size_t l_commonParent;
-  size_t l_parent;
-  size_t l_pos;
+  uint64_t l_commonParent;
+  uint64_t l_parent;
+  uint64_t l_pos;
   bool l_ok;
 
   l_bodyNode = m_itemFile ->getBodyNode();
@@ -452,7 +452,7 @@ void DocxCompilerBookmark::normalize() {
    ***/
 } // normalize
 
-void DocxCompilerBookmark::setGroupId(size_t p_groupId) {
+void DocxCompilerBookmark::setGroupId(uint64_t p_groupId) {
   m_groupId = p_groupId;
 } // setGroupId
 
@@ -468,11 +468,11 @@ string DocxCompilerBookmark::getName()const {
   return m_name;
 } // getName
 
-size_t DocxCompilerBookmark::getId() const {
+uint64_t DocxCompilerBookmark::getId() const {
   return m_id;
 } // getId
 
-size_t DocxCompilerBookmark::getGroupId() const {
+uint64_t DocxCompilerBookmark::getGroupId() const {
   return m_groupId;
 } // getGroupId
 

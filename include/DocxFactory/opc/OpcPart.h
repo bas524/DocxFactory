@@ -44,7 +44,7 @@ XERCES_CPP_NAMESPACE_END
 
         void setDoc(xercesc::DOMDocument* p_doc);
         void setImageFile(OpcImageFile* p_imageFile);
-        void setBuf(const char* p_buf, size_t p_bufSize);
+        void setBuf(const char* p_buf, uint64_t p_bufSize);
         void setChangeStatus(PartChangeStatus p_changeStatus);
 
         OpcImageFile* insertImageFile(
@@ -60,7 +60,7 @@ XERCES_CPP_NAMESPACE_END
 
         xercesc::DOMDocument* getDoc() const;
         OpcImageFile* getImageFile() const;
-        const char* getBuf(size_t& p_bufSize) const;
+        const char* getBuf(uint64_t& p_bufSize) const;
         PartChangeStatus getChangeStatus() const;
 
     protected:
@@ -79,7 +79,7 @@ XERCES_CPP_NAMESPACE_END
         xercesc::DOMDocument* m_doc;
         OpcImageFile* m_imageFile;
         const char* m_buf;
-        size_t m_bufSize;
+        uint64_t m_bufSize;
         PartChangeStatus m_changeStatus;
 
     };

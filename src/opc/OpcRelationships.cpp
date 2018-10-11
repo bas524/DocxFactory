@@ -80,7 +80,7 @@ void OpcRelationships::load() {
   string l_targetMode;
   unsigned int l_idSeq;
 
-  size_t l_bufSize;
+  uint64_t l_bufSize;
   std::vector<byte> l_buf = m_package ->getUnzipFile() ->extractEntryToBuf(
           OpcFunc::opcToZipPath(m_fullPath), l_bufSize);
 
@@ -141,7 +141,7 @@ void OpcRelationships::save() {
   OpcRelationship* l_relationship;
   ZipFile* l_zipFile;
 
-  size_t l_bufSize;
+  uint64_t l_bufSize;
   int l_method;
   int l_level;
   FileInfo* l_fileInfo;

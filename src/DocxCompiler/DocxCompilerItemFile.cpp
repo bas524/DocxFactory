@@ -57,9 +57,9 @@ struct Bookmark {
   xercesc::DOMElement* m_startNode;
   xercesc::DOMElement* m_endNode;
   string m_name;
-  size_t m_id;
-  size_t m_startGroupSeq;
-  size_t m_endGroupSeq;
+  uint64_t m_id;
+  uint64_t m_startGroupSeq;
+  uint64_t m_endGroupSeq;
 };
 
 bool Bookmark::BookmarkCmp(Bookmark* p_left, Bookmark* p_right) {
@@ -98,7 +98,7 @@ DocxCompilerItemFile::DocxCompilerItemFile(DocxCompilerFile* p_file, OpcPart* p_
 
 DocxCompilerItemFile::~DocxCompilerItemFile() {
   list<DocxCompilerBookmark*>::iterator l_bookmarkIterator;
-  size_t i;
+  uint64_t i;
 
   FOR_EACH(l_bookmarkIterator, &m_rootBookmarks) {
     delete *l_bookmarkIterator;
@@ -116,7 +116,7 @@ void DocxCompilerItemFile::load() {
 } // load
 
 void DocxCompilerItemFile::loadBookmarks() {
-  map<size_t, DocxCompilerBookmark*>::iterator l_bookmarkIterator;
+  map<uint64_t, DocxCompilerBookmark*>::iterator l_bookmarkIterator;
   DocxCompilerBookmark* l_bookmark;
 
   list<DocxCompilerBookmark*> l_parentBookmarks;
@@ -129,7 +129,7 @@ void DocxCompilerItemFile::loadBookmarks() {
   xercesc::DOMNode* l_parentNode;
 
   string l_bookmarkName;
-  size_t l_bookmarkId;
+  uint64_t l_bookmarkId;
 
   l_cursorDriller.reset(new XmlTreeDriller(
           m_bodyNode,
@@ -157,7 +157,7 @@ void DocxCompilerItemFile::loadBookmarks() {
 
       else {
         l_bookmarkName = StrFunc::lc(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":name"))));
-        l_bookmarkId = StrFunc::strToInt<size_t> (XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
+        l_bookmarkId = StrFunc::strToInt<uint64_t> (XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
 
         l_bookmark = new DocxCompilerBookmark(
                 this,
@@ -183,7 +183,7 @@ void DocxCompilerItemFile::loadBookmarks() {
     }
     else
       if (XmlFunc::XMLChCmp(l_cursorNode ->getLocalName(), _X("bookmarkEnd"))) {
-      l_bookmarkId = StrFunc::strToInt<size_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
+      l_bookmarkId = StrFunc::strToInt<uint64_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
       l_bookmarkIterator = m_bookmarksById.find(l_bookmarkId);
 
       if (l_bookmarkIterator == m_bookmarksById.end())
@@ -253,7 +253,7 @@ void DocxCompilerItemFile::loadItems() {
   xercesc::DOMNode* l_node;
 
   DocxCompilerItem* l_fillItem;
-  size_t l_pageNum = 0;
+  uint64_t l_pageNum = 0;
   string l_str;
 
   try {
@@ -408,7 +408,7 @@ void DocxCompilerItemFile::loadItems() {
 
       while (l_cursorNode = (xercesc::DOMElement*) l_treeDriller ->nextNode()) {
         l_str = XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(_X("ptr")));
-        l_itemGroup = (DocxCompilerItemGroup*) StrFunc::strToInt<size_t>(l_str);
+        l_itemGroup = (DocxCompilerItemGroup*) StrFunc::strToInt<uint64_t>(l_str);
 
         l_itemGroup ->setItem(l_item);
         l_item ->insertChildItemGroup(l_itemGroup);
@@ -486,7 +486,7 @@ void DocxCompilerItemFile::loadItemsByBookmark(DocxCompilerBookmark* p_bookmark,
   DocxCompilerItem* l_itemParent;
   DocxCompilerItemGroup* l_itemGroup;
 
-  size_t l_groupId;
+  uint64_t l_groupId;
   double l_size;
   double l_pageSize;
   bool l_keepTogether;
@@ -498,7 +498,7 @@ void DocxCompilerItemFile::loadItemsByBookmark(DocxCompilerBookmark* p_bookmark,
   DocxCompilerBooleanField* l_booleanField;
   string l_name;
   DocxCompilerBooleanField::BooleanValue l_value;
-  size_t l_len;
+  uint64_t l_len;
   bool l_ok;
 
   xercesc::DOMDocument* l_doc;
@@ -563,7 +563,7 @@ void DocxCompilerItemFile::loadItemsByBookmark(DocxCompilerBookmark* p_bookmark,
       l_doc ->appendChild(l_bodyNode);
 
       l_placeHolderNode ->setAttribute(_X("type"), _X("boolean"));
-      l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_booleanField)));
+      l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_booleanField)));
 
       while (true) {
         l_childNode = l_childBookmark ->getStartNode() ->getNextSibling();
@@ -681,7 +681,7 @@ void DocxCompilerItemFile::loadItemsByBookmark(DocxCompilerBookmark* p_bookmark,
         l_parentNode ->insertBefore(l_placeHolderNode, l_childBookmark ->getStartNode());
 
         l_placeHolderNode ->setAttribute(_X("type"), _X("item-group"));
-        l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_itemGroup)));
+        l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_itemGroup)));
 
         if (l_itemParent)
           l_itemParent ->insertChildItemGroup(l_itemGroup);
@@ -812,8 +812,8 @@ void DocxCompilerItemFile::loadFields() {
   set<string>::iterator l_fileRIdIterator;
   string l_fileRId;
 
-  size_t l_tEndIndex;
-  size_t l_tStartIndex;
+  uint64_t l_tEndIndex;
+  uint64_t l_tStartIndex;
   bool l_tStartFound;
   bool l_found;
   bool l_escape;
@@ -822,9 +822,9 @@ void DocxCompilerItemFile::loadFields() {
   char l_ch;
   char l_chNext;
 
-  size_t l_len;
-  size_t l_pos;
-  size_t i;
+  uint64_t l_len;
+  uint64_t l_pos;
+  uint64_t i;
 
   try {
 
@@ -853,7 +853,7 @@ void DocxCompilerItemFile::loadFields() {
         if (XmlFunc::XMLChCmp(l_cursorNode ->getNodeName(), _X("placeholder"))
                 && XmlFunc::XMLChCmp(l_cursorNode ->getAttribute(_X("type")), _X("boolean"))) {
           l_str = XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(_X("ptr")));
-          l_booleanField = (DocxCompilerBooleanField*) StrFunc::strToInt<size_t>(l_str);
+          l_booleanField = (DocxCompilerBooleanField*) StrFunc::strToInt<uint64_t>(l_str);
 
           l_parentNode = l_booleanField ->getDoc() ->getDocumentElement();
           l_node = l_parentNode;
@@ -1179,7 +1179,7 @@ _fieldBreak:
                           l_placeHolderNode);
 
                   l_placeHolderNode ->setAttribute(_X("type"), _X("text"));
-                  l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+                  l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
                   insertField(l_field);
                   break;
@@ -1194,7 +1194,7 @@ _fieldBreak:
                           l_placeHolderNode);
 
                   l_placeHolderNode ->setAttribute(_X("type"), _X("number"));
-                  l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+                  l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
                   insertField(l_field);
                   break;
@@ -1209,7 +1209,7 @@ _fieldBreak:
                           l_placeHolderNode);
 
                   l_placeHolderNode ->setAttribute(_X("type"), _X("datetime"));
-                  l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+                  l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
                   insertField(l_field);
                   break;
@@ -1420,7 +1420,7 @@ _fieldBreak:
                       l_placeHolderNode );
 
                     l_placeHolderNode ->setAttribute( _X( "type" ), _X( "text" ) );
-                    l_placeHolderNode ->setAttribute( _X( "ptr" ), Utf8ToXMLCh( StrFunc::intToStr( ( size_t ) l_field ) ) );
+                    l_placeHolderNode ->setAttribute( _X( "ptr" ), Utf8ToXMLCh( StrFunc::intToStr( ( uint64_t ) l_field ) ) );
 											
                     insertField( l_field );
                     break;
@@ -1435,7 +1435,7 @@ _fieldBreak:
                       l_placeHolderNode );
 
                     l_placeHolderNode ->setAttribute( _X( "type" ), _X( "number" ) );
-                    l_placeHolderNode ->setAttribute( _X( "ptr" ), Utf8ToXMLCh( StrFunc::intToStr( ( size_t ) l_field ) ) );
+                    l_placeHolderNode ->setAttribute( _X( "ptr" ), Utf8ToXMLCh( StrFunc::intToStr( ( uint64_t ) l_field ) ) );
 
                     insertField( l_field );
                     break;
@@ -1450,7 +1450,7 @@ _fieldBreak:
                       l_placeHolderNode );
 
                     l_placeHolderNode ->setAttribute( _X( "type" ), _X( "datetime" ) );
-                    l_placeHolderNode ->setAttribute( _X( "ptr" ), Utf8ToXMLCh( StrFunc::intToStr( ( size_t ) l_field ) ) );
+                    l_placeHolderNode ->setAttribute( _X( "ptr" ), Utf8ToXMLCh( StrFunc::intToStr( ( uint64_t ) l_field ) ) );
 
                     insertField( l_field );
                     break;
@@ -1624,7 +1624,7 @@ _fieldBreak:
                       l_cursorNode);
 
               l_placeHolderNode ->setAttribute(_X("type"), _X("pic"));
-              l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+              l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
               l_fileRId = ((DocxCompilerPicField*) l_field) ->getFileRId();
 
@@ -1699,7 +1699,7 @@ _fieldBreak:
               }
 
               l_placeHolderNode ->setAttribute(_X("type"), _X("chart"));
-              l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+              l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
               l_relationships ->deleteRelationship(l_relationship);
             }
@@ -1795,7 +1795,7 @@ _fieldBreak:
 
       l_placeHolderNode = (*l_fieldIterator) ->getPlaceHolderNode();
       l_placeHolderNode ->setAttribute(_X("type"), _X("altChunk"));
-      l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+      l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
       insertField(l_field);
       delete *l_fieldIterator;
@@ -1813,7 +1813,7 @@ _fieldBreak:
 
       l_placeHolderNode = (*l_fieldIterator) ->getPlaceHolderNode();
       l_placeHolderNode ->setAttribute(_X("type"), _X("barcode"));
-      l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((size_t) l_field)));
+      l_placeHolderNode ->setAttribute(_X("ptr"), Utf8ToXMLCh(StrFunc::intToStr((uint64_t) l_field)));
 
       insertField(l_field);
       delete *l_fieldIterator;
@@ -1859,7 +1859,7 @@ void DocxCompilerItemFile::loadStripes() {
 void DocxCompilerItemFile::loadXmlStrings() {
   list<DocxCompilerItem*>::iterator l_itemIterator;
   DocxCompilerXmlString* l_xmlString;
-  size_t i;
+  uint64_t i;
 
   trimItems();
 
@@ -1902,7 +1902,7 @@ void DocxCompilerItemFile::normalize() {
   XmlFunc::TagPos l_nodePos;
   string l_stringValue;
 
-  // size_t							l_idSeq = 0;
+  // uint64_t							l_idSeq = 0;
   string l_str;
   bool l_ok;
 
@@ -2528,7 +2528,7 @@ void DocxCompilerItemFile::normalize() {
           l_str = XmlFunc::XMLChToUtf8( ( ( xercesc::DOMElement* ) l_node ) ->getAttribute( _X( "id" ) ) );
           if ( StrFunc::isNum( l_str ) )
           {				
-            l_idSeq = StrFunc::strToInt<size_t>( l_str );
+            l_idSeq = StrFunc::strToInt<uint64_t>( l_str );
 
             if( l_idSeq > m_idSeq )
               m_idSeq = l_idSeq;
@@ -3389,8 +3389,8 @@ void DocxCompilerItemFile::normalizeTableBorders() {
 } // normalizeTableBorders
 
 void DocxCompilerItemFile::normalizeBookmarksStartEnd() {
-  map<size_t, Bookmark*>::iterator l_bookmarksByIdIterator;
-  map<size_t, Bookmark*> l_bookmarksById;
+  map<uint64_t, Bookmark*>::iterator l_bookmarksByIdIterator;
+  map<uint64_t, Bookmark*> l_bookmarksById;
 
   list<Bookmark*>::iterator l_bookmarkIterator;
   list<Bookmark*> l_bookmarks;
@@ -3410,9 +3410,9 @@ void DocxCompilerItemFile::normalizeBookmarksStartEnd() {
   xercesc::DOMNode* l_node;
 
   string l_bookmarkName;
-  size_t l_bookmarkId;
-  size_t l_startGroupSeq = 0;
-  size_t l_endGroupSeq = 0;
+  uint64_t l_bookmarkId;
+  uint64_t l_startGroupSeq = 0;
+  uint64_t l_endGroupSeq = 0;
 
   try {
     l_cursorDriller.reset(new XmlTreeDriller(
@@ -3423,7 +3423,7 @@ void DocxCompilerItemFile::normalizeBookmarksStartEnd() {
 
     while (l_cursorNode = (xercesc::DOMElement*) l_cursorDriller ->nextNode()) {
       if (XmlFunc::XMLChCmp(l_cursorNode ->getLocalName(), _X("bookmarkStart"))) {
-        l_bookmarkId = StrFunc::strToInt<size_t> (XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
+        l_bookmarkId = StrFunc::strToInt<uint64_t> (XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
         l_bookmarkName = StrFunc::lc(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":name"))));
 
         if (l_bookmarkStartNode
@@ -3444,7 +3444,7 @@ void DocxCompilerItemFile::normalizeBookmarksStartEnd() {
       }
       else
         if (XmlFunc::XMLChCmp(l_cursorNode ->getLocalName(), _X("bookmarkEnd"))) {
-        l_bookmarkId = StrFunc::strToInt<size_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
+        l_bookmarkId = StrFunc::strToInt<uint64_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
         l_bookmarksByIdIterator = l_bookmarksById.find(l_bookmarkId);
 
         if (l_bookmarksByIdIterator == l_bookmarksById.end())
@@ -3659,7 +3659,7 @@ void DocxCompilerItemFile::normalizeBookmarksHierarchy(DocxCompilerBookmark* p_b
   const list<DocxCompilerBookmark*>* l_childBookmarks;
   DocxCompilerBookmark* l_childBookmark;
   xercesc::DOMElement* l_lastEndNode = NULL;
-  size_t l_groupId = ++m_groupIdSeq;
+  uint64_t l_groupId = ++m_groupIdSeq;
 
   if (!p_bookmark)
     l_childBookmarks = &m_rootBookmarks;
@@ -3681,7 +3681,7 @@ void DocxCompilerItemFile::normalizeBookmarksHierarchy(DocxCompilerBookmark* p_b
 } // normalizeBookmarksHierarchy
 
 void DocxCompilerItemFile::normalizeBookmarksBr() {
-  map<size_t, DocxCompilerBookmark*>::iterator l_bookmarkIterator;
+  map<uint64_t, DocxCompilerBookmark*>::iterator l_bookmarkIterator;
   DocxCompilerBookmark* l_bookmark;
 
   std::unique_ptr<XmlTreeDriller> l_cursorDriller;
@@ -3691,7 +3691,7 @@ void DocxCompilerItemFile::normalizeBookmarksBr() {
   xercesc::DOMElement* l_brNode = NULL;
   xercesc::DOMElement* l_startNode = NULL;
   xercesc::DOMElement* l_endNode;
-  size_t l_bookmarkId;
+  uint64_t l_bookmarkId;
 
   l_cursorDriller.reset(new XmlTreeDriller(
           m_bodyNode,
@@ -3701,7 +3701,7 @@ void DocxCompilerItemFile::normalizeBookmarksBr() {
 
   while (l_cursorNode = (xercesc::DOMElement*) l_cursorDriller ->nextNode()) {
     if (XmlFunc::XMLChCmp(l_cursorNode ->getLocalName(), _X("bookmarkStart"))) {
-      l_bookmarkId = StrFunc::strToInt<size_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
+      l_bookmarkId = StrFunc::strToInt<uint64_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
       l_bookmarkIterator = m_bookmarksById.find(l_bookmarkId);
 
       if (l_bookmarkIterator != m_bookmarksById.end()) {
@@ -3718,7 +3718,7 @@ void DocxCompilerItemFile::normalizeBookmarksBr() {
     else
       if (XmlFunc::XMLChCmp(l_cursorNode ->getLocalName(), _X("bookmarkEnd"))) {
       if (l_brNode) {
-        l_bookmarkId = StrFunc::strToInt<size_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
+        l_bookmarkId = StrFunc::strToInt<uint64_t>(XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(Utf8ToXMLCh(m_wordMlPrefix + ":id"))));
         l_bookmarkIterator = m_bookmarksById.find(l_bookmarkId);
 
         if (l_bookmarkIterator != m_bookmarksById.end()) {
@@ -3835,7 +3835,7 @@ void DocxCompilerItemFile::serialize(ZipFile* p_zipFile) {
   list<DocxCompilerItemGroup*>::iterator l_itemGroupIterator;
   list<DocxCompilerItem*>::iterator l_itemIterator;
   list<DocxCompilerField*>::iterator l_fieldIterator;
-  size_t i;
+  uint64_t i;
 
   p_zipFile ->writePtr(this);
   p_zipFile ->writePtr(m_file);
@@ -3850,25 +3850,25 @@ void DocxCompilerItemFile::serialize(ZipFile* p_zipFile) {
 
   p_zipFile ->writePtr(m_rootItemGroup);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemGroups.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_itemGroups) {
     p_zipFile ->writePtr(*l_itemGroupIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_items.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_items.size());
 
   FOR_EACH(l_itemIterator, &m_items) {
     p_zipFile ->writePtr(*l_itemIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_fields.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_fields.size());
 
   FOR_EACH(l_fieldIterator, &m_fields) {
     p_zipFile ->writePtr(*l_fieldIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_sects.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_sects.size());
   for (i = 0; i < m_sects.size(); i++) {
     p_zipFile ->writePtr(m_sects[i]);
   }

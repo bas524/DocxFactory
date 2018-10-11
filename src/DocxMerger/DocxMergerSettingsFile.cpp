@@ -48,7 +48,7 @@ void DocxMergerSettingsFile::setUpdateFields(bool p_val) {
 } // setUpdateFields
 
 void DocxMergerSettingsFile::deserialize(UnzipFile* p_unzipFile) {
-  m_file = (DocxMergerFile*) p_unzipFile ->readNum<size_t>();
+  m_file = (DocxMergerFile*) p_unzipFile ->readNum<uint64_t>();
   m_part = (OpcPart*) new string(p_unzipFile ->readStr());
 
   m_wordMlPrefix = p_unzipFile ->readStr();
@@ -56,11 +56,11 @@ void DocxMergerSettingsFile::deserialize(UnzipFile* p_unzipFile) {
 } // deserialize
 
 void DocxMergerSettingsFile::link(UnzipFile* p_unzipFile) {
-  const map<size_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
-  size_t l_ptrSeq;
+  const map<uint64_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
+  uint64_t l_ptrSeq;
   string* l_str;
 
-  l_ptrSeq = (size_t) m_file;
+  l_ptrSeq = (uint64_t) m_file;
   m_file = (DocxMergerFile*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
   l_str = (string*) m_part;

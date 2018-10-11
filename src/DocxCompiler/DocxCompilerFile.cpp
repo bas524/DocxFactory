@@ -248,46 +248,46 @@ void DocxCompilerFile::serialize(ZipFile* p_zipFile) {
   auto p_zipTocNum = static_cast<uint8> (m_hasToc);
   p_zipFile ->writeNum<uint8> (p_zipTocNum);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemFiles.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemFiles.size());
 
   FOR_EACH(l_itemFileIterator, &m_itemFiles) {
     p_zipFile ->writePtr(*l_itemFileIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemGroups.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_itemGroups) {
     p_zipFile ->writePtr(*l_itemGroupIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemsByName.size());
 
   FOR_EACH(l_itemIterator, &m_itemsByName) {
     p_zipFile ->writeStr(l_itemIterator ->first);
     p_zipFile ->writePtr(l_itemIterator ->second);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_fieldsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_fieldsByName.size());
 
   FOR_EACH(l_fieldIterator, &m_fieldsByName) {
     p_zipFile ->writeStr(l_fieldIterator ->first);
     p_zipFile ->writePtr(l_fieldIterator ->second);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_headerFieldsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_headerFieldsByName.size());
 
   FOR_EACH(l_fieldIterator, &m_headerFieldsByName) {
     p_zipFile ->writeStr(l_fieldIterator ->first);
     p_zipFile ->writePtr(l_fieldIterator ->second);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_xmlStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_xmlStrings.size());
 
   FOR_EACH(l_xmlStringIterator, &m_xmlStrings) {
     p_zipFile ->writePtr(*l_xmlStringIterator);
   }
 
-  p_zipFile ->writeNum<size_t>((size_t) m_idsById.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_idsById.size());
 
   FOR_EACH(l_idIterator, &m_idsById) {
     p_zipFile ->writePtr(l_idIterator -> second);
@@ -317,7 +317,7 @@ void DocxCompilerFile::serializeItemFiles(ZipFile* p_zipFile) {
           Z_DEFLATED,
           Z_NO_COMPRESSION);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemFiles.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemFiles.size());
 
   FOR_EACH(l_itemFileIterator, &m_itemFiles) {
     (*l_itemFileIterator) ->serialize(p_zipFile);
@@ -334,7 +334,7 @@ void DocxCompilerFile::serializeItemGroups(ZipFile* p_zipFile) {
           Z_DEFLATED,
           Z_NO_COMPRESSION);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemGroups.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemGroups.size());
 
   FOR_EACH(l_itemGroupIterator, &m_itemGroups) {
     (*l_itemGroupIterator) ->serialize(p_zipFile);
@@ -351,7 +351,7 @@ void DocxCompilerFile::serializeItems(ZipFile* p_zipFile) {
           Z_DEFLATED,
           Z_NO_COMPRESSION);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_itemsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_itemsByName.size());
 
   FOR_EACH(l_itemIterator, &m_itemsByName) {
     l_itemIterator ->second ->serialize(p_zipFile);
@@ -368,7 +368,7 @@ void DocxCompilerFile::serializeFields(ZipFile* p_zipFile) {
           Z_DEFLATED,
           Z_NO_COMPRESSION);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_fieldsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_fieldsByName.size());
 
   FOR_EACH(l_fieldIterator, &m_fieldsByName) {
     auto fieldTypeNum = static_cast<int16> (l_fieldIterator ->second ->getType());
@@ -392,7 +392,7 @@ void DocxCompilerFile::serializeXmlStrings(ZipFile* p_zipFile) {
           Z_DEFLATED,
           Z_NO_COMPRESSION);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_xmlStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_xmlStrings.size());
 
   FOR_EACH(l_xmlStringIterator, &m_xmlStrings) {
     (*l_xmlStringIterator) ->serialize(p_zipFile);
@@ -409,7 +409,7 @@ void DocxCompilerFile::serializeIds(ZipFile* p_zipFile) {
           Z_DEFLATED,
           Z_NO_COMPRESSION);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_idsById.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_idsById.size());
 
   FOR_EACH(l_idIterator, &m_idsById) {
     l_idIterator ->second ->serialize(p_zipFile);

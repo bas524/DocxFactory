@@ -136,8 +136,8 @@ void DocxCompilerItemGroup::createStripePlaceHoldersByGroup(DocxCompilerItemGrou
   string l_shade;
 
   string l_str;
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
   bool l_ok;
 
   l_items = p_itemGroup ->getChildItems();
@@ -234,7 +234,7 @@ void DocxCompilerItemGroup::createStripePlaceHoldersByGroup(DocxCompilerItemGrou
               && XmlFunc::XMLChCmp(l_cursorNode ->getNodeName(), _X("placeholder"))
               && XmlFunc::XMLChCmp(l_cursorNode ->getAttribute(_X("type")), _X("item-group"))) {
         l_str = XmlFunc::XMLChToUtf8(l_cursorNode ->getAttribute(_X("ptr")));
-        l_itemGroup = (DocxCompilerItemGroup*) StrFunc::strToInt<size_t>(l_str);
+        l_itemGroup = (DocxCompilerItemGroup*) StrFunc::strToInt<uint64_t>(l_str);
 
         if (!l_itemGroup ->isStriped())
           createStripePlaceHoldersByGroup(l_itemGroup);
@@ -264,7 +264,7 @@ void DocxCompilerItemGroup::serialize(ZipFile* p_zipFile) {
   p_zipFile ->writeStr(m_shade1);
   p_zipFile ->writeStr(m_shade2);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_childItemsByName.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_childItemsByName.size());
 
   FOR_EACH(l_itemIterator, &m_childItemsByName) {
     p_zipFile ->writeStr(l_itemIterator ->first);

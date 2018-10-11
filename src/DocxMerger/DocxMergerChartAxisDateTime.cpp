@@ -21,7 +21,7 @@ DocxMergerChartAxisDateTime::~DocxMergerChartAxisDateTime() {
 
 } // d'tor
 
-size_t DocxMergerChartAxisDateTime::setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value) {
+uint64_t DocxMergerChartAxisDateTime::setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value) {
   pair<double, short> l_value;
 
   try {
@@ -34,15 +34,15 @@ size_t DocxMergerChartAxisDateTime::setValue(DocxMergerPasteChartAxis* p_pasteAx
   return ( (DocxMergerPasteChartAxisDateTime*) p_pasteAxis) ->setValue(l_value.first);
 } // setValue
 
-size_t DocxMergerChartAxisDateTime::setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value) {
+uint64_t DocxMergerChartAxisDateTime::setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value) {
   return ( (DocxMergerPasteChartAxisDateTime*) p_pasteAxis) ->setValue(p_value);
 } // setValue
 
-string DocxMergerChartAxisDateTime::getValue(DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index) const {
+string DocxMergerChartAxisDateTime::getValue(DocxMergerPasteChartAxis* p_pasteAxis, uint64_t p_index) const {
   return StrFunc::intToStr(
           ((DocxMergerPasteChartAxisDateTime*) p_pasteAxis) ->getValues() ->at(p_index) / 86400.0 + 25569.0, 3);
 } // getValue
 
-size_t DocxMergerChartAxisDateTime::getLength(DocxMergerPasteChartAxis* p_pasteAxis) const {
+uint64_t DocxMergerChartAxisDateTime::getLength(DocxMergerPasteChartAxis* p_pasteAxis) const {
   return ( (DocxMergerPasteChartAxisDateTime*) p_pasteAxis) ->getValues() ->size();
 } // getLength

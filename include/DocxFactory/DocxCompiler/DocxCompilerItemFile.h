@@ -101,11 +101,11 @@ XERCES_CPP_NAMESPACE_END
         string m_wordMlPrefix;
         string m_relMlPrefix;
         string m_vmlPrefix;
-        size_t m_groupIdSeq;
-        size_t m_sectLen;
+        uint64_t m_groupIdSeq;
+        uint64_t m_sectLen;
 
         list<DocxCompilerBookmark*> m_rootBookmarks;
-        map<size_t, DocxCompilerBookmark*> m_bookmarksById;
+        map<uint64_t, DocxCompilerBookmark*> m_bookmarksById;
         DocxCompilerItemGroup* m_rootItemGroup;
         list<DocxCompilerItemGroup*> m_itemGroups;
         list<DocxCompilerItem*> m_items;

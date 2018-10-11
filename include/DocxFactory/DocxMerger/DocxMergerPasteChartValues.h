@@ -3,6 +3,7 @@
 #define __DOCXFACTORY_DOCX_MERGER_PASTE_CHART_VALUES_H__
 
 #include <vector>
+#include <cstdint>
 
 
 
@@ -12,10 +13,10 @@ namespace DocxFactory {
     class DocxMergerPasteChartValues {
     public:
         DocxMergerPasteChartValues();
-        DocxMergerPasteChartValues(size_t p_serLength, size_t p_catLength);
+        DocxMergerPasteChartValues(uint64_t p_serLength, uint64_t p_catLength);
         virtual ~DocxMergerPasteChartValues();
 
-        virtual void setValue(size_t p_series, size_t p_category, double p_value);
+        virtual void setValue(uint64_t p_series, uint64_t p_category, double p_value);
 
         const vector<vector<double>>*getValues() const;
 

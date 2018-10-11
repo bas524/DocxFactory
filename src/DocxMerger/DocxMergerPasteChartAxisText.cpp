@@ -14,14 +14,14 @@ DocxMergerPasteChartAxisText::~DocxMergerPasteChartAxisText() {
 
 } // d'tor
 
-size_t DocxMergerPasteChartAxisText::setValue(const string& p_value) {
+uint64_t DocxMergerPasteChartAxisText::setValue(const string& p_value) {
   string l_str = StrFunc::lc(p_value);
 
-  map<string, size_t>::iterator l_iterator = m_index.find(l_str);
+  map<string, uint64_t>::iterator l_iterator = m_index.find(l_str);
   if (l_iterator != m_index.end())
     return l_iterator ->second;
 
-  size_t l_index = m_values.size();
+  uint64_t l_index = m_values.size();
   m_values.push_back(p_value);
   m_index.insert(make_pair(l_str, l_index));
 

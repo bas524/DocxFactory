@@ -116,15 +116,15 @@ void DocxMergerChartField::deserialize(UnzipFile* p_unzipFile) {
   char l_ch;
   bool l_ok;
 
-  size_t l_size;
-  size_t i;
+  uint64_t l_size;
+  uint64_t i;
 
   DocxMergerField::deserialize(p_unzipFile);
 
   m_chartMlPrefix = p_unzipFile ->readStr();
   m_relMlPrefix = p_unzipFile ->readStr();
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_ch = (char) p_unzipFile ->readNum<uint8>();
@@ -132,7 +132,7 @@ void DocxMergerChartField::deserialize(UnzipFile* p_unzipFile) {
     m_drawingStrings.push_back(make_pair(l_str, l_ch));
   }
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_str2 = p_unzipFile ->readStr();

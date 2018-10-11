@@ -152,7 +152,7 @@ namespace DocxFactory {
 
 
             if (p_precision > 0) {
-                size_t l_lastPos;
+                uint64_t l_lastPos;
                 bool l_zero = false;
 
                 l_pos = 0;
@@ -280,13 +280,13 @@ namespace DocxFactory {
         static string rightTrim(const string& p_str, const string& p_chars = "\n\r\t ");
         static string removeDuplicate(const string& p_str, const string& p_chars = "\n\r\t ");
         static string replace(const string& p_str, const string& p_from, const string& p_to);
-        static string padRight(const string& p_str, size_t p_len, char p_ch = ' ');
-        static string padLeft(const string& p_str, size_t p_len, char p_ch = ' ');
+        static string padRight(const string& p_str, uint64_t p_len, char p_ch = ' ');
+        static string padLeft(const string& p_str, uint64_t p_len, char p_ch = ' ');
 
         static void strToSet(const string& p_str, set<string>& p_set, const string& p_delim = ",");
         static string setToStr(const set<string>& p_set, const string& p_delim = ",");
 
-        static string encodeBase64(const char* p_data, size_t p_len);
+        static string encodeBase64(const char* p_data, uint64_t p_len);
         static string decodeBase64(const string& p_str);
 
         static string normalizeColor(const string& p_str);

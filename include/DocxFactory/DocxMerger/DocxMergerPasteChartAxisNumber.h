@@ -17,7 +17,7 @@ namespace DocxFactory {
         DocxMergerPasteChartAxisNumber();
         virtual ~DocxMergerPasteChartAxisNumber();
 
-        virtual size_t setValue(double p_value);
+        virtual uint64_t setValue(double p_value);
 
         const vector<double>* getValues() const;
 
@@ -27,7 +27,7 @@ namespace DocxFactory {
         DocxMergerPasteChartAxisNumber(const DocxMergerPasteChartAxisNumber& p_other);
         DocxMergerPasteChartAxisNumber& operator=(const DocxMergerPasteChartAxisNumber& p_other);
 
-        map<double, size_t> m_index;
+        map<double, uint64_t> m_index;
         vector<double> m_values;
 
     };

@@ -981,8 +981,8 @@ double LocaleFunc::strToNum(const string& p_str) {
   double l_dec = 1;
   char l_neg = 0;
 
-  size_t l_len = p_str.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos = 0;
   char l_ch;
 
   while (l_pos < l_len) {
@@ -1162,8 +1162,8 @@ void LocaleFunc::getNumFormat(const string& p_format, NumFormat* p_numFormat) {
   };
 
   string l_format;
-  size_t l_pos;
-  size_t l_len;
+  uint64_t l_pos;
+  uint64_t l_len;
   char l_ch;
 
   string l_color;
@@ -1541,8 +1541,8 @@ pair<double, short> LocaleFunc::strToDateTime(const string& p_str) {
   char l_sep;
 
   string l_str = StrFunc::lc(p_str);
-  size_t l_len = l_str.length();
-  size_t l_pos = 0;
+  uint64_t l_len = l_str.length();
+  uint64_t l_pos = 0;
 
   getNextNum(l_str, l_pos, l_len, l_val, l_digits, l_nextChar);
 
@@ -1718,8 +1718,8 @@ void LocaleFunc::getDateTimeFormat(const string& p_format, list<DateTimeFormat*>
   bool l_foundAmPm;
 
   char l_ch;
-  size_t l_len = p_format.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_format.length();
+  uint64_t l_pos = 0;
 
   p_dateTimeFormat ->clear();
 
@@ -1906,7 +1906,7 @@ void LocaleFunc::getDateTimeFormat(const string& p_format, list<DateTimeFormat*>
   }
 } // getDateTimeFormat
 
-string LocaleFunc::getSubStr(const string& p_str, size_t p_start, size_t p_len) {
+string LocaleFunc::getSubStr(const string& p_str, uint64_t p_start, uint64_t p_len) {
   if (!m_initialized)
     initialize();
 
@@ -1945,7 +1945,7 @@ string LocaleFunc::getSubStr(const string& p_str, size_t p_start, size_t p_len) 
   return std::string(l_buf.data(), strlen(l_buf.data()));
 } // getSubStr
 
-string LocaleFunc::getSubStrUtf8(const string& p_str, size_t p_start, size_t p_len) {
+string LocaleFunc::getSubStrUtf8(const string& p_str, uint64_t p_start, uint64_t p_len) {
   if (!m_initialized)
     initialize();
 
@@ -2091,8 +2091,8 @@ string LocaleFunc::numToStrSingle(
 
   unsigned short l_rightDigTot = p_rightDigCnt + p_rightExtCnt;
   unsigned short l_dig;
-  size_t l_len = 0;
-  size_t l_pos;
+  uint64_t l_len = 0;
+  uint64_t l_pos;
 
   if (p_percent) p_num *= 100.0f;
   if (p_num < 0) p_num = -p_num;
@@ -2184,7 +2184,7 @@ string LocaleFunc::numToStrSingle(
     }
 
     if (p_rightExtCnt > 0) {
-      size_t l_lastPos;
+      uint64_t l_lastPos;
       bool l_zero = false;
 
       while (l_pos < l_rightDigTot) {
@@ -2625,7 +2625,7 @@ string LocaleFunc::dateTimeToStrSub(
 
 // used in strToDateTime
 
-void LocaleFunc::getNextMinSecTimeZone(const string& p_str, size_t& p_pos, size_t p_len, unsigned short& p_min, unsigned short& p_sec, double& p_secFrac, short& p_timeZone) {
+void LocaleFunc::getNextMinSecTimeZone(const string& p_str, uint64_t& p_pos, uint64_t p_len, unsigned short& p_min, unsigned short& p_sec, double& p_secFrac, short& p_timeZone) {
   unsigned short l_digits;
   unsigned short l_val;
   char l_nextChar;
@@ -2683,7 +2683,7 @@ void LocaleFunc::getNextMinSecTimeZone(const string& p_str, size_t& p_pos, size_
   }
 } // getNextMinSecTimeZone
 
-void LocaleFunc::getNextNum(const string& p_str, size_t& p_pos, size_t p_len, unsigned short& p_val, unsigned short& p_digits, char& p_nextChar) {
+void LocaleFunc::getNextNum(const string& p_str, uint64_t& p_pos, uint64_t p_len, unsigned short& p_val, unsigned short& p_digits, char& p_nextChar) {
   char l_ch;
 
   p_val = 0;
@@ -2703,7 +2703,7 @@ void LocaleFunc::getNextNum(const string& p_str, size_t& p_pos, size_t p_len, un
   }
 } // getNextNum
 
-std::vector<UChar> LocaleFunc::utf8ToUChar(const char* p_str, size_t p_len) {
+std::vector<UChar> LocaleFunc::utf8ToUChar(const char* p_str, uint64_t p_len) {
   if (!m_initialized)
     initialize();
 
@@ -2733,7 +2733,7 @@ std::vector<UChar> LocaleFunc::utf8ToUChar(const char* p_str, size_t p_len) {
   return l_buf;
 } // utf8ToUChar
 
-std::vector<UChar> LocaleFunc::strToUChar(const char* p_str, size_t p_len) {
+std::vector<UChar> LocaleFunc::strToUChar(const char* p_str, uint64_t p_len) {
   if (!m_initialized)
     initialize();
 
@@ -2769,7 +2769,7 @@ std::vector<UChar> LocaleFunc::strToUChar(const char* p_str, size_t p_len) {
   return l_buf;
 } // strToUChar
 
-std::vector<char> LocaleFunc::ucharToUtf8(const UChar* p_ustr, size_t p_len) {
+std::vector<char> LocaleFunc::ucharToUtf8(const UChar* p_ustr, uint64_t p_len) {
   if (!m_initialized)
     initialize();
 
@@ -2799,7 +2799,7 @@ std::vector<char> LocaleFunc::ucharToUtf8(const UChar* p_ustr, size_t p_len) {
   return l_buf;
 } // ucharToUtf8
 
-std::vector<char> LocaleFunc::ucharToStr(const UChar* p_ustr, size_t p_len) {
+std::vector<char> LocaleFunc::ucharToStr(const UChar* p_ustr, uint64_t p_len) {
   if (!m_initialized)
     initialize();
 

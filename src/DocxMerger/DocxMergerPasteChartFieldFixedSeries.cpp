@@ -21,7 +21,7 @@
 using namespace DocxFactory;
 using namespace std;
 
-DocxMergerPasteChartFieldFixedSeries::DocxMergerPasteChartFieldFixedSeries(DocxMergerField* p_field, size_t p_serLength) : DocxMergerPasteChartField(p_field) {
+DocxMergerPasteChartFieldFixedSeries::DocxMergerPasteChartFieldFixedSeries(DocxMergerField* p_field, uint64_t p_serLength) : DocxMergerPasteChartField(p_field) {
   switch (((DocxMergerChartFieldFixedSeries*) p_field) ->getCatType()) {
     case DocxMergerField::TYPE_TEXT: m_pasteCatAxis = new DocxMergerPasteChartAxisText();
       break;
@@ -54,10 +54,10 @@ string* DocxMergerPasteChartFieldFixedSeries::getValue() {
   const DocxMergerChartAxis* l_catAxis = l_chartField ->getCatAxis();
   const DocxMergerChartValues* l_val = l_chartField ->getVal();
 
-  size_t l_serLen = l_seriesIdx ->size();
-  size_t l_catLen = l_catAxis ->getLength(m_pasteCatAxis);
-  size_t l_serIdx;
-  size_t l_catIdx;
+  uint64_t l_serLen = l_seriesIdx ->size();
+  uint64_t l_catLen = l_catAxis ->getLength(m_pasteCatAxis);
+  uint64_t l_serIdx;
+  uint64_t l_catIdx;
 
   m_value = "";
 
@@ -66,7 +66,7 @@ string* DocxMergerPasteChartFieldFixedSeries::getValue() {
 
     if (l_chartStringIterator ->second >= '0'
             && l_chartStringIterator ->second <= '9') {
-      l_serIdx = (size_t) (l_chartStringIterator ->second - '0');
+      l_serIdx = (uint64_t) (l_chartStringIterator ->second - '0');
       l_strings = &(l_seriesStrings ->at(l_serIdx));
 
       FOR_EACH(l_seriesStringIterator, l_strings) {

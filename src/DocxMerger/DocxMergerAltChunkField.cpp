@@ -172,7 +172,7 @@ void DocxMergerAltChunkField::createPasteField(const string& p_value, AltChunkTy
 
 void DocxMergerAltChunkField::getMultiPart(const string& p_str, string& p_multiPart) {
   std::vector<byte> l_buf;
-  size_t l_bufSize;
+  uint64_t l_bufSize;
 
   string l_file;
   string l_ext;
@@ -181,8 +181,8 @@ void DocxMergerAltChunkField::getMultiPart(const string& p_str, string& p_multiP
   string l_name;
   string l_value;
 
-  size_t l_len = p_str.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos = 0;
 
   p_multiPart = "";
 
@@ -305,7 +305,7 @@ void DocxMergerAltChunkField::getMultiPart(const string& p_str, string& p_multiP
   }
 } // getMultiPart
 
-bool DocxMergerAltChunkField::getAttr(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_name, string& p_value) {
+bool DocxMergerAltChunkField::getAttr(const string& p_str, const uint64_t& p_len, uint64_t& p_pos, string& p_name, string& p_value) {
   p_name = "";
   p_value = "";
 
@@ -332,7 +332,7 @@ bool DocxMergerAltChunkField::getAttr(const string& p_str, const size_t& p_len, 
   return true;
 } // getAttr
 
-bool DocxMergerAltChunkField::getWord(const string& p_str, const size_t& p_len, size_t& p_pos, string& p_word) {
+bool DocxMergerAltChunkField::getWord(const string& p_str, const uint64_t& p_len, uint64_t& p_pos, string& p_word) {
   if (p_str[ p_pos ] == '"') {
     p_pos++;
 
@@ -380,7 +380,7 @@ bool DocxMergerAltChunkField::getWord(const string& p_str, const size_t& p_len, 
   return true;
 } // getWord
 
-bool DocxMergerAltChunkField::skipSpace(const string& p_str, const size_t& p_len, size_t& p_pos) {
+bool DocxMergerAltChunkField::skipSpace(const string& p_str, const uint64_t& p_len, uint64_t& p_pos) {
   while (true) {
     if (p_pos >= p_len)
       return false;

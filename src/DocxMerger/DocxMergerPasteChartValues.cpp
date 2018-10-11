@@ -9,9 +9,9 @@ DocxMergerPasteChartValues::DocxMergerPasteChartValues() {
   m_values.back().push_back(0.0f);
 } // c'tor
 
-DocxMergerPasteChartValues::DocxMergerPasteChartValues(size_t p_serLength, size_t p_catLength) {
-  size_t i;
-  size_t j;
+DocxMergerPasteChartValues::DocxMergerPasteChartValues(uint64_t p_serLength, uint64_t p_catLength) {
+  uint64_t i;
+  uint64_t j;
 
   if (p_serLength == 0)
     p_serLength = 1;
@@ -32,8 +32,8 @@ DocxMergerPasteChartValues::~DocxMergerPasteChartValues() {
 
 } // d'tor
 
-void DocxMergerPasteChartValues::setValue(size_t p_series, size_t p_category, double p_value) {
-  size_t i;
+void DocxMergerPasteChartValues::setValue(uint64_t p_series, uint64_t p_category, double p_value) {
+  uint64_t i;
 
   if (p_series >= m_values.size()) {
     m_values.push_back(vector<double>());
@@ -50,9 +50,9 @@ void DocxMergerPasteChartValues::setValue(size_t p_series, size_t p_category, do
   }
 
   /***
-  size_t len;
-  size_t i;
-  size_t j;
+  uint64_t len;
+  uint64_t i;
+  uint64_t j;
 
   while ( p_series > m_values.size() - 1 )
   {

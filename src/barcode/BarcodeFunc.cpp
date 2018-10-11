@@ -61,7 +61,7 @@ bool BarcodeFunc::encodeAndPrint(
           || p_barcodeFormat ->m_symbology == BARCODE_RSS_LTD_CC
           || p_barcodeFormat ->m_symbology == BARCODE_RSS_EXP_CC
           || p_barcodeFormat ->m_symbology == BARCODE_RSS_EXPSTACK_CC) {
-    size_t i = p_value.find('\n');
+    uint64_t i = p_value.find('\n');
     if (i != string::npos) {
       l_primary = p_value.substr(0, i);
       l_value = p_value.substr(i + 1);

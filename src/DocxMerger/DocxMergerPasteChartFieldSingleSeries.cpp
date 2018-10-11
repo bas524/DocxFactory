@@ -49,8 +49,8 @@ string* DocxMergerPasteChartFieldSingleSeries::getValue() {
   const DocxMergerChartAxis* l_catAxis = l_chartField ->getCatAxis();
   const DocxMergerChartValues* l_val = l_chartField ->getVal();
 
-  size_t l_len = l_catAxis ->getLength(m_pasteCatAxis);
-  size_t l_idx;
+  uint64_t l_len = l_catAxis ->getLength(m_pasteCatAxis);
+  uint64_t l_idx;
 
   m_value = "";
 

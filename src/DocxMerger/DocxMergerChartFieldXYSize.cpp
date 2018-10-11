@@ -51,12 +51,12 @@ void DocxMergerChartFieldXYSize::deserialize(UnzipFile* p_unzipFile) {
   string l_str;
   char l_ch;
 
-  size_t l_size;
-  size_t i;
+  uint64_t l_size;
+  uint64_t i;
 
   DocxMergerChartField::deserialize(p_unzipFile);
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
     l_ch = (char) p_unzipFile ->readNum<uint8>();

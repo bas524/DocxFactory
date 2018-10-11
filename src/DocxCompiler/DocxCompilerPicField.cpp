@@ -27,12 +27,12 @@ void DocxCompilerPicField::getFormat(
   FieldParam l_param;
   string l_value;
 
-  size_t l_pos;
-  size_t l_len;
+  uint64_t l_pos;
+  uint64_t l_len;
   FieldParam l_useSize;
 
   string l_str;
-  size_t i;
+  uint64_t i;
 
   p_valueByParam ->clear();
 
@@ -324,12 +324,12 @@ void DocxCompilerPicField::serialize(ZipFile* p_zipFile) {
 
   DocxCompilerField::serialize(p_zipFile);
 
-  p_zipFile ->writeNum<size_t>(m_picId);
-  p_zipFile ->writeNum<size_t>(m_emuWidth);
-  p_zipFile ->writeNum<size_t>(m_emuHeight);
+  p_zipFile ->writeNum<uint64_t>(m_picId);
+  p_zipFile ->writeNum<uint64_t>(m_emuWidth);
+  p_zipFile ->writeNum<uint64_t>(m_emuHeight);
   p_zipFile ->writeNum<int16> (m_useSize);
 
-  p_zipFile ->writeNum<size_t>((size_t) m_picStrings.size());
+  p_zipFile ->writeNum<uint64_t>((uint64_t) m_picStrings.size());
 
   FOR_EACH(l_picStringIterator, &m_picStrings) {
     p_zipFile ->writeStr((*l_picStringIterator).first);

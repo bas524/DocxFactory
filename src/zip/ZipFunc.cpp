@@ -23,7 +23,7 @@ void ZipFunc::breakPath(
     initialize();
 
   string l_path = p_path;
-  size_t i;
+  uint64_t i;
 
   i = l_path.find_last_of('/');
   if (i != string::npos) {
@@ -82,9 +82,9 @@ string ZipFunc::normalizePath(const string& p_path) {
   string l_retVal;
   string l_path;
   string l_dir;
-  size_t l_dirIndex;
-  size_t l_startIndex;
-  size_t i;
+  uint64_t l_dirIndex;
+  uint64_t l_startIndex;
+  uint64_t i;
 
   l_path = StrFunc::trim(p_path);
   l_path = StrFunc::replace(l_path, "\\", "/");
@@ -203,12 +203,12 @@ double ZipFunc::unpack(const DoublePack p_dpack) {
 
 #undef FRAC_MAX
 
-void ZipFunc::reverse(char* p_buf, size_t p_bufSize) {
+void ZipFunc::reverse(char* p_buf, uint64_t p_bufSize) {
   if (!m_initialized)
     initialize();
 
   char* l_tempBuf = new char[ p_bufSize ];
-  size_t i;
+  uint64_t i;
 
   memcpy(l_tempBuf, p_buf, p_bufSize);
 

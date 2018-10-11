@@ -21,13 +21,13 @@ vector<string> ParserFunc::parseWordList(const string& p_str, SpaceHandle p_spac
   unsigned short l_openBracketSquare;
   unsigned short l_openBracketCurly;
 
-  size_t l_len = p_str.length();
-  size_t l_pos = 0;
+  uint64_t l_len = p_str.length();
+  uint64_t l_pos = 0;
   string l_str;
   char l_ch;
 
   vector<string> l_result;
-  size_t i;
+  uint64_t i;
 
   while (l_pos < l_len) {
     l_ch = p_str[ l_pos ];
@@ -249,8 +249,8 @@ string ParserFunc::unquote(const string& p_str) {
   char l_quote;
   char l_ch;
 
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   l_str = StrFunc::trim(p_str);
 

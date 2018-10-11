@@ -16,10 +16,10 @@ namespace DocxFactory {
         DocxMergerChartAxisNumber();
         virtual ~DocxMergerChartAxisNumber();
 
-        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value);
-        virtual size_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value);
-        virtual string getValue(DocxMergerPasteChartAxis* p_pasteAxis, size_t p_index) const;
-        virtual size_t getLength(DocxMergerPasteChartAxis* p_pasteAxis) const;
+        virtual uint64_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, const string& p_value);
+        virtual uint64_t setValue(DocxMergerPasteChartAxis* p_pasteAxis, double p_value);
+        virtual string getValue(DocxMergerPasteChartAxis* p_pasteAxis, uint64_t p_index) const;
+        virtual uint64_t getLength(DocxMergerPasteChartAxis* p_pasteAxis) const;
 
     protected:
 

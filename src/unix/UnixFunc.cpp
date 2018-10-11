@@ -45,7 +45,7 @@ void UnixFunc::breakPath(
     initialize();
 
   string l_path = p_path;
-  size_t i;
+  uint64_t i;
 
   p_dir = "";
   p_file = "";
@@ -100,12 +100,12 @@ string UnixFunc::getSubPath(
 } // getSubPath
 
 string UnixFunc::getRelativePath(const string& p_sourceDir, const string& p_path) {
-  size_t l_sourceLen;
-  size_t l_pathLen;
+  uint64_t l_sourceLen;
+  uint64_t l_pathLen;
 
   string l_retVal = "";
-  size_t i;
-  size_t j;
+  uint64_t i;
+  uint64_t j;
 
   // both cases are not valid and would cause errors.
   if (p_sourceDir.empty()) return p_path;
@@ -166,9 +166,9 @@ string UnixFunc::normalizePath(const string& p_path) {
   string l_retVal;
   string l_path;
   string l_dir;
-  size_t l_dirIndex;
-  size_t l_startIndex;
-  size_t i;
+  uint64_t l_dirIndex;
+  uint64_t l_startIndex;
+  uint64_t i;
 
   l_path = StrFunc::trim(p_path);
   l_path = StrFunc::replace(l_path, "\\", "/");
@@ -339,7 +339,7 @@ void UnixFunc::initialize() {
   struct utsname l_uname;
   string l_release;
   string str;
-  size_t i;
+  uint64_t i;
 
   if (uname(&l_uname) == 0) {
     m_sysName = l_uname.sysname;

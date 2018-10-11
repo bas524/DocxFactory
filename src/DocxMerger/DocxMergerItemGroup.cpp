@@ -93,8 +93,8 @@ void DocxMergerItemGroup::fill(
         DocxMergerPasteItemGroup* p_pasteItemGroup,
         bool& p_shadeFlag) {
   DocxMergerItem* l_item;
-  size_t l_len;
-  size_t l_pos;
+  uint64_t l_len;
+  uint64_t l_pos;
 
   if (m_striped && !m_fillItemEqual) {
     p_shadeFlag = !p_shadeFlag;
@@ -119,33 +119,33 @@ void DocxMergerItemGroup::fill(
 
 void DocxMergerItemGroup::deserialize(UnzipFile* p_unzipFile) {
   string l_str;
-  size_t l_ptrSeq;
-  size_t l_size;
-  size_t i;
+  uint64_t l_ptrSeq;
+  uint64_t l_size;
+  uint64_t i;
 
-  p_unzipFile ->insertPtrBySeq(p_unzipFile ->readNum<size_t>(), this);
+  p_unzipFile ->insertPtrBySeq(p_unzipFile ->readNum<uint64_t>(), this);
 
-  m_itemFile = (DocxMergerItemFile*) p_unzipFile ->readNum<size_t>();
-  m_item = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
+  m_itemFile = (DocxMergerItemFile*) p_unzipFile ->readNum<uint64_t>();
+  m_item = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
 
-  m_fillItemTop = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
-  m_fillItemMiddle = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
-  m_fillItemBottom = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
-  m_fillItemSingle = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
+  m_fillItemTop = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
+  m_fillItemMiddle = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
+  m_fillItemBottom = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
+  m_fillItemSingle = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
   m_fillItemEqual = p_unzipFile ->readNum<uint8>() != 0;
   m_fillItemTrCnt = p_unzipFile ->readNum<double>();
 
-  m_spacerItem = (DocxMergerItem*) p_unzipFile ->readNum<size_t>();
+  m_spacerItem = (DocxMergerItem*) p_unzipFile ->readNum<uint64_t>();
   m_spacerTrCnt = p_unzipFile ->readNum<double>();
 
   m_striped = p_unzipFile ->readNum<uint8>() != 0;
   m_shade1 = p_unzipFile ->readStr();
   m_shade2 = p_unzipFile ->readStr();
 
-  l_size = p_unzipFile ->readNum<size_t>();
+  l_size = p_unzipFile ->readNum<uint64_t>();
   for (i = 0; i < l_size; ++i) {
     l_str = p_unzipFile ->readStr();
-    l_ptrSeq = p_unzipFile ->readNum<size_t>();
+    l_ptrSeq = p_unzipFile ->readNum<uint64_t>();
     m_childItemsByName.insert(make_pair(l_str, (DocxMergerItem*) l_ptrSeq));
   }
 } // deserialize
@@ -153,32 +153,32 @@ void DocxMergerItemGroup::deserialize(UnzipFile* p_unzipFile) {
 void DocxMergerItemGroup::link(UnzipFile* p_unzipFile) {
   map<string, DocxMergerItem*>::iterator l_itemIterator;
 
-  const map<size_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
-  size_t l_ptrSeq;
+  const map<uint64_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
+  uint64_t l_ptrSeq;
 
-  l_ptrSeq = (size_t) m_itemFile;
+  l_ptrSeq = (uint64_t) m_itemFile;
   m_itemFile = (DocxMergerItemFile*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_item;
+  l_ptrSeq = (uint64_t) m_item;
   m_item = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_fillItemTop;
+  l_ptrSeq = (uint64_t) m_fillItemTop;
   m_fillItemTop = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_fillItemMiddle;
+  l_ptrSeq = (uint64_t) m_fillItemMiddle;
   m_fillItemMiddle = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_fillItemBottom;
+  l_ptrSeq = (uint64_t) m_fillItemBottom;
   m_fillItemBottom = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_fillItemSingle;
+  l_ptrSeq = (uint64_t) m_fillItemSingle;
   m_fillItemSingle = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
-  l_ptrSeq = (size_t) m_spacerItem;
+  l_ptrSeq = (uint64_t) m_spacerItem;
   m_spacerItem = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
 
   FOR_EACH(l_itemIterator, &m_childItemsByName) {
-    l_ptrSeq = (size_t) l_itemIterator ->second;
+    l_ptrSeq = (uint64_t) l_itemIterator ->second;
     l_itemIterator ->second = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
   }
 } // link
