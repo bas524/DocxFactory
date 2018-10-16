@@ -216,36 +216,45 @@ void DocxMergerItem::link(UnzipFile* p_unzipFile) {
   const map<uint64_t, void*>* l_ptrsBySeq = p_unzipFile ->getPtrsBySeq();
   uint64_t l_ptrSeq;
 
+  auto getItemRefOrNull = [&l_ptrsBySeq, &l_ptrSeq]() -> void* {
+	  auto item = l_ptrsBySeq->find(l_ptrSeq);
+	  if (item != l_ptrsBySeq->end()) {
+		  return l_ptrsBySeq->find(l_ptrSeq)->second;
+	  }
+	  return nullptr;
+  };
+
   l_ptrSeq = (uint64_t) m_itemFile;
-  m_itemFile = (DocxMergerItemFile*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+  m_itemFile = (DocxMergerItemFile*)getItemRefOrNull();
 
   l_ptrSeq = (uint64_t) m_itemGroup;
-  m_itemGroup = (DocxMergerItemGroup*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+  m_itemGroup = (DocxMergerItemGroup*)getItemRefOrNull();
 
   l_ptrSeq = (uint64_t) m_fillItemParent;
-  m_fillItemParent = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+	m_fillItemParent = (DocxMergerItem*)getItemRefOrNull();
+  
 
   l_ptrSeq = (uint64_t) m_fillItemGroup;
-  m_fillItemGroup = (DocxMergerItemGroup*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+  m_fillItemGroup = (DocxMergerItemGroup*)getItemRefOrNull();
 
   FOR_EACH(l_pathIterator, &m_path) {
     l_ptrSeq = (uint64_t) * l_pathIterator;
-    *l_pathIterator = (DocxMergerItem*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+    *l_pathIterator = (DocxMergerItem*)getItemRefOrNull();
   }
 
   FOR_EACH(l_itemGroupIterator, &m_childItemGroups) {
     l_ptrSeq = (uint64_t) * l_itemGroupIterator;
-    *l_itemGroupIterator = (DocxMergerItemGroup*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+    *l_itemGroupIterator = (DocxMergerItemGroup*)getItemRefOrNull();
   }
 
   FOR_EACH(l_fieldIterator, &m_fieldsByName) {
     l_ptrSeq = (uint64_t) l_fieldIterator ->second;
-    l_fieldIterator ->second = (DocxMergerField*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+    l_fieldIterator ->second = (DocxMergerField*)getItemRefOrNull();
   }
 
   FOR_EACH(l_xmlStringIterator, &m_xmlStrings) {
     l_ptrSeq = (uint64_t) * l_xmlStringIterator;
-    *l_xmlStringIterator = (DocxMergerXmlString*) l_ptrsBySeq ->find(l_ptrSeq) ->second;
+    *l_xmlStringIterator = (DocxMergerXmlString*)getItemRefOrNull();
   }
 
   if (m_itemLayout)

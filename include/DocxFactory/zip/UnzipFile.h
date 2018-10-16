@@ -5,11 +5,9 @@
 #include "DocxFactory/zip/ZipFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-//#if defined (WIN32) | defined (_WIN32)
-//#include "zlib/unzip.h"
-//#else
+#include <ctime>
+
 #include <minizip/unzip.h>
-//#endif
 
 #include <type_traits>
 #include <map>
