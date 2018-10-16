@@ -4,15 +4,10 @@
 
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-//#if defined (WIN32) | defined (_WIN32)
-//#include "zlib/zip.h"
-//#else
-#include <minizip/zip.h>
-//#endif
 #include <string>
 #include <ctime>
 
-
+#include <minizip/zip.h>
 
 namespace DocxFactory {
     using namespace std;

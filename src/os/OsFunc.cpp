@@ -165,7 +165,7 @@ void OsFunc::breakFileUrl(
         string& p_host,
         string& p_path) {
   string l_url = p_url;
-  uint64_t i;
+  size_t i;
 
   p_protocol = "";
   p_host = "";

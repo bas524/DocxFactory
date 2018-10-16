@@ -5,13 +5,8 @@
 #include "DocxFactory/zip/ZipFunc.h"
 #include "DocxFactory/util/DocxFactoryDefs.h"
 
-//#if defined (WIN32) | defined (_WIN32)
-//#include "zlib/zip.h"
-//#include "zlib/unzip.h"
-//#else
 #include <minizip/zip.h>
 #include <minizip/unzip.h>
-//#endif
 
 #include <type_traits>
 #include <map>

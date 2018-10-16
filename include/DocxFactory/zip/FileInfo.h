@@ -2,13 +2,10 @@
 #ifndef __DOCXFACTORY_FILE_INFO_H__
 #define __DOCXFACTORY_FILE_INFO_H__
 
-//#if defined (WIN32) | defined (_WIN32)
-//#include "zlib/zip.h"
-//#include "zlib/unzip.h"
-//#else
+#include <ctime>
+
 #include <minizip/zip.h>
 #include <minizip/unzip.h>
-//#endif
 
 
 namespace DocxFactory {

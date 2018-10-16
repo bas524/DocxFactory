@@ -93,7 +93,7 @@ void ZipFile::close() {
 
 void ZipFile::addEntryFromBuf(
         const string& p_path,
-        const byte * const p_buf,
+        const DocxFactory::byte * const p_buf,
         uint64_t p_bufSize,
         int p_method, // = Z_DEFLATED
         int p_level) // = Z_DEFAULT_COMPRESSION
@@ -138,7 +138,7 @@ void ZipFile::addEntryFromBuf(
 
 void ZipFile::addEntryFromRaw(
         const string& p_path,
-        const byte* p_buf,
+        const DocxFactory::byte* p_buf,
         uint64_t p_bufSize,
         int p_method,
         int p_level,

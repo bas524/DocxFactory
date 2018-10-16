@@ -9,8 +9,8 @@ using namespace std;
 StrEntries::StrEntries(const string& p_str, const string& p_delim)
 : m_delim(p_delim) {
   string l_entry;
-  uint64_t l_start = 0;
-  uint64_t l_pos;
+  size_t l_start = 0;
+  size_t l_pos;
 
   m_entryVec.clear();
 

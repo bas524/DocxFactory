@@ -279,3 +279,4 @@ __pycache__/
 /.vscode/
 /build/
 /nbproject/
+/cmake-vs-build/

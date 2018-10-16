@@ -65,11 +65,11 @@ void UnzipFile::close() {
   clearEntryList();
 } // close
 
-std::vector<byte> UnzipFile::extractEntryToBuf(
+std::vector<DocxFactory::byte> UnzipFile::extractEntryToBuf(
         const string& p_path,
         uint64_t& p_bufSize) const {
   FileInfo* l_fileInfo;
-  std::vector<byte> l_buf;
+  std::vector<DocxFactory::byte> l_buf;
   int l_err;
 
   if (!m_fileOpen)
@@ -111,13 +111,13 @@ std::vector<byte> UnzipFile::extractEntryToBuf(
   return l_buf;
 } // extract
 
-std::vector<byte> UnzipFile::extractEntryToRaw(
+std::vector<DocxFactory::byte> UnzipFile::extractEntryToRaw(
         const string& p_path,
         int& p_method,
         int& p_level,
         FileInfo*& p_fileInfo,
         uint64_t& p_bufSize) const {
-  std::vector<byte> l_buf;
+  std::vector<DocxFactory::byte> l_buf;
   int l_err;
 
   if (!m_fileOpen)
