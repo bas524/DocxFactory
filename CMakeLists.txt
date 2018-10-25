@@ -179,11 +179,11 @@ find_package(ImageMagick COMPONENTS MagickCore REQUIRED)
 include_directories(${ImageMagick_MagickCore_INCLUDE_DIRS})
 
 
-if (NOT WIN32)
-  string(REPLACE "lib64" "lib" ImageMagick_Magick++_LIBRARY ${ImageMagick_Magick++_LIBRARY})
-  string(REPLACE "lib64" "lib" ImageMagick_MagickWand_LIBRARY ${ImageMagick_MagickWand_LIBRARY})
-  string(REPLACE "lib64" "lib" ImageMagick_MagickCore_LIBRARY ${ImageMagick_MagickCore_LIBRARY})
-endif (NOT WIN32)
+#if (NOT WIN32)
+#  string(REPLACE "lib64" "lib" ImageMagick_Magick++_LIBRARY ${ImageMagick_Magick++_LIBRARY})
+#  string(REPLACE "lib64" "lib" ImageMagick_MagickWand_LIBRARY ${ImageMagick_MagickWand_LIBRARY})
+#  string(REPLACE "lib64" "lib" ImageMagick_MagickCore_LIBRARY ${ImageMagick_MagickCore_LIBRARY})
+#endif (NOT WIN32)
 
 add_definitions( -DMAGICKCORE_QUANTUM_DEPTH=16 )
 add_definitions( -DMAGICKCORE_HDRI_ENABLE=0 )
