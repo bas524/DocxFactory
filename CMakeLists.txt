@@ -53,10 +53,10 @@ else (WIN32)
 endif (WIN32)
 
 ########### TODO : replace with find
-set(SWF "/home/ivk/coding/swf")
+set(SWF "/home/rog/projects/swf")
 if (NOT WIN32)
-  set(ZINT_INCLUDE_DIRS "${SWF}/base_alt64/x32/zint/include")
-  set(ZINT_LIB_DIRS "${SWF}/base_alt64/x32/zint/lib")
+  set(ZINT_INCLUDE_DIRS "${SWF}/base_alt64/x64/zint/include")
+  set(ZINT_LIB_DIRS "${SWF}/base_alt64/x64/zint/lib")
   set(ZINT_LIBRARIES "-lzint")
 else()
   if (CMAKE_CL_64)
@@ -113,8 +113,8 @@ link_directories(${MINIZIP_LIB_DIRS})
 
 ########### TODO : replace with find
 if (NOT WIN32)
-  set(LIBREOFFICE_SDK_INCLUDE_DIRS "/opt/libreoffice5.3/sdk/include" "/opt/libreoffice5.3/sdk/include_generated")
-  set(LIBREOFFICE_SDK_LIB_DIRS "/opt/libreoffice5.3/sdk/lib")
+  set(LIBREOFFICE_SDK_INCLUDE_DIRS "/opt/libreoffice/sdk/include" "/opt/libreoffice/sdk/include_generated")
+  set(LIBREOFFICE_SDK_LIB_DIRS "/opt/libreoffice/sdk/lib")
   set(LIBREOFFICE_SDK_LIBRARIES "-luno_cppu -luno_cppuhelpergcc3 -luno_sal -luno_salhelpergcc3")
 else()
   if (CMAKE_CL_64)
@@ -336,16 +336,16 @@ endif()
 add_library(UnoUtil SHARED ${UNOUTIL_SRC})
 target_link_libraries(UnoUtil
 ${LIBREOFFICE_SDK_LIBRARIES}
-${ZINT_LIBRARIES} 
-${ICU_LIBRARIES} 
-${ImageMagick_Magick++_LIBRARY} ${ImageMagick_MagickWand_LIBRARY} ${ImageMagick_MagickCore_LIBRARY} 
-${XercesC_LIBRARY} 
+${ZINT_LIBRARIES}
+${ICU_LIBRARIES}
+${ImageMagick_Magick++_LIBRARY} ${ImageMagick_MagickWand_LIBRARY} ${ImageMagick_MagickCore_LIBRARY}
+${XercesC_LIBRARY}
 ${ZLIB_LIBRARIES}
 ${MINIZIP_LIBRARIES}
 DocxFactoryLib
 )
-
 add_dependencies(UnoUtil DocxFactoryLib)
+
 # libDocxFactory
 set(DOCXFACTORY_SRC
     # ConverterPrinter
@@ -470,11 +470,16 @@ set(DOCXFACTORY_SRC ${DOCXFACTORY_SRC}
 endif (WIN32)
 add_library(DocxFactory SHARED ${DOCXFACTORY_SRC})
 target_link_libraries(DocxFactory 
-UnoUtil
+DocxFactoryLib
+${ICU_LIBRARIES}
+${ImageMagick_Magick++_LIBRARY} ${ImageMagick_MagickWand_LIBRARY} ${ImageMagick_MagickCore_LIBRARY}
+${XercesC_LIBRARY}
 ${CMAKE_DL_LIBS}
 ${ZLIB_LIBRARIES}
+${ZINT_LIBRARIES}
+${MINIZIP_LIBRARIES}
 )
-add_dependencies(DocxFactory UnoUtil)
+add_dependencies(DocxFactory DocxFactoryLib)
 
 # word-processing-merger
 set(WORD_PROCESSING_MERGER_SRC
